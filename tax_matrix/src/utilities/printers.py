@@ -14,6 +14,12 @@ class Printer:
         print(Fore.RESET)
 
     @staticmethod
+    def inside_liner(line):
+        Printer.liner()
+        print(line)
+        Printer.liner()
+
+    @staticmethod
     def print_dict(dictionary_value):
         """
         Print a dict with key values next to dict content per value:
@@ -78,5 +84,26 @@ class Printer:
         print(Fore.RED + "Thank you for using the NEW & REVISED")
 
         tprint("Tax Matrix!")
+
+        Printer.liner()
+
+    @staticmethod
+    def welcome_city(city):
+        """
+        welcome_city welcomes user to city
+
+        Args:
+            city (str): name of city
+        """
+        Printer.liner()
+
+        # print welcome line
+        print(Fore.BLUE + "Welcome to the Tax Matrix for:")
+
+        # print pretty ascii art for county name
+        tprint(city)
+
+        # print price
+        # print(f"Subject Sale Price: {price_pretty}")
 
         Printer.liner()

@@ -4,6 +4,7 @@
 
 from . import classes
 from . import InputHelper
+from . import Printer
 
 
 def main():
@@ -21,17 +22,22 @@ def main():
         7: town_of_mint_hill(),
         8: town_of_pineville(),
     }
+    SPECIAL_STUFF = True
     WASTE_OPTIONS = {
         1: {"Mecklenburg Single Family Solid Waste Fee": 39.50},
         2: {"Charlotte Single Family Solid Waste Fee": 75.02},
     }
-    MECK_SERVICES = None
+    MECK_SERVICES = {
+        1: {"Mecklenburg Law Enforcement District For Charlotte ETJ": 0.001781},
+        2: {"Mecklenburg Fire District For Charlotte ETJ": 0.0008},
+    }
 
     meck = Mecklenburg(
         COUNTY_NAME,
         COUNTY_WIDE_RATE,
         COUNTY_WIDE_RATE_TITLE,
         CITIES,
+        SPECIAL_STUFF,
         WASTE_OPTIONS,
         MECK_SERVICES,
     )
@@ -46,18 +52,146 @@ class Mecklenburg(classes.County):
         county_wide_rate,
         county_wide_rate_title,
         cities,
+        special_stuff,
         waste_options,
         meck_services,
     ):
-        super().__init__(county_name, county_wide_rate, county_wide_rate_title, cities)
+        super().__init__(
+            county_name, county_wide_rate, county_wide_rate_title, cities, special_stuff
+        )
         self.waste_options = waste_options
         self.meck_services = meck_services
+        self.clt_waste_rate = None
+        tmp_clt_waste_key = list(waste_options.keys())[1]
+        self.clt_waste_dict = waste_options[tmp_clt_waste_key]
+        self.clt_waste_title = list(self.clt_waste_dict.keys())[0]
+        self.meck_waste_rate = None
+        tmp_meck_waste_key = list(waste_options.keys())[0]
+        self.meck_waste_dict = waste_options[tmp_meck_waste_key]
+        self.meck_waste_title = list(self.meck_waste_dict.keys())[0]
+        self.meck_police_rate = None
+        tmp_meck_police_key = list(meck_services.keys())[0]
+        self.meck_police_dict = meck_services[tmp_meck_police_key]
+        self.meck_police_title = list(self.meck_police_dict.keys())[0]
+        self.meck_fire_rate = None
+        tmp_meck_fire_key = list(meck_services.keys())[1]
+        self.meck_fire_dict = meck_services[tmp_meck_fire_key]
+        self.meck_fire_title = list(self.meck_fire_dict.keys())[0]
 
-    def get_waste_options(self):
-        pass
+        # save for inital values
+        self.inital_clt_waste_rate = waste_options[self.clt_waste_title]
+        self.inital_meck_waste_rate = waste_options[self.meck_waste_title]
+        self.inital_meck_police_rate = meck_services[self.meck_police_title]
+        self.inital_meck_fire_rate = meck_services[self.meck_fire_title]
 
-    def get_meck_services(self):
-        pass
+        def select_special_options(self):
+            """
+            select_special_options options for waste and meck services to be added
+            """
+
+            INPUT_LOOP = True
+
+            while INPUT_LOOP:
+                Printer.liner()
+                self.print_special_stuff_options()
+                Printer.liner()
+
+                modify = InputHelper.choice_bool(
+                    "Would you like to modify use any of the above Waste or Mecklenburg Services Fees and Rates?"
+                )
+
+                if modify is not None:
+                    if modify:
+                        self.which_modify()
+                    else:
+                        INPUT_LOOP = False
+                else:
+                    pass
+
+        def which_modify(self):
+            """
+            which_modify helps to determine if one should modify the values available options on the County services
+
+            SPECIFIC TO MECKLENBURG COUNTY
+            """
+            MOD_LOOP = True
+
+            mod_dict = {
+                0: "Quit",
+                1: "Charlotte Waste FEE",
+                2: "Mecklenburg Waste FEE",
+                3: "Meck Law Enforcement for Charlotte ETJ",
+                4: "Meck Fire for Charlotte ETJ",
+            }
+
+            print("Note a value of '...Rate: 0' will not appear in final statement")
+
+            while MOD_LOOP:
+                which_modify = InputHelper.input_from_dict(
+                    mod_dict,
+                    "Please Select Number from below options to modify or Quit: ",
+                )
+
+                if which_modify == mod_dict[0]:
+                    MOD_LOOP = False
+                elif which_modify == mod_dict[1]:
+                    self.modify_clt_waste()
+                elif which_modify == mod_dict[2]:
+                    self.modify_meck_waste()
+                elif which_modify == mod_dict[3]:
+                    self.meck_police_etj()
+                elif which_modify == mod_dict[4]:
+                    self.meck_fire_etj()
+                else:
+                    print("ERROR IN CLASS 'Mecklenburg'")
+
+        def modify_clt_waste():
+            enable = InputHelper.on_or_off(
+                self.clt_waste_title, self.inital_clt_waste_rate, self.clt_waste_rate
+            )
+            if enable:
+                self.clt_waste_rate = self.inital_clt_waste_rate
+            else:
+                self.clt_waste_rate = None
+            print(f"{self.clt_waste_title} Rate updated to: {self.clt_waste_rate}")
+
+        def modify_meck_waste():
+            enable = InputHelper.on_or_off(
+                self.meck_waste_title, self.inital_meck_waste_rate, self.meck_waste_rate
+            )
+            if enable:
+                self.meck_waste_rate = self.inital_meck_waste_rate
+            else:
+                self.meck_waste_rate = None
+            print(f"{self.meck_waste_title} Rate updated to: {self.meck_waste_rate}")
+
+        def meck_police_etj():
+            enable = InputHelper.on_or_off(
+                self.meck_police_title,
+                self.inital_meck_police_rate,
+                self.meck_police_rate,
+            )
+            if enable:
+                self.meck_police_rate = self.inital_meck_police_rate
+            else:
+                self.meck_police_rate = None
+            print(f"{self.meck_police_title} Rate updated to: {self.meck_police_rate}")
+
+        def meck_fire_etj():
+            enable = InputHelper.on_or_off(
+                self.meck_fire_title, self.inital_meck_fire_rate, self.meck_fire_rate
+            )
+            if enable:
+                self.meck_fire_rate = self.inital_meck_fire_rate
+            else:
+                self.meck_fire_rate = None
+            print(f"{self.meck_fire_title} Rate updated to: {self.meck_fire_rate}")
+
+        def print_special_stuff_options(self):
+            print("Modify Waste Fees")
+            print(
+                "Modify Mecklenburg Services (i.e. Meck Fire/Police for Charlotte ETJ"
+            )
 
 
 class CityOfCharlotte(classes.City):
@@ -82,20 +216,88 @@ class CityOfCharlotte(classes.City):
             fire_title,
         )
         self.special_districts = special_districts
+        self.special_district_title = None
+        self.special_district_rate = None
 
     def select_special_district(self):
-        in_special_district = InputHelper.option_bool(
-            "Is the subject property within one of the City of Charlotte's four (4) special districts?"
+        in_special_district = InputHelper.choice_bool(
+            "Is the subject property within one of the City of Charlotte's five (5) special districts?"
         )
         if in_special_district:
-            self.special_district = InputHelper.input_from_dict(
+            special_district_selection = InputHelper.input_from_dict(
                 self.special_districts,
                 "Please Enter Number Associated with the selected with subject's location",
             )
-            self.special_district_rate = self.special_districts[self.special_district]
-            return self.special_district_rate, self.special_district_rate
+            dict_key = list(special_district_selection.keys())[0]
+            dict_inner_dict = special_district_selection[dict_key]
+
+            self.special_district_rate = list(dict_inner_dict.keys())[0]
+            self.special_district_title = dict_inner_dict[self.special_district_rate]
         else:
             return None
+
+    def modify_or_keep(self):
+        INPUT_LOOP = True
+
+        while INPUT_LOOP:
+            Printer.liner()
+            self.print_modifiable_info()
+            Printer.liner()
+
+            modify = InputHelper.choice_bool(
+                "Would you like to modify use any of the above Police, Fire, and/or select a special district?"
+            )
+
+            if modify is not None:
+                if modify:
+                    self.which_modify()
+                else:
+                    INPUT_LOOP = False
+            else:
+                pass
+
+    def which_modify(self):
+        """
+        which_modify helps to determine if one should modify the values available options on the cities services
+
+        SPECIFIC TO CITY OF CHARLOTTE
+        """
+        MOD_LOOP = True
+
+        mod_dict = {
+            0: "Quit",
+            1: f"Police Rate: {self.police_rate}",
+            2: f"Fire Rate: {self.fire_rate}",
+            3: "Select a Special District",
+        }
+
+        print("Note a value of '...Rate: 0' will not appear in final statement")
+
+        while MOD_LOOP:
+            which_modify = InputHelper.input_from_dict(
+                mod_dict, "Please Select Number from below options to modify or Quit: "
+            )
+
+            if which_modify == mod_dict[0]:
+                MOD_LOOP = False
+            elif which_modify == mod_dict[1]:
+                self.modify_police()
+            elif which_modify == mod_dict[2]:
+                self.modify_fire()
+            elif which_modify == mod_dict[3]:
+                self.select_special_district()
+            else:
+                print("ERROR IN CLASS 'CityOfCharlotte'")
+
+    def print_modifiable_info(self):
+        """
+        print_modifiable_info print all info capable of being modified
+        """
+        print(f"Police Rate Title: {self.police_title}")
+        print(f"Police Rate: {self.police_rate}")
+        print(f"Fire Rate Title: {self.fire_title}")
+        print(f"Fire Rate: {self.fire_rate}")
+        print("Select a Special District")
 
     def print_all_info(self):
         print(f"City Name: {self.city_name}")
@@ -105,8 +307,6 @@ class CityOfCharlotte(classes.City):
         print(f"Police Rate Title: {self.police_title}")
         print(f"Fire Rate: {self.fire_rate}")
         print(f"Fire Rate Title: {self.fire_title}")
-        print(f"Special District Rate: {self.special_district_rate}")
-        print(f"Special District: {self.special_district}")
 
 
 def city_of_charlotte():
@@ -145,9 +345,9 @@ def charlotte():
     CITY_NAME = "Charlotte"
     CITY_RATE = 0.003481
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(
@@ -237,9 +437,9 @@ def town_of_matthews():
     CITY_NAME = "Town of Matthews"
     CITY_RATE = 0.00295
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(
@@ -285,7 +485,7 @@ def town_of_pineville():
     CITY_RATE_TITLE = CITY_NAME
     POLICE_RATE = 0.001637
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(

@@ -23,32 +23,27 @@ class InputHelper:
         INPUT_LOOP = True
 
         while INPUT_LOOP:
-            Printer.liner()
-
-            print(prompt)
-
-            print()
+            Printer.inside_liner(prompt)
 
             Printer.print_dict(dictionary)
 
             Printer.liner()
-
             inputted_value = input(
                 "Please ENTER Value associated with your selection: "
             )
-
             Printer.liner()
 
+            value = InputTesters.verify_dict_selection(inputted_value, dictionary)
             try:
-                InputTesters.verify_int(inputted_value) is not None
+                value is not None
                 INPUT_LOOP = False
             except:
                 pass
 
-        return dictionary[inputted_value]
+        return value
 
     @staticmethod
-    def option_bool(question):
+    def choice_bool(question):
         """
         main will grab true or false from user (1 or 0) in order to determine how the user wishes to move forwards
         Returns:
@@ -57,15 +52,47 @@ class InputHelper:
 
         INPUT_LOOP = True
         while INPUT_LOOP:
-            Printer.liner()
 
-            print(question)
+            Printer.inside_liner(question)
 
-            Printer.liner()
             prompt = " Select '0' for NO and '1' for YES: "
             inputted_value = input(prompt)
 
             Printer.liner()
+
+            bool_value = InputTesters.verify_bool(inputted_value)
+
+            try:
+                bool_value is not None
+                INPUT_LOOP = False
+            except:
+                pass
+
+        return bool_value
+
+    @staticmethod
+    def on_or_off(pre_prompt, rate, current_rate):
+        """
+        on_or_off checks if user would like to include the rate of for teh pre_prompted selection
+
+        Args:
+            pre_prompt (str): label of rate i.e. "POLICE" or "FIRE"
+            rate (float): accurate rate of the pre_prompt
+            current_rate (float): current rate being used
+        """
+        INPUT_LOOP = True
+
+        while INPUT_LOOP:
+            Printer.inside_liner(f"Current {pre_prompt} Rate: {current_rate}")
+
+            print("Would you like to use the following rate in your statement?")
+
+            print(f"{pre_prompt} Rate: {rate}")
+
+            Printer.liner()
+            inputted_value = input(
+                "ENTER '1' to include above rate, and '0' to NOT include above rate: "
+            )
 
             bool_value = InputTesters.verify_bool(inputted_value)
 
@@ -114,11 +141,9 @@ class InputHelper:
 
         INPUT_LOOP = True
         while INPUT_LOOP:
-            Printer.liner()
-
             # print counties
+            Printer.liner()
             Printer.print_dict(county_dict_with_names)
-
             Printer.liner()
             # set prompt for
             prompt = "Please Enter the number associated with the county your subject is in: "
@@ -145,11 +170,9 @@ class InputHelper:
 
         INPUT_LOOP = True
         while INPUT_LOOP:
-            Printer.liner()
-
             # print counties
+            Printer.liner()
             Printer.print_dict(city_dict_with_names)
-
             Printer.liner()
             # set prompt for
             prompt = (

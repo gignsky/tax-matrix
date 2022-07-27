@@ -4,6 +4,17 @@
 
 import src
 
+# print a welcome message
+src.utilities.printers.Printer.welcome_to_program(
+    src.config.CURRENT_VERSION(), src.config.DATE_REVISED()
+)
+
+load = src.utilities.inputs.InputHelper.choice_bool("Loud Counties and Cities?")
+if load:
+    src.localities.load_all_counties()
+else:
+    pass
+
 
 """
     NEED TO REWRITE THIS TO START WORKING WITH NEW FOLDERS YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -18,15 +29,10 @@ def main():
     MAIN_LOOP = True  # var to keep program running until stop is requested or neccecary
 
     # main loop
-    while MAIN_LOOP
+    while MAIN_LOOP:
         """
         main program loop
         """
-
-        # print a welcome message
-        src.utilities.printers.Printer.welcome_to_program(
-            src.config.CURRENT_VERSION(), src.config.DATE_REVISED()
-        )
 
         # return subject class object
         Subject = src.utilities.classes.Property()
@@ -47,12 +53,16 @@ def main():
             cities = county.get_cities()
 
             # get city statistics if any
-            city_stats = src.utilities.inputs.InputHelper.city_grabber(cities)
+            city = src.utilities.inputs.InputHelper.city_grabber(cities)
 
-            if city_stats is None:
+            if city is None:
+                pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
+                MAIN_LOOP = False
+            else:
+                src.utilities.printers.Printer.welcome_city(city.get_city_name())
+                city.modify_or_keep()
 
-
-            print(city_stats.get_city_name())
+            Subject.select_special_options()
 
     #         # get price
     #         price_float, price_str = (

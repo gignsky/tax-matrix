@@ -11,23 +11,23 @@ class InputTesters:
     InputTesters contains testing functions to help with inputs
     """
 
-    @staticmethod
-    def verify_float(float_value):
-        try:
-            float_value == float(float_value)
-            float = float_value
-        except:
-            Printer.liner()
-
-            print(Fore.RED + f"entered value of '{float_value}' is not a float :(")
-
-            print(Fore.RESET + "please try again and enter an float")
-
-            Printer.liner()
-
-            float = None
-
-        return float
+    #     @staticmethod
+    #     def verify_float(float_value):
+    #         try:
+    #             float_value == float(float_value)
+    #             float = float_value
+    #         except:
+    #             Printer.liner()
+    #
+    #             print(Fore.RED + f"entered value of '{float_value}' is not a float :(")
+    #
+    #             print(Fore.RESET + "please try again and enter an float")
+    #
+    #             Printer.liner()
+    #
+    #             float = None
+    #
+    #         return float
 
     @staticmethod
     def verify_int(int_value):
@@ -67,17 +67,21 @@ class InputTesters:
         Returns:
             bool: true or false value
         """
-        if bool_value != 0 or 1:
+        # try:
+        check_var = InputTesters.verify_int(bool_value)
+        # except:
+        #     return None
+        if check_var != 0 and check_var != 1:
             return None
         else:
             try:
-                value = bool(bool_value)
+                value = bool(check_var)
             except:
                 Printer.liner()
 
                 print(
                     Fore.RED
-                    + f"Your input of '{bool_value}' is neither ONE (1) nor ZERO (0),"
+                    + f"Your input of '{check_var}' is neither ONE (1) nor ZERO (0),"
                 )
 
                 print(Fore.RESET + "Please try again!")
