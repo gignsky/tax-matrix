@@ -9,11 +9,7 @@ src.utilities.printers.Printer.welcome_to_program(
     src.config.CURRENT_VERSION(), src.config.DATE_REVISED()
 )
 
-load = src.utilities.inputs.InputHelper.choice_bool("Loud Counties and Cities?")
-if load:
-    src.localities.load_all_counties()
-else:
-    pass
+src.localities.load_all_counties("inital")
 
 
 """
@@ -26,7 +22,24 @@ def main():
     Main program that will terminate with statement and statistics
     """
 
+    # return subject class object
+    Subject = src.utilities.classes.Property()
+
+    # get county list
+    all_counties = src.utilities.classes.Counties.get_all_counties()
+
+    # dict of avalable options
+    options_dict = {
+        0: "Quit Program & Output Statement",
+        1: "Reload Counties to Default Values",
+        2: "Modify Price",
+        3: "Modify County",
+        4: "Modify County Special Options",
+        5: "Modify City and/or City Options",
+    }
+
     MAIN_LOOP = True  # var to keep program running until stop is requested or neccecary
+    INITAL_RUN = True  # var to set the inital run to run through all avaliable options
 
     # main loop
     while MAIN_LOOP:
@@ -34,26 +47,70 @@ def main():
         main program loop
         """
 
-        # return subject class object
-        Subject = src.utilities.classes.Property()
+        # test if inital run otherwise grab menu option
+        if not INITAL_RUN:
+            # print current statistics
+            Subject.print_current_stats()
 
-        # get county list
-        county_list = src.utilities.classes.Counties.get_all_counties()
-
-        # get county
-        county = src.utilities.inputs.InputHelper.county_grabber(county_list)
-
-        if county is None:
-            MAIN_LOOP = False
+            # select main menu options
+            menu_option = src.utilities.inputs.InputHelper.main_menu_options(
+                options_dict
+            )
         else:
-            # add county
-            Subject.add_county(county)
+            if INITAL_RUN == True:
+                menu_option = options_dict[2]
+                INITAL_RUN = "Get Price then County"
+            else:
+                menu_option = options_dict[3]
+                INITAL_RUN = False
 
-            # get cities
-            cities = county.get_cities()
+        # quit
+        if menu_option == options_dict[0]:
+            MAIN_LOOP = False
+
+        # reload all counties to default
+        elif menu_option == options_dict[1]:
+            load = src.utilities.inputs.InputHelper.choice_bool(
+                "Are you SURE you want to reload Counties and Cities to default values?"
+            )
+            if load:
+                src.localities.load_all_counties("reload")
+            else:
+                pass
+
+        # price options
+        elif menu_option == options_dict[2]:
+            # get price
+            price_int, price_str = (
+                425560,
+                "$425,560",
+            )  # src.utilities.inputs.InputHelper.price_grabber()
+
+            # add price
+            Subject.add_price(price_int, price_str)
+
+        # county options
+        elif menu_option == options_dict[3]:
+            # get county
+            county = src.utilities.inputs.InputHelper.county_grabber(all_counties)
+            if county is None:
+                MAIN_LOOP = False
+            else:
+                # add county
+                Subject.add_county(county)
+
+        # special options
+        elif menu_option == options_dict[4]:
+            # check for special options
+            Subject.select_special_options()
+
+        # city options
+        elif menu_option == options_dict[5]:
+            # get all cities
+            all_cities = county.get_cities()
 
             # get city statistics if any
-            city = src.utilities.inputs.InputHelper.city_grabber(cities)
+            city = src.utilities.inputs.InputHelper.city_grabber(all_cities)
 
             if city is None:
                 pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
@@ -62,18 +119,27 @@ def main():
                 src.utilities.printers.Printer.welcome_city(city.get_city_name())
                 city.modify_or_keep()
 
-            Subject.select_special_options()
+            # add city to subject
+            Subject.add_city(city)
 
-    #         # get price
-    #         price_float, price_str = (
-    #             156,
-    #             "156",
-    #         )  # src.utilities.inputs.InputHelper.price_grabber()
-    #
-    #         # add price
-    #         Subject.add_price(price_float, price_str)
+        # error
+        else:
+            src.utilities.printers.Printer.inside_liner(
+                "There was an ERROR in main menu selection. :("
+            )
 
+    # generate statistics
+    Subject.generate_statistics()
+    # statement maker
+    statement = f"Taxes are an estimate based on {Subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {Subject.get_price_str()} {Subject.generate_post_price_statement()} = {Subject.generate_total_tax_cost()} as rounded to the nearest dollar."
+
+    # print goodbye
     src.utilities.printers.Printer.end_program_message()
+
+    # print final statement
+    src.utilities.printers.Printer.liner()
+    src.utilities.printers.Printer.print_green(statement)
+    src.utilities.printers.Printer.liner()
 
 
 # def main():

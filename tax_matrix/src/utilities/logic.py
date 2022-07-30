@@ -9,7 +9,7 @@ from . import printers
 
 class LogicalWork:
     @staticmethod
-    def substatement(rate, location):
+    def substatement_maker(rate, location):
         """
         main substatement generator
 
@@ -82,6 +82,67 @@ class LogicalWork:
                 INDEX_VALUE += 1
 
         return dict_with_names
+
+    @staticmethod
+    def county_dict_to_two_lists(dict):
+        list1 = []
+        list2 = []
+
+        for i in dict:
+            list1.append(i)
+            list2.append(dict[i])
+
+        return list1, list2
+
+    @staticmethod
+    def city_dict_to_two_lists(dict):
+        list1 = []
+        list2 = []
+
+        for i in dict:
+            if i is not None:
+                key = list(i.keys())
+                value = i[key[0]]
+                list1.append(key)
+                list2.append(value)
+
+        return list1, list2
+
+    @staticmethod
+    def check_county_only(county_dict, city_dict):
+        _, county_values = LogicalWork.county_dict_to_two_lists(county_dict)
+        _, city_values = LogicalWork.county_dict_to_two_lists(city_dict)
+
+        try:
+            county_second_value = county_values[1]
+        except:
+            county_second_value = None
+
+        try:
+            city_first_value = city_values[0]
+        except:
+            city_first_value = None
+
+        if county_second_value is not None or city_first_value is not None:
+            return False  # returns false if second value could be found or city values are found
+        else:
+            return True
+
+    @staticmethod
+    def check_city_exists(city_dict):
+        _, city_values = LogicalWork.county_dict_to_two_lists(city_dict)
+
+        try:
+            first_city_value = city_values[0]
+        except:
+            return False
+
+        first_city_value_key = list(first_city_value)[0]
+
+        if first_city_value[first_city_value_key] is None:
+            return False
+        else:
+            return True
 
 
 #     @staticmethod

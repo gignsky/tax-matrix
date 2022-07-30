@@ -14,10 +14,31 @@ class Printer:
         print(Fore.RESET)
 
     @staticmethod
+    def short_liner():
+        SHORT_LINER = "=========================================="
+        print(Fore.LIGHTYELLOW_EX + SHORT_LINER)
+        print(Fore.RESET)
+
+    @staticmethod
     def inside_liner(line):
         Printer.liner()
         print(line)
         Printer.liner()
+
+    @staticmethod
+    def print_green(line):
+        print(Fore.GREEN + line)
+        print(Fore.RESET)
+
+    @staticmethod
+    def print_yellow(line):
+        print(Fore.YELLOW + line)
+        print(Fore.RESET)
+
+    @staticmethod
+    def print_red(line):
+        print(Fore.RED + line)
+        print(Fore.RESET)
 
     @staticmethod
     def print_dict(dictionary_value):

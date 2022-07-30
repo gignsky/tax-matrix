@@ -71,7 +71,7 @@ class InputHelper:
         return bool_value
 
     @staticmethod
-    def on_or_off(pre_prompt, rate, current_rate):
+    def on_or_off_rate(pre_prompt, rate, current_rate):
         """
         on_or_off checks if user would like to include the rate of for teh pre_prompted selection
 
@@ -93,6 +93,46 @@ class InputHelper:
             inputted_value = input(
                 "ENTER '1' to include above rate, and '0' to NOT include above rate: "
             )
+
+            bool_value = InputTesters.verify_bool(inputted_value)
+
+            try:
+                bool_value is not None
+                INPUT_LOOP = False
+            except:
+                pass
+
+        return bool_value
+
+    @staticmethod
+    def on_or_off_fee(pre_prompt, fee, current_fee):
+        """
+        on_or_off checks if user would like to include the rate of for teh pre_prompted selection
+
+        Args:
+            pre_prompt (str): label of rate i.e. "POLICE" or "FIRE"
+            rate (float): accurate rate of the pre_prompt
+            current_rate (float): current rate being used
+        """
+        INPUT_LOOP = True
+
+        while INPUT_LOOP:
+            if current_fee is None:
+                Printer.inside_liner(f"Current {pre_prompt} Rate: {None}")
+            else:
+                Printer.inside_liner(f"Current {pre_prompt} Rate: {current_fee:.2f}")
+
+            print("Would you like to use the following rate in your statement?")
+
+            Printer.liner()
+            print(f"{pre_prompt}: ${fee:.2f}")
+
+            Printer.liner()
+            inputted_value = input(
+                "ENTER '1' to include above rate, and '0' to NOT include above rate: "
+            )
+
+            Printer.liner()
 
             bool_value = InputTesters.verify_bool(inputted_value)
 
@@ -193,3 +233,13 @@ class InputHelper:
                 INPUT_LOOP = False
 
         return city_var
+
+    @staticmethod
+    def main_menu_options(options_dict):
+
+        inputted_value = InputHelper.input_from_dict(
+            options_dict,
+            "Please ENTER number associated with the option you wishh to select",
+        )
+
+        return inputted_value

@@ -1,6 +1,7 @@
 """
 general utilites for entire program
 """
+from pprint import pprint
 from art import tprint
 from colorama import Fore
 from .printers import Printer
