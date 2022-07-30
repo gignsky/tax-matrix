@@ -82,8 +82,8 @@ def main():
         elif menu_option == options_dict[2]:
             # get price
             price_int, price_str = (
-                425560,
-                "$425,560",
+                100000,
+                "$100,000",
             )  # src.utilities.inputs.InputHelper.price_grabber()
 
             # add price
@@ -131,7 +131,7 @@ def main():
     # generate statistics
     Subject.generate_statistics()
     # statement maker
-    statement = f"Taxes are an estimate based on {Subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {Subject.get_price_str()} {Subject.generate_post_price_statement()} = {Subject.generate_total_tax_cost()} as rounded to the nearest dollar."
+    statement = f"Taxes are an estimate based on {Subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {Subject.get_price_str()} {Subject.generate_post_price_statement()} as rounded to the nearest dollar."
 
     # print goodbye
     src.utilities.printers.Printer.end_program_message()

@@ -84,7 +84,7 @@ class LogicalWork:
         return dict_with_names
 
     @staticmethod
-    def county_dict_to_two_lists(dict):
+    def no_index_dict_to_two_lists(dict):
         list1 = []
         list2 = []
 
@@ -95,42 +95,43 @@ class LogicalWork:
         return list1, list2
 
     @staticmethod
-    def city_dict_to_two_lists(dict):
+    def with_index_dict_to_two_lists(dict):
         list1 = []
         list2 = []
 
-        for i in dict:
-            if i is not None:
-                key = list(i.keys())
-                value = i[key[0]]
-                list1.append(key)
-                list2.append(value)
+        if dict is not None:
+            for i in dict:
+                if i is not None:
+                    key = list(i.keys())
+                    value = i[key[0]]
+                    list1.append(key)
+                    list2.append(value)
+        else:
+            list1 = None
+            list2 = None
 
         return list1, list2
 
     @staticmethod
-    def check_county_only(county_dict, city_dict):
-        _, county_values = LogicalWork.county_dict_to_two_lists(county_dict)
-        _, city_values = LogicalWork.county_dict_to_two_lists(city_dict)
+    def check_county_only(county_dict):
+        _, county_values = LogicalWork.no_index_dict_to_two_lists(county_dict)
 
         try:
             county_second_value = county_values[1]
         except:
             county_second_value = None
 
-        try:
-            city_first_value = city_values[0]
-        except:
-            city_first_value = None
-
-        if county_second_value is not None or city_first_value is not None:
+        if county_second_value is not None:
             return False  # returns false if second value could be found or city values are found
         else:
             return True
 
     @staticmethod
     def check_city_exists(city_dict):
-        _, city_values = LogicalWork.county_dict_to_two_lists(city_dict)
+        if city_dict is not None:
+            _, city_values = LogicalWork.no_index_dict_to_two_lists(city_dict)
+        else:
+            return False
 
         try:
             first_city_value = city_values[0]

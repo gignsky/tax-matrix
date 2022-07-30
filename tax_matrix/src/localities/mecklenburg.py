@@ -2,6 +2,7 @@
     meck co rates document
 """
 
+from . import LogicalWork
 from . import classes
 from . import InputHelper
 from . import Printer
@@ -459,6 +460,62 @@ class Mecklenburg(classes.County):
             pass
 
         return self.county_statistics
+
+    def generate_county_ONLY_statement(self, multiply_rate):
+        title, rate = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
+        inital_x = "x "
+
+        items_added = 0
+        for title, rate in zip(title, rate):
+            if items_added == 0:
+                middle_statement = f"({rate} - {title})"
+                items_added += 1
+            else:
+                if "Fee" not in title:
+                    middle_statement = (
+                        middle_statement + LogicalWork.substatement_maker(rate, title)
+                    )
+                    items_added += 1
+
+        if items_added == 1:
+            return_statement = f"{inital_x}{middle_statement}"
+        else:
+            return_statement = f"{inital_x}{multiply_rate:.6g} ({middle_statement})"
+
+        return return_statement
+
+    def check_contains_fees(self, county_keys, county_values):
+        for key, _ in zip(county_keys, county_values):
+            if "Fee" in key:
+                return True
+
+        return False
+
+    def generate_county_fees_string(self, county_keys, county_values):
+        county_fee_string = ""
+        for key, fee in zip(county_keys, county_values):
+            if "Fee" in key:
+                county_fee_string = county_fee_string + LogicalWork.substatement_maker(
+                    f"${fee:,.2f}", key
+                )
+
+        return county_fee_string
+
+    def generate_county_fees_price(self, county_keys, county_values):
+        county_fee_price = 0.0
+        for key, fee in zip(county_keys, county_values):
+            if "Fee" in key:
+                county_fee_price = county_fee_price + fee
+
+        return county_fee_price
+
+    def generate_county_multiply_rate(self, county_keys, county_values):
+        county_multiply_rate = 0.0
+        for key, rate in zip(county_keys, county_values):
+            if "Fee" not in key:
+                county_multiply_rate = county_multiply_rate + rate
+
+        return county_multiply_rate
 
 
 class CityOfCharlotte(classes.City):

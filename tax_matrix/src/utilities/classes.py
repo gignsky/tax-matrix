@@ -1,8 +1,6 @@
 """
     Countains classes for use in program
 """
-from . import pprint
-from . import InputTesters
 from . import LogicalWork
 from . import InputHelper
 from . import Printer
@@ -17,6 +15,7 @@ class Property:
         self.price_int = None
         self.price_str = None
         self.county = None
+        self.FINAL_TAX_COST = 0.0
 
     def add_price(self, price_int, price_str):
         self.price_int = price_int
@@ -67,19 +66,25 @@ class Property:
         else:
             self.statistics["CITY"] = self.county.city.generate_city_statistics()
 
-    def generate_multiply_rate(self):
-        county_keys, county_values = LogicalWork.county_dict_to_two_lists(
+    def generate_total_multiply_rate(self):
+        county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
             self.statistics["COUNTY"]
         )
-        city_keys, city_values = LogicalWork.county_dict_to_two_lists(
-            self.statistics["CITY"]
-        )
         self.CITY_EXISTS = LogicalWork.check_city_exists(self.statistics["CITY"])
+        if self.CITY_EXISTS:
+            _, city_values = LogicalWork.no_index_dict_to_two_lists(
+                self.statistics["CITY"]
+            )
+            self.COUNTY_ONLY = False
+        else:
+            self.COUNTY_ONLY = True
 
         self.multiply_rate = 0.0
 
         if self.COUNTY_ONLY:
-            self.multiply_rate = county_values[0]
+            self.multiply_rate = self.county.generate_county_multiply_rate(
+                county_keys, county_values
+            )
         else:
             # county adder
             for i in county_values:
@@ -94,19 +99,47 @@ class Property:
             pass
 
     def generate_post_price_statement(self):
-        self.COUNTY_ONLY = LogicalWork.check_county_only(
-            self.statistics["COUNTY"], self.statistics["CITY"]
+        county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
+            self.statistics["COUNTY"]
         )
 
-        county_statement = self.county.generate_county_ONLY_statement()
+        self.generate_total_multiply_rate()
+        self.generate_total_tax_burden_after_rate()
+
+        county_ONLY_statement = self.county.generate_county_ONLY_statement(
+            self.multiply_rate
+        )
+
         if self.COUNTY_ONLY:
-            return f"x {county_statement}"
+            middle_statement = county_ONLY_statement
         else:
-            self.generate_multiply_rate()
-            return f"x {self.multiply_rate} ({county_statement}{self.generate_all_substatements()})"
+            self.generate_total_multiply_rate()
+            middle_statement = f"x {self.multiply_rate:.6g} ({county_ONLY_statement}{self.generate_all_substatements()}) = {self.generate_total_tax_burden_str()}"
+
+        self.CONTAINS_FEES = self.county.check_contains_fees(county_keys, county_values)
+
+        if not self.CONTAINS_FEES:
+            if self.COUNTY_ONLY:
+                return_statement = (
+                    f"{middle_statement} = {self.generate_total_tax_burden_str()}"
+                )
+            else:
+                return_statement = middle_statement
+        else:
+            fees = self.county.generate_county_fees_price(county_keys, county_values)
+            pre_free_tax_burden = self.generate_total_tax_burden_str()
+            self.generate_total_tax_burden_after_fee(fees)
+            return_statement = (
+                middle_statement
+                + f" = {pre_free_tax_burden}{self.county.generate_county_fees_string(county_keys, county_values)} = {self.generate_total_tax_burden_str()}"
+            )
+
+        return return_statement
 
     def generate_all_substatements(self):
-        _, dicts_values = LogicalWork.county_dict_to_two_lists(self.statistics["CITY"])
+        _, dicts_values = LogicalWork.no_index_dict_to_two_lists(
+            self.statistics["CITY"]
+        )
         city_keys, city_values = LogicalWork.city_dict_to_two_lists(dicts_values)
         return_statement = ""
 
@@ -122,12 +155,14 @@ class Property:
 
         return return_statement
 
-    def generate_total_tax_cost(self):
+    def generate_total_tax_burden_str(self):
+        return f"${self.FINAL_TAX_COST:,.0f}"
 
-        tax_cost_int = self.price_int * self.multiply_rate
+    def generate_total_tax_burden_after_rate(self):
+        self.FINAL_TAX_COST = self.price_int * self.multiply_rate
 
-        tax_cost_str = f"${tax_cost_int:,.0f}"
-        return tax_cost_str
+    def generate_total_tax_burden_after_fee(self, fee):
+        self.FINAL_TAX_COST = self.FINAL_TAX_COST + fee
 
 
 class County:
@@ -195,13 +230,29 @@ class County:
 
         return self.county_statistics
 
-    def generate_county_ONLY_statement(self):
+    def generate_county_ONLY_statement(self, multiply_rate):
         if self.county_wide_rate is not None:
-            return f"({self.county_wide_rate} - {self.county_wide_rate_title})"
+            return f"x ({self.county_wide_rate} - {self.county_wide_rate_title})"
         else:
             Printer.liner()
             Printer.print_red("THERE HAS BEEN AN ERROR IN COUNTY ONLY TITLE GENERATOR")
             Printer.liner()
+
+    def check_contains_fees(self, county_keys, county_values):
+        return False
+
+    def generate_county_fees_string(self):
+        return  # returns nothing as base county class has no fees
+
+    def generate_county_fees_price(self):
+        Printer.liner()
+        Printer.print_red("THERE HAS BEEN AN ERROR IN THE FEE PRICE UPDATER")
+        Printer.liner()  # returns nothing as base county class has no fees
+
+    def generate_county_multiply_rate(self, county_keys, county_values):
+        county_multiply_rate = 0.0
+        for key, rate in zip(county_keys, county_values):
+            county_multiply_rate = county_multiply_rate + rate
 
 
 class City:
