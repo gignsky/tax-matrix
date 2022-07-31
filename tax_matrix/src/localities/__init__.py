@@ -1,3 +1,4 @@
+from .. import cls
 from ..utilities import InputHelper
 from ..utilities import LogicalWork
 from ..utilities import classes

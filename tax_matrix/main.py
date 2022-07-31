@@ -1,8 +1,10 @@
 """
     Main Function of Tax Matrix to help produce final product
+    vscode-fold=3
 """
 
 import src
+from src import cls
 
 # print a welcome message
 src.utilities.printers.Printer.welcome_to_program(
@@ -10,11 +12,6 @@ src.utilities.printers.Printer.welcome_to_program(
 )
 
 src.localities.load_all_counties("inital")
-
-
-"""
-    NEED TO REWRITE THIS TO START WORKING WITH NEW FOLDERS YAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-"""
 
 
 def main():
@@ -31,15 +28,19 @@ def main():
     # dict of avalable options
     options_dict = {
         0: "Quit Program & Output Statement",
-        1: "Reload Counties to Default Values",
+        1: "Print Statisticts",
         2: "Modify Price",
         3: "Modify County",
         4: "Modify County Special Options",
-        5: "Modify City and/or City Options",
+        5: "Modify City and/or City Options\n...",
+        99: "Reload Counties to Default Values",
     }
 
     MAIN_LOOP = True  # var to keep program running until stop is requested or neccecary
     INITAL_RUN = True  # var to set the inital run to run through all avaliable options
+    HAS_PRICE = (
+        False  # var sets has price var to false to indicate a price has not been loaded
+    )
 
     # main loop
     while MAIN_LOOP:
@@ -49,13 +50,12 @@ def main():
 
         # test if inital run otherwise grab menu option
         if not INITAL_RUN:
-            # print current statistics
-            Subject.print_current_stats()
-
             # select main menu options
             menu_option = src.utilities.inputs.InputHelper.main_menu_options(
                 options_dict
             )
+            cls()
+
         else:
             if INITAL_RUN == True:
                 menu_option = options_dict[2]
@@ -68,31 +68,41 @@ def main():
         if menu_option == options_dict[0]:
             MAIN_LOOP = False
 
-        # reload all counties to default
+        # print current statistics
         elif menu_option == options_dict[1]:
-            load = src.utilities.inputs.InputHelper.choice_bool(
-                "Are you SURE you want to reload Counties and Cities to default values?"
-            )
-            if load:
-                src.localities.load_all_counties("reload")
-            else:
-                pass
+            src.utilities.printers.Printer.liner()
+            Subject.print_current_stats()
+            src.utilities.printers.Printer.liner()
+            wait()
 
         # price options
         elif menu_option == options_dict[2]:
-            # get price
-            price_int, price_str = (
-                100000,
-                "$100,000",
-            )  # src.utilities.inputs.InputHelper.price_grabber()
+            if HAS_PRICE:
+                src.utilities.printers.Printer.short_liner()
+                src.utilities.printers.Printer.print_yellow(
+                    f"Current Price: {Subject.get_price_str()}"
+                )
+                src.utilities.printers.Printer.short_liner()
+                src.utilities.printers.Printer.print_yellow(
+                    "If you would like to keep this price input '0'"
+                )
+                src.utilities.printers.Printer.short_liner()
 
-            # add price
-            Subject.add_price(price_int, price_str)
+            # get price
+            price_int, price_str = src.utilities.inputs.InputHelper.price_grabber()
+
+            if price_int == 0:
+                pass
+            else:
+                # add price
+                Subject.add_price(price_int, price_str)
+                HAS_PRICE = True
 
         # county options
         elif menu_option == options_dict[3]:
             # get county
             county = src.utilities.inputs.InputHelper.county_grabber(all_counties)
+            cls()
             if county is None:
                 MAIN_LOOP = False
             else:
@@ -102,7 +112,7 @@ def main():
         # special options
         elif menu_option == options_dict[4]:
             # check for special options
-            Subject.select_special_options()
+            Subject.county.select_special_options()
 
         # city options
         elif menu_option == options_dict[5]:
@@ -112,15 +122,43 @@ def main():
             # get city statistics if any
             city = src.utilities.inputs.InputHelper.city_grabber(all_cities)
 
+            cls()
+
             if city is None:
                 pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
                 MAIN_LOOP = False
+
             else:
+                # add city to subject
+                Subject.add_city(city)
+
                 src.utilities.printers.Printer.welcome_city(city.get_city_name())
+
                 city.modify_or_keep()
 
-            # add city to subject
-            Subject.add_city(city)
+                cls()
+
+        # reload all counties to default
+        elif menu_option == options_dict[99]:
+            load = src.utilities.inputs.InputHelper.choice_bool(
+                "Are you SURE you want to reload Counties and Cities to default values?"
+            )
+            if load:
+                src.localities.load_all_counties("reload")
+                Subject = src.utilities.classes.Property()
+                INITAL_RUN = True
+                HAS_PRICE = False
+                cls()
+                src.utilities.printers.Printer.short_liner()
+                src.utilities.printers.Printer.print_green("Counties & Cities RELOADED")
+                src.utilities.printers.Printer.short_liner()
+            else:
+                cls()
+                src.utilities.printers.Printer.short_liner()
+                src.utilities.printers.Printer.print_red(
+                    "Counties & Cities NOT reloaded"
+                )
+                src.utilities.printers.Printer.short_liner()
 
         # error
         else:
@@ -128,6 +166,7 @@ def main():
                 "There was an ERROR in main menu selection. :("
             )
 
+    cls()
     # generate statistics
     Subject.generate_statistics()
     # statement maker
@@ -142,47 +181,11 @@ def main():
     src.utilities.printers.Printer.liner()
 
 
-# def main():
-#     """
-#     Main program that will terminate with statement and statistics
-#     """
-#     program_loop = (
-#         True  # var to keep program running until stop is requested or neccecary
-#     )
-#
-#     # main program loop that will end when program is quitted or reaches a final output
-#     while program_loop:
-#         """
-#         Run main program
-#         """
-#         # print a welcome
-#         src.utilities.printers.welcome(
-#             src.config.CURRENT_VERSION(), src.config.DATE_REVISED()
-#         )
-#
-#         (
-#             price_float,
-#             price_pretty,
-#         ) = src.utilities.inputs.price_grabber()  # get price of home
-#
-#         county_loop = (
-#             True  # var to keep county loop running until stop is requested or neccecary
-#         )
-#
-#         # county loop that allows for jumping back and forth between counties
-#         while county_loop:
-#             county_name, county_id, county_state = src.utilities.logic.county_finder()
-#             statement, stats = src.utilities.logic.county_controller(
-#                 price_float, price_pretty, county_name, county_state
-#             )
-#
-#             if statement == None and stats == None:
-#                 county_loop, program_loop = False
-#                 print("Program EXITED...")
-#                 break
-#
-#         if statement == None:
-#             break
+def wait():
+    input("press ANY key to Continue")
+    cls()
 
 
+###
 main()
+###

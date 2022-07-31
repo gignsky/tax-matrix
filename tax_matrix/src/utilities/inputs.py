@@ -5,6 +5,7 @@
 from .testers import InputTesters
 from .printers import Printer
 from .logic import LogicalWork
+from . import cls
 
 
 class InputHelper:
@@ -34,11 +35,8 @@ class InputHelper:
             Printer.liner()
 
             value = InputTesters.verify_dict_selection(inputted_value, dictionary)
-            try:
-                value is not None
+            if value is not None:
                 INPUT_LOOP = False
-            except:
-                pass
 
         return value
 
@@ -65,6 +63,7 @@ class InputHelper:
             try:
                 bool_value is not None
                 INPUT_LOOP = False
+                cls()
             except:
                 pass
 
@@ -82,12 +81,16 @@ class InputHelper:
         """
         INPUT_LOOP = True
 
+        cls()
+
         while INPUT_LOOP:
-            Printer.inside_liner(f"Current {pre_prompt} Rate: {current_rate}")
+            Printer.short_liner()
+            Printer.print_yellow(f"Current {pre_prompt} Rate: {current_rate}")
+            Printer.short_liner()
 
             print("Would you like to use the following rate in your statement?")
 
-            print(f"{pre_prompt} Rate: {rate}")
+            Printer.print_green(f"{pre_prompt} Rate: {rate}")
 
             Printer.liner()
             inputted_value = input(
@@ -116,18 +119,24 @@ class InputHelper:
         """
         INPUT_LOOP = True
 
+        cls()
+
         while INPUT_LOOP:
             if current_fee is None:
-                Printer.inside_liner(f"Current {pre_prompt} Rate: {None}")
+                Printer.short_liner()
+                Printer.print_yellow(f"Current {pre_prompt}: {None}")
+                Printer.short_liner()
             else:
-                Printer.inside_liner(f"Current {pre_prompt} Rate: {current_fee:.2f}")
+                Printer.short_liner()
+                Printer.print_yellow(f"Current {pre_prompt}: {current_fee:.2f}")
+                Printer.short_liner()
 
             print("Would you like to use the following rate in your statement?")
 
-            Printer.liner()
-            print(f"{pre_prompt}: ${fee:.2f}")
+            Printer.short_liner()
+            Printer.print_green(f"{pre_prompt}: ${fee:.2f}")
+            Printer.short_liner()
 
-            Printer.liner()
             inputted_value = input(
                 "ENTER '1' to include above rate, and '0' to NOT include above rate: "
             )
@@ -151,7 +160,7 @@ class InputHelper:
 
 
         Returns:
-            float: prompted sales price
+            int: prompted sales price
             str: pretty string with $ and commas with truncated cents
         """
 

@@ -9,7 +9,7 @@ def CURRENT_VERSION():
 
 
 def DATE_REVISED():
-    var = "07.29.2022"
+    var = "07.31.2022"
     return var
 
 

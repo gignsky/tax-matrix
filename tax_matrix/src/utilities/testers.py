@@ -4,6 +4,7 @@
 
 from .printers import Printer
 from . import Fore
+from . import cls
 
 
 class InputTesters:
@@ -110,6 +111,8 @@ class InputTesters:
             try:
                 value = dictionary[key_value]
             except:
+                cls()
+
                 Printer.liner()
 
                 print(

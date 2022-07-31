@@ -113,7 +113,7 @@ class LogicalWork:
         return list1, list2
 
     @staticmethod
-    def check_county_only(county_dict):
+    def check_countywide_only(county_dict):
         _, county_values = LogicalWork.no_index_dict_to_two_lists(county_dict)
 
         try:

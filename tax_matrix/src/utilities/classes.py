@@ -1,9 +1,11 @@
 """
     Countains classes for use in program
+    vscode-fold=2
 """
 from . import LogicalWork
 from . import InputHelper
 from . import Printer
+from . import cls
 
 
 class Property:
@@ -43,20 +45,14 @@ class Property:
     def add_city(self, city):
         self.county.add_city(city)
 
-    def select_special_options(self):
-        self.county.select_special_options()
-
     def print_current_stats(self):
-        Printer.liner()
         Printer.print_green("Current statistics to be added to final statement:")
-        Printer.short_liner()
         Printer.print_yellow(f"Current Subject Price: {self.price_str}")
         self.county.print_county_selected_info()
         if self.county.city is None:
             Printer.print_red("No City has been Selected")
         else:
             self.county.city.print_city_selected_info()
-        Printer.liner()
 
     def generate_statistics(self):
         self.statistics = {}
@@ -66,94 +62,79 @@ class Property:
         else:
             self.statistics["CITY"] = self.county.city.generate_city_statistics()
 
-    def generate_total_multiply_rate(self):
-        county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
-            self.statistics["COUNTY"]
-        )
-        self.CITY_EXISTS = LogicalWork.check_city_exists(self.statistics["CITY"])
-        if self.CITY_EXISTS:
-            _, city_values = LogicalWork.no_index_dict_to_two_lists(
-                self.statistics["CITY"]
-            )
-            self.COUNTY_ONLY = False
-        else:
-            self.COUNTY_ONLY = True
-
-        self.multiply_rate = 0.0
-
-        if self.COUNTY_ONLY:
-            self.multiply_rate = self.county.generate_county_multiply_rate(
-                county_keys, county_values
-            )
-        else:
-            # county adder
-            for i in county_values:
-                self.multiply_rate = self.multiply_rate + i
-
-        # city adder
-        if self.CITY_EXISTS:
-            for i in list(filter(None, city_values)):
-                i_key = list(i)[0]
-                self.multiply_rate = self.multiply_rate + i[i_key]
-        else:
-            pass
-
     def generate_post_price_statement(self):
         county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
             self.statistics["COUNTY"]
         )
 
+        self.CONTAINS_FEES = self.county.check_contains_fees(county_keys, county_values)
         self.generate_total_multiply_rate()
         self.generate_total_tax_burden_after_rate()
-
-        county_ONLY_statement = self.county.generate_county_ONLY_statement(
-            self.multiply_rate
+        self.COUNTYWIDE_ONLY = LogicalWork.check_countywide_only(
+            self.statistics["COUNTY"]
         )
 
-        if self.COUNTY_ONLY:
-            middle_statement = county_ONLY_statement
-        else:
-            self.generate_total_multiply_rate()
-            middle_statement = f"x {self.multiply_rate:.6g} ({county_ONLY_statement}{self.generate_all_substatements()}) = {self.generate_total_tax_burden_str()}"
+        county_ONLY_statement = self.county.generate_county_ONLY_statement_NO_fee()
 
-        self.CONTAINS_FEES = self.county.check_contains_fees(county_keys, county_values)
+        middle_statement = self.generate_middle_statement(county_ONLY_statement)
 
-        if not self.CONTAINS_FEES:
-            if self.COUNTY_ONLY:
-                return_statement = (
-                    f"{middle_statement} = {self.generate_total_tax_burden_str()}"
-                )
-            else:
-                return_statement = middle_statement
+        return_statement = self.generate_return_statement_AND_check_fee(
+            county_keys, county_values, middle_statement
+        )
+
+        return return_statement
+
+    def generate_return_statement_AND_check_fee(
+        self, county_keys, county_values, middle_statement
+    ):
+        if not self.CONTAINS_FEES:  # no fees
+            return_statement = f"x {middle_statement}"
+
         else:
             fees = self.county.generate_county_fees_price(county_keys, county_values)
-            pre_free_tax_burden = self.generate_total_tax_burden_str()
             self.generate_total_tax_burden_after_fee(fees)
-            return_statement = (
-                middle_statement
-                + f" = {pre_free_tax_burden}{self.county.generate_county_fees_string(county_keys, county_values)} = {self.generate_total_tax_burden_str()}"
+            return_statement = f"x {middle_statement}{self.county.generate_county_fees_string(county_keys, county_values)} = {self.generate_total_tax_burden_str()}"
+        return return_statement
+
+    def generate_middle_statement(self, county_ONLY_statement):
+        if self.WITH_COUNTY_NO_CITY:
+            middle_statement = (
+                f"{county_ONLY_statement} = {self.generate_total_tax_burden_str()}"
             )
+        else:  # has city rates
+            city_substatement = self.county.city.generate_CITY_substatements(
+                self.statistics["CITY"], self.WITH_COUNTY_NO_CITY, self.CITY_EXISTS
+            )
+            middle_statement = f"{self.multiply_rate:.6g} ({county_ONLY_statement}{city_substatement}) = {self.generate_total_tax_burden_str()}"
 
-        return return_statement
+        return middle_statement
 
-    def generate_all_substatements(self):
-        _, dicts_values = LogicalWork.no_index_dict_to_two_lists(
-            self.statistics["CITY"]
+    def generate_total_multiply_rate(self):
+        # set inital values
+        self.multiply_rate = 0.0
+
+        # add county rate
+        county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
+            self.statistics["COUNTY"]
         )
-        city_keys, city_values = LogicalWork.city_dict_to_two_lists(dicts_values)
-        return_statement = ""
+        self.multiply_rate = self.county.generate_county_multiply_rate(
+            county_keys, county_values
+        )
 
-        if not self.COUNTY_ONLY:
-            if self.CITY_EXISTS:
-                for title, rate in zip(city_keys, city_values):
-                    substatement = LogicalWork.substatement_maker(rate, title[0])
-                    return_statement = return_statement + substatement
+        # check city exists
+        self.CITY_EXISTS = LogicalWork.check_city_exists(self.statistics["CITY"])
+
+        # add city rates if they exist and set self.WITH_COUNTY_NO_CITY
+        if self.CITY_EXISTS:
+            _, city_values = LogicalWork.no_index_dict_to_two_lists(
+                self.statistics["CITY"]
+            )
+            for i in list(filter(None, city_values)):
+                i_key = list(i)[0]
+                self.multiply_rate = self.multiply_rate + i[i_key]
+            self.WITH_COUNTY_NO_CITY = False
         else:
-            Printer.liner()
-            Printer.print_red("ERROR IN SUBSTATEMENT GENERATOR")
-            Printer.liner()
-
-        return return_statement
+            self.WITH_COUNTY_NO_CITY = True
 
     def generate_total_tax_burden_str(self):
         return f"${self.FINAL_TAX_COST:,.0f}"
@@ -213,11 +194,9 @@ class County:
             )
 
     def print_county_selected_info(self):
-        Printer.short_liner()
         Printer.print_green("County...")
         Printer.print_yellow(f"County Name: {self.county_name}")
         Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
-        Printer.short_liner()
 
     def generate_county_statistics(self):
         # get county stats
@@ -230,9 +209,14 @@ class County:
 
         return self.county_statistics
 
-    def generate_county_ONLY_statement(self, multiply_rate):
+    def set_self_countywide(self, boolean):
+        self.COUNTYWIDE_ONLY = boolean
+
+    def generate_county_ONLY_statement_NO_fee(self):
+
         if self.county_wide_rate is not None:
-            return f"x ({self.county_wide_rate} - {self.county_wide_rate_title})"
+            self.COUNTYWIDE_ONLY = True
+            return f"({self.county_wide_rate} - {self.county_wide_rate_title})"
         else:
             Printer.liner()
             Printer.print_red("THERE HAS BEEN AN ERROR IN COUNTY ONLY TITLE GENERATOR")
@@ -292,9 +276,9 @@ class City:
         INPUT_LOOP = True
 
         while INPUT_LOOP:
-            Printer.liner()
+            Printer.short_liner()
             self.print_modifiable_info()
-            Printer.liner()
+            Printer.short_liner()
 
             modify = InputHelper.choice_bool(
                 "Would you like to disable any of the above Police and/or Fire rates?\n **Please note that any item showing a rate of 'None' will\n NOT appear in the final statement and is already disabled**"
@@ -305,8 +289,13 @@ class City:
                     self.which_modify()
                 else:
                     INPUT_LOOP = False
-            else:
-                pass
+
+    def get_police_and_fire_strings(self):
+        return self.police_current_default_str, self.fire_current_default_str
+
+    def update_police_and_fire_rates_for_string(self, police_rate, fire_rate):
+        self.police_rate = police_rate
+        self.fire_rate = fire_rate
 
     def which_modify(self):
         """
@@ -314,15 +303,15 @@ class City:
         """
         MOD_LOOP = True
 
-        mod_dict = {
-            0: "Quit",
-            1: f"Police Rate: {self.police_rate}",
-            2: f"Fire Rate: {self.fire_rate}",
-        }
-
-        print("Note a value of '...Rate: 0' will not appear in final statement")
+        print("Note a value of 'None' will not appear in final statement")
 
         while MOD_LOOP:
+            self.generate_CITY_current_default_strs()
+            mod_dict = {
+                0: "Quit",
+                1: self.police_current_default_str,
+                2: self.fire_current_default_str,
+            }
             which_modify = InputHelper.input_from_dict(
                 mod_dict, "Please Select Number from below options to modify or Quit: "
             )
@@ -344,6 +333,8 @@ class City:
             self.police_rate = self.inital_police_rate
         else:
             self.police_rate = None
+
+        cls()
         Printer.print_green(f"Police Rate updated to: {self.police_rate}")
 
     def modify_fire(self):
@@ -354,25 +345,69 @@ class City:
             self.fire_rate = self.inital_fire_rate
         else:
             self.fire_rate = None
+
+        cls()
         Printer.print_green(f"Fire Rate updated to: {self.fire_rate}")
 
     def print_modifiable_info(self):
         """
         print_modifiable_info print all info capable of being modified
         """
-        print(f"Police Rate Title: {self.police_title}")
-        print(f"Police Rate: {self.police_rate}")
-        print(f"Fire Rate Title: {self.fire_title}")
-        print(f"Fire Rate: {self.fire_rate}")
+        self.generate_CITY_current_default_strs()
+
+        Printer.print_yellow(f"Police Rate Title: {self.police_title}")
+        Printer.print_yellow(self.police_current_default_str)
+        Printer.print_yellow(f"Fire Rate Title: {self.fire_title}")
+        Printer.print_yellow(self.fire_current_default_str)
+
+    def generate_CITY_current_default_strs(self):
+        current_police = self.police_rate if self.police_rate is not None else None
+        current_fire = self.fire_rate if self.fire_rate is not None else None
+        inital_police = (
+            self.inital_police_rate if self.inital_police_rate is not None else None
+        )
+        inital_fire = (
+            self.inital_fire_rate if self.inital_fire_rate is not None else None
+        )
+
+        # format if not none
+        if current_police is not None:
+            current_police = f"{current_police:.6g}"
+        else:
+            current_police = None
+
+        if current_fire is not None:
+            current_fire = f"{current_fire:.6g}"
+        else:
+            current_fire = None
+
+        if inital_police is not None:
+            inital_police = f"{inital_police:.6g}"
+        else:
+            inital_police = None
+
+        if inital_fire is not None:
+            inital_fire = f"{inital_fire:.6g}"
+        else:
+            inital_fire = None
+
+        self.police_current_default_str = (
+            f"Police Rate: {current_police} | STANDARD RATE: {self.inital_police_rate}"
+        )
+        self.fire_current_default_str = (
+            f"Fire Rate: {current_fire} | STANDARD RATE: {self.inital_fire_rate}"
+        )
 
     def print_city_selected_info(self):
         Printer.print_green("City...")
         Printer.print_yellow(f"City Name: {self.city_name}")
         Printer.print_yellow(f"Citywide Tax Rate: {self.city_wide_rate}")
-        Printer.short_liner()
-        Printer.print_yellow(f"City Police Rate: {self.police_rate}")
-        Printer.print_yellow(f"City Fire Rate: {self.fire_rate}")
-        Printer.short_liner()
+        Printer.print_yellow(
+            f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.6g}"
+        )
+        Printer.print_yellow(
+            f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
+        )
 
     def generate_city_statistics(self):
         self.city_statistics = {}
@@ -392,6 +427,23 @@ class City:
             self.city_statistics["FIRE"] = None
 
         return self.city_statistics
+
+    def generate_CITY_substatements(self, city_stats, with_county_no_city, city_exists):
+        _, dicts_values = LogicalWork.no_index_dict_to_two_lists(city_stats)
+        city_keys, city_values = LogicalWork.with_index_dict_to_two_lists(dicts_values)
+        return_statement = ""
+
+        if not with_county_no_city:
+            if city_exists:
+                for title, rate in zip(city_keys, city_values):
+                    substatement = LogicalWork.substatement_maker(rate, title[0])
+                    return_statement = return_statement + substatement
+        else:
+            Printer.liner()
+            Printer.print_red("ERROR IN SUBSTATEMENT GENERATOR")
+            Printer.liner()
+
+        return return_statement
 
 
 # ALL ITEMS CLASSES
