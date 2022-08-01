@@ -12,8 +12,14 @@ from . import cls
 def main():
     # INFORMATION:
     COUNTY_NAME = "Mecklenburg Co., NC"
-    COUNTY_WIDE_RATE = 0.006169
     COUNTY_WIDE_RATE_TITLE = "Mecklenburg County Unincorporated Tax Rate"
+    COUNTY_WIDE_RATE = 0.006169
+    COUNTY_WIDE_POLICE_TITLE = f"{COUNTY_NAME} Police"
+    COUNTY_WIDE_POLICE_RATE = None
+    COUNTY_WIDE_FIRE_TITLE = f"{COUNTY_NAME} Fire"
+    COUNTY_WIDE_FIRE_RATE = None
+    COUNTY_WIDE_EMS_TITLE = f"{COUNTY_NAME} EMS"
+    COUNTY_WIDE_EMS_RATE = None
     CITIES = {
         1: charlotte(),
         2: city_of_charlotte(),
@@ -36,8 +42,14 @@ def main():
 
     meck = Mecklenburg(
         COUNTY_NAME,
-        COUNTY_WIDE_RATE,
         COUNTY_WIDE_RATE_TITLE,
+        COUNTY_WIDE_RATE,
+        COUNTY_WIDE_POLICE_TITLE,
+        COUNTY_WIDE_POLICE_RATE,
+        COUNTY_WIDE_FIRE_TITLE,
+        COUNTY_WIDE_FIRE_RATE,
+        COUNTY_WIDE_EMS_TITLE,
+        COUNTY_WIDE_EMS_RATE,
         CITIES,
         SPECIAL_STUFF,
         WASTE_OPTIONS,
@@ -243,15 +255,31 @@ class Mecklenburg(classes.County):
     def __init__(
         self,
         county_name,
-        county_wide_rate,
         county_wide_rate_title,
-        cities,
+        county_wide_rate,
+        county_wide_police_title,
+        county_wide_police_rate,
+        county_wide_fire_title,
+        county_wide_fire_rate,
+        county_wide_ems_title,
+        county_wide_ems_rate,
+        all_cities,
         special_stuff,
         waste_options,
         meck_services,
     ):
         super().__init__(
-            county_name, county_wide_rate, county_wide_rate_title, cities, special_stuff
+            county_name,
+            county_wide_rate_title,
+            county_wide_rate,
+            county_wide_police_title,
+            county_wide_police_rate,
+            county_wide_fire_title,
+            county_wide_fire_rate,
+            county_wide_ems_title,
+            county_wide_ems_rate,
+            all_cities,
+            special_stuff,
         )
         # initalize dict of all options and services
         self.waste_options = waste_options

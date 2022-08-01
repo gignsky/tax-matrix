@@ -154,14 +154,26 @@ class County:
     def __init__(
         self,
         county_name,
-        county_wide_rate,
         county_wide_rate_title,
+        county_wide_rate,
+        county_wide_police_title,
+        county_wide_police_rate,
+        county_wide_fire_title,
+        county_wide_fire_rate,
+        county_wide_ems_title,
+        county_wide_ems_rate,
         all_cities,
         special_stuff,
     ):
         self.county_name = county_name
         self.county_wide_rate = county_wide_rate
         self.county_wide_rate_title = county_wide_rate_title
+        self.county_wide_fire_title = county_wide_fire_title
+        self.county_wide_fire_rate = county_wide_fire_rate
+        self.county_wide_police_title = county_wide_police_title
+        self.county_wide_police_rate = county_wide_police_rate
+        self.county_wide_ems_title = county_wide_ems_title
+        self.county_wide_ems_rate = county_wide_ems_rate
         self.all_cities = all_cities
         self.city = None
         self.special_stuff = special_stuff
@@ -200,12 +212,30 @@ class County:
 
     def generate_county_statistics(self):
         # get county stats
+        self.county_statistics = {}
+
         if self.county_wide_rate is not None:
-            self.county_statistics = {
-                self.county_wide_rate_title: self.county_wide_rate
-            }
+            self.county_statistics[self.county_wide_rate_title] = self.county_wide_rate
         else:
-            self.county_statistics = None
+            pass
+        if self.county_wide_fire_rate is not None:
+            self.county_statistics[
+                self.county_wide_fire_title
+            ] = self.county_wide_fire_rate
+        else:
+            pass
+        if self.county_wide_police_rate is not None:
+            self.county_statistics[
+                self.county_wide_police_title
+            ] = self.county_wide_police_rate
+        else:
+            pass
+        if self.county_wide_ems_rate is not None:
+            self.county_statistics[
+                self.county_wide_ems_title
+            ] = self.county_wide_ems_rate
+        else:
+            pass
 
         return self.county_statistics
 
