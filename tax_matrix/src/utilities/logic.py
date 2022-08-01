@@ -2,6 +2,7 @@
     General logic for entire program
 """
 
+import debugpy
 from . import printers
 
 # from . import counties
@@ -48,6 +49,7 @@ class LogicalWork:
                 INDEX_VALUE += 1
 
         else:
+            debugpy.breakpoint()
             print("ERROR WITH LiST IN LOGIC.py")
 
         return dictionary

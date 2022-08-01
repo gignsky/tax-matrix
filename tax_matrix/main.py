@@ -3,6 +3,7 @@
     vscode-fold=3
 """
 
+import debugpy
 import src
 from src import cls
 
@@ -162,6 +163,7 @@ def main():
 
         # error
         else:
+            debugpy.breakpoint()
             src.utilities.printers.Printer.inside_liner(
                 "There was an ERROR in main menu selection. :("
             )

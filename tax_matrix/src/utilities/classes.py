@@ -2,6 +2,7 @@
     Countains classes for use in program
     vscode-fold=2
 """
+import debugpy
 from . import LogicalWork
 from . import InputHelper
 from . import Printer
@@ -201,6 +202,7 @@ class County:
         if self.special_stuff is None:
             Printer.inside_liner(f"NO SPECIAL OPTIONS FOR {self.get_county_name()}")
         else:
+            debugpy.breakpoint()
             Printer.print_red(
                 "If you see this line there is an issue with special options"
             )
@@ -375,6 +377,7 @@ class City:
             elif which_modify == mod_dict[2]:
                 self.modify_fire()
             else:
+                debugpy.breakpoint()
                 print("ERROR IN CLASS 'City'")
 
     def modify_police(self):
@@ -492,6 +495,7 @@ class City:
                     return_statement = return_statement + substatement
         else:
             Printer.liner()
+            debugpy.breakpoint()
             Printer.print_red("ERROR IN SUBSTATEMENT GENERATOR")
             Printer.liner()
 

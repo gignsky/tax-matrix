@@ -2,6 +2,7 @@
     meck co rates document
 """
 
+import debugpy
 from . import LogicalWork
 from . import classes
 from . import InputHelper
@@ -398,6 +399,7 @@ class Mecklenburg(classes.County):
             elif which_modify == mod_dict[4]:
                 self.meck_fire_etj()
             else:
+                debugpy.breakpoint()
                 print("ERROR IN CLASS 'Mecklenburg'")
 
     def modify_clt_waste(self):
@@ -665,6 +667,7 @@ class CityOfCharlotte(classes.City):
             elif which_modify == mod_dict[3]:
                 self.select_special_district()
             else:
+                debugpy.breakpoint()
                 print("ERROR IN CLASS 'CityOfCharlotte'")
 
     def print_modifiable_info(self):
