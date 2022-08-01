@@ -91,7 +91,7 @@ class Property:
             return_statement = f"x {middle_statement}"
 
         else:
-            fees = self.county.generate_county_fees_price(county_keys, county_values)
+            fees = self.county.generate_county_total_fees(county_keys, county_values)
             self.generate_total_tax_burden_after_fee(fees)
             return_statement = f"x {middle_statement}{self.county.generate_county_fees_string(county_keys, county_values)} = {self.generate_total_tax_burden_str()}"
         return return_statement
@@ -131,7 +131,7 @@ class Property:
             )
             for i in list(filter(None, city_values)):
                 i_key = list(i)[0]
-                self.multiply_rate = self.multiply_rate + i[i_key]
+                self.multiply_rate += i[i_key]
             self.WITH_COUNTY_NO_CITY = False
         else:
             self.WITH_COUNTY_NO_CITY = True
@@ -143,7 +143,7 @@ class Property:
         self.FINAL_TAX_COST = self.price_int * self.multiply_rate
 
     def generate_total_tax_burden_after_fee(self, fee):
-        self.FINAL_TAX_COST = self.FINAL_TAX_COST + fee
+        self.FINAL_TAX_COST += fee
 
 
 class County:
@@ -209,34 +209,56 @@ class County:
 
         return self.county_statistics
 
-    def set_self_countywide(self, boolean):
-        self.COUNTYWIDE_ONLY = boolean
-
     def generate_county_ONLY_statement_NO_fee(self):
+        title, rate = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
 
-        if self.county_wide_rate is not None:
-            self.COUNTYWIDE_ONLY = True
-            return f"({self.county_wide_rate} - {self.county_wide_rate_title})"
-        else:
-            Printer.liner()
-            Printer.print_red("THERE HAS BEEN AN ERROR IN COUNTY ONLY TITLE GENERATOR")
-            Printer.liner()
+        items_added = 0
+        for title, rate in zip(title, rate):
+            if items_added != 0:
+                if "Fee" not in title:
+                    return_statement = (
+                        return_statement + LogicalWork.substatement_maker(rate, title)
+                    )
+                    items_added += 1
+            else:
+                return_statement = f"({rate} - {title})"
+                items_added += 1
+
+        return return_statement
 
     def check_contains_fees(self, county_keys, county_values):
+        for key, _ in zip(county_keys, county_values):
+            if "Fee" in key:
+                return True
+
         return False
 
-    def generate_county_fees_string(self):
-        return  # returns nothing as base county class has no fees
+    def generate_county_fees_string(self, county_keys, county_values):
+        county_fee_string = ""
+        for key, fee in zip(county_keys, county_values):
+            if "Fee" in key:
+                county_fee_string = county_fee_string + LogicalWork.substatement_maker(
+                    f"${fee:,.2f}", key
+                )
 
-    def generate_county_fees_price(self):
-        Printer.liner()
-        Printer.print_red("THERE HAS BEEN AN ERROR IN THE FEE PRICE UPDATER")
-        Printer.liner()  # returns nothing as base county class has no fees
+        return county_fee_string
+
+    def generate_county_total_fees(self, county_keys, county_values):
+        total_of_fees = 0
+        for key, fee in zip(county_keys, county_values):
+            if "Fee" in key:
+                total_of_fees += fee
+
+        return total_of_fees
 
     def generate_county_multiply_rate(self, county_keys, county_values):
         county_multiply_rate = 0.0
         for key, rate in zip(county_keys, county_values):
-            county_multiply_rate = county_multiply_rate + rate
+            if "Fee" not in key:  # only add items that don't have fee
+                if rate is not None:  # only add items with None
+                    county_multiply_rate += rate
+
+        return county_multiply_rate
 
 
 class City:

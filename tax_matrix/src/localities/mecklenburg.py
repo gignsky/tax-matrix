@@ -9,6 +9,44 @@ from . import Printer
 from . import cls
 
 
+def main():
+    # INFORMATION:
+    COUNTY_NAME = "Mecklenburg Co., NC"
+    COUNTY_WIDE_RATE = 0.006169
+    COUNTY_WIDE_RATE_TITLE = "Mecklenburg County Unincorporated Tax Rate"
+    CITIES = {
+        1: charlotte(),
+        2: city_of_charlotte(),
+        3: town_of_cornelius(),
+        4: town_of_davidson(),
+        5: town_of_huntersville(),
+        6: town_of_matthews(),
+        7: town_of_mint_hill(),
+        8: town_of_pineville(),
+    }
+    SPECIAL_STUFF = True
+    WASTE_OPTIONS = {
+        1: {"Mecklenburg Single Family Solid Waste Fee": 39.50},
+        2: {"Charlotte Single Family Solid Waste Fee": 75.02},
+    }
+    MECK_SERVICES = {
+        1: {"Mecklenburg Law Enforcement District For Charlotte ETJ": 0.001781},
+        2: {"Mecklenburg Fire District For Charlotte ETJ": 0.0008},
+    }
+
+    meck = Mecklenburg(
+        COUNTY_NAME,
+        COUNTY_WIDE_RATE,
+        COUNTY_WIDE_RATE_TITLE,
+        CITIES,
+        SPECIAL_STUFF,
+        WASTE_OPTIONS,
+        MECK_SERVICES,
+    )
+
+    return meck
+
+
 def city_of_charlotte():
     # INFORMATION
     CITY_NAME = "City of Charlotte"
@@ -199,44 +237,6 @@ def town_of_pineville():
     )
 
     return city
-
-
-def main():
-    # INFORMATION:
-    COUNTY_NAME = "Mecklenburg Co., NC"
-    COUNTY_WIDE_RATE = 0.006169
-    COUNTY_WIDE_RATE_TITLE = "Mecklenburg County Unincorporated Tax Rate"
-    CITIES = {
-        1: charlotte(),
-        2: city_of_charlotte(),
-        3: town_of_cornelius(),
-        4: town_of_davidson(),
-        5: town_of_huntersville(),
-        6: town_of_matthews(),
-        7: town_of_mint_hill(),
-        8: town_of_pineville(),
-    }
-    SPECIAL_STUFF = True
-    WASTE_OPTIONS = {
-        1: {"Mecklenburg Single Family Solid Waste Fee": 39.50},
-        2: {"Charlotte Single Family Solid Waste Fee": 75.02},
-    }
-    MECK_SERVICES = {
-        1: {"Mecklenburg Law Enforcement District For Charlotte ETJ": 0.001781},
-        2: {"Mecklenburg Fire District For Charlotte ETJ": 0.0008},
-    }
-
-    meck = Mecklenburg(
-        COUNTY_NAME,
-        COUNTY_WIDE_RATE,
-        COUNTY_WIDE_RATE_TITLE,
-        CITIES,
-        SPECIAL_STUFF,
-        WASTE_OPTIONS,
-        MECK_SERVICES,
-    )
-
-    return meck
 
 
 class Mecklenburg(classes.County):
@@ -519,61 +519,6 @@ class Mecklenburg(classes.County):
             pass
 
         return self.county_statistics
-
-    def generate_county_ONLY_statement_NO_fee(self):
-        title, rate = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
-
-        items_added = 0
-        for title, rate in zip(title, rate):
-            if items_added != 0:
-                if "Fee" not in title:
-                    return_statement = (
-                        return_statement + LogicalWork.substatement_maker(rate, title)
-                    )
-                    items_added += 1
-            else:
-                return_statement = f"({rate} - {title})"
-                items_added += 1
-
-        if items_added == 1:  # countywide only
-            super().set_self_countywide(True)
-        else:  # countywide + additional rates
-            super().set_self_countywide(False)
-
-        return return_statement
-
-    def check_contains_fees(self, county_keys, county_values):
-        for key, _ in zip(county_keys, county_values):
-            if "Fee" in key:
-                return True
-
-        return False
-
-    def generate_county_fees_string(self, county_keys, county_values):
-        county_fee_string = ""
-        for key, fee in zip(county_keys, county_values):
-            if "Fee" in key:
-                county_fee_string = county_fee_string + LogicalWork.substatement_maker(
-                    f"${fee:,.2f}", key
-                )
-
-        return county_fee_string
-
-    def generate_county_fees_price(self, county_keys, county_values):
-        county_fee_price = 0.0
-        for key, fee in zip(county_keys, county_values):
-            if "Fee" in key:
-                county_fee_price = county_fee_price + fee
-
-        return county_fee_price
-
-    def generate_county_multiply_rate(self, county_keys, county_values):
-        county_multiply_rate = 0.0
-        for key, rate in zip(county_keys, county_values):
-            if "Fee" not in key:
-                county_multiply_rate = county_multiply_rate + rate
-
-        return county_multiply_rate
 
 
 class CityOfCharlotte(classes.City):
