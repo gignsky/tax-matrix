@@ -41,6 +41,46 @@ class InputHelper:
         return value
 
     @staticmethod
+    def input_from_dict_with_statement(dictionary, prompt):
+        """
+        input_from_dict grabs input from dictionary of options and returns value associated with dictionary item after testing it
+
+        Args:
+            dictionary (dict): dictionary of options
+            prompt (str): prompt of what you are selecting in the dict placed prior to options with "Please Enter Value associated with your selection" printed for input
+
+        Returns:
+            dict[item]: item associated with selection
+        """
+
+        if dictionary is not None:
+
+            INPUT_LOOP = True
+
+            while INPUT_LOOP:
+                Printer.inside_liner(prompt)
+
+                Printer.print_dict_with_statement(dictionary)
+
+                Printer.liner()
+                inputted_value = input(
+                    "Please ENTER Value associated with your selection: "
+                )
+                Printer.liner()
+
+                value = InputTesters.verify_dict_selection(inputted_value, dictionary)
+
+                if value is not None:
+                    INPUT_LOOP = False
+
+            return value
+
+        else:
+            Printer.short_liner()
+            Printer.print_red("NO options to modify...")
+            Printer.short_liner()
+
+    @staticmethod
     def choice_bool(question):
         """
         main will grab true or false from user (1 or 0) in order to determine how the user wishes to move forwards
@@ -70,7 +110,7 @@ class InputHelper:
         return bool_value
 
     @staticmethod
-    def on_or_off_rate(pre_prompt, rate, current_rate):
+    def on_or_off_rate(pre_prompt, inital_rate, current_rate):
         """
         on_or_off checks if user would like to include the rate of for teh pre_prompted selection
 
@@ -90,7 +130,7 @@ class InputHelper:
 
             print("Would you like to use the following rate in your statement?")
 
-            Printer.print_green(f"{pre_prompt} Rate: {rate}")
+            Printer.print_green(f"{pre_prompt} Rate: {inital_rate}")
 
             Printer.liner()
             inputted_value = input(

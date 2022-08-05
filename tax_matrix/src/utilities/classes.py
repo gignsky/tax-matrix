@@ -51,9 +51,13 @@ class Property:
         Printer.print_yellow(f"Current Subject Price: {self.price_str}")
         self.county.print_county_selected_info()
         if self.county.city is None:
+            Printer.short_liner()
             Printer.print_red("No City has been Selected")
+            Printer.short_liner()
         else:
-            self.county.city.print_city_selected_info()
+            Printer.short_liner()
+            self.county.city.print_modifiable_info()
+            Printer.short_liner()
 
     def generate_statistics(self):
         self.statistics = {}
@@ -167,8 +171,8 @@ class County:
         special_stuff,
     ):
         self.county_name = county_name
-        self.county_wide_rate = county_wide_rate
         self.county_wide_rate_title = county_wide_rate_title
+        self.county_wide_rate = county_wide_rate
         self.county_wide_fire_title = county_wide_fire_title
         self.county_wide_fire_rate = county_wide_fire_rate
         self.county_wide_police_title = county_wide_police_title
@@ -179,7 +183,41 @@ class County:
         self.city = None
         self.special_stuff = special_stuff
 
+        # set county service inital options
+        self.county_wide_fire_rate_INITAL = self.county_wide_fire_rate
+        self.county_wide_police_rate_INITAL = self.county_wide_police_rate
+        self.county_wide_ems_rate_INITAL = self.county_wide_ems_rate
+
+        self.update_county_services()
+
+        self.county_services_exists = LogicalWork.check_county_services_exist(
+            self.county_services
+        )
+
         Printer.inside_liner(f"Initalized {county_name} and all cities and towns")
+
+    def update_county_services(self):
+        # county service combination help
+        self.county_services = [
+            {
+                self.county_wide_fire_title: {
+                    "INITAL": self.county_wide_fire_rate_INITAL,
+                    "CURRENT": self.county_wide_fire_rate,
+                }
+            },
+            {
+                self.county_wide_police_title: {
+                    "INITAL": self.county_wide_police_rate_INITAL,
+                    "CURRENT": self.county_wide_police_rate,
+                }
+            },
+            {
+                self.county_wide_ems_title: {
+                    "INITAL": self.county_wide_ems_rate_INITAL,
+                    "CURRENT": self.county_wide_ems_rate,
+                }
+            },
+        ]
 
     def get_county_name(self):
         return self.county_name
@@ -197,15 +235,6 @@ class County:
     def select_city(self):
         city = InputHelper.input_from_dict(self.all_cities)
         return city
-
-    def select_special_options(self):
-        if self.special_stuff is None:
-            Printer.inside_liner(f"NO SPECIAL OPTIONS FOR {self.get_county_name()}")
-        else:
-            debugpy.breakpoint()
-            Printer.print_red(
-                "If you see this line there is an issue with special options"
-            )
 
     def print_county_selected_info(self):
         Printer.print_green("County...")
@@ -291,6 +320,121 @@ class County:
                     county_multiply_rate += rate
 
         return county_multiply_rate
+
+    def select_special_options(self):
+        if self.special_stuff is None:
+            Printer.short_liner()
+            Printer.print_red(f"NO SPECIAL OPTIONS FOR {self.get_county_name()}")
+            Printer.short_liner()
+        else:
+            debugpy.breakpoint()
+            Printer.print_red(
+                "If you see this line there is an issue with special options"
+            )
+
+    def select_county_services(self):
+        if not self.county_services_exists:  # no county services
+            Printer.short_liner()
+            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
+            Printer.short_liner()
+        else:  # there are options to modify
+
+            INPUT_LOOP = True
+            while INPUT_LOOP:
+                self.print_county_selected_info()
+
+                if self.county_services_modify_options_NO_quit is not None:
+                    modify = InputHelper.choice_bool(
+                        "Would you like to modfy use of any of the above rates?"
+                    )
+
+                    cls()
+
+                    if modify is not None:
+                        if modify:
+                            self.which_modify_county_services()
+                        else:
+                            INPUT_LOOP = False
+                    else:
+                        pass
+
+                else:
+                    INPUT_LOOP = False
+
+    def which_modify_county_services(self):
+        MOD_LOOP = True
+
+        print("Note a value of 'None' will not appear in final statement")
+
+        while MOD_LOOP:
+            self.update_county_services()
+            self.county_services_modify_options_WITH_quit = (
+                LogicalWork.create_options_dict_from_county_services_list_WITH_quit(
+                    self.county_services
+                )
+            )
+
+            which_modify = InputHelper.input_from_dict_with_statement(
+                self.county_services_modify_options_WITH_quit,
+                "Available County Services to Modify: ",
+            )
+
+            # cls()
+
+            if which_modify is not None:
+                # quit
+                if "Quit" == list(which_modify.keys())[0]:
+                    MOD_LOOP = False
+
+                else:
+                    statement = list(which_modify.keys())[0]
+                    self.modify_county_service(which_modify[statement])
+            else:
+                MOD_LOOP = False
+
+    def modify_county_service(self, dictionary):
+        title = list(dictionary.keys())[0]
+        rate_dict = dictionary[title]
+        current_rate = list(rate_dict.keys())[0]
+        inital_rate = rate_dict[current_rate]
+
+        # police
+        if "Police" in title:
+            self.county_wide_police_rate = InputHelper.on_or_off_rate(
+                title, inital_rate, current_rate
+            )
+
+        # fire
+        elif "Fire" in title:
+            self.county_wide_fire_rate = InputHelper.on_or_off_rate(
+                title, inital_rate, current_rate
+            )
+
+        # ems
+        elif "EMS" in title:
+            self.county_wide_ems_rate = InputHelper.on_or_off_rate(
+                title, inital_rate, current_rate
+            )
+
+        # error
+        else:
+            debugpy.breakpoint()
+            Printer.print_red("There is an ERROR in county service modification")
+
+    def print_county_selected_info(self):
+        self.county_services_modify_options_NO_quit = (
+            LogicalWork.create_options_dict_from_county_services_list_WITH_quit(
+                self.county_services
+            )
+        )
+
+        Printer.short_liner()
+        if self.county_services_modify_options_NO_quit is None:
+            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
+        else:
+            for i in self.county_services_modify_options_NO_quit:
+                Printer.print_yellow(i)
+        Printer.short_liner()
 
 
 class City:
@@ -410,6 +554,7 @@ class City:
         """
         self.generate_CITY_current_default_strs()
 
+        Printer.print_green(self.city_name)
         Printer.print_yellow(f"Police Rate Title: {self.police_title}")
         Printer.print_yellow(self.police_current_default_str)
         Printer.print_yellow(f"Fire Rate Title: {self.fire_title}")
@@ -453,16 +598,16 @@ class City:
             f"Fire Rate: {current_fire} | STANDARD RATE: {self.inital_fire_rate}"
         )
 
-    def print_city_selected_info(self):
-        Printer.print_green("City...")
-        Printer.print_yellow(f"City Name: {self.city_name}")
-        Printer.print_yellow(f"Citywide Tax Rate: {self.city_wide_rate}")
-        Printer.print_yellow(
-            f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.6g}"
-        )
-        Printer.print_yellow(
-            f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
-        )
+    # def print_city_selected_info(self):
+    #     Printer.print_green("City...")
+    #     Printer.print_yellow(f"City Name: {self.city_name}")
+    #     Printer.print_yellow(f"Citywide Tax Rate: {self.city_wide_rate}")
+    #     Printer.print_yellow(
+    #         f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.6g}"
+    #     )
+    #     Printer.print_yellow(
+    #         f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
+    #     )
 
     def generate_city_statistics(self):
         self.city_statistics = {}

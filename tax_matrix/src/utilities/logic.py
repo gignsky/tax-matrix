@@ -1,5 +1,6 @@
 """
     General logic for entire program
+    vscode-fold=2
 """
 
 import debugpy
@@ -146,3 +147,54 @@ class LogicalWork:
             return False
         else:
             return True
+
+    @staticmethod
+    def check_county_services_exist(county_services_list):
+        for i in county_services_list:
+            key = list(i.keys())[0]
+            tmp_dict = i[key]
+            inital_rate = tmp_dict["INITAL"]
+
+            if inital_rate is not None:
+                return True
+
+        return False
+
+    @staticmethod
+    def create_options_dict_from_county_services_list_WITH_quit(county_services_list):
+        index = 0
+        return_dict = {}
+        if index != 0:
+            for i in county_services_list:
+                title = i.keys()
+                inital_rate = title["INITAL"]
+                current_rate = title["CURRENT"]
+
+                if inital_rate is not None:
+                    statement = f"{title} Current Rate: {current_rate} | Default Rate: {inital_rate}"
+                    return_dict[index] = {
+                        statement: {title: {current_rate: inital_rate}}
+                    }
+                    index += 1
+        else:
+            return_dict[index] = "Quit"
+
+        if len(return_dict) == 1:
+            return None
+        else:
+            return return_dict
+
+    @staticmethod
+    def create_options_dict_from_county_services_list_NO_quit(county_services_list):
+        return_list = []
+        for i in county_services_list:
+            title = i.keys()
+            inital_rate = title["INITAL"]
+            current_rate = title["CURRENT"]
+
+            if inital_rate is not None:
+                return_list.append(
+                    f"{title} Current Rate: {current_rate} | Default Rate: {inital_rate}"
+                )
+
+        return return_list

@@ -351,13 +351,13 @@ class Mecklenburg(classes.County):
 
             if modify is not None:
                 if modify:
-                    self.which_modify()
+                    self.which_modify_special_services()
                 else:
                     INPUT_LOOP = False
             else:
                 pass
 
-    def which_modify(self):
+    def which_modify_special_services(self):
         """
         which_modify helps to determine if one should modify the values available options on the County services
 

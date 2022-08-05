@@ -32,8 +32,9 @@ def main():
         1: "Print Statisticts",
         2: "Modify Price",
         3: "Modify County",
-        4: "Modify County Special Options",
-        5: "Modify City and/or City Options\n...",
+        4: "Modify County Special Options\n...",
+        5: "Modify Countywide Police, Fire, and/or EMS rates",
+        6: "Modify City and/or City Options\n...",
         99: "Reload Counties to Default Values",
     }
 
@@ -61,22 +62,33 @@ def main():
             if INITAL_RUN == True:
                 menu_option = options_dict[2]
                 INITAL_RUN = "Get Price then County"
-            else:
+            elif INITAL_RUN == "Get Price then County":
                 menu_option = options_dict[3]
+                INITAL_RUN = "check special district options"
+            elif INITAL_RUN == "check special district options":
+                menu_option = options_dict[4]
+                INITAL_RUN = "Modify Countywide Fire, Police, & EMS"
+            elif INITAL_RUN == "Modify Countywide Fire, Police, & EMS":
+                menu_option = options_dict[5]
+                INITAL_RUN = "Do you want a city?"
+            elif INITAL_RUN == "Do you want a city?":
+                menu_option = options_dict[6]
+                INITAL_RUN = "continue onwards"
+            else:
+                menu_option = options_dict[1]  # print stats before continuing
                 INITAL_RUN = False
 
-        # quit
+        # "Quit Program & Output Statement"
         if menu_option == options_dict[0]:
             MAIN_LOOP = False
 
-        # print current statistics
+        # "Print Statisticts"
         elif menu_option == options_dict[1]:
-            src.utilities.printers.Printer.liner()
+            cls()
             Subject.print_current_stats()
-            src.utilities.printers.Printer.liner()
             wait()
 
-        # price options
+        # "Modify Price"
         elif menu_option == options_dict[2]:
             if HAS_PRICE:
                 src.utilities.printers.Printer.short_liner()
@@ -96,10 +108,11 @@ def main():
                 pass
             else:
                 # add price
+                cls()
                 Subject.add_price(price_int, price_str)
                 HAS_PRICE = True
 
-        # county options
+        # "Modify County"
         elif menu_option == options_dict[3]:
             # get county
             county = src.utilities.inputs.InputHelper.county_grabber(all_counties)
@@ -109,37 +122,51 @@ def main():
             else:
                 # add county
                 Subject.add_county(county)
+                if INITAL_RUN != "check special district options":
+                    INITAL_RUN = "Get Price then County"
 
-        # special options
+        # "Modify County Special Options"
         elif menu_option == options_dict[4]:
             # check for special options
             Subject.county.select_special_options()
 
-        # city options
+        # "Modify Countywide Police, Fire, and/or EMS rates"
         elif menu_option == options_dict[5]:
-            # get all cities
-            all_cities = county.get_cities()
+            Subject.county.select_county_services()
 
-            # get city statistics if any
-            city = src.utilities.inputs.InputHelper.city_grabber(all_cities)
-
-            cls()
-
-            if city is None:
-                pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
-                MAIN_LOOP = False
-
+        # "Modify City and/or City Options"
+        elif menu_option == options_dict[6]:
+            if INITAL_RUN == "continue onwards":
+                pick_city_bool = src.utilities.inputs.InputHelper.choice_bool(
+                    "Do you want to select a city at this time?"
+                )
             else:
-                # add city to subject
-                Subject.add_city(city)
+                pick_city_bool = True
 
-                src.utilities.printers.Printer.welcome_city(city.get_city_name())
+            if pick_city_bool:
+                # get all cities
+                all_cities = county.get_cities()
 
-                city.modify_or_keep()
+                # get city statistics if any
+                city = src.utilities.inputs.InputHelper.city_grabber(all_cities)
 
                 cls()
 
-        # reload all counties to default
+                if city is None:
+                    pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
+                    MAIN_LOOP = False
+
+                else:
+                    # add city to subject
+                    Subject.add_city(city)
+
+                    src.utilities.printers.Printer.welcome_city(city.get_city_name())
+
+                    city.modify_or_keep()
+
+                    cls()
+
+        # "Reload Counties to Default Values"
         elif menu_option == options_dict[99]:
             load = src.utilities.inputs.InputHelper.choice_bool(
                 "Are you SURE you want to reload Counties and Cities to default values?"

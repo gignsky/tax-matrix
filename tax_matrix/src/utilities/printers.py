@@ -1,5 +1,6 @@
 """
     contains classes designed to assist in general printing outputs
+    vscode-fold=2
 """
 
 from . import Fore, tprint
@@ -53,6 +54,21 @@ class Printer:
 
         for key in dictionary_value:
             print(f"{key}. {dictionary_value[key]}")
+
+    @staticmethod
+    def print_dict_with_statement(dictionary_value):
+        """
+        Print a dict with key values next to dict content per value:
+
+        KEY VALUE. ITEM NAME
+
+        Args:
+            any dict
+        """
+
+        for key in dictionary_value:
+            statement = list(key.keys())[0]
+            print(f"{key}. {statement}")
 
     @staticmethod
     def welcome_to_program(version, date):
