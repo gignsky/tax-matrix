@@ -3,7 +3,6 @@
 """
 
 import debugpy
-from . import LogicalWork
 from . import classes
 from . import InputHelper
 from . import Printer
