@@ -101,8 +101,7 @@ class InputHelper:
 
             bool_value = InputTesters.verify_bool(inputted_value)
 
-            try:
-                bool_value is not None
+            if bool_value is None:
                 INPUT_LOOP = False
                 cls()
             except:
