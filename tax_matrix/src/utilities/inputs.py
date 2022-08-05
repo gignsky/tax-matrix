@@ -102,6 +102,44 @@ class InputHelper:
             bool_value = InputTesters.verify_bool(inputted_value)
 
             if bool_value is None:
+                Printer.print_red(
+                    f"'{inputted_value}' is not valid, please enter 1 or 0"
+                )
+
+            else:
+                INPUT_LOOP = False
+                cls()
+
+        return bool_value
+
+    @staticmethod
+    def choice_bool_with_header(question):
+        """
+        main will grab true or false from user (1 or 0) in order to determine how the user wishes to move forwards RETURNS NONE AND ERROR MESSAGE SO HEADER CAN BE RESTATED
+        Returns:
+            Bool
+        """
+
+        INPUT_LOOP = True
+        while INPUT_LOOP:
+
+            Printer.inside_liner(question)
+
+            prompt = " Select '0' for NO and '1' for YES: "
+            inputted_value = input(prompt)
+
+            Printer.liner()
+
+            bool_value = InputTesters.verify_bool(inputted_value)
+
+            if bool_value is None:
+                cls()
+                Printer.print_red(
+                    f"'{inputted_value}' is not valid, please enter 1 or 0"
+                )
+                return None
+
+            else:
                 INPUT_LOOP = False
                 cls()
 

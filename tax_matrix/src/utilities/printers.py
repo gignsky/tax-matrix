@@ -71,6 +71,29 @@ class Printer:
             print(f"{key}. {statement}")
 
     @staticmethod
+    def print_special_service_dict_with_single_option_and_quit_option(
+        dictionary, quit_option
+    ):
+        """
+        Print a dict with key values next to dict content per value:
+
+        KEY VALUE. ITEM TITLE - RATE: RATE
+
+        Args:
+            any dict
+        """
+
+        if quit_option:
+            print("0. Quit")
+
+        for key in dictionary:
+            item_in_dict = dictionary[key]
+            title = list(item_in_dict.keys())[0]
+            rate = item_in_dict[title]
+
+            print(f"{key}. {title} - Rate: {rate}")
+
+    @staticmethod
     def welcome_to_program(version, date):
         """
         welcome message for entire script
