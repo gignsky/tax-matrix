@@ -555,6 +555,10 @@ class City:
         self.generate_CITY_current_default_strs()
 
         Printer.print_green(self.city_name)
+        if self.city_wide_rate is not None:
+            Printer.print_green(f"City Rate: {self.city_wide_rate:.6g}")
+        else:
+            Printer.print_green("City has no citywide rate")
         Printer.print_yellow(f"Police Rate Title: {self.police_title}")
         Printer.print_yellow(self.police_current_default_str)
         Printer.print_yellow(f"Fire Rate Title: {self.fire_title}")
