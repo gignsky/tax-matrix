@@ -52,6 +52,9 @@ def main():
 
         # test if inital run otherwise grab menu option
         if not INITAL_RUN:
+            src.utilities.printers.Printer.welcome_county(
+                Subject.county.get_county_name()
+            )
             # select main menu options
             menu_option = src.utilities.inputs.InputHelper.main_menu_options(
                 options_dict
