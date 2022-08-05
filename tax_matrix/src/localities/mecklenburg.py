@@ -58,199 +58,6 @@ def main():
 
     return meck
 
-
-def city_of_charlotte():
-    # INFORMATION
-    CITY_NAME = "City of Charlotte"
-    CITY_RATE = 0.003481
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001781
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00075
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-    SPECIAL_DISTRICTS = {
-        1: {"District 1": {0.000136: "City of Charlotte District 1"}},
-        2: {"District 2": {0.000363: "City of Charlotte District 2"}},
-        3: {"District 3": {0.000474: "City of Charlotte District 3"}},
-        4: {"District 4": {0.00039: "City of Charlotte District 4"}},
-        5: {"District 5": {0.000279: "City of Charlotte District 5"}},
-    }
-
-    city = CityOfCharlotte(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-        SPECIAL_DISTRICTS,
-    )
-
-    return city
-
-
-def charlotte():
-    # INFORMATION
-    CITY_NAME = "Charlotte"
-    CITY_RATE = 0.003481
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
-def town_of_cornelius():
-    # INFORMATION
-    CITY_NAME = "Town of Cornelius"
-    CITY_RATE = 0.00222
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.00229
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.000612
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
-def town_of_davidson():
-    # INFORMATION
-    CITY_NAME = "Town of Davidson"
-    CITY_RATE = 0.0029
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001432
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00089
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
-def town_of_huntersville():
-    # INFORMATION
-    CITY_NAME = "Town of Huntersville"
-    CITY_RATE = 0.0024
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001584
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.000456
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
-def town_of_matthews():
-    # INFORMATION
-    CITY_NAME = "Town of Matthews"
-    CITY_RATE = 0.00295
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
-def town_of_mint_hill():
-    # INFORMATION
-    CITY_NAME = "Town of Mint Hill"
-    CITY_RATE = 0.00255
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001558
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.0007
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
-def town_of_pineville():
-    # INFORMATION
-    CITY_NAME = "Town of Pineville"
-    CITY_RATE = 0.0033
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001637
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
-
-    city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-    )
-
-    return city
-
-
 class Mecklenburg(classes.County):
     def __init__(
         self,
@@ -554,6 +361,196 @@ class Mecklenburg(classes.County):
 
     def get_special_options_title(self):
         return "Waste Fees & Meck Police/Fire"
+
+def charlotte():
+    # INFORMATION
+    CITY_NAME = "Charlotte"
+    CITY_RATE = 0.003481
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = None
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = None
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def town_of_cornelius():
+    # INFORMATION
+    CITY_NAME = "Town of Cornelius"
+    CITY_RATE = 0.00222
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = 0.00229
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = 0.000612
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def town_of_davidson():
+    # INFORMATION
+    CITY_NAME = "Town of Davidson"
+    CITY_RATE = 0.0029
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = 0.001432
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = 0.00089
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def town_of_huntersville():
+    # INFORMATION
+    CITY_NAME = "Town of Huntersville"
+    CITY_RATE = 0.0024
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = 0.001584
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = 0.000456
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def town_of_matthews():
+    # INFORMATION
+    CITY_NAME = "Town of Matthews"
+    CITY_RATE = 0.00295
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = None
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = None
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def town_of_mint_hill():
+    # INFORMATION
+    CITY_NAME = "Town of Mint Hill"
+    CITY_RATE = 0.00255
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = 0.001558
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = 0.0007
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def town_of_pineville():
+    # INFORMATION
+    CITY_NAME = "Town of Pineville"
+    CITY_RATE = 0.0033
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = 0.001637
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = None
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+def city_of_charlotte():
+    # INFORMATION
+    CITY_NAME = "City of Charlotte"
+    CITY_RATE = 0.003481
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = 0.001781
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = 0.00075
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    SPECIAL_DISTRICTS = {
+        1: {"District 1": {0.000136: "City of Charlotte District 1"}},
+        2: {"District 2": {0.000363: "City of Charlotte District 2"}},
+        3: {"District 3": {0.000474: "City of Charlotte District 3"}},
+        4: {"District 4": {0.00039: "City of Charlotte District 4"}},
+        5: {"District 5": {0.000279: "City of Charlotte District 5"}},
+    }
+
+    city = CityOfCharlotte(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+        SPECIAL_DISTRICTS,
+    )
+
+    return city
 
 class CityOfCharlotte(classes.City):
     def __init__(
