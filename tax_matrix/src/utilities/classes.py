@@ -436,6 +436,13 @@ class County:
                 Printer.print_yellow(i)
         Printer.short_liner()
 
+    def get_special_options_title(self):
+        if self.special_stuff is None:
+            return "None"
+        else:
+            # debugpy.breakpoint()
+            return f"ERROR | SPECIAL OPTIONS NOT CONFIGURED IN {self.get_county_name()}'s Class"
+
 
 class City:
     """
