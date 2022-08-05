@@ -32,7 +32,7 @@ def main():
         1: "Print Statisticts",
         2: "Modify Price",
         3: "Modify County",
-        4: "Modify County Special Options\n...",
+        4: "TEMPORARY STRING\n...",
         5: "Modify Countywide Police, Fire, and/or EMS rates",
         6: "Modify City and/or City Options\n...",
         99: "Reload Counties to Default Values",
@@ -122,8 +122,12 @@ def main():
             else:
                 # add county
                 Subject.add_county(county)
-                if INITAL_RUN != "check special district options":
-                    INITAL_RUN = "Get Price then County"
+
+                cls()
+
+                options_dict[
+                    4
+                ] = f"Modify County Special Options - {Subject.county.get_special_options_title()}\n..."
 
         # "Modify County Special Options"
         elif menu_option == options_dict[4]:
