@@ -104,8 +104,6 @@ class InputHelper:
             if bool_value is None:
                 INPUT_LOOP = False
                 cls()
-            except:
-                pass
 
         return bool_value
 
