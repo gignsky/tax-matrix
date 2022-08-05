@@ -290,6 +290,9 @@ class Mecklenburg(classes.County):
         self.meck_police_rate = None
         self.meck_fire_rate = None
 
+        self.inital_waste_fee_setup(waste_options, meck_services)
+
+    def inital_waste_fee_setup(self, waste_options, meck_services):
         # set inital clt waste title
         tmp_clt_waste_key = list(waste_options.keys())[1]
         self.clt_waste_dict = waste_options[tmp_clt_waste_key]
