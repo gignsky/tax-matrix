@@ -552,6 +552,8 @@ class Mecklenburg(classes.County):
 
         return self.county_statistics
 
+    def get_special_options_title(self):
+        return "Waste Fees & Meck Police/Fire"
 
 class CityOfCharlotte(classes.City):
     def __init__(
