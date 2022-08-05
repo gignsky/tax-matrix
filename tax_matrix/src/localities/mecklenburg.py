@@ -583,18 +583,18 @@ class CityOfCharlotte(classes.City):
         print(f"Fire Rate: {self.fire_rate}")
         print(f"Fire Rate Title: {self.fire_title}")
 
-    def print_city_selected_info(self):
-        # Print super class info
-        super().print_city_selected_info()
-
-        Printer.print_green(f"{self.get_city_name()} Specific Info...")
-        # print City of Charlotte specific info (special districts)
-        Printer.print_yellow(
-            f"Special District: {self.special_district_title} | Default: {None}"
-        )
-        Printer.print_yellow(
-            f"Special District Rate: {self.special_district_rate} | Default: {None}"
-        )
+#     def print_city_selected_info(self):
+#         # Print super class info
+#         super().print_city_selected_info()
+#
+#         Printer.print_green(f"{self.get_city_name()} Specific Info...")
+#         # print City of Charlotte specific info (special districts)
+#         Printer.print_yellow(
+#             f"Special District: {self.special_district_title} | Default: {None}"
+#         )
+#         Printer.print_yellow(
+#             f"Special District Rate: {self.special_district_rate} | Default: {None}"
+#         )
 
     def generate_city_statistics(self):
         super().generate_city_statistics()
@@ -608,10 +608,10 @@ class CityOfCharlotte(classes.City):
 
         return self.city_statistics
 
-    def generate_CITY_substatements(self, city_stats, countywide_only, city_exists):
-        return super().generate_CITY_substatements(
-            city_stats, countywide_only, city_exists
-        )
+    # def generate_CITY_substatements(self, city_stats, countywide_only, city_exists):
+    #     return super().generate_CITY_substatements(
+    #         city_stats, countywide_only, city_exists
+    #     )
 
 def town_of_cornelius():
     # INFORMATION
