@@ -1,5 +1,6 @@
 """
 general utilites for entire program
+vscode-fold=2
 """
 from .. import cls
 from pprint import pprint

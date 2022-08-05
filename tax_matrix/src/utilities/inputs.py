@@ -1,5 +1,6 @@
 """
     Class to help with inputs
+    vscode-fold=2
 """
 
 from .testers import InputTesters

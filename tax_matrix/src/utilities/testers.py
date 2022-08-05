@@ -1,5 +1,6 @@
 """
     Testing for all needs (most often it's inputs)
+    vscode-fold=2
 """
 
 from .printers import Printer
