@@ -72,25 +72,33 @@ class Property:
             self.statistics["COUNTY"]
         )
 
-        self.CONTAINS_FEES = self.county.check_contains_fees(county_keys, county_values)
         self.generate_total_multiply_rate()
         self.generate_total_tax_burden_after_rate()
         self.COUNTYWIDE_ONLY = LogicalWork.check_countywide_only(
             self.statistics["COUNTY"]
         )
 
+        if self.CITY_EXISTS:
+            city_keys, city_values = LogicalWork.no_index_dict_to_two_lists(
+                self.statistics["CITY"]
+            )
+        else:
+            city_keys, city_values = None
+
+        self.CONTAINS_FEES = self.check_contains_fees_ALL(county_keys, county_values, city_keys, city_values)
+
         county_ONLY_statement = self.county.generate_county_ONLY_statement_NO_fee()
 
         middle_statement = self.generate_middle_statement(county_ONLY_statement)
 
         return_statement = self.generate_return_statement_AND_check_fee(
-            county_keys, county_values, middle_statement
+            county_keys, county_values,city_keys,city_values, middle_statement
         )
 
         return return_statement
 
     def generate_return_statement_AND_check_fee(
-        self, county_keys, county_values, middle_statement
+        self, county_keys, county_values,city_keys,city_values, middle_statement
     ):
         if not self.CONTAINS_FEES:  # no fees
             return_statement = f"x {middle_statement}"
@@ -98,8 +106,18 @@ class Property:
         else:
             fees = self.county.generate_county_total_fees(county_keys, county_values)
             self.generate_total_tax_burden_after_fee(fees)
-            return_statement = f"x {middle_statement}{self.county.generate_county_fees_string(county_keys, county_values)} = {self.generate_total_tax_burden_str()}"
+            return_statement = f"x {middle_statement}{self.generate_ALL_fee_strings(county_keys, county_values, city_keys, city_values)} = {self.generate_total_tax_burden_str()}"
         return return_statement
+
+    def check_county_fees_ALL(self, county_keys, county_values, city_keys, city_values):
+        county_has_fees = self.county.check_contains_fees(county_keys, county_values)
+        if city_keys is not None:
+            city_has_fees = self.county.city.check_contains_fees(city_keys, city_values)
+
+        if county_has_fees or city_has_fees:
+            return True
+        else:
+            return False
 
     def generate_middle_statement(self, county_ONLY_statement):
         if self.WITH_COUNTY_NO_CITY:
@@ -107,9 +125,12 @@ class Property:
                 f"{county_ONLY_statement} = {self.generate_total_tax_burden_str()}"
             )
         else:  # has city rates
+            city_ONLY_statement = self.county.city.city_ONLY_statement()
+
             city_substatement = self.county.city.generate_CITY_substatements(
                 self.statistics["CITY"], self.WITH_COUNTY_NO_CITY, self.CITY_EXISTS
             )
+
             middle_statement = f"{self.multiply_rate:.6g} ({county_ONLY_statement}{city_substatement}) = {self.generate_total_tax_burden_str()}"
 
         return middle_statement
@@ -136,7 +157,8 @@ class Property:
             )
             for i in list(filter(None, city_values)):
                 i_key = list(i)[0]
-                self.multiply_rate += i[i_key]
+                if "Fee" not in i_key:
+                    self.multiply_rate += i[i_key]
             self.WITH_COUNTY_NO_CITY = False
         else:
             self.WITH_COUNTY_NO_CITY = True
@@ -149,6 +171,13 @@ class Property:
 
     def generate_total_tax_burden_after_fee(self, fee):
         self.FINAL_TAX_COST += fee
+
+    def generate_ALL_fee_strings(self,county_keys, county_values, city_keys, city_values):
+        county_fee_string=self.county.generate_county_fees_string(county_keys, county_values)
+        city_fee_string=self.county.city.generate_city_fees_string(city_keys,city_values)
+
+        return county_fee_string + city_fee_string
+
 
 
 class County:
@@ -647,8 +676,12 @@ class City:
         if not with_county_no_city:
             if city_exists:
                 for title, rate in zip(city_keys, city_values):
-                    substatement = LogicalWork.substatement_maker(rate, title[0])
-                    return_statement = return_statement + substatement
+                    if "Fee" not in title:
+                        substatement = (
+                            return_statement
+                            + LogicalWork.substatement_maker(rate, title)
+                        )
+                        return_statement += substatement
         else:
             Printer.liner()
             debugpy.breakpoint()
@@ -657,6 +690,23 @@ class City:
 
         return return_statement
 
+    def check_contains_fees(self, city_keys, city_values):
+        for key, _ in zip(city_keys, city_values):
+            if "Fee" in key:
+                return True
+
+        return False
+
+    def generate_city_fees_string(self, city_keys, city_values):
+        city_fee_string = ""
+        if city_keys is not None:
+            for key, fee in zip(city_keys, city_values):
+                if "Fee" in key:
+                    city_fee_string = city_fee_string + LogicalWork.substatement_maker(
+                        f"${fee:,.2f}", key
+                    )
+
+        return city_fee_string
 
 # ALL ITEMS CLASSES
 class Counties:
