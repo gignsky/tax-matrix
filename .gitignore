@@ -7192,3 +7192,16 @@ old/testTesting/tests/__pycache__/test_pytest.cpython-38-pytest-7.1.2.pyc
 .vscode/extensions.json
 .vscode/launch.json
 .vscode/settings.json
+tax_matrix/src/utilities/__pycache__/__init__.cpython-38.pyc
+tax_matrix/src/utilities/__pycache__/classes.cpython-38.pyc
+tax_matrix/src/utilities/__pycache__/inputs.cpython-38.pyc
+tax_matrix/src/utilities/__pycache__/logic.cpython-38.pyc
+tax_matrix/src/utilities/__pycache__/printers.cpython-38.pyc
+tax_matrix/src/utilities/__pycache__/testers.cpython-38.pyc
+tax_matrix/src/__pycache__/__init__.cpython-38.pyc
+tax_matrix/src/__pycache__/config.cpython-38.pyc
+tax_matrix/src/localities/__pycache__/__init__.cpython-38.pyc
+tax_matrix/src/localities/__pycache__/gaston.cpython-38.pyc
+tax_matrix/src/localities/__pycache__/iredell.cpython-38.pyc
+tax_matrix/src/localities/__pycache__/mecklenburg.cpython-38.pyc
+tax_matrix/src/localities/__pycache__/union.cpython-38.pyc
