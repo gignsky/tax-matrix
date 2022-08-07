@@ -107,7 +107,9 @@ class Property:
             return_statement = f"x {middle_statement}"
 
         else:
-            fees = self.county.generate_county_total_fees(county_keys, county_values)
+            fees = self.generate_ALL_fees(
+                county_keys, county_values, city_keys, city_values
+            )
             self.generate_total_tax_burden_after_fee(fees)
             return_statement = f"x {middle_statement}{self.generate_ALL_fee_strings(county_keys, county_values, city_keys, city_values)} = {self.generate_total_tax_burden_str()}"
         return return_statement
@@ -190,6 +192,12 @@ class Property:
         )
 
         return county_fee_string + city_fee_string
+
+    def generate_ALL_fees(self, county_keys, county_values, city_keys, city_values):
+        county_fees = self.county.generate_county_total_fees(county_keys, county_values)
+        city_fees = self.county.city.generate_city_total_fees(city_keys, city_values)
+
+        return county_fees + city_fees
 
 
 class County:
@@ -363,7 +371,16 @@ class County:
         total_of_fees = 0
         for key, fee in zip(county_keys, county_values):
             if "Fee" in key:
-                total_of_fees += fee
+                if "Fee" in check_str:
+                    total_of_fees += fee
+                return True
+
+            elif fee is not None:
+                if type(fee) is dict:
+                    check_str = list(fee.keys())[0]
+                    if "Fee" in check_str:
+                        inner_fee = fee[check_str]
+                        total_of_fees += inner_fee
 
         return total_of_fees
 
@@ -705,9 +722,14 @@ class City:
         return return_statement
 
     def check_contains_fees(self, city_keys, city_values):
-        for key, _ in zip(city_keys, city_values):
+        for key, value in zip(city_keys, city_values):
             if "Fee" in key:
                 return True
+
+            if value is not None:
+                check_str = list(value.keys())[0]
+                if "Fee" in check_str:
+                    return True
 
         return False
 
@@ -720,7 +742,37 @@ class City:
                         f"${fee:,.2f}", key
                     )
 
+                elif fee is not None:
+                    if type(fee) is dict:
+                        check_str = list(fee.keys())[0]
+                        inner_fee = fee[check_str]
+
+                        if "Fee" in check_str:
+                            city_fee_string = (
+                                city_fee_string
+                                + LogicalWork.substatement_maker(
+                                    f"${inner_fee:,.2f}", check_str
+                                )
+                            )
+
         return city_fee_string
+
+    def generate_city_total_fees(self, city_keys, city_values):
+        total_of_fees = 0
+        for key, fee in zip(city_keys, city_values):
+            if "Fee" in key:
+                if "Fee" in check_str:
+                    total_of_fees += fee
+                return True
+
+            elif fee is not None:
+                if type(fee) is dict:
+                    check_str = list(fee.keys())[0]
+                    if "Fee" in check_str:
+                        inner_fee = fee[check_str]
+                        total_of_fees += inner_fee
+
+        return total_of_fees
 
 
 # ALL ITEMS CLASSES
