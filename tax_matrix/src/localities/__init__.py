@@ -1,3 +1,5 @@
+# vscode-fold=2
+
 from .. import cls
 from ..utilities import InputHelper
 from ..utilities import InputTesters
@@ -6,7 +8,7 @@ from ..utilities import classes
 from ..utilities import Printer
 
 from .mecklenburg import main as mecklenburg
-
+from .union import main as union
 
 from .iredell import main as iredell
 
@@ -20,7 +22,7 @@ def load_all_counties(which_run):
         classes.Counties.reset_counties()
 
     classes.Counties.add_county(mecklenburg())
-    # classes.Counties.add_county(union())
+    classes.Counties.add_county(union())
     # classes.Counties.add_county(stanly())
     # classes.Counties.add_county(cabarrus())
     classes.Counties.add_county(iredell())
