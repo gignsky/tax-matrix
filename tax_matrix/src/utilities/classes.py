@@ -83,22 +83,25 @@ class Property:
                 self.statistics["CITY"]
             )
         else:
-            city_keys, city_values = None
+            city_keys = None
+            city_values = None
 
-        self.CONTAINS_FEES = self.check_contains_fees_ALL(county_keys, county_values, city_keys, city_values)
+        self.CONTAINS_FEES = self.check_contains_fees_ALL(
+            county_keys, county_values, city_keys, city_values
+        )
 
         county_ONLY_statement = self.county.generate_county_ONLY_statement_NO_fee()
 
         middle_statement = self.generate_middle_statement(county_ONLY_statement)
 
         return_statement = self.generate_return_statement_AND_check_fee(
-            county_keys, county_values,city_keys,city_values, middle_statement
+            county_keys, county_values, city_keys, city_values, middle_statement
         )
 
         return return_statement
 
     def generate_return_statement_AND_check_fee(
-        self, county_keys, county_values,city_keys,city_values, middle_statement
+        self, county_keys, county_values, city_keys, city_values, middle_statement
     ):
         if not self.CONTAINS_FEES:  # no fees
             return_statement = f"x {middle_statement}"
@@ -109,10 +112,14 @@ class Property:
             return_statement = f"x {middle_statement}{self.generate_ALL_fee_strings(county_keys, county_values, city_keys, city_values)} = {self.generate_total_tax_burden_str()}"
         return return_statement
 
-    def check_county_fees_ALL(self, county_keys, county_values, city_keys, city_values):
+    def check_contains_fees_ALL(
+        self, county_keys, county_values, city_keys, city_values
+    ):
         county_has_fees = self.county.check_contains_fees(county_keys, county_values)
         if city_keys is not None:
             city_has_fees = self.county.city.check_contains_fees(city_keys, city_values)
+        else:
+            city_has_fees = False
 
         if county_has_fees or city_has_fees:
             return True
@@ -125,7 +132,7 @@ class Property:
                 f"{county_ONLY_statement} = {self.generate_total_tax_burden_str()}"
             )
         else:  # has city rates
-            city_ONLY_statement = self.county.city.city_ONLY_statement()
+            # city_ONLY_statement = self.county.city.city_ONLY_statement()
 
             city_substatement = self.county.city.generate_CITY_substatements(
                 self.statistics["CITY"], self.WITH_COUNTY_NO_CITY, self.CITY_EXISTS
@@ -172,12 +179,17 @@ class Property:
     def generate_total_tax_burden_after_fee(self, fee):
         self.FINAL_TAX_COST += fee
 
-    def generate_ALL_fee_strings(self,county_keys, county_values, city_keys, city_values):
-        county_fee_string=self.county.generate_county_fees_string(county_keys, county_values)
-        city_fee_string=self.county.city.generate_city_fees_string(city_keys,city_values)
+    def generate_ALL_fee_strings(
+        self, county_keys, county_values, city_keys, city_values
+    ):
+        county_fee_string = self.county.generate_county_fees_string(
+            county_keys, county_values
+        )
+        city_fee_string = self.county.city.generate_city_fees_string(
+            city_keys, city_values
+        )
 
         return county_fee_string + city_fee_string
-
 
 
 class County:
@@ -269,6 +281,20 @@ class County:
         Printer.print_green("County...")
         Printer.print_yellow(f"County Name: {self.county_name}")
         Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
+
+        self.county_services_modify_options_NO_quit = (
+            LogicalWork.create_options_dict_from_county_services_list_WITH_quit(
+                self.county_services
+            )
+        )
+
+        Printer.short_liner()
+        if self.county_services_modify_options_NO_quit is None:
+            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
+        else:
+            for i in self.county_services_modify_options_NO_quit:
+                Printer.print_yellow(i)
+        Printer.short_liner()
 
     def generate_county_statistics(self):
         # get county stats
@@ -449,21 +475,6 @@ class County:
         else:
             debugpy.breakpoint()
             Printer.print_red("There is an ERROR in county service modification")
-
-    def print_county_selected_info(self):
-        self.county_services_modify_options_NO_quit = (
-            LogicalWork.create_options_dict_from_county_services_list_WITH_quit(
-                self.county_services
-            )
-        )
-
-        Printer.short_liner()
-        if self.county_services_modify_options_NO_quit is None:
-            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
-        else:
-            for i in self.county_services_modify_options_NO_quit:
-                Printer.print_yellow(i)
-        Printer.short_liner()
 
     def get_special_options_title(self):
         if self.special_stuff is None:
@@ -676,6 +687,9 @@ class City:
         if not with_county_no_city:
             if city_exists:
                 for title, rate in zip(city_keys, city_values):
+                    if type(title) is list:
+                        title = str(title[0])
+
                     if "Fee" not in title:
                         substatement = (
                             return_statement
@@ -707,6 +721,7 @@ class City:
                     )
 
         return city_fee_string
+
 
 # ALL ITEMS CLASSES
 class Counties:
