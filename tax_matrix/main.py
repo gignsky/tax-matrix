@@ -218,7 +218,7 @@ def main():
 
 
 def wait():
-    input("press ANY key to Continue")
+    input("press ANY key to Continue\n...\n")
     cls()
 
 
