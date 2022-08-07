@@ -38,23 +38,23 @@ def main():
     }
     SPECIAL_STUFF = True
     COUNTY_FIRE_SERVICES = {
-        1: {"AG CENTER FIRE": 0.00092},
-        2: {"ALEXIS VFD": 0.00079},
-        3: {"CHAPEL GR FIRE": 0.00093},
-        4: {"CHESTNUT RIDGE FD": 0.00081},
-        5: {"COMMUN. FIRE": 0.00099},
-        6: {"CROUSE FIRE": 0.00069},
-        7: {"EAST GAST. FIRE": 0.00072},
-        8: {"HUGHS POND FD": 0.001050},
-        9: {"LONG SHOALS FD": 0.001040},
-        10: {"LOWELL FD": 0.00068},
-        11: {"LUCIA-RB FIRE": 0.00093},
-        12: {"NEW HP FIRE": 0.00084},
-        13: {"S. GAST. FIRE": 0.00093},
-        14: {"S. POINT FIRE": 0.00036},
-        15: {"TRYONOTA FIRE": 0.00081},
-        16: {"UNION RD FIRE": 0.00065},
-        17: {"WACO FIRE": 0.00081},
+        1: {"AG Center Fire": 0.00092},
+        2: {"Alexis VFD": 0.00079},
+        3: {"Chapel Gr Fire": 0.00093},
+        4: {"Chestnut Ridge FD": 0.00081},
+        5: {"Commun. Fire": 0.00099},
+        6: {"Crouse Fire": 0.00069},
+        7: {"East Gast. Fire": 0.00072},
+        8: {"Hughs Pond FD": 0.001050},
+        9: {"Long Shoals FD": 0.001040},
+        10: {"Lowell FD": 0.00068},
+        11: {"Lucia Rb Fire": 0.00093},
+        12: {"New Hp Fire": 0.00084},
+        13: {"S. Gast. Fire": 0.00093},
+        14: {"S. Point Fire": 0.00036},
+        15: {"Tryonota Fire": 0.00081},
+        16: {"Union Rd Fire": 0.00065},
+        17: {"Waco Fire": 0.00081},
     }
 
     gaston = Gaston(
@@ -525,3 +525,35 @@ class Gaston(classes.County):
             pass
 
         return self.county_statistics
+
+    def print_county_selected_info(self):
+        super().print_county_selected_info()
+
+        Printer.print_green(f"{self.get_county_name()} Specific Info")
+
+        self.generate_SPECIAL_current_default_strs()
+
+        # print gaston co specific info
+        Printer.print_yellow(self.special_fire_department_default_str)
+
+    def generate_SPECIAL_current_default_strs(self):
+        current_fire_department = (
+            self.participating_fire_department_rate
+            if self.participating_fire_department_rate is not None
+            else None
+        )
+
+        if current_fire_department is not None:
+            current_fire_department = f"{current_fire_department:.6g}"
+        else:
+            current_fire_department = None
+
+        if current_fire_department is not None:
+            self.special_fire_department_default_str = f"Special Fire District for Gaston County: {self.participating_fire_department_title} - Rate: {current_fire_department}"
+        else:
+            self.special_fire_department_default_str = (
+                "No Special Fire District Selected."
+            )
+
+    def get_special_options_title(self):
+        return "Special Fire Departments"
