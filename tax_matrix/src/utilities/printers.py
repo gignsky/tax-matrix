@@ -56,6 +56,25 @@ class Printer:
             print(f"{key}. {dictionary_value[key]}")
 
     @staticmethod
+    def print_dict_with_inner_dict(dictionary_value):
+        """
+        Print a dict with key values next to dict content per value:
+
+        KEY VALUE. ITEM NAME
+
+        Args:
+            any dict
+        """
+
+        for key in dictionary_value:
+            inner_dict = dictionary_value[key]
+
+            inner_key = list(inner_dict.keys())[0]
+            inner_value = inner_dict[inner_key]
+
+            print(f"{key}. {inner_key} : {inner_value}")
+
+    @staticmethod
     def print_dict_with_statement(dictionary_value):
         """
         Print a dict with key values next to dict content per value:

@@ -41,6 +41,36 @@ class InputHelper:
 
         return value
 
+    def input_from_dict_with_inner_dict(dictionary, prompt):
+        """
+        input_from_dict grabs input from dictionary of options and returns value associated with dictionary item after testing it
+
+        Args:
+            dictionary (dict): dictionary of options
+            prompt (str): prompt of what you are selecting in the dict placed prior to options with "Please Enter Value associated with your selection" printed for input
+
+        Returns:
+            dict[item]: item associated with selection
+        """
+        INPUT_LOOP = True
+
+        while INPUT_LOOP:
+            Printer.inside_liner(prompt)
+
+            Printer.print_dict_with_inner_dict(dictionary)
+
+            Printer.liner()
+            inputted_value = input(
+                "Please ENTER Value associated with your selection: "
+            )
+            Printer.liner()
+
+            value = InputTesters.verify_dict_selection(inputted_value, dictionary)
+            if value is not None:
+                INPUT_LOOP = False
+
+        return value
+
     @staticmethod
     def input_from_dict_with_statement(dictionary, prompt):
         """
