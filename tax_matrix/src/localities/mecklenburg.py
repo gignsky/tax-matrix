@@ -29,15 +29,28 @@ def main():
         6: town_of_matthews(),
         7: town_of_mint_hill(),
         8: town_of_pineville(),
+        9: stallings(),
     }
     SPECIAL_STUFF = True
     WASTE_OPTIONS = {
-        1: {"Mecklenburg Single Family Solid Waste Fee": 39.50},
-        2: {"Charlotte Single Family Solid Waste Fee": 75.02},
+        1: {"Mecklenburg Single- & Multi- Family Solid Waste Fee": 39.50},
+        2: {"Charlotte Single- & Multi- Family Solid Waste Fee": 86.06},
+        3: {"Huntersville Single- & Multi- Family Solid Waste Fee": 126.00},
     }
     MECK_SERVICES = {
-        1: {"Mecklenburg Law Enforcement District For Charlotte ETJ": 0.001781},
-        2: {"Mecklenburg Fire District For Charlotte ETJ": 0.0008},
+        1: {"Police District Unincorperated Area (ETJ) For Charlotte": 0.001781},
+        2: {
+            "Fire District Unincorperated Area (ETJ) For Charlotte (Includes Pineville Sphere)": 0.001015
+        },
+        3: {"Police District Unincorperated Area (ETJ) For Cornelius": 0.00229},
+        4: {"Fire District Unincorperated Area (ETJ) For Cornelius": 0.000612},
+        5: {"Police District Unincorperated Area (ETJ) For Davidson": 0.001432},
+        6: {"Fire District Unincorperated Area (ETJ) For Davidson": 0.00089},
+        7: {"Police District Unincorperated Area (ETJ) For Huntersville": 0.001584},
+        8: {"Fire District Unincorperated Area (ETJ) For Huntersville": 0.000663},
+        9: {"Police District Unincorperated Area (ETJ) For Mint Hill": 0.001558},
+        10: {"Fire District Unincorperated Area (ETJ) For Mint Hill": 0.00075},
+        11: {"Police District Unincorperated Area (ETJ) For Pineville": 0.001637},
     }
 
     meck = Mecklenburg(
@@ -57,6 +70,7 @@ def main():
     )
 
     return meck
+
 
 class Mecklenburg(classes.County):
     def __init__(
@@ -362,6 +376,7 @@ class Mecklenburg(classes.County):
     def get_special_options_title(self):
         return "Waste Fees & Meck Police/Fire"
 
+
 def charlotte():
     # INFORMATION
     CITY_NAME = "Charlotte"
@@ -384,14 +399,15 @@ def charlotte():
 
     return city
 
+
 def city_of_charlotte():
     # INFORMATION
     CITY_NAME = "City of Charlotte"
     CITY_RATE = 0.003481
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001781
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00075
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
     SPECIAL_DISTRICTS = {
         1: {"District 1": {0.000136: "City of Charlotte District 1"}},
@@ -399,6 +415,7 @@ def city_of_charlotte():
         3: {"District 3": {0.000474: "City of Charlotte District 3"}},
         4: {"District 4": {0.00039: "City of Charlotte District 4"}},
         5: {"District 5": {0.000279: "City of Charlotte District 5"}},
+        6: {"District 6": {0.0004: "City of Charlotte District 6 (SouthPark)"}},
     }
 
     city = CityOfCharlotte(
@@ -413,6 +430,7 @@ def city_of_charlotte():
     )
 
     return city
+
 
 class CityOfCharlotte(classes.City):
     def __init__(
@@ -583,18 +601,18 @@ class CityOfCharlotte(classes.City):
         print(f"Fire Rate: {self.fire_rate}")
         print(f"Fire Rate Title: {self.fire_title}")
 
-#     def print_city_selected_info(self):
-#         # Print super class info
-#         super().print_city_selected_info()
-#
-#         Printer.print_green(f"{self.get_city_name()} Specific Info...")
-#         # print City of Charlotte specific info (special districts)
-#         Printer.print_yellow(
-#             f"Special District: {self.special_district_title} | Default: {None}"
-#         )
-#         Printer.print_yellow(
-#             f"Special District Rate: {self.special_district_rate} | Default: {None}"
-#         )
+    #     def print_city_selected_info(self):
+    #         # Print super class info
+    #         super().print_city_selected_info()
+    #
+    #         Printer.print_green(f"{self.get_city_name()} Specific Info...")
+    #         # print City of Charlotte specific info (special districts)
+    #         Printer.print_yellow(
+    #             f"Special District: {self.special_district_title} | Default: {None}"
+    #         )
+    #         Printer.print_yellow(
+    #             f"Special District Rate: {self.special_district_rate} | Default: {None}"
+    #         )
 
     def generate_city_statistics(self):
         super().generate_city_statistics()
@@ -613,14 +631,15 @@ class CityOfCharlotte(classes.City):
     #         city_stats, countywide_only, city_exists
     #     )
 
+
 def town_of_cornelius():
     # INFORMATION
     CITY_NAME = "Town of Cornelius"
-    CITY_RATE = 0.00222
+    CITY_RATE = 0.00232
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.00229
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.000612
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(
@@ -639,11 +658,11 @@ def town_of_cornelius():
 def town_of_davidson():
     # INFORMATION
     CITY_NAME = "Town of Davidson"
-    CITY_RATE = 0.0029
+    CITY_RATE = 0.00325
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001432
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00089
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(
@@ -664,9 +683,9 @@ def town_of_huntersville():
     CITY_NAME = "Town of Huntersville"
     CITY_RATE = 0.0024
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001584
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.000456
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(
@@ -710,9 +729,9 @@ def town_of_mint_hill():
     CITY_NAME = "Town of Mint Hill"
     CITY_RATE = 0.00255
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001558
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.0007
+    FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
 
     city = classes.City(
@@ -733,7 +752,30 @@ def town_of_pineville():
     CITY_NAME = "Town of Pineville"
     CITY_RATE = 0.0033
     CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = 0.001637
+    POLICE_RATE = None
+    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
+    FIRE_RATE = None
+    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+
+    city = classes.City(
+        CITY_NAME,
+        CITY_RATE,
+        CITY_RATE_TITLE,
+        POLICE_RATE,
+        POLICE_RATE_TITLE,
+        FIRE_RATE,
+        FIRE_RATE_TITLE,
+    )
+
+    return city
+
+
+def stallings():
+    # INFORMATION
+    CITY_NAME = "Stallings"
+    CITY_RATE = 0.00186
+    CITY_RATE_TITLE = CITY_NAME
+    POLICE_RATE = None
     POLICE_RATE_TITLE = f"{CITY_NAME} Police"
     FIRE_RATE = None
     FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
