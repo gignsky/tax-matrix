@@ -95,6 +95,49 @@ class InputTesters:
             return value
 
     @staticmethod
+    def verify_float(float_value):
+        """
+        Verify that input is an float
+
+        Args:
+            x (str): variable to check
+
+        Returns:
+            int or None: will return int if item is a valid interager otherwise will retrun None so loop can be restarted
+        """
+
+        try:
+            value = float(float_value)
+
+        except:
+            Printer.liner()
+
+            print(Fore.RED + f"value of '{float_value}' is not a float :(")
+
+            print(Fore.RESET + "please try again and enter an float")
+
+            Printer.liner()
+
+            value = None
+
+        #         try:
+        #             value=InputTesters.verify_int(float_value)
+        #             value=float(value)
+        #
+        #         except:
+        #             Printer.liner()
+        #
+        #             print(Fore.RED + f"value of '{float_value}' is not an int :(")
+        #
+        #             print(Fore.RESET + "please try again and enter an int")
+        #
+        #             Printer.liner()
+        #
+        #             value = None
+
+        return value
+
+    @staticmethod
     def verify_dict_selection(index_value, dictionary):
         """
         verify_dict_selection verifies if selection int is indeed an int and then if it is inside of the dictionary.

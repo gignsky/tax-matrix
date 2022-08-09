@@ -86,7 +86,7 @@ class Printer:
         """
 
         for key in dictionary_value:
-            statement = list(key.keys())[0]
+            statement = dictionary_value[key]
             print(f"{key}. {statement}")
 
     @staticmethod

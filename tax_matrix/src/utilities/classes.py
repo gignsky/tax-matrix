@@ -90,9 +90,14 @@ class Property:
             county_keys, county_values, city_keys, city_values
         )
 
-        county_ONLY_statement = self.county.generate_county_ONLY_statement_NO_fee()
+        (
+            county_ONLY_statement,
+            items_added,
+        ) = self.county.generate_county_ONLY_statement_NO_fee()
 
-        middle_statement = self.generate_middle_statement(county_ONLY_statement)
+        middle_statement = self.generate_middle_statement(
+            county_ONLY_statement, items_added
+        )
 
         return_statement = self.generate_return_statement_AND_check_fee(
             county_keys, county_values, city_keys, city_values, middle_statement
@@ -128,11 +133,15 @@ class Property:
         else:
             return False
 
-    def generate_middle_statement(self, county_ONLY_statement):
+    def generate_middle_statement(self, county_ONLY_statement, items_added):
         if self.WITH_COUNTY_NO_CITY:
-            middle_statement = (
-                f"{county_ONLY_statement} = {self.generate_total_tax_burden_str()}"
-            )
+            if items_added == 1:
+                middle_statement = (
+                    f"{county_ONLY_statement} = {self.generate_total_tax_burden_str()}"
+                )
+            else:
+                middle_statement = f"{self.multiply_rate:.6g} ({county_ONLY_statement}) = {self.generate_total_tax_burden_str()}"
+
         else:  # has city rates
             # city_ONLY_statement = self.county.city.city_ONLY_statement()
 
@@ -187,15 +196,23 @@ class Property:
         county_fee_string = self.county.generate_county_fees_string(
             county_keys, county_values
         )
-        city_fee_string = self.county.city.generate_city_fees_string(
-            city_keys, city_values
-        )
+        if self.CITY_EXISTS:
+            city_fee_string = self.county.city.generate_city_fees_string(
+                city_keys, city_values
+            )
+        else:
+            city_fee_string = ""
 
         return county_fee_string + city_fee_string
 
     def generate_ALL_fees(self, county_keys, county_values, city_keys, city_values):
         county_fees = self.county.generate_county_total_fees(county_keys, county_values)
-        city_fees = self.county.city.generate_city_total_fees(city_keys, city_values)
+        if self.CITY_EXISTS:
+            city_fees = self.county.city.generate_city_total_fees(
+                city_keys, city_values
+            )
+        else:
+            city_fees = 0
 
         return county_fees + city_fees
 
@@ -290,17 +307,17 @@ class County:
         Printer.print_yellow(f"County Name: {self.county_name}")
         Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
 
-        self.county_services_modify_options_NO_quit = (
-            LogicalWork.create_options_dict_from_county_services_list_WITH_quit(
+        self.county_services_modify_options_WITH_quit = (
+            LogicalWork.create_options_dict_from_county_services_list_NO_quit(
                 self.county_services
             )
         )
 
         Printer.short_liner()
-        if self.county_services_modify_options_NO_quit is None:
+        if self.county_services_modify_options_WITH_quit is None:
             Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
         else:
-            for i in self.county_services_modify_options_NO_quit:
+            for i in self.county_services_modify_options_WITH_quit:
                 Printer.print_yellow(i)
         Printer.short_liner()
 
@@ -334,26 +351,29 @@ class County:
         return self.county_statistics
 
     def generate_county_ONLY_statement_NO_fee(self):
-        title, rate = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
+        titles, rates = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
 
         items_added = 0
-        for title, rate in zip(title, rate):
+        for title, rate in zip(titles, rates):
             if items_added != 0:
                 if "Fee" not in title:
-                    return_statement = (
-                        return_statement + LogicalWork.substatement_maker(rate, title)
-                    )
-                    items_added += 1
+                    if rate is not None:
+                        return_statement = (
+                            return_statement
+                            + LogicalWork.substatement_maker(rate, title)
+                        )
+                        items_added += 1
             else:
                 return_statement = f"({rate} - {title})"
                 items_added += 1
 
-        return return_statement
+        return return_statement, items_added
 
     def check_contains_fees(self, county_keys, county_values):
-        for key, _ in zip(county_keys, county_values):
+        for key, value in zip(county_keys, county_values):
             if "Fee" in key:
-                return True
+                if value is not None:
+                    return True
 
         return False
 
@@ -361,9 +381,11 @@ class County:
         county_fee_string = ""
         for key, fee in zip(county_keys, county_values):
             if "Fee" in key:
-                county_fee_string = county_fee_string + LogicalWork.substatement_maker(
-                    f"${fee:,.2f}", key
-                )
+                if fee is not None:
+                    county_fee_string = (
+                        county_fee_string
+                        + LogicalWork.substatement_maker(f"${fee:,.2f}", key)
+                    )
 
         return county_fee_string
 
@@ -371,9 +393,8 @@ class County:
         total_of_fees = 0
         for key, fee in zip(county_keys, county_values):
             if "Fee" in key:
-                if "Fee" in check_str:
+                if fee is not None:
                     total_of_fees += fee
-                return True
 
             elif fee is not None:
                 if type(fee) is dict:
@@ -415,7 +436,7 @@ class County:
             while INPUT_LOOP:
                 self.print_county_selected_info()
 
-                if self.county_services_modify_options_NO_quit is not None:
+                if self.county_services_modify_options_WITH_quit is not None:
                     modify = InputHelper.choice_bool(
                         "Would you like to modfy use of any of the above rates?"
                     )
@@ -763,7 +784,6 @@ class City:
             if "Fee" in key:
                 if "Fee" in check_str:
                     total_of_fees += fee
-                return True
 
             elif fee is not None:
                 if type(fee) is dict:

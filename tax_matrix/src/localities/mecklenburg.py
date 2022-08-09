@@ -3,6 +3,8 @@
 """
 
 import debugpy
+
+from ..utilities.testers import InputTesters
 from . import classes
 from . import InputHelper
 from . import Printer
@@ -38,19 +40,19 @@ def main():
         3: {"Huntersville Single- & Multi- Family Solid Waste Fee": 126.00},
     }
     MECK_SERVICES = {
-        1: {"Police District Unincorperated Area (ETJ) For Charlotte": 0.001781},
+        1: {"Police District Unincorporated Area (ETJ) For Charlotte": 0.001781},
         2: {
-            "Fire District Unincorperated Area (ETJ) For Charlotte (Includes Pineville Sphere)": 0.001015
+            "Fire District Unincorporated Area (ETJ) For Charlotte (Includes Pineville Sphere)": 0.001015
         },
-        3: {"Police District Unincorperated Area (ETJ) For Cornelius": 0.00229},
-        4: {"Fire District Unincorperated Area (ETJ) For Cornelius": 0.000612},
-        5: {"Police District Unincorperated Area (ETJ) For Davidson": 0.001432},
-        6: {"Fire District Unincorperated Area (ETJ) For Davidson": 0.00089},
-        7: {"Police District Unincorperated Area (ETJ) For Huntersville": 0.001584},
-        8: {"Fire District Unincorperated Area (ETJ) For Huntersville": 0.000663},
-        9: {"Police District Unincorperated Area (ETJ) For Mint Hill": 0.001558},
-        10: {"Fire District Unincorperated Area (ETJ) For Mint Hill": 0.00075},
-        11: {"Police District Unincorperated Area (ETJ) For Pineville": 0.001637},
+        3: {"Police District Unincorporated Area (ETJ) For Cornelius": 0.00229},
+        4: {"Fire District Unincorporated Area (ETJ) For Cornelius": 0.000612},
+        5: {"Police District Unincorporated Area (ETJ) For Davidson": 0.001432},
+        6: {"Fire District Unincorporated Area (ETJ) For Davidson": 0.00089},
+        7: {"Police District Unincorporated Area (ETJ) For Huntersville": 0.001584},
+        8: {"Fire District Unincorporated Area (ETJ) For Huntersville": 0.000663},
+        9: {"Police District Unincorporated Area (ETJ) For Mint Hill": 0.001558},
+        10: {"Fire District Unincorporated Area (ETJ) For Mint Hill": 0.00075},
+        11: {"Police District Unincorporated Area (ETJ) For Pineville": 0.001637},
     }
 
     meck = Mecklenburg(
@@ -70,6 +72,183 @@ def main():
     )
 
     return meck
+
+#consider moving below classes to antoher file or folder would need to loaded prior to to localities folder
+class WasteOption:
+    def __init__(self, waste_options_dict, positional_key):
+        self.waste_options_dict = waste_options_dict
+        self.option_inner_dict = waste_options_dict[positional_key]
+        self.title = list(self.option_inner_dict.keys())[0]
+
+        self.validate_and_set_default_fee()
+
+        self.current_fee = None
+
+    def validate_and_set_default_fee(self):
+        tmp_default_option_fee = (
+            self.option_inner_dict[self.title]
+            if self.option_inner_dict[self.title] is not None
+            else 0
+        )
+
+        if tmp_default_option_fee != 0:
+            verified_float = InputTesters.verify_float(tmp_default_option_fee)
+
+            self.default_option_fee = verified_float
+
+        else:
+            self.default_option_fee = 0
+
+    def get_title(self):
+        return self.title
+
+    def get_default_fee_float(self):
+        return self.default_option_fee
+
+    def get_current_fee_float(self):
+        return self.current_fee
+
+    def get_current_fee_string(self):
+        if self.current_fee is not None:
+            return f"${self.current_fee:.2f}"
+        else:
+            return None
+
+    def get_status_str(self):
+        checked_current_fee, checked_default_fee = self.check_fees_for_none()
+
+        return f"{self.title} - Current Fee: {checked_current_fee} | DEFAULT FEE: {checked_default_fee}"
+
+    def print_status_str(self):
+        checked_current_fee, checked_default_fee = self.check_fees_for_none()
+
+        statement = f"{self.title} - Current Fee: {checked_current_fee} | DEFAULT FEE: {checked_default_fee}"
+
+        if checked_current_fee != "None":
+            Printer.print_green(statement)
+        else:
+            Printer.print_red(statement)
+
+    def check_fees_for_none(self):
+        if self.default_option_fee is not None:
+            default = f"${self.default_option_fee:.2f}"
+        else:
+            default = "None"
+
+        if self.current_fee is not None:
+            current = f"${self.current_fee:.2f}"
+        else:
+            current = "None"
+
+        return current, default
+
+    def modify(self):
+        enable = InputHelper.on_or_off_fee(
+            self.title,
+            self.default_option_fee,
+            self.current_fee,
+        )
+
+        cls()
+
+        if enable:
+            self.current_fee = self.default_option_fee
+        else:
+            self.current_fee = None
+        Printer.liner()
+        if self.current_fee is not None:
+            current_fee_to_print = f"${self.current_fee:.2f}"
+        else:
+            current_fee_to_print = "None"
+        Printer.print_green(f"{self.title} updated to: {current_fee_to_print}")
+
+
+class MeckService:
+    def __init__(self, meck_services_dict, positional_key):
+        self.meck_services_dict = meck_services_dict
+        self.service_inner_dict = meck_services_dict[positional_key]
+        self.service_title = list(self.service_inner_dict.keys())[0]
+
+        self.validate_and_set_default_rate()
+
+        self.current_rate = None
+
+    def validate_and_set_default_rate(self):
+        tmp_default_service_rate = (
+            self.service_inner_dict[self.service_title]
+            if self.service_inner_dict[self.service_title] is not None
+            else 0
+        )
+
+        if tmp_default_service_rate != 0:
+            verified_float = InputTesters.verify_float(tmp_default_service_rate)
+
+            self.default_service_rate = verified_float
+
+        else:
+            self.default_service_rate = 0
+
+    def get_title(self):
+        return self.service_title
+
+    def get_default_rate_float(self):
+        return self.default_service_rate
+
+    def get_current_rate_float(self):
+        return self.current_rate
+
+    def get_current_rate_string(self):
+        if self.current_rate is not None:
+            return f"{self.current_rate:.6g}"
+        else:
+            return None
+
+    def get_status_str(self):
+        checked_current_rate, checked_default_rate = self.check_rates_for_none()
+
+        return f"{self.service_title} - Current Rate: {checked_current_rate} | DEFAULT RATE: {checked_default_rate}"
+
+    def print_status_str(self):
+        checked_current_rate, checked_default_rate = self.check_rates_for_none()
+
+        statement = f"{self.service_title} - Current Rate: {checked_current_rate} | DEFAULT RATE: {checked_default_rate}"
+        if checked_current_rate != "None":
+            Printer.print_green(statement)
+        else:
+            Printer.print_red(statement)
+
+    def check_rates_for_none(self):
+        if self.default_service_rate is not None:
+            default = f"{self.default_service_rate:.6g}"
+        else:
+            default = "None"
+
+        if self.current_rate is not None:
+            current = f"{self.current_rate:.6g}"
+        else:
+            current = "None"
+
+        return current, default
+
+    def modify(self):
+        enable = InputHelper.on_or_off_rate(
+            self.service_title, self.default_service_rate, self.current_rate
+        )
+
+        cls()
+
+        if enable:
+            self.current_rate = self.default_service_rate
+        else:
+            self.current_rate = None
+        Printer.liner()
+        if self.current_rate is not None:
+            current_rate_to_print = f"{self.current_rate:.6g}"
+        else:
+            current_rate_to_print = "None"
+        Printer.print_green(
+            f"{self.service_title} Rate updated to: {current_rate_to_print}"
+        )
 
 
 class Mecklenburg(classes.County):
@@ -105,56 +284,115 @@ class Mecklenburg(classes.County):
         # initalize dict of all options and services
         self.waste_options = waste_options
         self.meck_services = meck_services
-        self.clt_waste_fee = None
-        self.meck_waste_fee = None
-        self.meck_police_rate = None
-        self.meck_fire_rate = None
 
-        self.inital_waste_fee_setup(waste_options, meck_services)
+        self.inital_waste_fee_setup(waste_options)
+        self.inital_meck_services_setup(meck_services)
 
-    def inital_waste_fee_setup(self, waste_options, meck_services):
-        # set inital clt waste title
-        tmp_clt_waste_key = list(waste_options.keys())[1]
-        self.clt_waste_dict = waste_options[tmp_clt_waste_key]
-        self.clt_waste_title = list(self.clt_waste_dict.keys())[0]
+    def update_all_local_county_services(self):
+        self.update_current_fees()
+        self.update_current_rates()
 
-        # set inital meck waste title
-        tmp_meck_waste_key = list(waste_options.keys())[0]
-        self.meck_waste_dict = waste_options[tmp_meck_waste_key]
-        self.meck_waste_title = list(self.meck_waste_dict.keys())[0]
+    def inital_waste_fee_setup(self, waste_options):
+        list_of_all_fee_classes = self.initalize_waste_fees(waste_options)
 
-        # set inital meck police title
-        tmp_meck_police_key = list(meck_services.keys())[0]
-        self.meck_police_dict = meck_services[tmp_meck_police_key]
-        self.meck_police_title = list(self.meck_police_dict.keys())[0]
+        self.meck_waste_class = list_of_all_fee_classes[0]
+        self.clt_waste_class = list_of_all_fee_classes[1]
+        self.huntersville_waste_class = list_of_all_fee_classes[2]
 
-        # set inital meck fire title
-        tmp_meck_fire_key = list(meck_services.keys())[1]
-        self.meck_fire_dict = meck_services[tmp_meck_fire_key]
-        self.meck_fire_title = list(self.meck_fire_dict.keys())[0]
-
-        # save for inital values
-        # set inital clt waste rates
-        tmp_inital_clt_waste_fee_dict = waste_options[2]
-        self.inital_clt_waste_fee = tmp_inital_clt_waste_fee_dict[self.clt_waste_title]
-
-        # set inital meck waste rates
-        tmp_inital_meck_waste_fee_dict = waste_options[1]
-        self.inital_meck_waste_fee = tmp_inital_meck_waste_fee_dict[
-            self.meck_waste_title
+        self.list_of_waste_option_titles = [
+            self.meck_waste_class.get_title(),
+            self.clt_waste_class.get_title(),
+            self.huntersville_waste_class.get_title(),
         ]
 
-        # set inital meck police rates
-        tmp_inital_meck_police_rate_dict = meck_services[1]
-        self.inital_meck_police_rate = tmp_inital_meck_police_rate_dict[
-            self.meck_police_title
+        self.update_current_fees()
+
+    def update_current_fees(self):
+        self.list_of_waste_options_fee_floats = [
+            self.meck_waste_class.get_current_fee_float(),
+            self.clt_waste_class.get_current_fee_float(),
+            self.huntersville_waste_class.get_current_fee_float(),
         ]
 
-        # set inital meck fire rates
-        tmp_inital_meck_fire_rate_dict = meck_services[2]
-        self.inital_meck_fire_rate = tmp_inital_meck_fire_rate_dict[
-            self.meck_fire_title
+        self.list_of_waste_options_fee_strings = [
+            self.meck_waste_class.get_current_fee_string(),
+            self.clt_waste_class.get_current_fee_string(),
+            self.huntersville_waste_class.get_current_fee_string(),
         ]
+
+    def initalize_waste_fees(self, waste_options):
+        list_of_all_fee_classes = []
+        for index in waste_options:
+            list_of_all_fee_classes.append(WasteOption(waste_options, index))
+
+        return list_of_all_fee_classes
+
+    def inital_meck_services_setup(self, meck_services):
+        list_of_all_services = self.initalize_service_rates(meck_services)
+
+        self.police_clt_class = list_of_all_services[0]
+        self.fire_clt_class = list_of_all_services[1]
+        self.police_cornelius_class = list_of_all_services[2]
+        self.fire_cornelius_class = list_of_all_services[3]
+        self.police_davidson_class = list_of_all_services[4]
+        self.fire_davidson_class = list_of_all_services[5]
+        self.fire_huntersvile_class = list_of_all_services[6]
+        self.police_huntersvile_class = list_of_all_services[7]
+        self.fire_mint_hill_class = list_of_all_services[8]
+        self.police_mint_hill_class = list_of_all_services[9]
+        self.police_pineville_class = list_of_all_services[10]
+
+        self.list_of_meck_service_titles = [
+            self.police_clt_class.get_title(),
+            self.fire_clt_class.get_title(),
+            self.police_cornelius_class.get_title(),
+            self.fire_cornelius_class.get_title(),
+            self.police_davidson_class.get_title(),
+            self.fire_davidson_class.get_title(),
+            self.fire_huntersvile_class.get_title(),
+            self.police_huntersvile_class.get_title(),
+            self.fire_mint_hill_class.get_title(),
+            self.police_mint_hill_class.get_title(),
+            self.police_pineville_class.get_title(),
+        ]
+
+        self.update_current_rates()
+
+    def update_current_rates(self):
+        self.list_of_meck_services_rate_floats = [
+            self.police_clt_class.get_current_rate_float(),
+            self.fire_clt_class.get_current_rate_float(),
+            self.police_cornelius_class.get_current_rate_float(),
+            self.fire_cornelius_class.get_current_rate_float(),
+            self.police_davidson_class.get_current_rate_float(),
+            self.fire_davidson_class.get_current_rate_float(),
+            self.fire_huntersvile_class.get_current_rate_float(),
+            self.police_huntersvile_class.get_current_rate_float(),
+            self.fire_mint_hill_class.get_current_rate_float(),
+            self.police_mint_hill_class.get_current_rate_float(),
+            self.police_pineville_class.get_current_rate_float(),
+        ]
+
+        self.list_of_meck_services_rate_strings = [
+            self.police_clt_class.get_current_rate_string(),
+            self.fire_clt_class.get_current_rate_string(),
+            self.police_cornelius_class.get_current_rate_string(),
+            self.fire_cornelius_class.get_current_rate_string(),
+            self.police_davidson_class.get_current_rate_string(),
+            self.fire_davidson_class.get_current_rate_string(),
+            self.fire_huntersvile_class.get_current_rate_string(),
+            self.police_huntersvile_class.get_current_rate_string(),
+            self.fire_mint_hill_class.get_current_rate_string(),
+            self.police_mint_hill_class.get_current_rate_string(),
+            self.police_pineville_class.get_current_rate_string(),
+        ]
+
+    def initalize_service_rates(self, meck_services):
+        list_of_all_rate_classes = []
+        for index in meck_services:
+            list_of_all_rate_classes.append(MeckService(meck_services, index))
+
+        return list_of_all_rate_classes
 
     def select_special_options(self):
         """
@@ -180,6 +418,25 @@ class Mecklenburg(classes.County):
             else:
                 pass
 
+    def print_special_stuff_options(self):
+        Printer.short_liner()
+        self.meck_waste_class.print_status_str()
+        self.clt_waste_class.print_status_str()
+        self.huntersville_waste_class.print_status_str()
+        Printer.print_cyan("...")
+        self.police_clt_class.print_status_str()
+        self.fire_clt_class.print_status_str()
+        self.police_cornelius_class.print_status_str()
+        self.fire_cornelius_class.print_status_str()
+        self.police_davidson_class.print_status_str()
+        self.fire_davidson_class.print_status_str()
+        self.fire_huntersvile_class.print_status_str()
+        self.police_huntersvile_class.print_status_str()
+        self.fire_mint_hill_class.print_status_str()
+        self.police_mint_hill_class.print_status_str()
+        self.police_pineville_class.print_status_str()
+        Printer.short_liner()
+
     def which_modify_special_services(self):
         """
         which_modify helps to determine if one should modify the values available options on the County services
@@ -190,15 +447,33 @@ class Mecklenburg(classes.County):
 
         print("Note a value of 'None' will not appear in final statement")
 
+        list_of_classes = [
+            self.meck_waste_class,
+            self.clt_waste_class,
+            self.huntersville_waste_class,
+            self.police_clt_class,
+            self.fire_clt_class,
+            self.police_cornelius_class,
+            self.fire_cornelius_class,
+            self.police_davidson_class,
+            self.fire_davidson_class,
+            self.fire_huntersvile_class,
+            self.police_huntersvile_class,
+            self.fire_mint_hill_class,
+            self.police_mint_hill_class,
+            self.police_pineville_class,
+        ]
+
         while MOD_LOOP:
-            self.generate_SPECIAL_current_default_strs()
-            mod_dict = {
-                0: f"Quit",
-                1: self.clt_waste_current_default_str,
-                2: self.meck_waste_current_default_str,
-                3: self.meck_police_current_default_str,
-                4: self.meck_fire_current_default_str,
-            }
+            self.update_all_local_county_services()
+
+            mod_dict = {0: f"Quit"}
+
+            index = 1
+            for i in list_of_classes:
+                mod_dict[index] = i.get_status_str()
+                index += 1
+
             which_modify = InputHelper.input_from_dict(
                 mod_dict,
                 "Please Select Number from below options to modify or Quit: ",
@@ -209,167 +484,48 @@ class Mecklenburg(classes.County):
             # quit
             if which_modify == mod_dict[0]:
                 MOD_LOOP = False
-            # clt waste
-            elif which_modify == mod_dict[1]:
-                self.modify_clt_waste()
-            # meck waste
-            elif which_modify == mod_dict[2]:
-                self.modify_meck_waste()
-            # meck police
-            elif which_modify == mod_dict[3]:
-                self.meck_police_etj()
-            # meck fire
-            elif which_modify == mod_dict[4]:
-                self.meck_fire_etj()
+
+            # to modify
+            elif which_modify in mod_dict.values():
+                for key, value in mod_dict.items():
+                    if value == which_modify:
+                        dict_key = key
+
+                list_key = dict_key - 1
+
+                class_to_mod = list_of_classes[list_key]
+
+                class_to_mod.modify()
+
             else:
                 debugpy.breakpoint()
                 print("ERROR IN CLASS 'Mecklenburg'")
-
-    def modify_clt_waste(self):
-        enable = InputHelper.on_or_off_fee(
-            self.clt_waste_title, self.inital_clt_waste_fee, self.clt_waste_fee
-        )
-
-        cls()
-
-        if enable:
-            self.clt_waste_fee = self.inital_clt_waste_fee
-        else:
-            self.clt_waste_fee = None
-        Printer.liner()
-        Printer.print_green(
-            f"{self.clt_waste_title} Rate updated to: {self.clt_waste_fee:.2f}"
-        )
-
-    def modify_meck_waste(self):
-        enable = InputHelper.on_or_off_fee(
-            self.meck_waste_title, self.inital_meck_waste_fee, self.meck_waste_fee
-        )
-
-        cls()
-
-        if enable:
-            self.meck_waste_fee = self.inital_meck_waste_fee
-        else:
-            self.meck_waste_fee = None
-        Printer.liner()
-        Printer.print_green(
-            f"{self.meck_waste_title} Rate updated to: {self.meck_waste_fee:.2f}"
-        )
-
-    def meck_police_etj(self):
-        enable = InputHelper.on_or_off_rate(
-            self.meck_police_title,
-            self.inital_meck_police_rate,
-            self.meck_police_rate,
-        )
-
-        cls()
-
-        if enable:
-            self.meck_police_rate = self.inital_meck_police_rate
-        else:
-            self.meck_police_rate = None
-        Printer.liner()
-        Printer.print_green(
-            f"{self.meck_police_title} Rate updated to: {self.meck_police_rate}"
-        )
-
-    def meck_fire_etj(self):
-        enable = InputHelper.on_or_off_rate(
-            self.meck_fire_title, self.inital_meck_fire_rate, self.meck_fire_rate
-        )
-
-        cls()
-
-        if enable:
-            self.meck_fire_rate = self.inital_meck_fire_rate
-        else:
-            self.meck_fire_rate = None
-        Printer.liner()
-        Printer.print_green(
-            f"{self.meck_fire_title} Rate updated to: {self.meck_fire_rate}"
-        )
-
-    def print_special_stuff_options(self):
-        self.generate_SPECIAL_current_default_strs()
-
-        Printer.short_liner()
-        Printer.print_yellow(self.clt_waste_current_default_str)
-        Printer.print_yellow(self.meck_waste_current_default_str)
-        Printer.print_yellow(self.meck_police_current_default_str)
-        Printer.print_yellow(self.meck_fire_current_default_str)
-        Printer.short_liner()
 
     def print_county_selected_info(self):
         # Print super class info
         super().print_county_selected_info()
 
         Printer.print_green(f"{self.get_county_name()} Specific Info...")
-        self.generate_SPECIAL_current_default_strs()
 
         # print Mecklenburg specific info (waste and police/fire)
-        Printer.print_yellow(self.clt_waste_current_default_str)
-        Printer.print_yellow(self.meck_waste_current_default_str)
-        Printer.print_yellow(self.meck_police_current_default_str)
-        Printer.print_yellow(self.meck_fire_current_default_str)
-
-    def generate_SPECIAL_current_default_strs(self):
-        current_clt_waste = (
-            self.clt_waste_fee if self.clt_waste_fee is not None else None
-        )
-        current_meck_waste = (
-            self.meck_waste_fee if self.meck_waste_fee is not None else None
-        )
-        current_meck_police = (
-            self.meck_police_rate if self.meck_police_rate is not None else None
-        )
-        current_meck_fire = (
-            self.meck_fire_rate if self.meck_fire_rate is not None else None
-        )
-
-        # format if not none
-        if current_clt_waste is not None:
-            current_clt_waste = f"${current_clt_waste:.2f}"
-        else:
-            current_clt_waste = None
-        if current_meck_waste is not None:
-            current_meck_waste = f"${current_meck_waste:.2f}"
-        else:
-            current_meck_waste = None
-        if current_meck_police is not None:
-            current_meck_police = f"{current_meck_police:.6g}"
-        else:
-            current_meck_police = None
-        if current_meck_fire is not None:
-            current_meck_fire = f"{current_meck_fire:.6g}"
-        else:
-            current_meck_fire = None
-
-        self.clt_waste_current_default_str = f"Charlotte Waste Fee: {current_clt_waste} | STANDARD FEE: ${self.inital_clt_waste_fee:.2f}"
-        self.meck_waste_current_default_str = f"Mecklenburg Waste Fee: {current_meck_waste} | STANDARD FEE: ${self.inital_meck_waste_fee:.2f}"
-        self.meck_police_current_default_str = f"Mecklenburg Police for Charlotte ETJ: {current_meck_police} | STANDARD RATE: {self.inital_meck_police_rate:.6g}"
-        self.meck_fire_current_default_str = f"Mecklenburg Fire for Charlotte ETJ: {current_meck_fire} | STANDARD RATE: {self.inital_meck_fire_rate:.6g}"
+        self.print_special_stuff_options()
 
     def generate_county_statistics(self):
         super().generate_county_statistics()
 
-        if self.clt_waste_fee is not None:
-            self.county_statistics[self.clt_waste_title] = self.clt_waste_fee
-        else:
-            pass
-        if self.meck_waste_fee is not None:
-            self.county_statistics[self.meck_waste_title] = self.meck_waste_fee
-        else:
-            pass
-        if self.meck_police_rate is not None:
-            self.county_statistics[self.meck_police_title] = self.meck_police_rate
-        else:
-            pass
-        if self.meck_fire_rate is not None:
-            self.county_statistics[self.meck_fire_title] = self.meck_fire_rate
-        else:
-            pass
+        for title, fee_string in zip(
+            self.list_of_waste_option_titles, self.list_of_waste_options_fee_floats
+        ):
+            self.county_statistics[title] = fee_string
+            # Printer.print_yellow(f"{title}: {fee_string}")
+
+        # Printer.print_cyan("...")
+
+        for title, rate_string in zip(
+            self.list_of_meck_service_titles, self.list_of_meck_services_rate_floats
+        ):
+            self.county_statistics[title] = rate_string
+            # Printer.print_yellow(f"{title}: {rate_string}")
 
         return self.county_statistics
 
