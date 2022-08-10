@@ -3,26 +3,26 @@ General CONFIGURATION information
 """
 
 
-def CURRENT_VERSION():
+def current_version():
     var = "2.0.0"
     return var
 
 
-def DATE_REVISED():
-    var = "08.05.2022"
+def date_revised():
+    var = "08.10.2022"
     return var
 
 
-def DESCRIPTION():
-    var = f"Revised as of: {DATE_REVISED()} | Statement Generator for CLT-Surrounding Tax Districts"
+def description():
+    var = f"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts"
     return var
 
 
-def LONG_DESCRIPTION():
-    var = f"Revised as of: {DATE_REVISED()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates"
+def long_description():
+    var = f"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates"
     return var
 
 
-def DEPENDENCIES():
-    var = ["art", "colorama"]
+def dependencies():
+    var = ["art", "colorama", "debugpy",]
     return var

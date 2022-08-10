@@ -1,6 +1,5 @@
 """
     Testing for all needs (most often it's inputs)
-    vscode-fold=2
 """
 
 from .printers import Printer
@@ -45,7 +44,7 @@ class InputTesters:
 
         try:
             value = int(int_value)
-        except:
+        except TypeError:
             Printer.liner()
 
             print(Fore.RED + f"value of '{int_value}' is not an int :(")
@@ -78,7 +77,7 @@ class InputTesters:
         else:
             try:
                 value = bool(check_var)
-            except:
+            except ValueError:
                 Printer.liner()
 
                 print(
@@ -109,7 +108,7 @@ class InputTesters:
         try:
             value = float(float_value)
 
-        except:
+        except ValueError:
             Printer.liner()
 
             print(Fore.RED + f"value of '{float_value}' is not a float :(")
@@ -151,10 +150,10 @@ class InputTesters:
         """
         key_value = InputTesters.verify_int(index_value)
 
-        if key_value != None:
+        if key_value is not None:
             try:
                 value = dictionary[key_value]
-            except:
+            except KeyError:
                 cls()
 
                 Printer.liner()

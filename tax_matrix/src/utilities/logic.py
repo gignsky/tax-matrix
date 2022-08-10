@@ -1,15 +1,16 @@
 """
     General logic for entire program
-    vscode-fold=2
 """
 
 import debugpy
-from . import printers
 
 # from . import counties
 
 
 class LogicalWork:
+    """
+     General logical functions for all of the program, note all items in class are "Static Methods"
+    """
     @staticmethod
     def substatement_maker(rate, location):
         """
@@ -38,16 +39,16 @@ class LogicalWork:
         """
         dictionary = {}
 
-        INDEX_VALUE = 1
+        index_value = 1
         if city_or_county == "COUNTY":
             for i in list_to_dict:
-                dictionary[INDEX_VALUE] = i
-                INDEX_VALUE += 1
+                dictionary[index_value] = i
+                index_value += 1
         elif city_or_county == "CITY":
             for i in list_to_dict:
                 var_from_i = list_to_dict[i]
-                dictionary[INDEX_VALUE] = var_from_i
-                INDEX_VALUE += 1
+                dictionary[index_value] = var_from_i
+                index_value += 1
 
         else:
             debugpy.breakpoint()
@@ -69,41 +70,65 @@ class LogicalWork:
         """
         dict_with_names = {}
 
-        INDEX_VALUE = 1
+        index_value = 1
         if city_or_county == "COUNTY":
             dict_with_names[0] = "Quit Program"
             for i in class_dict:
                 name = i.get_county_name()
-                dict_with_names[INDEX_VALUE] = name
-                INDEX_VALUE += 1
+                dict_with_names[index_value] = name
+                index_value += 1
         elif city_or_county == "CITY":
             dict_with_names[0] = "None of the below"
             for i in class_dict:
                 variable_from_i = class_dict[i]
                 name = variable_from_i.get_city_name()
-                dict_with_names[INDEX_VALUE] = name
-                INDEX_VALUE += 1
+                dict_with_names[index_value] = name
+                index_value += 1
 
         return dict_with_names
 
     @staticmethod
-    def no_index_dict_to_two_lists(dict):
+    def no_index_dict_to_two_lists(working_dict):
+        """
+        no_index_dict_to_two_lists generates two lists from a dictionary with no index values
+
+        i.e. {key:value,key1:value1,...,keyN:valueN}
+
+        Args:
+            working_dict (dict): dict to work on must NOT contain index
+
+        Returns:
+            list1: list of keys from dict
+            list2: list of values from dict
+        """
         list1 = []
         list2 = []
 
-        for i in dict:
+        for i in working_dict:
             list1.append(i)
-            list2.append(dict[i])
+            list2.append(working_dict[i])
 
         return list1, list2
 
     @staticmethod
-    def with_index_dict_to_two_lists(dict):
+    def with_index_dict_to_two_lists(working_dict):
+        """
+        with_index_dict_to_two_lists generate two lists from a dictionary with index values
+
+        ***Note:  a check that the dict is not None is also preformed this will return a None value in BOTH lists
+
+        Args:
+            working_dict (dict): dictionary to mod, MUST include index values
+
+        Returns:
+            list1: list of keys from inner dicts while stripping key values
+            list2: list of values from inner dicts while stripping key values
+        """
         list1 = []
         list2 = []
 
-        if dict is not None:
-            for i in dict:
+        if working_dict is not None:
+            for i in working_dict:
                 if i is not None:
                     key = list(i.keys())
                     value = i[key[0]]
@@ -117,11 +142,20 @@ class LogicalWork:
 
     @staticmethod
     def check_countywide_only(county_dict):
+        """
+        check_countywide_only checks if county only has a countywide rate after options selected
+
+        Args:
+            county_dict (dict): county_services_dict
+
+        Returns:
+            bool: True if only countywide rate; False if NOT countywide only rate
+        """
         _, county_values = LogicalWork.no_index_dict_to_two_lists(county_dict)
 
         try:
             county_second_value = county_values[1]
-        except:
+        except KeyError:
             county_second_value = None
 
         if county_second_value is not None:
@@ -131,6 +165,15 @@ class LogicalWork:
 
     @staticmethod
     def check_city_exists(city_dict):
+        """
+        check_city_exists checks to see if a city exists in selection
+
+        Args:
+            city_dict (dict): city services dict
+
+        Returns:
+            bool: True / False
+        """
         if city_dict is not None:
             _, city_values = LogicalWork.no_index_dict_to_two_lists(city_dict)
         else:
@@ -138,7 +181,7 @@ class LogicalWork:
 
         try:
             first_city_value = city_values[0]
-        except:
+        except KeyError:
             return False
 
         first_city_value_key = list(first_city_value)[0]
@@ -150,6 +193,15 @@ class LogicalWork:
 
     @staticmethod
     def check_county_services_exist(county_services_list):
+        """
+        check_county_services_exist checks if countyservices are present by checking the "INITAL" value against None
+
+        Args:
+            county_services_list (list): list of county services
+
+        Returns:
+            bool: True / False
+        """
         for i in county_services_list:
             key = list(i.keys())[0]
             tmp_dict = i[key]
@@ -160,6 +212,7 @@ class LogicalWork:
 
         return False
 
+    # TODO see if ever referenced
     # old might be unused
     #     @staticmethod
     #     def create_options_dict_from_county_services_list_WITH_quit(county_services_list):
@@ -187,10 +240,19 @@ class LogicalWork:
 
     @staticmethod
     def create_options_dict_from_county_services_list_WITH_quit(county_services_list):
+        """
+        create_options_dict_from_county_services_list_WITH_quit creates dict for input_from_dict with a quit option from a list of county services, intended to be used with police/fire rates for each county I think
+
+        Args:
+            county_services_list (list): list of county services
+
+        Returns:
+            dict: will return dict with options if county services exist; else, will return a value of 'None'
+        """
         index = 0
         return_dict = {}
-        RUNNING = True
-        while RUNNING:
+        running = True
+        while running:
             if index != 0:
                 for i in county_services_list:
                     title = list(i.keys())[0]
@@ -204,7 +266,7 @@ class LogicalWork:
                         ] = f"{title} Current Rate: {current_rate} | Default Rate: {inital_rate}"
                         index += 1
 
-                RUNNING = False
+                running = False
             else:
                 return_dict[index] = "Quit"
                 index += 1
@@ -216,6 +278,17 @@ class LogicalWork:
 
     @staticmethod
     def create_options_dict_from_county_services_list_NO_quit(county_services_list):
+        """
+        create_options_dict_from_county_services_list_NO_quit creates dict with NO quit option from a list of county services, intended to be used with police/fire rates for each county I think
+
+        I think this is used for generating a pretty output statement to be used with print_dict
+
+        Args:
+            county_services_list (list): list of county services
+
+        Returns:
+            dict: will return dict with options
+        """
         return_list = []
         for i in county_services_list:
             title = list(i.keys())[0]

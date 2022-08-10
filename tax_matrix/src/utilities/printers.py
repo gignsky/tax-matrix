@@ -1,50 +1,94 @@
 """
     contains classes designed to assist in general printing outputs
-    vscode-fold=2
 """
-
+from . import debugpy
 from . import Fore, tprint
 
 
 class Printer:
+    """
+    generic printer for all your printing needs, this is a class full of static methods only
+    """
+
     @staticmethod
     def liner():
-        LINER = "=========================================================================================="
+        """
+        liner prints LONG solid cyan line
+        """
+        liner = "=========================================================================================="
 
-        print(Fore.CYAN + LINER)
+        print(Fore.CYAN + liner)
         print(Fore.RESET)
 
     @staticmethod
     def short_liner():
-        SHORT_LINER = "=========================================="
-        print(Fore.LIGHTYELLOW_EX + SHORT_LINER)
+        """
+        short_liner prints SHORT light-yellow line
+        """
+        short_liner = "=========================================="
+        print(Fore.LIGHTYELLOW_EX + short_liner)
         print(Fore.RESET)
 
     @staticmethod
     def inside_liner(line):
+        """
+        inside_liner prints item inside line TODO depreciate
+
+        Args:
+            line (str): string to print
+        """
         Printer.liner()
         print(line)
         Printer.liner()
 
     @staticmethod
     def print_green(line):
+        """
+        print_green prints passed item in green
+
+        Args:
+            line (str): string to print
+        """
         print(Fore.GREEN + line)
         print(Fore.RESET)
 
     @staticmethod
     def print_yellow(line):
+        """
+        print_yellow prints passed item in yellow
+
+        Args:
+            line (str): string to print
+        """
         print(Fore.YELLOW + line)
         print(Fore.RESET)
 
     @staticmethod
     def print_red(line):
+        """
+        print_red prints passed item in Red
+
+        Args:
+            line (str): string to print
+        """
         print(Fore.RED + line)
         print(Fore.RESET)
 
     @staticmethod
-    def print_dict(dictionary_value):
+    def print_cyan(line):
         """
-        Print a dict with key values next to dict content per value:
+        print_cyan prints passed item in Cyan
+
+        Args:
+            line (str): string to Print
+        """
+        print(Fore.CYAN + line)
+        print(Fore.RESET)
+
+    @staticmethod
+    def print_dict_containing_index(dictionary_value):
+        """
+        Print a dict with index values next to dict content per value:
 
         KEY VALUE. ITEM NAME
 
@@ -52,15 +96,15 @@ class Printer:
             any dict
         """
 
-        for key in dictionary_value:
-            print(f"{key}. {dictionary_value[key]}")
+        for index_num in dictionary_value:
+            print(f"{index_num}. {dictionary_value[index_num]}")
 
     @staticmethod
-    def print_dict_with_inner_dict(dictionary_value):
+    def print_dict_with_inner_dict_and_index(dictionary_value):
         """
-        Print a dict with key values next to dict content per value:
+        Print a dict with index values next to dict content (which is printed nicely) per item:
 
-        KEY VALUE. ITEM NAME
+        INDEX_NUM. INNER_DICT_KEY : INNER_DICT_VALUE
 
         Args:
             any dict
@@ -85,6 +129,14 @@ class Printer:
             any dict
         """
 
+        debugpy.breakpoint()
+        Printer.print_red(
+            "YOU FOUND THE USE OF THE POSSIBLY DEPRECIATED FUNCTION REVISED DOC STRING"
+        )
+
+        # TODO Check Might be depreciated
+
+        # TODO Run iredell county and fix her up it will error here with nothing but the county selected
         for key in dictionary_value:
             statement = dictionary_value[key]
             print(f"{key}. {statement}")
@@ -158,6 +210,9 @@ class Printer:
 
     @staticmethod
     def end_program_message():
+        """
+        end_program_message Print thank you message
+        """
         Printer.liner()
 
         print(Fore.RED + "Thank you for using the NEW & REVISED")

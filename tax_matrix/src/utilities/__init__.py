@@ -1,14 +1,18 @@
 """
 general utilites for entire program
-vscode-fold=2
 """
-from .. import cls
 from pprint import pprint
 from art import tprint
 from colorama import Fore
+
+from .. import cls
+from .. import debugpy
+
 from .printers import Printer
 from .logic import LogicalWork
 from .inputs import InputHelper
 from .testers import InputTesters
-from . import classes
-from .. import localities
+
+#TODO Might be depreciated
+# from .. import classes
+# from .. import localities

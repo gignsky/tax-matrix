@@ -1,11 +1,13 @@
-# vscode-fold=2
 
 from .. import cls
+from .. import classes
+
 from ..utilities import InputHelper
 from ..utilities import InputTesters
 from ..utilities import LogicalWork
-from ..utilities import classes
 from ..utilities import Printer
+
+from . import specialCountyClasses
 
 from .mecklenburg import main as mecklenburg
 from .union import main as union
@@ -16,6 +18,13 @@ from .gaston import main as gaston
 
 
 def load_all_counties(which_run):
+    """
+    load_all_counties Initalizes all counties or reinitalizeses based on argument
+
+    Args:
+        which_run (str): inital or reload based on desired effect
+    """
+
     if which_run == "inital":
         pass
     elif which_run == "reload":
