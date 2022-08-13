@@ -165,6 +165,7 @@ class City:
             inital_fire = None
 
         #TODO Start here for pylint then work your way down to finish up pylnting all of the classes and then localities, then work on porting locality classes over to the special_county_classes folder, maybe one with a special class for waste options
+
         self.police_current_default_str = (
             f"Police Rate: {current_police} | STANDARD RATE: {self.inital_police_rate}"
         )

@@ -1,15 +1,14 @@
 """
     Main Function of Tax Matrix to help produce final product
-    vscode-fold=3
 """
 
-import debugpy
 import src
 from src import cls
 
+
 # print a welcome message
 src.utilities.printers.Printer.welcome_to_program(
-    src.config.CURRENT_VERSION(), src.config.DATE_REVISED()
+    src.config.current_version(), src.config.date_revised()
 )
 
 src.localities.load_all_counties("inital")
@@ -21,10 +20,10 @@ def main():
     """
 
     # return subject class object
-    Subject = src.utilities.classes.Property()
+    subject = src.classes.propertyClass.Property()
 
     # get county list
-    all_counties = src.utilities.classes.Counties.get_all_counties()
+    all_counties = src.classes.Counties.get_all_counties()
 
     # dict of avalable options
     options_dict = {
@@ -38,22 +37,23 @@ def main():
         99: "Reload Counties to Default Values",
     }
 
-    MAIN_LOOP = True  # var to keep program running until stop is requested or neccecary
-    INITAL_RUN = True  # var to set the inital run to run through all avaliable options
-    HAS_PRICE = (
+    main_loop_running = (
+        True  # var to keep program running until stop is requested or neccecary
+    )
+    inital_run_status = (
+        True  # var to set the inital run to run through all avaliable options
+    )
+    subject_has_price = (
         False  # var sets has price var to false to indicate a price has not been loaded
     )
 
-    # main loop
-    while MAIN_LOOP:
-        """
-        main program loop
-        """
+    # main program loop
+    while main_loop_running:
 
         # test if inital run otherwise grab menu option
-        if not INITAL_RUN:
+        if not inital_run_status:
             src.utilities.printers.Printer.welcome_county(
-                Subject.county.get_county_name()
+                subject.county.get_county_name()
             )
             # select main menu options
             menu_option = src.utilities.inputs.InputHelper.main_menu_options(
@@ -62,41 +62,41 @@ def main():
             cls()
 
         else:
-            if INITAL_RUN == True:
+            if inital_run_status is True:
                 menu_option = options_dict[2]
-                INITAL_RUN = "Get Price then County"
-            elif INITAL_RUN == "Get Price then County":
+                inital_run_status = "Get Price then County"
+            elif inital_run_status == "Get Price then County":
                 menu_option = options_dict[3]
-                INITAL_RUN = "check special district options"
-            elif INITAL_RUN == "check special district options":
+                inital_run_status = "check special district options"
+            elif inital_run_status == "check special district options":
                 menu_option = options_dict[4]
-                INITAL_RUN = "Modify Countywide Fire, Police, & EMS"
-            elif INITAL_RUN == "Modify Countywide Fire, Police, & EMS":
+                inital_run_status = "Modify Countywide Fire, Police, & EMS"
+            elif inital_run_status == "Modify Countywide Fire, Police, & EMS":
                 menu_option = options_dict[5]
-                INITAL_RUN = "Do you want a city?"
-            elif INITAL_RUN == "Do you want a city?":
+                inital_run_status = "Do you want a city?"
+            elif inital_run_status == "Do you want a city?":
                 menu_option = options_dict[6]
-                INITAL_RUN = "continue onwards"
+                inital_run_status = "continue onwards"
             else:
                 menu_option = options_dict[1]  # print stats before continuing
-                INITAL_RUN = False
+                inital_run_status = False
 
         # "Quit Program & Output Statement"
         if menu_option == options_dict[0]:
-            MAIN_LOOP = False
+            main_loop_running = False
 
         # "Print Statisticts"
         elif menu_option == options_dict[1]:
             cls()
-            Subject.print_current_stats()
+            subject.print_current_stats()
             wait()
 
         # "Modify Price"
         elif menu_option == options_dict[2]:
-            if HAS_PRICE:
+            if subject_has_price:
                 src.utilities.printers.Printer.short_liner()
                 src.utilities.printers.Printer.print_yellow(
-                    f"Current Price: {Subject.get_price_str()}"
+                    f"Current Price: {subject.get_price_str()}"
                 )
                 src.utilities.printers.Printer.short_liner()
                 src.utilities.printers.Printer.print_yellow(
@@ -112,8 +112,8 @@ def main():
             else:
                 # add price
                 cls()
-                Subject.add_price(price_int, price_str)
-                HAS_PRICE = True
+                subject.add_price(price_int, price_str)
+                subject_has_price = True
 
         # "Modify County"
         elif menu_option == options_dict[3]:
@@ -121,29 +121,27 @@ def main():
             county = src.utilities.inputs.InputHelper.county_grabber(all_counties)
             cls()
             if county is None:
-                MAIN_LOOP = False
+                main_loop_running = False
             else:
                 # add county
-                Subject.add_county(county)
+                subject.add_county(county)
 
                 cls()
 
-                options_dict[
-                    4
-                ] = f"Modify County Special Options - {Subject.county.get_special_options_title()}\n..."
+                options_dict[4] = f"Modify County Special Options - {subject.county.get_special_options_title()}\n..."
 
         # "Modify County Special Options"
         elif menu_option == options_dict[4]:
             # check for special options
-            Subject.county.select_special_options()
+            subject.county.select_special_options()
 
         # "Modify Countywide Police, Fire, and/or EMS rates"
         elif menu_option == options_dict[5]:
-            Subject.county.select_county_services()
+            subject.county.select_county_services()
 
         # "Modify City and/or City Options"
         elif menu_option == options_dict[6]:
-            if INITAL_RUN == "continue onwards":
+            if inital_run_status == "continue onwards":
                 pick_city_bool = src.utilities.inputs.InputHelper.choice_bool(
                     "Do you want to select a city at this time?"
                 )
@@ -161,11 +159,11 @@ def main():
 
                 if city is None:
                     pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
-                    MAIN_LOOP = False
+                    main_loop_running = False
 
                 else:
                     # add city to subject
-                    Subject.add_city(city)
+                    subject.add_city(city)
 
                     src.utilities.printers.Printer.welcome_city(city.get_city_name())
 
@@ -180,9 +178,9 @@ def main():
             )
             if load:
                 src.localities.load_all_counties("reload")
-                Subject = src.utilities.classes.Property()
-                INITAL_RUN = True
-                HAS_PRICE = False
+                subject = src.classes.Property()
+                inital_run_status = True
+                subject_has_price = False
                 cls()
                 src.utilities.printers.Printer.short_liner()
                 src.utilities.printers.Printer.print_green("Counties & Cities RELOADED")
@@ -197,16 +195,16 @@ def main():
 
         # error
         else:
-            debugpy.breakpoint()
+            src.debugpy.breakpoint()
             src.utilities.printers.Printer.inside_liner(
                 "There was an ERROR in main menu selection. :("
             )
 
     cls()
     # generate statistics
-    Subject.generate_statistics()
+    subject.generate_statistics()
     # statement maker
-    statement = f"Taxes are an estimate based on {Subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {Subject.get_price_str()} {Subject.generate_post_price_statement()} as rounded to the nearest dollar."
+    statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
 
     # print goodbye
     src.utilities.printers.Printer.end_program_message()
@@ -218,6 +216,9 @@ def main():
 
 
 def wait():
+    """
+    wait will wait for any input to continue onwards
+    """
     input("press ANY key to Continue\n...\n")
     cls()
 
