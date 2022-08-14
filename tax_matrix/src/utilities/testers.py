@@ -42,18 +42,32 @@ class InputTesters:
             int or None: will return int if item is a valid interager otherwise will retrun None so loop can be restarted
         """
 
-        try:
-            value = int(int_value)
-        except TypeError:
-            Printer.liner()
+        if int_value != "":
 
-            print(Fore.RED + f"value of '{int_value}' is not an int :(")
+            try:
+                value = int(int_value)
+            except TypeError:
+                Printer.liner()
 
-            print(Fore.RESET + "please try again and enter an int")
+                print(Fore.RED + f"value of '{int_value}' is not an int :(")
 
-            Printer.liner()
+                print(Fore.RESET + "please try again and enter an int")
 
-            value = None
+                Printer.liner()
+
+                value = None
+
+        else:
+                Printer.liner()
+
+                print(Fore.RED + f"value of '{int_value}' is not an int :(")
+
+                print(Fore.RESET + "please try again and enter an int")
+
+                Printer.liner()
+
+                value = None
+
 
         return value
 
