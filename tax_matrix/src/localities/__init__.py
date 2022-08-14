@@ -1,3 +1,6 @@
+"""
+    localities general rates
+"""
 
 from .. import cls
 from .. import classes
