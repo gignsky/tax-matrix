@@ -7,7 +7,7 @@ from ..utilities import InputTesters
 from ..utilities import LogicalWork
 from ..utilities import Printer
 
-from . import specialCountyClasses
+from .. import special_county_classes
 
 from .mecklenburg import main as mecklenburg
 from .union import main as union

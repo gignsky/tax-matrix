@@ -2,8 +2,8 @@
     Main Function of Tax Matrix to help produce final product
 """
 
-import src
-from src import cls
+from . import src
+from .src import cls
 
 
 # print a welcome message
@@ -128,7 +128,9 @@ def main():
 
                 cls()
 
-                options_dict[4] = f"Modify County Special Options - {subject.county.get_special_options_title()}\n..."
+                options_dict[
+                    4
+                ] = f"Modify County Special Options - {subject.county.get_special_options_title()}\n..."
 
         # "Modify County Special Options"
         elif menu_option == options_dict[4]:
