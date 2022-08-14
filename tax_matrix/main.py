@@ -2,8 +2,8 @@
     Main Function of Tax Matrix to help produce final product
 """
 
-from . import src
-from .src import cls
+import src
+from src import cls
 
 
 # print a welcome message
