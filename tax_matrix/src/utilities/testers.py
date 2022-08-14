@@ -58,15 +58,15 @@ class InputTesters:
                 value = None
 
         else:
-                Printer.liner()
+            Printer.liner()
 
-                print(Fore.RED + f"value of '{int_value}' is not an int :(")
+            print(Fore.RED + f"value of '{int_value}' is not an int :(")
 
-                print(Fore.RESET + "please try again and enter an int")
+            print(Fore.RESET + "please try again and enter an int")
 
-                Printer.liner()
+            Printer.liner()
 
-                value = None
+            value = None
 
 
         return value
