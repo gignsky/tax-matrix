@@ -129,14 +129,6 @@ class Printer:
             any dict
         """
 
-        debugpy.breakpoint()
-        Printer.print_red(
-            "YOU FOUND THE USE OF THE POSSIBLY DEPRECIATED FUNCTION REVISED DOC STRING"
-        )
-
-        # TODO Check Might be depreciated
-
-        # TODO Run iredell county and fix her up it will error here with nothing but the county selected
         for key in dictionary_value:
             statement = dictionary_value[key]
             print(f"{key}. {statement}")

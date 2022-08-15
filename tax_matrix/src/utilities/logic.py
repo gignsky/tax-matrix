@@ -258,12 +258,9 @@ class LogicalWork:
                     title = list(i.keys())[0]
                     inner_dict = i[title]
                     inital_rate = inner_dict["INITAL"]
-                    current_rate = inner_dict["CURRENT"]
 
                     if inital_rate is not None:
-                        return_dict[
-                            index
-                        ] = f"{title} Current Rate: {current_rate} | Default Rate: {inital_rate}"
+                        return_dict[index] = i
                         index += 1
 
                 running = False

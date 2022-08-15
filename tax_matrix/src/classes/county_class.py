@@ -365,12 +365,12 @@ class County:
 
             if which_modify is not None:
                 # quit
-                if "Quit" == list(which_modify.keys())[0]:
+                if "Quit" == which_modify:
                     mod_loop = False
 
                 else:
-                    statement = list(which_modify.keys())[0]
-                    self.modify_county_service(which_modify[statement])
+                    # statement = list(which_modify.keys())[0]
+                    self.modify_county_service(which_modify)
             else:
                 mod_loop = False
 
@@ -388,21 +388,33 @@ class County:
 
         # police
         if "Police" in title:
-            self.county_wide_police_rate = InputHelper.on_or_off_rate(
+            return_bool = InputHelper.on_or_off_rate(
                 title, inital_rate, current_rate
             )
+            if return_bool:
+                self.county_wide_police_rate=inital_rate
+            else:
+                self.county_wide_police_rate=None
 
         # fire
         elif "Fire" in title:
-            self.county_wide_fire_rate = InputHelper.on_or_off_rate(
+            return_bool = InputHelper.on_or_off_rate(
                 title, inital_rate, current_rate
             )
+            if return_bool:
+                self.county_wide_fire_rate=inital_rate
+            else:
+                self.county_wide_fire_rate=None
 
         # ems
         elif "EMS" in title:
-            self.county_wide_ems_rate = InputHelper.on_or_off_rate(
+            return_bool = InputHelper.on_or_off_rate(
                 title, inital_rate, current_rate
             )
+            if return_bool:
+                self.county_wide_ems_rate=inital_rate
+            else:
+                self.county_wide_ems_rate=None
 
         # error
         else:
