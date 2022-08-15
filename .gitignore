@@ -6792,3 +6792,5 @@ tax_matrix/src/utilities/__pycache__/inputs.cpython-38.pyc
 tax_matrix/src/utilities/__pycache__/logic.cpython-38.pyc
 tax_matrix/src/utilities/__pycache__/printers.cpython-38.pyc
 tax_matrix/src/utilities/__pycache__/testers.cpython-38.pyc
+tax_matrix/src/localities/__pycache__/stanly.cpython-38.pyc
+tax_matrix/src/special_classes/__pycache__/stanly_classes.cpython-38.pyc
