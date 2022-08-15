@@ -11,7 +11,7 @@ from ..utilities import Printer
 
 from .. import classes
 
-from . import city_with_waste_fee
+from .city_with_waste_fee import CityWithWasteFee
 
 from . import mecklenburg_classes
 from . import union_classes
