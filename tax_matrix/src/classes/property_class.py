@@ -151,7 +151,7 @@ class Property:
         (
             county_only_statement,
             items_added,
-        ) = self.county.generate_county_ONLY_statement_NO_fee()
+        ) = self.county.generate_county_only_statement_no_fee()
 
         middle_statement = self.generate_middle_statement(
             county_only_statement, items_added
@@ -238,7 +238,7 @@ class Property:
         else:  # has city rates
             # city_ONLY_statement = self.county.city.city_ONLY_statement()
 
-            city_substatement = self.county.city.generate_CITY_substatements(
+            city_substatement = self.county.city.generate_city_substatements(
                 self.statistics["CITY"], self.with_county_no_city, self.city_exists
             )
 

@@ -274,7 +274,8 @@ class LogicalWork:
             return return_dict
 
     @staticmethod
-    def create_options_dict_from_county_services_list_NO_quit(county_services_list):
+    def create_options_dict_from_county_services_list_no_quit(
+            county_services_list):
         """
         create_options_dict_from_county_services_list_NO_quit creates dict with NO quit option from a list of county services, intended to be used with police/fire rates for each county I think
 

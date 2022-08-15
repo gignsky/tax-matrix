@@ -139,7 +139,7 @@ class County:
         Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
 
         self.county_services_modify_options_with_quit = (
-            LogicalWork.create_options_dict_from_county_services_list_NO_quit(
+            LogicalWork.create_options_dict_from_county_services_list_no_quit(
                 self.county_services
             )
         )
