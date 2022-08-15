@@ -79,6 +79,9 @@ def main():
 
 
 def charlotte():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Charlotte"
     city_rate = 0.003481
@@ -101,6 +104,9 @@ def charlotte():
     return city
 
 def city_of_charlotte():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "City of Charlotte"
     city_rate = 0.003481
@@ -134,6 +140,9 @@ def city_of_charlotte():
 
 
 def town_of_cornelius():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Cornelius"
     city_rate = 0.00232
@@ -157,6 +166,9 @@ def town_of_cornelius():
 
 
 def town_of_davidson():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Davidson"
     city_rate = 0.00325
@@ -180,6 +192,9 @@ def town_of_davidson():
 
 
 def town_of_huntersville():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Huntersville"
     city_rate = 0.0024
@@ -203,6 +218,9 @@ def town_of_huntersville():
 
 
 def town_of_matthews():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Matthews"
     city_rate = 0.00295
@@ -226,6 +244,9 @@ def town_of_matthews():
 
 
 def town_of_mint_hill():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Mint Hill"
     city_rate = 0.00255
@@ -249,6 +270,9 @@ def town_of_mint_hill():
 
 
 def town_of_pineville():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Pineville"
     city_rate = 0.0033
@@ -272,6 +296,9 @@ def town_of_pineville():
 
 
 def stallings():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Stallings"
     city_rate = 0.00186

@@ -80,6 +80,9 @@ def main():
 
 
 def belmont():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Belmont"
     city_rate = 0.00515
@@ -103,6 +106,9 @@ def belmont():
 
 
 def bessemer():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Bessemer"
     city_rate = 0.0045
@@ -126,6 +132,9 @@ def bessemer():
 
 
 def cherryville():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Cherryville"
     city_rate = 0.0052
@@ -149,6 +158,9 @@ def cherryville():
 
 
 def cramerton():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Cramerton"
     city_rate = 0.00475
@@ -172,6 +184,9 @@ def cramerton():
 
 
 def dallas():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Dallas"
     city_rate = 0.004
@@ -195,6 +210,9 @@ def dallas():
 
 
 def gastonia():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Gastonia"
     city_rate = 0.0052
@@ -218,6 +236,9 @@ def gastonia():
 
 
 def high_shls():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "High Shoals"
     city_rate = 0.0038
@@ -241,6 +262,9 @@ def high_shls():
 
 
 def kings_mtn():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Kings Mtn"
     city_rate = 0.0043
@@ -264,6 +288,9 @@ def kings_mtn():
 
 
 def lowell():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Lowell"
     city_rate = 0.0043
@@ -287,6 +314,9 @@ def lowell():
 
 
 def mcadenville():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "McAdenville"
     city_rate = 0.0033
@@ -310,6 +340,9 @@ def mcadenville():
 
 
 def mt_holly():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Mt. Holly"
     city_rate = 0.00485
@@ -333,6 +366,9 @@ def mt_holly():
 
 
 def ranlo():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Ranlo"
     city_rate = 0.004
@@ -356,6 +392,9 @@ def ranlo():
 
 
 def spencer_mtn():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Spencer Mtn"
     city_rate = 0
@@ -379,6 +418,9 @@ def spencer_mtn():
 
 
 def stanly():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Stanley"
     city_rate = 0.0054

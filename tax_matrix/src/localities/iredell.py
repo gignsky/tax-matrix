@@ -70,6 +70,9 @@ def main():
 
 
 def statesville_city():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Statesville City"
     city_rate = 0.005478
@@ -99,6 +102,9 @@ def statesville_city():
 
 
 def statesville_downtown():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Statesville Downtown"
     city_rate = 0.001
@@ -122,6 +128,9 @@ def statesville_downtown():
 
 
 def woods_municipal_ser():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Woods Municipal Ser."
     city_rate = 0.0021
@@ -145,6 +154,9 @@ def woods_municipal_ser():
 
 
 def troutman():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Troutman"
     city_rate = 0.0052
@@ -168,6 +180,9 @@ def troutman():
 
 
 def harmony():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Harmony"
     city_rate = 0.0014
@@ -191,6 +206,9 @@ def harmony():
 
 
 def mooresville_town():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Mooresville Town"
     city_rate = 0.0058
@@ -220,6 +238,9 @@ def mooresville_town():
 
 
 def mooresville_downtown():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Mooresville Downtown"
     city_rate = 0.0016
@@ -249,6 +270,9 @@ def mooresville_downtown():
 
 
 def mooresville_school():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Mooresville School"
     city_rate = 0.00185
@@ -278,6 +302,9 @@ def mooresville_school():
 
 
 def love_valley():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Love Valley"
     city_rate = 0.0025
@@ -301,6 +328,9 @@ def love_valley():
 
 
 def davidson_town():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Davidson Town"
     city_rate = 0.00325

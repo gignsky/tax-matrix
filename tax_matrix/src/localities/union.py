@@ -129,6 +129,9 @@ def main():
 
 
 def village_of_marvin():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Village of Marvin"
     city_rate = 0.0006
@@ -158,6 +161,9 @@ def village_of_marvin():
 
 
 def city_of_monroe():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "City of Monroe"
     city_rate = 0.006163
@@ -187,6 +193,9 @@ def city_of_monroe():
 
 
 def town_of_wingate():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Wingate"
     city_rate = 0.0034
@@ -210,6 +219,9 @@ def town_of_wingate():
 
 
 def town_of_marshville():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Marshville"
     city_rate = 0.0049
@@ -233,6 +245,9 @@ def town_of_marshville():
 
 
 def town_of_waxhaw():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Tax of Waxhaw"
     city_rate = 0.00385
@@ -256,6 +271,9 @@ def town_of_waxhaw():
 
 
 def town_of_indian_trail():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Indian Trail"
     city_rate = 0.00185
@@ -285,6 +303,9 @@ def town_of_indian_trail():
 
 
 def town_of_stallings():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Stallings"
     city_rate = 0.0016
@@ -314,6 +335,9 @@ def town_of_stallings():
 
 
 def town_of_weddington():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Weddington"
     city_rate = 0.00048
@@ -337,6 +361,9 @@ def town_of_weddington():
 
 
 def village_of_lake_park():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Village of Lake Park"
     city_rate = 0.0019
@@ -366,6 +393,9 @@ def village_of_lake_park():
 
 
 def town_of_fairview():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Fairview"
     city_rate = 0.0002
@@ -389,6 +419,9 @@ def town_of_fairview():
 
 
 def town_of_hemby_bridge():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Hemby Bridge"
     city_rate = 0
@@ -412,6 +445,9 @@ def town_of_hemby_bridge():
 
 
 def village_of_wesley_chapel():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Village of Wesley Chapel"
     city_rate = 0.000129
@@ -435,6 +471,9 @@ def village_of_wesley_chapel():
 
 
 def town_of_unionville():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Unionville"
     city_rate = 0.0002
@@ -458,6 +497,9 @@ def town_of_unionville():
 
 
 def town_of_mineral_springs():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Mineral Springs"
     city_rate = 0.00025
@@ -481,6 +523,9 @@ def town_of_mineral_springs():
 
 
 def town_of_mint_hill():
+    """
+        City Class
+    """
     # INFORMATION
     city_name = "Town of Mint Hill"
     city_rate = 0
