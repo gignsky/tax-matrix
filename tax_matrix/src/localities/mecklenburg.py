@@ -4,7 +4,7 @@
 
 
 from . import classes
-from ..special_county_classes import mecklenburg_classes
+from . import special_county_classes
 
 def main():
     """
@@ -57,7 +57,7 @@ def main():
         11: {"Police District Unincorporated Area (ETJ) For Pineville": 0.001637},
     }
 
-    meck = mecklenburg_classes.Mecklenburg(
+    meck = special_county_classes.mecklenburg_classes.Mecklenburg(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
@@ -118,7 +118,7 @@ def city_of_charlotte():
         6: {"District 6": {0.0004: "City of Charlotte District 6 (SouthPark)"}},
     }
 
-    city = mecklenburg_classes.CityOfCharlotte(
+    city = special_county_classes.mecklenburg_classes.CityOfCharlotte(
         city_name,
         city_rate,
         city_rate_title,
