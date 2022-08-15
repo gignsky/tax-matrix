@@ -10,19 +10,25 @@ from . import classes
 
 
 def main():
+    """
+    main contents of gaston county
+
+    Returns:
+        obj: county object
+    """
     # INFORMATION:
-    COUNTY_NAME = "Gaston Co., NC"
-    COUNTY_WIDE_RATE_TITLE = "Gaston County Unincorporated Tax Rate"
-    COUNTY_WIDE_RATE = 0.0083
-    COUNTY_WIDE_POLICE_TITLE = f"{COUNTY_NAME} Police"
-    COUNTY_WIDE_POLICE_RATE = None
-    COUNTY_WIDE_FIRE_TITLE = f"{COUNTY_NAME} Fire"
-    COUNTY_WIDE_FIRE_RATE = None
-    COUNTY_WIDE_EMS_TITLE = f"{COUNTY_NAME} EMS"
-    COUNTY_WIDE_EMS_RATE = None
-    CITIES = {
+    county_name = "Gaston Co., NC"
+    county_wide_rate_title = "Gaston County Unincorporated Tax Rate"
+    county_wide_rate = 0.0083
+    county_wide_police_title = f"{county_name} Police"
+    county_wide_police_rate = None
+    county_wide_fire_title = f"{county_name} Fire"
+    county_wide_fire_rate = None
+    county_wide_ems_title = f"{county_name} EMS"
+    county_wide_ems_rate = None
+    cities = {
         1: belmont(),
-        2: Bessemer(),
+        2: bessemer(),
         3: cherryville(),
         4: cramerton(),
         5: dallas(),
@@ -36,8 +42,8 @@ def main():
         13: spencer_mtn(),
         14: stanly(),
     }
-    SPECIAL_STUFF = True
-    COUNTY_FIRE_SERVICES = {
+    special_stuff = True
+    county_fire_services = {
         1: {"AG Center Fire": 0.00092},
         2: {"Alexis VFD": 0.00079},
         3: {"Chapel Gr Fire": 0.00093},
@@ -58,18 +64,18 @@ def main():
     }
 
     gaston = Gaston(
-        COUNTY_NAME,
-        COUNTY_WIDE_RATE_TITLE,
-        COUNTY_WIDE_RATE,
-        COUNTY_WIDE_POLICE_TITLE,
-        COUNTY_WIDE_POLICE_RATE,
-        COUNTY_WIDE_FIRE_TITLE,
-        COUNTY_WIDE_FIRE_RATE,
-        COUNTY_WIDE_EMS_TITLE,
-        COUNTY_WIDE_EMS_RATE,
-        CITIES,
-        SPECIAL_STUFF,
-        COUNTY_FIRE_SERVICES,
+        county_name,
+        county_wide_rate_title,
+        county_wide_rate,
+        county_wide_police_title,
+        county_wide_police_rate,
+        county_wide_fire_title,
+        county_wide_fire_rate,
+        county_wide_ems_title,
+        county_wide_ems_rate,
+        cities,
+        special_stuff,
+        county_fire_services,
     )
 
     return gaston
@@ -77,45 +83,45 @@ def main():
 
 def belmont():
     # INFORMATION
-    CITY_NAME = "Belmont"
-    CITY_RATE = 0.00515
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Belmont"
+    city_rate = 0.00515
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
 
 
-def Bessemer():
+def bessemer():
     # INFORMATION
-    CITY_NAME = "Bessemer"
-    CITY_RATE = 0.0045
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Bessemer"
+    city_rate = 0.0045
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -123,22 +129,22 @@ def Bessemer():
 
 def cherryville():
     # INFORMATION
-    CITY_NAME = "Cherryville"
-    CITY_RATE = 0.0052
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Cherryville"
+    city_rate = 0.0052
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -146,22 +152,22 @@ def cherryville():
 
 def cramerton():
     # INFORMATION
-    CITY_NAME = "Cramerton"
-    CITY_RATE = 0.00475
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Cramerton"
+    city_rate = 0.00475
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -169,22 +175,22 @@ def cramerton():
 
 def dallas():
     # INFORMATION
-    CITY_NAME = "Dallas"
-    CITY_RATE = 0.004
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Dallas"
+    city_rate = 0.004
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -192,22 +198,22 @@ def dallas():
 
 def gastonia():
     # INFORMATION
-    CITY_NAME = "Gastonia"
-    CITY_RATE = 0.0052
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Gastonia"
+    city_rate = 0.0052
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -215,22 +221,22 @@ def gastonia():
 
 def high_shls():
     # INFORMATION
-    CITY_NAME = "High Shoals"
-    CITY_RATE = 0.0038
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00104
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "High Shoals"
+    city_rate = 0.0038
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = 0.00104
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -238,22 +244,22 @@ def high_shls():
 
 def kings_mtn():
     # INFORMATION
-    CITY_NAME = "Kings Mtn"
-    CITY_RATE = 0.0043
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Kings Mtn"
+    city_rate = 0.0043
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -261,22 +267,22 @@ def kings_mtn():
 
 def lowell():
     # INFORMATION
-    CITY_NAME = "Lowell"
-    CITY_RATE = 0.0043
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00068
-    FIRE_RATE_TITLE = f"{CITY_NAME} FD"
+    city_name = "Lowell"
+    city_rate = 0.0043
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = 0.00068
+    fire_rate_title = f"{city_name} FD"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -284,22 +290,22 @@ def lowell():
 
 def mcadenville():
     # INFORMATION
-    CITY_NAME = "McAdenville"
-    CITY_RATE = 0.0033
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "McAdenville"
+    city_rate = 0.0033
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -307,22 +313,22 @@ def mcadenville():
 
 def mt_holly():
     # INFORMATION
-    CITY_NAME = "Mt. Holly"
-    CITY_RATE = 0.00485
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Mt. Holly"
+    city_rate = 0.00485
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -330,22 +336,22 @@ def mt_holly():
 
 def ranlo():
     # INFORMATION
-    CITY_NAME = "Ranlo"
-    CITY_RATE = 0.004
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00088
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Ranlo"
+    city_rate = 0.004
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = 0.00088
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -353,22 +359,22 @@ def ranlo():
 
 def spencer_mtn():
     # INFORMATION
-    CITY_NAME = "Spencer Mtn"
-    CITY_RATE = 0
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = 0.00093
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Spencer Mtn"
+    city_rate = 0
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = 0.00093
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -376,28 +382,34 @@ def spencer_mtn():
 
 def stanly():
     # INFORMATION
-    CITY_NAME = "Stanley"
-    CITY_RATE = 0.0054
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Stanley"
+    city_rate = 0.0054
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
 
 
 class Gaston(classes.County):
+    """
+    Gaston county specific class
+
+    Args:
+        classes (class): generic county class
+    """
     def __init__(
         self,
         county_name,
@@ -431,15 +443,16 @@ class Gaston(classes.County):
         self.county_fire_services = county_fire_services
         self.participating_fire_department_title = None
         self.participating_fire_department_rate = None
+        self.special_fire_department_default_str=None
 
     def select_special_options(self):
         """
         select_special_options options for all county fire departments to be added
         """
 
-        INPUT_LOOP = True
+        input_loop = True
 
-        while INPUT_LOOP:
+        while input_loop:
 
             include = None
             while include is None:
@@ -462,7 +475,7 @@ class Gaston(classes.County):
             else:
                 Printer.print_yellow("NO general county Fire Department in statement")
             Printer.short_liner()
-            INPUT_LOOP = False
+            input_loop = False
 
     def select_fire_department(self, include):
         """
@@ -471,9 +484,9 @@ class Gaston(classes.County):
         SPECIFIC TO GASTON COUNTY
         """
 
-        MOD_LOOP = True
+        mod_loop = True
 
-        while MOD_LOOP:
+        while mod_loop:
             if include:
                 Printer.print_special_service_dict_with_single_option_and_quit_option(
                     self.county_fire_services, quit_option=True
@@ -512,7 +525,7 @@ class Gaston(classes.County):
                         self.participating_fire_department_rate = rate
                         self.participating_fire_department_title = title
 
-                    MOD_LOOP = False
+                    mod_loop = False
 
     def generate_county_statistics(self):
         super().generate_county_statistics()
@@ -531,12 +544,15 @@ class Gaston(classes.County):
 
         Printer.print_green(f"{self.get_county_name()} Specific Info")
 
-        self.generate_SPECIAL_current_default_strs()
+        self.generate_special_current_default_strs()
 
         # print gaston co specific info
         Printer.print_yellow(self.special_fire_department_default_str)
 
-    def generate_SPECIAL_current_default_strs(self):
+    def generate_special_current_default_strs(self):
+        """
+        generate_SPECIAL_current_default_strs
+        """
         current_fire_department = (
             self.participating_fire_department_rate
             if self.participating_fire_department_rate is not None

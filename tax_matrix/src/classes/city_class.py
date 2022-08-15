@@ -10,7 +10,9 @@ from . import LogicalWork
 
 
 class City:
-
+    """
+        generic city class
+    """
     def __init__(
         self,
         city_name,
@@ -36,13 +38,27 @@ class City:
         self.inital_police_rate = self.police_rate
         self.inital_fire_rate = self.fire_rate
 
+        #set inital values
+        self.police_current_default_str=None
+        self.fire_current_default_str=None
+        self.city_statistics=None
+
     def get_city_name(self):
+        """
+        get_city_name
+
+        Returns:
+            str: city name
+        """
         return self.city_name
 
     def modify_or_keep(self):
-        INPUT_LOOP = True
+        """
+        modify_or_keep police and fire items
+        """
+        input_loop = True
 
-        while INPUT_LOOP:
+        while input_loop:
             Printer.short_liner()
             self.print_modifiable_info()
             Printer.short_liner()
@@ -55,12 +71,25 @@ class City:
                 if modify:
                     self.which_modify()
                 else:
-                    INPUT_LOOP = False
+                    input_loop = False
 
     def get_police_and_fire_strings(self):
+        """
+        get_police_and_fire_strings current
+
+        Returns:
+            strs: current fire and police strings
+        """
         return self.police_current_default_str, self.fire_current_default_str
 
     def update_police_and_fire_rates_for_string(self, police_rate, fire_rate):
+        """
+        update_police_and_fire_rates_for_string
+
+        Args:
+            police_rate (float): police float
+            fire_rate (float): fire float
+        """
         self.police_rate = police_rate
         self.fire_rate = fire_rate
 
@@ -68,12 +97,12 @@ class City:
         """
         which_modify helps to determine if one should modify the values available options on the cities services
         """
-        MOD_LOOP = True
+        mod_loop = True
 
         print("Note a value of 'None' will not appear in final statement")
 
-        while MOD_LOOP:
-            self.generate_CITY_current_default_strs()
+        while mod_loop:
+            self.generate_city_current_default_strs()
             mod_dict = {
                 0: "Quit",
                 1: self.police_current_default_str,
@@ -84,7 +113,7 @@ class City:
             )
 
             if which_modify == mod_dict[0]:
-                MOD_LOOP = False
+                mod_loop = False
             elif which_modify == mod_dict[1]:
                 self.modify_police()
             elif which_modify == mod_dict[2]:
@@ -94,6 +123,9 @@ class City:
                 print("ERROR IN CLASS 'City'")
 
     def modify_police(self):
+        """
+        modify_police
+        """
         enable = InputHelper.on_or_off_rate(
             "Police", self.inital_police_rate, self.police_rate
         )
@@ -106,6 +138,9 @@ class City:
         Printer.print_green(f"Police Rate updated to: {self.police_rate}")
 
     def modify_fire(self):
+        """
+        modify_fire
+        """
         enable = InputHelper.on_or_off_rate(
             "Fire", self.inital_fire_rate, self.fire_rate
         )
@@ -121,7 +156,7 @@ class City:
         """
         print_modifiable_info print all info capable of being modified
         """
-        self.generate_CITY_current_default_strs()
+        self.generate_city_current_default_strs()
 
         Printer.print_green(self.city_name)
         if self.city_wide_rate is not None:
@@ -133,7 +168,10 @@ class City:
         Printer.print_yellow(f"Fire Rate Title: {self.fire_title}")
         Printer.print_yellow(self.fire_current_default_str)
 
-    def generate_CITY_current_default_strs(self):
+    def generate_city_current_default_strs(self):
+        """
+        generate_CITY_current_default_strs
+        """
         current_police = self.police_rate if self.police_rate is not None else None
         current_fire = self.fire_rate if self.fire_rate is not None else None
         inital_police = (
@@ -164,8 +202,6 @@ class City:
         else:
             inital_fire = None
 
-        #TODO Start here for pylint then work your way down to finish up pylnting all of the classes and then localities, then work on porting locality classes over to the special_county_classes folder, maybe one with a special class for waste options
-
         self.police_current_default_str = (
             f"Police Rate: {current_police} | STANDARD RATE: {self.inital_police_rate}"
         )
@@ -185,6 +221,12 @@ class City:
     #     )
 
     def generate_city_statistics(self):
+        """
+        generate_city_statistics
+
+        Returns:
+            dict: dict of all city statistics
+        """
         self.city_statistics = {}
         if self.city_wide_rate is not None:
             self.city_statistics["CITYWIDE"] = {
@@ -203,7 +245,18 @@ class City:
 
         return self.city_statistics
 
-    def generate_CITY_substatements(self, city_stats, with_county_no_city, city_exists):
+    def generate_city_substatements(self, city_stats, with_county_no_city, city_exists):
+        """
+        generate_CITY_substatements
+
+        Args:
+            city_stats (dict): all stats
+            with_county_no_city (bool): true/false
+            city_exists (bool): true/false
+
+        Returns:
+            str: city substatement
+        """
         _, dicts_values = LogicalWork.no_index_dict_to_two_lists(city_stats)
         city_keys, city_values = LogicalWork.with_index_dict_to_two_lists(dicts_values)
         return_statement = ""
@@ -229,6 +282,16 @@ class City:
         return return_statement
 
     def check_contains_fees(self, city_keys, city_values):
+        """
+        check_contains_fees city
+
+        Args:
+            city_keys (list): list of city keys
+            city_values (list): list of city values
+
+        Returns:
+            bool: true/false
+        """
         for key, value in zip(city_keys, city_values):
             if "Fee" in key:
                 return True
@@ -241,6 +304,16 @@ class City:
         return False
 
     def generate_city_fees_string(self, city_keys, city_values):
+        """
+        generate_city_fees_string
+
+        Args:
+            city_keys (list): list of city keys
+            city_values (list): list of city values
+
+        Returns:
+            str: city fees string
+        """
         city_fee_string = ""
         if city_keys is not None:
             for key, fee in zip(city_keys, city_values):
@@ -265,6 +338,16 @@ class City:
         return city_fee_string
 
     def generate_city_total_fees(self, city_keys, city_values):
+        """
+        generate_city_total_fees
+
+        Args:
+            city_keys (list): list of city keys
+            city_values (List): list of city values
+
+        Returns:
+            float: total fees to add
+        """
         total_of_fees = 0
         for key, fee in zip(city_keys, city_values):
             if "Fee" in key:

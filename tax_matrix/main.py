@@ -20,7 +20,7 @@ def main():
     """
 
     # return subject class object
-    subject = src.classes.propertyClass.Property()
+    subject = src.classes.property_class.Property()
 
     # get county list
     all_counties = src.classes.Counties.get_all_counties()

@@ -10,17 +10,23 @@ from . import InputHelper
 
 
 def main():
+    """
+    main general function for iredell county
+
+    Returns:
+        obj: county class
+    """
     # INFORMATION:
-    COUNTY_NAME = "Iredell Co., NC"
-    COUNTY_WIDE_RATE_TITLE = "Iredell County Unincorporated Tax Rate"
-    COUNTY_WIDE_RATE = 0.005375
-    COUNTY_WIDE_POLICE_TITLE = f"{COUNTY_NAME} Police"
-    COUNTY_WIDE_POLICE_RATE = None
-    COUNTY_WIDE_FIRE_TITLE = f"{COUNTY_NAME} Fire"
-    COUNTY_WIDE_FIRE_RATE = 0.0009
-    COUNTY_WIDE_EMS_TITLE = f"{COUNTY_NAME} EMS"
-    COUNTY_WIDE_EMS_RATE = None
-    CITIES = {
+    county_name = "Iredell Co., NC"
+    county_wide_rate_title = "Iredell County Unincorporated Tax Rate"
+    county_wide_rate = 0.005375
+    county_wide_police_title = f"{county_name} Police"
+    county_wide_police_rate = None
+    county_wide_fire_title = f"{county_name} Fire"
+    county_wide_fire_rate = 0.0009
+    county_wide_ems_title = f"{county_name} EMS"
+    county_wide_ems_rate = None
+    cities = {
         1: statesville_city(),
         2: statesville_downtown(),
         3: woods_municipal_ser(),
@@ -32,14 +38,14 @@ def main():
         9: love_valley(),
         10: davidson_town(),
     }
-    SPECIAL_STUFF = True
+    special_stuff = True
 
     # countywide solid waste fee
     special_county_waste_name = "Iredell Co., Solid Waste Fee"
     special_county_waste_fee = 60.00
 
     # special fire rates - unused with no rates
-    SPECIAL_FIRE = {
+    special_fire = {
         1: {"East Alexander Fire": 0},
         2: {"Shepherds Fire": 0},
         3: {"Mount Mourne Fire": 0},
@@ -47,26 +53,32 @@ def main():
     }
 
     iredell = Iredell(
-        COUNTY_NAME,
-        COUNTY_WIDE_RATE_TITLE,
-        COUNTY_WIDE_RATE,
-        COUNTY_WIDE_POLICE_TITLE,
-        COUNTY_WIDE_POLICE_RATE,
-        COUNTY_WIDE_FIRE_TITLE,
-        COUNTY_WIDE_FIRE_RATE,
-        COUNTY_WIDE_EMS_TITLE,
-        COUNTY_WIDE_EMS_RATE,
-        CITIES,
-        SPECIAL_STUFF,
+        county_name,
+        county_wide_rate_title,
+        county_wide_rate,
+        county_wide_police_title,
+        county_wide_police_rate,
+        county_wide_fire_title,
+        county_wide_fire_rate,
+        county_wide_ems_title,
+        county_wide_ems_rate,
+        cities,
+        special_stuff,
         special_county_waste_name,
         special_county_waste_fee,
-        SPECIAL_FIRE,
+        special_fire,
     )
 
     return iredell
 
 
 class Iredell(classes.County):
+    """
+    Iredell general class
+
+    Args:
+        classes (class): generic county class
+    """
     def __init__(
         self,
         county_name,
@@ -105,11 +117,25 @@ class Iredell(classes.County):
             special_county_waste_fee,
         )
 
+        self.inital_special_county_waste_name=None
+        self.special_county_waste_fee=None
+        self.special_fire_title=None
+        self.special_fire_rate=None
+        self.special_fire_department_default_str=None
+        self.special_debt_budget_default_str=None
+
     def set_inital_values(
         self,
         special_county_waste_name,
         special_county_waste_fee,
     ):
+        """
+        set_inital_values sets inital waste and special values
+
+        Args:
+            special_county_waste_name (str): title
+            special_county_waste_fee (float): fee amount
+        """
         # waste fee
         self.special_county_waste_name = None
         self.special_county_waste_fee = None
@@ -126,9 +152,9 @@ class Iredell(classes.County):
         select_special_options options for all county fire departments and debt budget fund taxes to be added
         """
 
-        INPUT_LOOP = True
+        input_loop = True
 
-        while INPUT_LOOP:
+        while input_loop:
 
             options_dict = {
                 0: "Return to Main Menu",
@@ -143,7 +169,7 @@ class Iredell(classes.County):
             cls()
 
             if modify_option == options_dict[0]:
-                INPUT_LOOP = False
+                input_loop = False
             elif modify_option == options_dict[1]:
                 self.mod_special_waste_fee()
             elif modify_option == options_dict[2]:
@@ -153,7 +179,9 @@ class Iredell(classes.County):
                 print("ERROR IN CLASS 'Union'")
 
     def mod_special_waste_fee(self):
-
+        """
+        mod_special_waste_fee function
+        """
         include = None
         while include is None:
             Printer.short_liner()
@@ -186,12 +214,14 @@ class Iredell(classes.County):
             self.special_county_waste_fee = None
             Printer.short_liner()
             Printer.print_green(
-                f"County Waste Fee Updated...\n& it will NOT be included in statement."
+                "County Waste Fee Updated...\n& it will NOT be included in statement."
             )
             Printer.short_liner()
 
     def mod_special_fire(self):
-
+        """
+        mod_special_fire function
+        """
         include = None
         while include is None:
             Printer.print_special_service_dict_with_single_option_and_quit_option(
@@ -240,7 +270,7 @@ class Iredell(classes.County):
 
             Printer.short_liner()
             Printer.print_yellow(
-                f"Special Fire Updated to NOT be included in statement"
+                "Special Fire Updated to NOT be included in statement"
             )
             Printer.short_liner()
 
@@ -264,13 +294,16 @@ class Iredell(classes.County):
 
         Printer.print_green(f"{self.get_county_name()} Specific Info")
 
-        self.generate_SPECIAL_current_default_strs()
+        self.generate_special_current_default_strs()
 
         # print gaston co specific info
         Printer.print_yellow(self.special_fire_department_default_str)
         Printer.print_yellow(self.special_debt_budget_default_str)
 
-    def generate_SPECIAL_current_default_strs(self):
+    def generate_special_current_default_strs(self):
+        """
+        generate_SPECIAL_current_default_strs
+        """
         # special fire districts
         current_fire_department = (
             self.special_fire_rate if self.special_fire_rate is not None else None
@@ -313,28 +346,28 @@ class Iredell(classes.County):
 
 def statesville_city():
     # INFORMATION
-    CITY_NAME = "Statesville City"
-    CITY_RATE = 0.005478
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Statesville City"
+    city_rate = 0.005478
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     # Specific
-    WASTE_TITLE = f"{CITY_NAME} Solid Waste Fee"
-    WASTE_FEE = 60.00
+    waste_title = f"{city_name} Solid Waste Fee"
+    waste_fee = 60.00
 
     city = CityWithWasteFee(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-        WASTE_TITLE,
-        WASTE_FEE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
+        waste_title,
+        waste_fee,
     )
 
     return city
@@ -342,22 +375,22 @@ def statesville_city():
 
 def statesville_downtown():
     # INFORMATION
-    CITY_NAME = "Statesville Downtown"
-    CITY_RATE = 0.001
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Statesville Downtown"
+    city_rate = 0.001
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -365,22 +398,22 @@ def statesville_downtown():
 
 def woods_municipal_ser():
     # INFORMATION
-    CITY_NAME = "Woods Municipal Ser."
-    CITY_RATE = 0.0021
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Woods Municipal Ser."
+    city_rate = 0.0021
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -388,22 +421,22 @@ def woods_municipal_ser():
 
 def troutman():
     # INFORMATION
-    CITY_NAME = "Troutman"
-    CITY_RATE = 0.0052
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Troutman"
+    city_rate = 0.0052
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -411,22 +444,22 @@ def troutman():
 
 def harmony():
     # INFORMATION
-    CITY_NAME = "Harmony"
-    CITY_RATE = 0.0014
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Harmony"
+    city_rate = 0.0014
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -434,28 +467,28 @@ def harmony():
 
 def mooresville_town():
     # INFORMATION
-    CITY_NAME = "Mooresville Town"
-    CITY_RATE = 0.0058
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Mooresville Town"
+    city_rate = 0.0058
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     # Specific
-    WASTE_TITLE = f"{CITY_NAME} Solid Waste Fee"
-    WASTE_FEE = 120.00
+    waste_title = f"{city_name} Solid Waste Fee"
+    waste_fee = 120.00
 
     city = CityWithWasteFee(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-        WASTE_TITLE,
-        WASTE_FEE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
+        waste_title,
+        waste_fee,
     )
 
     return city
@@ -463,28 +496,28 @@ def mooresville_town():
 
 def mooresville_downtown():
     # INFORMATION
-    CITY_NAME = "Mooresville Downtown"
-    CITY_RATE = 0.0016
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Mooresville Downtown"
+    city_rate = 0.0016
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     # Specific
-    WASTE_TITLE = f"{CITY_NAME} Solid Waste Fee"
-    WASTE_FEE = 120.00
+    waste_title = f"{city_name} Solid Waste Fee"
+    waste_fee = 120.00
 
     city = CityWithWasteFee(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-        WASTE_TITLE,
-        WASTE_FEE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
+        waste_title,
+        waste_fee,
     )
 
     return city
@@ -492,28 +525,28 @@ def mooresville_downtown():
 
 def mooresville_school():
     # INFORMATION
-    CITY_NAME = "Mooresville School"
-    CITY_RATE = 0.00185
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Mooresville School"
+    city_rate = 0.00185
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     # Specific
-    WASTE_TITLE = f"{CITY_NAME} Solid Waste Fee"
-    WASTE_FEE = 120.00
+    waste_title = f"{city_name} Solid Waste Fee"
+    waste_fee = 120.00
 
     city = CityWithWasteFee(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
-        WASTE_TITLE,
-        WASTE_FEE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
+        waste_title,
+        waste_fee,
     )
 
     return city
@@ -521,22 +554,22 @@ def mooresville_school():
 
 def love_valley():
     # INFORMATION
-    CITY_NAME = "Love Valley"
-    CITY_RATE = 0.0025
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Love Valley"
+    city_rate = 0.0025
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
@@ -544,28 +577,34 @@ def love_valley():
 
 def davidson_town():
     # INFORMATION
-    CITY_NAME = "Davidson Town"
-    CITY_RATE = 0.00325
-    CITY_RATE_TITLE = CITY_NAME
-    POLICE_RATE = None
-    POLICE_RATE_TITLE = f"{CITY_NAME} Police"
-    FIRE_RATE = None
-    FIRE_RATE_TITLE = f"{CITY_NAME} Fire"
+    city_name = "Davidson Town"
+    city_rate = 0.00325
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
 
     city = classes.City(
-        CITY_NAME,
-        CITY_RATE,
-        CITY_RATE_TITLE,
-        POLICE_RATE,
-        POLICE_RATE_TITLE,
-        FIRE_RATE,
-        FIRE_RATE_TITLE,
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
     )
 
     return city
 
 
 class CityWithWasteFee(classes.City):
+    """
+    CityWithWasteFee class for cities with waste fees
+
+    Args:
+        classes (class): generic city class
+    """
     def __init__(
         self,
         city_name,
@@ -588,9 +627,17 @@ class CityWithWasteFee(classes.City):
             fire_title,
         )
 
+        self.current_waste_title=None
+        self.waste_title = None
+        self.waste_fee = None
+        self.special_district_current_default_str=None
+
         self.set_inital_values(waste_title, waste_fee)
 
     def set_inital_values(self, waste_title, waste_fee):
+        """
+        set_inital_values set inital values
+        """
         self.waste_title = None
         self.waste_fee = None
 
@@ -604,20 +651,20 @@ class CityWithWasteFee(classes.City):
 
         SPECIFIC TO CITY OF Monroe
         """
-        MOD_LOOP = True
+        mod_loop = True
 
         print("Note a value of 'None' will not appear in final statement")
 
-        INITAL_RUN = True
-        while MOD_LOOP:
-            if INITAL_RUN:  # run on first time
-                INITAL_RUN = False
+        inital_run = True
+        while mod_loop:
+            if inital_run:  # run on first time
+                inital_run = False
             else:
                 super().update_police_and_fire_rates_for_string(
                     self.police_rate, self.fire_rate
                 )
 
-            self.generate_CITY_current_default_strs()
+            self.generate_city_current_default_strs()
 
             (
                 police_current_default_str,
@@ -635,7 +682,7 @@ class CityWithWasteFee(classes.City):
             )
 
             if which_modify == mod_dict[0]:
-                MOD_LOOP = False
+                mod_loop = False
             elif which_modify == mod_dict[1]:
                 self.modify_police()
             elif which_modify == mod_dict[2]:
@@ -647,7 +694,9 @@ class CityWithWasteFee(classes.City):
                 print("ERROR IN CLASS 'VillageOfMarvin'")
 
     def select_special_district(self):
-
+        """
+        select_special_district
+        """
         cls()
 
         in_special_district = InputHelper.choice_bool(
@@ -676,11 +725,12 @@ class CityWithWasteFee(classes.City):
             )
             Printer.short_liner()
 
-    def generate_CITY_current_default_strs(self):
-        super().generate_CITY_current_default_strs()
+    def generate_city_current_default_strs(self):
+        super().generate_city_current_default_strs()
         current_waste_fee = self.waste_fee if self.waste_fee is not None else None
 
-        current_waste_title = self.waste_title if self.waste_title is not None else None
+        #TODO might be depreciated
+        # current_waste_title = self.waste_title if self.waste_title is not None else None
 
         # format if not none
         if current_waste_fee is not None:
@@ -694,7 +744,7 @@ class CityWithWasteFee(classes.City):
         """
         print_modifiable_info print all info capable of being modified
         """
-        self.generate_CITY_current_default_strs()
+        self.generate_city_current_default_strs()
         super().print_modifiable_info()
 
         Printer.print_yellow(self.special_district_current_default_str)

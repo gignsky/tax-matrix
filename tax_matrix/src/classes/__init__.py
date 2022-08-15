@@ -13,4 +13,4 @@ from .county_class import County
 from .city_class import City
 from .all_counties_and_cities_classes import Counties
 from .all_counties_and_cities_classes import Cities
-from .propertyClass import Property
+from .property_class import Property
