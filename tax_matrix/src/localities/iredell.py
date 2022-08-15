@@ -86,7 +86,7 @@ def statesville_city():
     waste_title = f"{city_name} Solid Waste Fee"
     waste_fee = 60.00
 
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = special_classes.CityWithWasteFee(
         city_name,
         city_rate,
         city_rate_title,
@@ -222,7 +222,7 @@ def mooresville_town():
     waste_title = f"{city_name} Solid Waste Fee"
     waste_fee = 120.00
 
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = special_classes.CityWithWasteFee(
         city_name,
         city_rate,
         city_rate_title,
@@ -254,7 +254,7 @@ def mooresville_downtown():
     waste_title = f"{city_name} Solid Waste Fee"
     waste_fee = 120.00
 
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = special_classes.CityWithWasteFee(
         city_name,
         city_rate,
         city_rate_title,
@@ -286,7 +286,7 @@ def mooresville_school():
     waste_title = f"{city_name} Solid Waste Fee"
     waste_fee = 120.00
 
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = special_classes.CityWithWasteFee(
         city_name,
         city_rate,
         city_rate_title,
