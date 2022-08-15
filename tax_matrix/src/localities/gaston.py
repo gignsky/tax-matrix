@@ -4,7 +4,7 @@
 
 
 from . import classes
-from . import special_county_classes
+from . import special_classes
 
 
 def main():
@@ -61,7 +61,7 @@ def main():
         17: {"Waco Fire": 0.00081},
     }
 
-    gaston = special_county_classes.gaston_classes.Gaston(
+    gaston = special_classes.gaston_classes.Gaston(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
