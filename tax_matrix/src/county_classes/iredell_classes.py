@@ -3,12 +3,12 @@
 """
 
 import debugpy
-from . import classes
+from . import general_classes
 from . import Printer
 from . import cls
 from . import InputHelper
 
-class Iredell(classes.County):
+class Iredell(general_classes.County):
     """
     Iredell general class
 

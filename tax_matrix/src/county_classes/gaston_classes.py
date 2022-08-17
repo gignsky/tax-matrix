@@ -6,9 +6,9 @@ from . import cls
 from . import InputHelper
 from . import InputTesters
 from . import Printer
-from . import classes
+from . import general_classes
 
-class Gaston(classes.County):
+class Gaston(general_classes.County):
     """
     Gaston county specific class
 

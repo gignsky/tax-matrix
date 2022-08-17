@@ -20,10 +20,10 @@ def main():
     """
 
     # return subject class object
-    subject = src.classes.property_class.Property()
+    subject = src.general_classes.property_class.Property()
 
     # get county list
-    all_counties = src.classes.Counties.get_all_counties()
+    all_counties = src.general_classes.Counties.get_all_counties()
 
     # dict of avalable options
     options_dict = {
@@ -180,7 +180,7 @@ def main():
             )
             if load:
                 src.localities.load_all_counties("reload")
-                subject = src.classes.Property()
+                subject = src.general_classes.Property()
                 inital_run_status = True
                 subject_has_price = False
                 cls()

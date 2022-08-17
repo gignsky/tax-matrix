@@ -9,6 +9,6 @@ from .clear import cls
 
 from . import config
 from . import utilities
-from . import classes
+from . import general_classes
 from . import special_classes
 from . import localities

@@ -11,4 +11,9 @@ from ..utilities import Printer
 
 from .. import general_classes
 
-from .city_with_waste_fee import CityWithWasteFee
+from ..special_classes import CityWithWasteFee
+
+from . import mecklenburg_classes
+from . import union_classes
+from . import gaston_classes
+from . import iredell_classes

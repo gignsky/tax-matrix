@@ -3,7 +3,7 @@
 """
 
 
-from . import classes
+from . import general_classes
 from . import special_classes
 
 
@@ -92,7 +92,7 @@ def belmont():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -118,7 +118,7 @@ def bessemer():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -144,7 +144,7 @@ def cherryville():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -170,7 +170,7 @@ def cramerton():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -196,7 +196,7 @@ def dallas():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -222,7 +222,7 @@ def gastonia():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -248,7 +248,7 @@ def high_shls():
     fire_rate = 0.00104
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -274,7 +274,7 @@ def kings_mtn():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -300,7 +300,7 @@ def lowell():
     fire_rate = 0.00068
     fire_rate_title = f"{city_name} FD"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -326,7 +326,7 @@ def mcadenville():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -352,7 +352,7 @@ def mt_holly():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -378,7 +378,7 @@ def ranlo():
     fire_rate = 0.00088
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -404,7 +404,7 @@ def spencer_mtn():
     fire_rate = 0.00093
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -430,7 +430,7 @@ def stanly():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,

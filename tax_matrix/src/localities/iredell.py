@@ -2,7 +2,7 @@
    iredell co rates document
 """
 
-from . import classes
+from . import general_classes
 from . import special_classes
 
 def main():
@@ -114,7 +114,7 @@ def statesville_downtown():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -140,7 +140,7 @@ def woods_municipal_ser():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -166,7 +166,7 @@ def troutman():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -192,7 +192,7 @@ def harmony():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -314,7 +314,7 @@ def love_valley():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -340,7 +340,7 @@ def davidson_town():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,

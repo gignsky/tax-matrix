@@ -4,9 +4,9 @@ import debugpy
 from . import Printer
 from . import InputHelper
 from . import cls
-from . import classes
+from . import general_classes
 
-class Union(classes.County):
+class Union(general_classes.County):
     """
     Union county specific class for union co
 
@@ -275,7 +275,7 @@ class Union(classes.County):
 
 
 
-class CityOfMonroe(classes.City):
+class CityOfMonroe(general_classes.City):
     """
     CityOfMonroe class specific for city of monroe
 

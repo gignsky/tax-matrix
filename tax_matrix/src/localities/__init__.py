@@ -3,7 +3,7 @@
 """
 
 from .. import cls
-from .. import classes
+from .. import general_classes
 
 from ..utilities import InputHelper
 from ..utilities import InputTesters
@@ -32,14 +32,14 @@ def load_all_counties(which_run):
     if which_run == "inital":
         pass
     elif which_run == "reload":
-        classes.Counties.reset_counties()
+        general_classes.Counties.reset_counties()
 
-    classes.Counties.add_county(mecklenburg())
-    classes.Counties.add_county(union())
+    general_classes.Counties.add_county(mecklenburg())
+    general_classes.Counties.add_county(union())
     # classes.Counties.add_county(stanly())
     # classes.Counties.add_county(cabarrus())
-    classes.Counties.add_county(iredell())
+    general_classes.Counties.add_county(iredell())
     # classes.Counties.add_county(rowan())
-    classes.Counties.add_county(gaston())
+    general_classes.Counties.add_county(gaston())
     # classes.Counties.add_county(lancaster())
     # classes.Counties.add_county(york())

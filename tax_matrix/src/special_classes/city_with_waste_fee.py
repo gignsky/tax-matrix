@@ -3,13 +3,13 @@
 """
 
 import debugpy
-from . import classes
+from . import general_classes
 from . import Printer
 from . import cls
 from . import InputHelper
 
 
-class CityWithWasteFee(classes.City):
+class CityWithWasteFee(general_classes.City):
     """
     CityWithWasteFee class for cities with waste fees
 

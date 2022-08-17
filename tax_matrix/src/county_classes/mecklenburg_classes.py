@@ -9,9 +9,9 @@ from . import InputHelper
 from . import InputTesters
 from . import Printer
 
-from . import classes
+from . import general_classes
 
-class Mecklenburg(classes.County):
+class Mecklenburg(general_classes.County):
     """
     Mecklenburg specific class for meck county
 
@@ -621,7 +621,7 @@ class MeckService:
             f"{self.service_title} Rate updated to: {current_rate_to_print}"
         )
 
-class CityOfCharlotte(classes.City):
+class CityOfCharlotte(general_classes.City):
     """
     CityOfCharlotte city of charlotte specific classes
 

@@ -5,7 +5,7 @@
 # TODO FIX UP THIS DOC, just barely started adding
 
 
-from . import classes
+from . import general_classes
 from . import special_classes
 
 
@@ -205,7 +205,7 @@ def town_of_wingate():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -231,7 +231,7 @@ def town_of_marshville():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -257,7 +257,7 @@ def town_of_waxhaw():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -347,7 +347,7 @@ def town_of_weddington():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -405,7 +405,7 @@ def town_of_fairview():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -431,7 +431,7 @@ def town_of_hemby_bridge():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -457,7 +457,7 @@ def village_of_wesley_chapel():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -483,7 +483,7 @@ def town_of_unionville():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -509,7 +509,7 @@ def town_of_mineral_springs():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -535,7 +535,7 @@ def town_of_mint_hill():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    city = classes.City(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
