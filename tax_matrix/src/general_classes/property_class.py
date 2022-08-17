@@ -23,6 +23,7 @@ class Property:
         self.city_exists=None
         self.with_county_no_city=None
 
+    #add items
     def add_price(self, price_int, price_str):
         """
         add_price add price to subject
@@ -35,6 +36,35 @@ class Property:
         self.price_str = price_str
         Printer.print_green(f"The Price of {price_str} has been loaded to subject!")
 
+    def add_county(self, county):
+        """
+        add_county add county to subject
+
+        Args:
+            county (obj): county object
+        """
+        self.county = county
+        Printer.welcome_county(self.county.get_county_name())
+
+    def add_statistics(self, statistics):
+        """
+        add_statistics to property
+
+        Args:
+            statistics (dict): dictionary with statistics for subject
+        """
+        self.statistics = statistics
+
+    def add_city(self, city):
+        """
+        add_city add city to county object inside subject
+
+        Args:
+            city (obj): city object
+        """
+        self.county.add_city(city)
+
+    #get items
     def get_price_str(self):
         """
         get_price_str
@@ -55,16 +85,6 @@ class Property:
         # Printer.print_green(f"Price Integer: {self.price_int}")
         return self.price_int
 
-    def add_county(self, county):
-        """
-        add_county add county to subject
-
-        Args:
-            county (obj): county object
-        """
-        self.county = county
-        Printer.welcome_county(self.county.get_county_name())
-
     def get_county(self):
         """
         get_county object
@@ -74,24 +94,7 @@ class Property:
         """
         return self.county
 
-    def add_statistics(self, statistics):
-        """
-        add_statistics to property
-
-        Args:
-            statistics (dict): dictionary with statistics for subject
-        """
-        self.statistics = statistics
-
-    def add_city(self, city):
-        """
-        add_city add city to county object inside subject
-
-        Args:
-            city (obj): city object
-        """
-        self.county.add_city(city)
-
+    #printing
     def print_current_stats(self):
         """
         print_current_stats
@@ -108,6 +111,34 @@ class Property:
             self.county.city.print_modifiable_info()
             Printer.short_liner()
 
+    #logical
+    def check_contains_fees_all(
+        self, county_keys, county_values, city_keys, city_values
+    ):
+        """
+        check_contains_fees_ALL check if fees exist
+
+        Args:
+            county_keys (list): county key list
+            county_values (list): county values list
+            city_keys (list): city keys list
+            city_values (list): city values list
+
+        Returns:
+            bool: true / false
+        """
+        county_has_fees = self.county.check_contains_fees(county_keys, county_values)
+        if city_keys is not None:
+            city_has_fees = self.county.city.check_contains_fees(city_keys, city_values)
+        else:
+            city_has_fees = False
+
+        if county_has_fees or city_has_fees:
+            return True
+        else:
+            return False
+
+    #generate items
     def generate_statistics(self):
         """
         generate_statistics
@@ -189,32 +220,6 @@ class Property:
             self.generate_total_tax_burden_after_fee(fees)
             return_statement = f"x {middle_statement}{self.generate_all_fee_strings(county_keys, county_values, city_keys, city_values)} = {self.generate_total_tax_burden_str()}"
         return return_statement
-
-    def check_contains_fees_all(
-        self, county_keys, county_values, city_keys, city_values
-    ):
-        """
-        check_contains_fees_ALL check if fees exist
-
-        Args:
-            county_keys (list): county key list
-            county_values (list): county values list
-            city_keys (list): city keys list
-            city_values (list): city values list
-
-        Returns:
-            bool: true / false
-        """
-        county_has_fees = self.county.check_contains_fees(county_keys, county_values)
-        if city_keys is not None:
-            city_has_fees = self.county.city.check_contains_fees(city_keys, city_values)
-        else:
-            city_has_fees = False
-
-        if county_has_fees or city_has_fees:
-            return True
-        else:
-            return False
 
     def generate_middle_statement(self, county_only_statement, items_added):
         """
