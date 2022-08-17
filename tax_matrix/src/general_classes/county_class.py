@@ -56,33 +56,17 @@ class County:
         self.county_statistics = {}
         self.county_services_modify_options_with_quit = None
 
-
-    def update_county_services(self):
+    #add items
+    def add_city(self, city):
         """
-        update_county_services
-        """
-        # county service combination help
-        self.county_services = [
-            {
-                self.county_wide_fire_title: {
-                    "INITAL": self.county_wide_fire_rate_inital,
-                    "CURRENT": self.county_wide_fire_rate,
-                }
-            },
-            {
-                self.county_wide_police_title: {
-                    "INITAL": self.county_wide_police_rate_inital,
-                    "CURRENT": self.county_wide_police_rate,
-                }
-            },
-            {
-                self.county_wide_ems_title: {
-                    "INITAL": self.county_wide_ems_rate_inital,
-                    "CURRENT": self.county_wide_ems_rate,
-                }
-            },
-        ]
+        add_city allows adding city to county class
 
+        Args:
+            city (obj): object containing selected city
+        """
+        self.city = city
+
+    # get items
     def get_county_name(self):
         """
         get_county_name
@@ -102,15 +86,6 @@ class County:
         print(f"County Rate is: {self.county_wide_rate}")
         return self.county_wide_rate
 
-    def add_city(self, city):
-        """
-        add_city allows adding city to county class
-
-        Args:
-            city (obj): object containing selected city
-        """
-        self.city = city
-
     def get_cities(self):
         """
         get_cities returns all cities
@@ -120,226 +95,20 @@ class County:
         """
         return self.all_cities
 
-    def select_city(self):
+    def get_special_options_title(self):
         """
-        select_city helps select all cities
+        get_special_options_title
 
         Returns:
-            obj: city object
-        """
-        city = InputHelper.input_from_dict(self.all_cities,"")
-        return city
-
-    def print_county_selected_info(self):
-        """
-        print_county_selected_info
-        """
-        Printer.print_green("County...")
-        Printer.print_yellow(f"County Name: {self.county_name}")
-        Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
-
-        self.county_services_modify_options_with_quit = (
-            LogicalWork.create_options_dict_from_county_services_list_no_quit(
-                self.county_services
-            )
-        )
-
-        Printer.short_liner()
-        if self.county_services_modify_options_with_quit is None:
-            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
-        else:
-            for i in self.county_services_modify_options_with_quit:
-                Printer.print_yellow(i)
-        Printer.short_liner()
-
-    def generate_county_statistics(self):
-        """
-        generate_county_statistics
-
-        Returns:
-            TODO FIGURE OUT: item with all county statistics
-        """
-        # get county stats
-        self.county_statistics = {}
-
-        if self.county_wide_rate is not None:
-            self.county_statistics[self.county_wide_rate_title] = self.county_wide_rate
-        else:
-            pass
-        if self.county_wide_fire_rate is not None:
-            self.county_statistics[
-                self.county_wide_fire_title
-            ] = self.county_wide_fire_rate
-        else:
-            pass
-        if self.county_wide_police_rate is not None:
-            self.county_statistics[
-                self.county_wide_police_title
-            ] = self.county_wide_police_rate
-        else:
-            pass
-        if self.county_wide_ems_rate is not None:
-            self.county_statistics[
-                self.county_wide_ems_title
-            ] = self.county_wide_ems_rate
-        else:
-            pass
-
-        return self.county_statistics
-
-    def generate_county_only_statement_no_fee(self):
-        """
-        generate_county_only_statement_no_fee
-        """
-        titles, rates = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
-
-        items_added = 0
-        for title, rate in zip(titles, rates):
-            if items_added != 0:
-                if "Fee" not in title:
-                    if rate is not None:
-                        return_statement = (
-                            return_statement
-                            + LogicalWork.substatement_maker(rate, title)
-                        )
-                        items_added += 1
-            else:
-                return_statement = f"({rate} - {title})"
-                items_added += 1
-
-        return return_statement, items_added
-
-    def check_contains_fees(self, county_keys, county_values):
-        """
-        check_contains_fees checks if items contain fees
-
-        Args:
-            county_keys (list): list of county keys
-            county_values (list): list of county values
-
-        Returns:
-            bool: true or false
-        """
-        for key, value in zip(county_keys, county_values):
-            if "Fee" in key:
-                if value is not None:
-                    return True
-
-        return False
-
-    def generate_county_fees_string(self, county_keys, county_values):
-        """
-        generate_county_fees_string generates string if fees are found for county
-
-        Args:
-            county_keys (list): list of county keys
-            county_values (list): list of county values
-
-        Returns:
-            str: string containing all county fees
-        """
-        county_fee_string = ""
-        for key, fee in zip(county_keys, county_values):
-            if "Fee" in key:
-                if fee is not None:
-                    county_fee_string = (
-                        county_fee_string
-                        + LogicalWork.substatement_maker(f"${fee:,.2f}", key)
-                    )
-
-        return county_fee_string
-
-    def generate_county_total_fees(self, county_keys, county_values):
-        """
-        generate_county_total_fees generate value of all county fees
-
-        Args:
-            county_keys (list): list of county keys
-            county_values (list): list of county values
-
-        Returns:
-            float: value of all county fees
-        """
-        total_of_fees = 0
-        for key, fee in zip(county_keys, county_values):
-            if "Fee" in key:
-                if fee is not None:
-                    total_of_fees += fee
-
-            elif fee is not None:
-                if type(fee) is dict:
-                    check_str = list(fee.keys())[0]
-                    if "Fee" in check_str:
-                        inner_fee = fee[check_str]
-                        total_of_fees += inner_fee
-
-        return total_of_fees
-
-    def generate_county_multiply_rate(self, county_keys, county_values):
-        """
-        generate_county_multiply_rate
-
-        Args:
-            county_keys (list): list of county keys
-            county_values (list): list of county values
-
-        Returns:
-            float: multiply rate
-        """
-        county_multiply_rate = 0.0
-        for key, rate in zip(county_keys, county_values):
-            if "Fee" not in key:  # only add items that don't have fee
-                if rate is not None:  # only add items with None
-                    county_multiply_rate += rate
-
-        return county_multiply_rate
-
-    def select_special_options(self):
-        """
-        select_special_options placeholder for ensuring functionality with countys not containing special options
+            str: none or error
         """
         if self.special_stuff is None:
-            Printer.short_liner()
-            Printer.print_red(f"NO SPECIAL OPTIONS FOR {self.get_county_name()}")
-            Printer.short_liner()
+            return "None"
         else:
-            debugpy.breakpoint()
-            Printer.print_red(
-                "If you see this line there is an issue with special options"
-            )
+            # debugpy.breakpoint()
+            return f"ERROR | SPECIAL OPTIONS NOT CONFIGURED IN {self.get_county_name()}'s Class"
 
-    def select_county_services(self):
-        """
-        select_county_services placeholder for ensuring functionality with countys not containing services
-        """
-        if not self.county_services_exists:  # no county services
-            Printer.short_liner()
-            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
-            Printer.short_liner()
-        else:  # there are options to modify
-
-            input_loop = True
-            while input_loop:
-                self.print_county_selected_info()
-
-                if self.county_services_modify_options_with_quit is not None:
-                    modify = InputHelper.choice_bool(
-                        "Would you like to modfy use of any of the above rates?"
-                    )
-
-                    cls()
-
-                    if modify is not None:
-                        if modify:
-                            self.which_modify_county_services()
-                        else:
-                            input_loop = False
-                    else:
-                        pass
-
-                else:
-                    input_loop = False
-
+    #modify items
     def which_modify_county_services(self):
         """
         which_modify_county_services
@@ -421,15 +190,255 @@ class County:
             debugpy.breakpoint()
             Printer.print_red("There is an ERROR in county service modification")
 
-    def get_special_options_title(self):
+    #update items
+    def update_county_services(self):
         """
-        get_special_options_title
+        update_county_services
+        """
+        # county service combination help
+        self.county_services = [
+            {
+                self.county_wide_fire_title: {
+                    "INITAL": self.county_wide_fire_rate_inital,
+                    "CURRENT": self.county_wide_fire_rate,
+                }
+            },
+            {
+                self.county_wide_police_title: {
+                    "INITAL": self.county_wide_police_rate_inital,
+                    "CURRENT": self.county_wide_police_rate,
+                }
+            },
+            {
+                self.county_wide_ems_title: {
+                    "INITAL": self.county_wide_ems_rate_inital,
+                    "CURRENT": self.county_wide_ems_rate,
+                }
+            },
+        ]
+
+    #logic
+    def check_contains_fees(self, county_keys, county_values):
+        """
+        check_contains_fees checks if items contain fees
+
+        Args:
+            county_keys (list): list of county keys
+            county_values (list): list of county values
 
         Returns:
-            str: none or error
+            bool: true or false
+        """
+        for key, value in zip(county_keys, county_values):
+            if "Fee" in key:
+                if value is not None:
+                    return True
+
+        return False
+
+    #select items
+    def select_city(self):
+        """
+        select_city helps select all cities
+
+        Returns:
+            obj: city object
+        """
+        city = InputHelper.input_from_dict(self.all_cities,"")
+        return city
+
+    def select_special_options(self):
+        """
+        select_special_options placeholder for ensuring functionality with countys not containing special options
         """
         if self.special_stuff is None:
-            return "None"
+            Printer.short_liner()
+            Printer.print_red(f"NO SPECIAL OPTIONS FOR {self.get_county_name()}")
+            Printer.short_liner()
         else:
-            # debugpy.breakpoint()
-            return f"ERROR | SPECIAL OPTIONS NOT CONFIGURED IN {self.get_county_name()}'s Class"
+            debugpy.breakpoint()
+            Printer.print_red(
+                "If you see this line there is an issue with special options"
+            )
+
+    def select_county_services(self):
+        """
+        select_county_services placeholder for ensuring functionality with countys not containing services
+        """
+        if not self.county_services_exists:  # no county services
+            Printer.short_liner()
+            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
+            Printer.short_liner()
+        else:  # there are options to modify
+
+            input_loop = True
+            while input_loop:
+                self.print_county_selected_info()
+
+                if self.county_services_modify_options_with_quit is not None:
+                    modify = InputHelper.choice_bool(
+                        "Would you like to modfy use of any of the above rates?"
+                    )
+
+                    cls()
+
+                    if modify is not None:
+                        if modify:
+                            self.which_modify_county_services()
+                        else:
+                            input_loop = False
+                    else:
+                        pass
+
+                else:
+                    input_loop = False
+
+    #outputs
+    def print_county_selected_info(self):
+        """
+        print_county_selected_info
+        """
+        Printer.print_green("County...")
+        Printer.print_yellow(f"County Name: {self.county_name}")
+        Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
+
+        self.county_services_modify_options_with_quit = (
+            LogicalWork.create_options_dict_from_county_services_list_no_quit(
+                self.county_services
+            )
+        )
+
+        Printer.short_liner()
+        if self.county_services_modify_options_with_quit is None:
+            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
+        else:
+            for i in self.county_services_modify_options_with_quit:
+                Printer.print_yellow(i)
+        Printer.short_liner()
+
+    #generate items
+    def generate_county_only_statement_no_fee(self):
+        """
+        generate_county_only_statement_no_fee
+        """
+        titles, rates = LogicalWork.no_index_dict_to_two_lists(self.county_statistics)
+
+        items_added = 0
+        for title, rate in zip(titles, rates):
+            if items_added != 0:
+                if "Fee" not in title:
+                    if rate is not None:
+                        return_statement = (
+                            return_statement
+                            + LogicalWork.substatement_maker(rate, title)
+                        )
+                        items_added += 1
+            else:
+                return_statement = f"({rate} - {title})"
+                items_added += 1
+
+        return return_statement, items_added
+
+    ##generate items - rates
+    def generate_county_statistics(self):
+        """
+        generate_county_statistics
+
+        Returns:
+            TODO FIGURE OUT: item with all county statistics
+        """
+        # get county stats
+        self.county_statistics = {}
+
+        if self.county_wide_rate is not None:
+            self.county_statistics[self.county_wide_rate_title] = self.county_wide_rate
+        else:
+            pass
+        if self.county_wide_fire_rate is not None:
+            self.county_statistics[
+                self.county_wide_fire_title
+            ] = self.county_wide_fire_rate
+        else:
+            pass
+        if self.county_wide_police_rate is not None:
+            self.county_statistics[
+                self.county_wide_police_title
+            ] = self.county_wide_police_rate
+        else:
+            pass
+        if self.county_wide_ems_rate is not None:
+            self.county_statistics[
+                self.county_wide_ems_title
+            ] = self.county_wide_ems_rate
+        else:
+            pass
+
+        return self.county_statistics
+
+    def generate_county_multiply_rate(self, county_keys, county_values):
+        """
+        generate_county_multiply_rate
+
+        Args:
+            county_keys (list): list of county keys
+            county_values (list): list of county values
+
+        Returns:
+            float: multiply rate
+        """
+        county_multiply_rate = 0.0
+        for key, rate in zip(county_keys, county_values):
+            if "Fee" not in key:  # only add items that don't have fee
+                if rate is not None:  # only add items with None
+                    county_multiply_rate += rate
+
+        return county_multiply_rate
+
+    ##generate items - fees
+    def generate_county_fees_string(self, county_keys, county_values):
+        """
+        generate_county_fees_string generates string if fees are found for county
+
+        Args:
+            county_keys (list): list of county keys
+            county_values (list): list of county values
+
+        Returns:
+            str: string containing all county fees
+        """
+        county_fee_string = ""
+        for key, fee in zip(county_keys, county_values):
+            if "Fee" in key:
+                if fee is not None:
+                    county_fee_string = (
+                        county_fee_string
+                        + LogicalWork.substatement_maker(f"${fee:,.2f}", key)
+                    )
+
+        return county_fee_string
+
+    def generate_county_total_fees(self, county_keys, county_values):
+        """
+        generate_county_total_fees generate value of all county fees
+
+        Args:
+            county_keys (list): list of county keys
+            county_values (list): list of county values
+
+        Returns:
+            float: value of all county fees
+        """
+        total_of_fees = 0
+        for key, fee in zip(county_keys, county_values):
+            if "Fee" in key:
+                if fee is not None:
+                    total_of_fees += fee
+
+            elif fee is not None:
+                if type(fee) is dict:
+                    check_str = list(fee.keys())[0]
+                    if "Fee" in check_str:
+                        inner_fee = fee[check_str]
+                        total_of_fees += inner_fee
+
+        return total_of_fees
