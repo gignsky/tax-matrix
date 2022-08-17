@@ -10,7 +10,7 @@ from . import cls
 
 class County:
     """
-     generic county class
+        generic county class
     """
     def __init__(
         self,
