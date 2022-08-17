@@ -172,6 +172,17 @@ class City:
         Printer.print_yellow(f"Fire Rate Title: {self.fire_title}")
         Printer.print_yellow(self.fire_current_default_str)
 
+    # def print_city_selected_info(self):
+    #     Printer.print_green("City...")
+    #     Printer.print_yellow(f"City Name: {self.city_name}")
+    #     Printer.print_yellow(f"Citywide Tax Rate: {self.city_wide_rate}")
+    #     Printer.print_yellow(
+    #         f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.6g}"
+    #     )
+    #     Printer.print_yellow(
+    #         f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
+    #     )
+    
     #generate items
     def generate_city_current_default_strs(self):
         """
@@ -214,16 +225,6 @@ class City:
             f"Fire Rate: {current_fire} | STANDARD RATE: {self.inital_fire_rate}"
         )
 
-    # def print_city_selected_info(self):
-    #     Printer.print_green("City...")
-    #     Printer.print_yellow(f"City Name: {self.city_name}")
-    #     Printer.print_yellow(f"Citywide Tax Rate: {self.city_wide_rate}")
-    #     Printer.print_yellow(
-    #         f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.6g}"
-    #     )
-    #     Printer.print_yellow(
-    #         f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
-    #     )
 
     def generate_city_statistics(self):
         """
