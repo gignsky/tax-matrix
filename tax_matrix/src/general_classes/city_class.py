@@ -182,7 +182,7 @@ class City:
     #     Printer.print_yellow(
     #         f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
     #     )
-    
+
     #generate items
     def generate_city_current_default_strs(self):
         """
@@ -224,7 +224,6 @@ class City:
         self.fire_current_default_str = (
             f"Fire Rate: {current_fire} | STANDARD RATE: {self.inital_fire_rate}"
         )
-
 
     def generate_city_statistics(self):
         """
