@@ -43,6 +43,7 @@ class City:
         self.fire_current_default_str=None
         self.city_statistics=None
 
+    #get items
     def get_city_name(self):
         """
         get_city_name
@@ -52,6 +53,16 @@ class City:
         """
         return self.city_name
 
+    def get_police_and_fire_strings(self):
+        """
+        get_police_and_fire_strings current
+
+        Returns:
+            strs: current fire and police strings
+        """
+        return self.police_current_default_str, self.fire_current_default_str
+
+    #modify items
     def modify_or_keep(self):
         """
         modify_or_keep police and fire items
@@ -72,26 +83,6 @@ class City:
                     self.which_modify()
                 else:
                     input_loop = False
-
-    def get_police_and_fire_strings(self):
-        """
-        get_police_and_fire_strings current
-
-        Returns:
-            strs: current fire and police strings
-        """
-        return self.police_current_default_str, self.fire_current_default_str
-
-    def update_police_and_fire_rates_for_string(self, police_rate, fire_rate):
-        """
-        update_police_and_fire_rates_for_string
-
-        Args:
-            police_rate (float): police float
-            fire_rate (float): fire float
-        """
-        self.police_rate = police_rate
-        self.fire_rate = fire_rate
 
     def which_modify(self):
         """
@@ -152,6 +143,19 @@ class City:
         cls()
         Printer.print_green(f"Fire Rate updated to: {self.fire_rate}")
 
+    #update items
+    def update_police_and_fire_rates_for_string(self, police_rate, fire_rate):
+        """
+        update_police_and_fire_rates_for_string
+
+        Args:
+            police_rate (float): police float
+            fire_rate (float): fire float
+        """
+        self.police_rate = police_rate
+        self.fire_rate = fire_rate
+
+    #printing
     def print_modifiable_info(self):
         """
         print_modifiable_info print all info capable of being modified
@@ -168,6 +172,7 @@ class City:
         Printer.print_yellow(f"Fire Rate Title: {self.fire_title}")
         Printer.print_yellow(self.fire_current_default_str)
 
+    #generate items
     def generate_city_current_default_strs(self):
         """
         generate_CITY_current_default_strs
@@ -281,28 +286,6 @@ class City:
 
         return return_statement
 
-    def check_contains_fees(self, city_keys, city_values):
-        """
-        check_contains_fees city
-
-        Args:
-            city_keys (list): list of city keys
-            city_values (list): list of city values
-
-        Returns:
-            bool: true/false
-        """
-        for key, value in zip(city_keys, city_values):
-            if "Fee" in key:
-                return True
-
-            if value is not None:
-                check_str = list(value.keys())[0]
-                if "Fee" in check_str:
-                    return True
-
-        return False
-
     def generate_city_fees_string(self, city_keys, city_values):
         """
         generate_city_fees_string
@@ -362,3 +345,26 @@ class City:
                         total_of_fees += inner_fee
 
         return total_of_fees
+
+    #logical
+    def check_contains_fees(self, city_keys, city_values):
+        """
+        check_contains_fees city
+
+        Args:
+            city_keys (list): list of city keys
+            city_values (list): list of city values
+
+        Returns:
+            bool: true/false
+        """
+        for key, value in zip(city_keys, city_values):
+            if "Fee" in key:
+                return True
+
+            if value is not None:
+                check_str = list(value.keys())[0]
+                if "Fee" in check_str:
+                    return True
+
+        return False
