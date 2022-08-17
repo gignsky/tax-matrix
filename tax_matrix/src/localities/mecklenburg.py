@@ -137,8 +137,6 @@ def city_of_charlotte():
 
     return city
 
-
-
 def town_of_cornelius():
     """
         City Class
@@ -163,7 +161,6 @@ def town_of_cornelius():
     )
 
     return city
-
 
 def town_of_davidson():
     """
@@ -190,7 +187,6 @@ def town_of_davidson():
 
     return city
 
-
 def town_of_huntersville():
     """
         City Class
@@ -215,7 +211,6 @@ def town_of_huntersville():
     )
 
     return city
-
 
 def town_of_matthews():
     """
@@ -242,7 +237,6 @@ def town_of_matthews():
 
     return city
 
-
 def town_of_mint_hill():
     """
         City Class
@@ -268,7 +262,6 @@ def town_of_mint_hill():
 
     return city
 
-
 def town_of_pineville():
     """
         City Class
@@ -293,7 +286,6 @@ def town_of_pineville():
     )
 
     return city
-
 
 def stallings():
     """
