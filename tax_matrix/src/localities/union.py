@@ -2,12 +2,9 @@
     union co rates document
 """
 
-# TODO FIX UP THIS DOC, just barely started adding
-
-
 from . import general_classes
 from . import special_classes
-
+from . import county_classes
 
 def main():
     """
@@ -44,11 +41,7 @@ def main():
         14: town_of_mineral_springs(),
         15: town_of_mint_hill(),
     }
-    special_stuff = True
 
-    # Special Stuff Ttiles & Rates
-    debt_budgetary_fund_title = "Debt Budgetary Fund"
-    debt_budgetary_fund_rate = 0.001025
 
     # special fire rates
     special_fire = {
@@ -108,7 +101,16 @@ def main():
         },
     }
 
-    union = special_classes.union_classes.Union(
+    # Special Stuff Ttiles & Rates
+    special_debt_fund={
+        19: {"Debt Budgetary Fund":0.001061}}
+
+    all_rate_options=special_fire
+    all_rate_options.update(special_debt_fund)
+
+    special_stuff = [None,all_rate_options]
+
+    union = general_classes.County(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
@@ -120,13 +122,9 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
-        debt_budgetary_fund_title,
-        debt_budgetary_fund_rate,
-        special_fire,
     )
 
     return union
-
 
 def village_of_marvin():
     """
@@ -143,7 +141,7 @@ def village_of_marvin():
 
     # Specific
     waste_title = f"{city_name} Solid Waste Fee"
-    waste_fee = 61.00
+    waste_fee = 244.00
 
     city = special_classes.city_with_waste_fee.CityWithWasteFee(
         city_name,
@@ -159,14 +157,13 @@ def village_of_marvin():
 
     return city
 
-
 def city_of_monroe():
     """
         City Class
     """
     # INFORMATION
     city_name = "City of Monroe"
-    city_rate = 0.006163
+    city_rate = 0.005025
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -175,9 +172,9 @@ def city_of_monroe():
 
     # specific
     special_district_title = "Downtown Special District"
-    special_district_rate = 0.00219
+    special_district_rate = 0.001950
 
-    city = special_classes.union_classes.CityOfMonroe(
+    city = county_classes.union_classes.CityOfMonroe(
         city_name,
         city_rate,
         city_rate_title,
@@ -190,7 +187,6 @@ def city_of_monroe():
     )
 
     return city
-
 
 def town_of_wingate():
     """
@@ -217,7 +213,6 @@ def town_of_wingate():
 
     return city
 
-
 def town_of_marshville():
     """
         City Class
@@ -242,7 +237,6 @@ def town_of_marshville():
     )
 
     return city
-
 
 def town_of_waxhaw():
     """
@@ -269,7 +263,6 @@ def town_of_waxhaw():
 
     return city
 
-
 def town_of_indian_trail():
     """
         City Class
@@ -283,11 +276,7 @@ def town_of_indian_trail():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    # Specific
-    waste_title = f"{city_name} Solid Waste Fee"
-    waste_fee = 61.00
-
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -295,12 +284,9 @@ def town_of_indian_trail():
         police_rate_title,
         fire_rate,
         fire_rate_title,
-        waste_title,
-        waste_fee,
     )
 
     return city
-
 
 def town_of_stallings():
     """
@@ -308,18 +294,14 @@ def town_of_stallings():
     """
     # INFORMATION
     city_name = "Town of Stallings"
-    city_rate = 0.0016
+    city_rate = 0.00186
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    # Specific
-    waste_title = f"{city_name} Solid Waste Fee"
-    waste_fee = 61.00
-
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -327,12 +309,9 @@ def town_of_stallings():
         police_rate_title,
         fire_rate,
         fire_rate_title,
-        waste_title,
-        waste_fee,
     )
 
     return city
-
 
 def town_of_weddington():
     """
@@ -359,25 +338,20 @@ def town_of_weddington():
 
     return city
 
-
 def village_of_lake_park():
     """
         City Class
     """
     # INFORMATION
     city_name = "Village of Lake Park"
-    city_rate = 0.0019
+    city_rate = 0.002025
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
 
-    # Specific
-    waste_title = f"{city_name} Solid Waste Fee"
-    waste_fee = 61.00
-
-    city = special_classes.city_with_waste_fee.CityWithWasteFee(
+    city = general_classes.City(
         city_name,
         city_rate,
         city_rate_title,
@@ -385,12 +359,9 @@ def village_of_lake_park():
         police_rate_title,
         fire_rate,
         fire_rate_title,
-        waste_title,
-        waste_fee,
     )
 
     return city
-
 
 def town_of_fairview():
     """
@@ -417,7 +388,6 @@ def town_of_fairview():
 
     return city
 
-
 def town_of_hemby_bridge():
     """
         City Class
@@ -442,7 +412,6 @@ def town_of_hemby_bridge():
     )
 
     return city
-
 
 def village_of_wesley_chapel():
     """
@@ -469,7 +438,6 @@ def village_of_wesley_chapel():
 
     return city
 
-
 def town_of_unionville():
     """
         City Class
@@ -495,14 +463,13 @@ def town_of_unionville():
 
     return city
 
-
 def town_of_mineral_springs():
     """
         City Class
     """
     # INFORMATION
     city_name = "Town of Mineral Springs"
-    city_rate = 0.00025
+    city_rate = 0.00021
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -520,7 +487,6 @@ def town_of_mineral_springs():
     )
 
     return city
-
 
 def town_of_mint_hill():
     """
