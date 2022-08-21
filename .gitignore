@@ -6816,3 +6816,11 @@ tax_matrix/src/special_classes/__pycache__/stanly_classes.cpython-38.pyc
 .venv_tax-matrix/lib/python3.8/site-packages/tomlkit-0.11.4.dist-info/WHEEL
 .venv_tax-matrix/lib/python3.8/site-packages/wheel-0.37.1.dist-info/REQUESTED
 .venv_tax-matrix/lib/python3.8/site-packages/black-22.6.0.dist-info/REQUESTED
+tax_matrix/src/county_classes/__pycache__/__init__.cpython-38.pyc
+tax_matrix/src/county_classes/__pycache__/mecklenburg_classes.cpython-38.pyc
+tax_matrix/src/county_classes/__pycache__/union_classes.cpython-38.pyc
+tax_matrix/src/general_classes/__pycache__/__init__.cpython-38.pyc
+tax_matrix/src/general_classes/__pycache__/all_counties_and_cities_classes.cpython-38.pyc
+tax_matrix/src/general_classes/__pycache__/city_class.cpython-38.pyc
+tax_matrix/src/general_classes/__pycache__/county_class.cpython-38.pyc
+tax_matrix/src/general_classes/__pycache__/property_class.cpython-38.pyc
