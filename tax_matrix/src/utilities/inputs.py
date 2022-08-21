@@ -420,7 +420,7 @@ class InputHelper:
 
         inputted_value = InputHelper.input_from_dict(
             options_dict,
-            "Please ENTER number associated with the option you wishh to select",
+            "Please ENTER number associated with the option you wish to select",
         )
 
         return inputted_value
