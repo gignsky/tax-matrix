@@ -159,6 +159,9 @@ class LogicalWork:
         except KeyError:
             county_second_value = None
 
+        except IndexError:
+            county_second_value = None
+
         if county_second_value is not None:
             return False  # returns false if second value could be found or city values are found
         else:
