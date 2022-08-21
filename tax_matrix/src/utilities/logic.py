@@ -2,7 +2,8 @@
     General logic for entire program
 """
 
-import debugpy
+from .import debugpy
+from . import cls
 
 # from . import counties
 
@@ -300,3 +301,11 @@ class LogicalWork:
                 )
 
         return return_list
+
+    @staticmethod
+    def wait():
+        """
+        wait will wait for any input to continue onwards
+        """
+        input("press ANY key to Continue\n...\n")
+        cls()

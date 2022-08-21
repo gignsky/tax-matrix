@@ -66,24 +66,7 @@ def main():
             cls()
 
         else:
-            if inital_run_status is True:
-                menu_option = options_dict[2]
-                inital_run_status = "Get Price then County"
-            elif inital_run_status == "Get Price then County":
-                menu_option = options_dict[3]
-                inital_run_status = "check special district options"
-            elif inital_run_status == "check special district options":
-                menu_option = options_dict[4]
-                inital_run_status = "Modify Countywide Fire, Police, & EMS"
-            elif inital_run_status == "Modify Countywide Fire, Police, & EMS":
-                menu_option = options_dict[5]
-                inital_run_status = "Do you want a city?"
-            elif inital_run_status == "Do you want a city?":
-                menu_option = options_dict[6]
-                inital_run_status = "continue onwards"
-            else:
-                menu_option = options_dict[1]  # print stats before continuing
-                inital_run_status = False
+            inital_run_status, menu_option = inital_run_stack(inital_run_status, options_dict)
 
         # "Quit Program & Output Statement"
         if menu_option == options_dict[0]:
@@ -218,12 +201,37 @@ def main():
     src.utilities.printers.Printer.liner()
 
 
-def wait():
+def inital_run_stack(inital_run_status, options_dict):
     """
-    wait will wait for any input to continue onwards
+    inital_run_stack runs menu selection for inital run of script
+
+    Args:
+        inital_run_status (bool): true/false
+        options_dict (dict): dictionary of options
+
+    Returns:
+        value_from_dict: returns value from options dict and new inital_run_status
     """
-    input("press ANY key to Continue\n...\n")
-    cls()
+
+    if inital_run_status is True:
+        menu_option = options_dict[2]
+        inital_run_status = "Get Price then County"
+    elif inital_run_status == "Get Price then County":
+        menu_option = options_dict[3]
+        inital_run_status = "check special district options"
+    elif inital_run_status == "check special district options":
+        menu_option = options_dict[4]
+        inital_run_status = "Modify Countywide Fire, Police, & EMS"
+    elif inital_run_status == "Modify Countywide Fire, Police, & EMS":
+        menu_option = options_dict[5]
+        inital_run_status = "Do you want a city?"
+    elif inital_run_status == "Do you want a city?":
+        menu_option = options_dict[6]
+        inital_run_status = "continue onwards"
+    else:
+        menu_option = options_dict[1]  # print stats before continuing
+        inital_run_status = False
+    return inital_run_status,menu_option
 
 
 ###
