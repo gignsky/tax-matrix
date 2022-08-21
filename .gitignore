@@ -6824,3 +6824,7 @@ tax_matrix/src/general_classes/__pycache__/all_counties_and_cities_classes.cpyth
 tax_matrix/src/general_classes/__pycache__/city_class.cpython-38.pyc
 tax_matrix/src/general_classes/__pycache__/county_class.cpython-38.pyc
 tax_matrix/src/general_classes/__pycache__/property_class.cpython-38.pyc
+tax_matrix/src/special_classes/__pycache__/county_special_stuff_handler.cpython-38.pyc
+tax_matrix/src/special_classes/county_options/__pycache__/__init__.cpython-38.pyc
+tax_matrix/src/special_classes/county_options/__pycache__/county_fee_options.cpython-38.pyc
+tax_matrix/src/special_classes/county_options/__pycache__/county_rate_options.cpython-38.pyc
