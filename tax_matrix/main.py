@@ -72,11 +72,16 @@ def main():
         if menu_option == options_dict[0]:
             main_loop_running = False
 
-        # "Print Statisticts"
+        # "Print Statisticts & statement"
         elif menu_option == options_dict[1]:
             cls()
             subject.print_current_stats()
-            wait()
+
+            src.utilities.Printer.print_cyan("...\n Statement to output:")
+            statement=generate_statement(subject)
+            src.utilities.Printer.print_green(statement)
+
+            src.utilities.LogicalWork.wait()
 
         # "Modify Price"
         elif menu_option == options_dict[2]:
@@ -187,10 +192,8 @@ def main():
             )
 
     cls()
-    # generate statistics
-    subject.generate_statistics()
-    # statement maker
-    statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
+    # statement making
+    statement = generate_statement(subject)
 
     # print goodbye
     src.utilities.printers.Printer.end_program_message()
@@ -200,6 +203,23 @@ def main():
     src.utilities.printers.Printer.print_green(statement)
     src.utilities.printers.Printer.liner()
 
+def generate_statement(subject):
+    """
+    generate_statement generates final statemnet for output
+
+    Args:
+        subject (class): class containing all subject information
+
+    Returns:
+        str: final output statemnet
+    """
+
+    # generate statistics
+    subject.generate_statistics()
+
+    statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
+
+    return statement
 
 def inital_run_stack(inital_run_status, options_dict):
     """
