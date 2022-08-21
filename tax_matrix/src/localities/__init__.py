@@ -15,7 +15,7 @@ from ..utilities import Printer
 from .mecklenburg import main as mecklenburg
 from .union import main as union
 from .stanly import main as stanly
-# from .cabarrus import main as cabarrus
+from .cabarrus import main as cabarrus
 from .iredell import main as iredell
 # from .rowan import main as rowan
 from .gaston import main as gaston
@@ -38,7 +38,7 @@ def load_all_counties(which_run):
     general_classes.Counties.add_county(mecklenburg())
     general_classes.Counties.add_county(union())
     general_classes.Counties.add_county(stanly())
-    # general_classes.Counties.add_county(cabarrus())
+    general_classes.Counties.add_county(cabarrus())
     general_classes.Counties.add_county(iredell())
     # general_classes.Counties.add_county(rowan())
     general_classes.Counties.add_county(gaston())
