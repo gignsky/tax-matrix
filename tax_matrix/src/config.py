@@ -9,7 +9,7 @@ def current_version():
 
 
 def date_revised():
-    var = "08.10.2022"
+    var = "08.21.2022"
     return var
 
 
