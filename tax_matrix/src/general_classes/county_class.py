@@ -51,7 +51,7 @@ class County:
             self.county_services
         )
 
-        Printer.inside_liner(f"Initalized {county_name} and all cities and towns")
+        # Printer.inside_liner(f"Initalized {county_name} and all cities and towns")
 
         #inital error fixes to define initally
         self.special_stuff_class=self.initalize_special_stuff_class()

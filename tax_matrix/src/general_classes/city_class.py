@@ -30,9 +30,9 @@ class City:
         self.police_title = police_title
         self.fire_rate = fire_rate
         self.fire_title = fire_title
-        Printer.print_green(
-            f"New City and/or Town of {self.city_name} has been loaded into Memory"
-        )
+        # Printer.print_green(
+        #     f"New City and/or Town of {self.city_name} has been loaded into Memory"
+        # )
 
         # saves for inital values
         self.inital_police_rate = self.police_rate
