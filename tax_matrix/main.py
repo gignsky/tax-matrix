@@ -25,27 +25,31 @@ def main():
     # get county list
     all_counties = src.general_classes.Counties.get_all_counties()
 
+    # set inital values
+    main_loop_running = (
+        True  # var to keep program running until stop is requested or neccecary
+    )
+
+    inital_run_status = (
+        True  # var to set the inital run to run through all avaliable options
+    )
+
+    subject_has_price = (
+        False  # var sets has price var to false to indicate a price has not been loaded
+    )
+
     # dict of avalable options
     options_dict = {
         0: "Quit Program & Output Statement",
-        1: "Print Statisticts",
-        2: "Modify Price",
+        1: "Print Statisticts & Statement\n...",
+        2: "Modify Price\n...",
         3: "Modify County",
-        4: "TEMPORARY STRING\n...",
-        5: "Modify Countywide Police, Fire, and/or EMS rates",
+        4: "Modify Countywide Police, Fire, and/or EMS rates",
+        5: "Modify County Special Options - Fees & Rates\n...",
         6: "Modify City and/or City Options\n...",
         99: "Reload Counties to Default Values",
     }
 
-    main_loop_running = (
-        True  # var to keep program running until stop is requested or neccecary
-    )
-    inital_run_status = (
-        True  # var to set the inital run to run through all avaliable options
-    )
-    subject_has_price = (
-        False  # var sets has price var to false to indicate a price has not been loaded
-    )
 
     # main program loop
     while main_loop_running:
@@ -128,18 +132,15 @@ def main():
 
                 cls()
 
-                options_dict[
-                    4
-                ] = f"Modify County Special Options - {subject.county.get_special_options_title()}\n..."
+        # "Modify Countywide Police, Fire, and/or EMS rates"
+        elif menu_option == options_dict[4]:
+            subject.county.select_countywide_services()
 
         # "Modify County Special Options"
-        elif menu_option == options_dict[4]:
-            # check for special options
-            subject.county.select_special_options()
-
-        # "Modify Countywide Police, Fire, and/or EMS rates"
         elif menu_option == options_dict[5]:
-            subject.county.select_county_services()
+            # check for special options
+            subject.county.modify_special_options()
+
 
         # "Modify City and/or City Options"
         elif menu_option == options_dict[6]:

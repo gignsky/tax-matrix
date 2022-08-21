@@ -10,10 +10,44 @@ from . import cls
 
 class InputHelper:
     """
-     generic input functions
+        generic input functions
 
-     ***NOTE: all items in this class are "Static Methods"
+        ***NOTE: all items in this class are "Static Methods"
     """
+    @staticmethod
+    def input_from_dict_get_index(dictionary, prompt,list_for_index):
+        """
+        input_from_dict grabs input from dictionary of options and returns value associated with dictionary item after testing it
+
+        Args:
+            dictionary (dict): dictionary of options
+            prompt (str): prompt of what you are selecting in the dict placed prior to options with "Please Enter Value associated with your selection" printed for input
+            list_for_index (list): a list of items to be associated with dictionary value that is selected by nature of the same index value entered by user
+
+        Returns:
+            dict[item]: item associated with selection
+        """
+        input_loop = True
+
+        while input_loop:
+            Printer.inside_liner(prompt)
+
+            Printer.print_dict_containing_index(dictionary)
+
+            Printer.liner()
+            inputted_value = input(
+                "Please ENTER Value associated with your selection: "
+            )
+            Printer.liner()
+
+            value = InputTesters.verify_dict_selection(inputted_value, dictionary)
+            if value is not None:
+                index_value=int(inputted_value)
+                return_item=list_for_index[index_value]
+                input_loop = False
+
+        return return_item
+
     @staticmethod
     def input_from_dict(dictionary, prompt):
         """
