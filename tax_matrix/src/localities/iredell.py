@@ -34,11 +34,13 @@ def main():
         9: love_valley(),
         10: davidson_town(),
     }
-    special_stuff = True
+
+
 
     # countywide solid waste fee
-    special_county_waste_name = "Iredell Co., Solid Waste Fee"
-    special_county_waste_fee = 60.00
+    county_waste_fee={
+        1: {"Iredell Co., Solid Waste Fee":60.00}
+        }
 
     # special fire rates - unused with no rates
     special_fire = {
@@ -48,7 +50,9 @@ def main():
         5: {"B&F Fire": 0},
     }
 
-    iredell = special_classes.iredell_classes.Iredell(
+    special_stuff = [county_waste_fee,special_fire]
+
+    iredell = general_classes.County(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
@@ -60,9 +64,6 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
-        special_county_waste_name,
-        special_county_waste_fee,
-        special_fire,
     )
 
     return iredell

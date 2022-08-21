@@ -4,7 +4,6 @@
 
 
 from . import general_classes
-from . import special_classes
 
 
 def main():
@@ -40,7 +39,6 @@ def main():
         13: spencer_mtn(),
         14: stanly(),
     }
-    special_stuff = True
     county_fire_services = {
         1: {"AG Center Fire": 0.00092},
         2: {"Alexis VFD": 0.00079},
@@ -61,7 +59,9 @@ def main():
         17: {"Waco Fire": 0.00081},
     }
 
-    gaston = special_classes.gaston_classes.Gaston(
+    special_stuff = [None,county_fire_services]
+
+    gaston = general_classes.County(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
@@ -73,7 +73,6 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
-        county_fire_services,
     )
 
     return gaston

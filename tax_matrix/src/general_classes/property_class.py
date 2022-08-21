@@ -5,25 +5,27 @@
 from . import Printer
 from . import LogicalWork
 
+
 class Property:
     """
-        Class for generic Property
+    Class for generic Property
     """
+
     def __init__(self):
         self.price_int = None
         self.price_str = None
         self.county = None
         self.final_tax_cost = 0.0
 
-        #inital declarations
-        self.statistics=None
-        self.countywide_only=None
-        self.contains_fees=None
-        self.multiply_rate=None
-        self.city_exists=None
-        self.with_county_no_city=None
+        # inital declarations
+        self.statistics = None
+        self.countywide_only = None
+        self.contains_fees = None
+        self.multiply_rate = None
+        self.city_exists = None
+        self.with_county_no_city = None
 
-    #add items
+    # add items
     def add_price(self, price_int, price_str):
         """
         add_price add price to subject
@@ -64,7 +66,7 @@ class Property:
         """
         self.county.add_city(city)
 
-    #get items
+    # get items
     def get_price_str(self):
         """
         get_price_str
@@ -94,24 +96,27 @@ class Property:
         """
         return self.county
 
-    #printing
+    # printing
     def print_current_stats(self):
         """
         print_current_stats
         """
+
         Printer.print_green("Current statistics to be added to final statement:")
         Printer.print_yellow(f"Current Subject Price: {self.price_str}")
+
         self.county.print_county_selected_info()
+
         if self.county.city is None:
-            Printer.short_liner()
-            Printer.print_red("No City has been Selected")
-            Printer.short_liner()
+            # Printer.short_liner()
+            Printer.print_red("...\nNo City has been Selected")
+            # Printer.short_liner()
         else:
             Printer.short_liner()
             self.county.city.print_modifiable_info()
             Printer.short_liner()
 
-    #logical
+    # logical
     def check_contains_fees_all(
         self, county_keys, county_values, city_keys, city_values
     ):
@@ -138,7 +143,7 @@ class Property:
         else:
             return False
 
-    #generate items
+    # generate items
     def generate_statistics(self):
         """
         generate_statistics

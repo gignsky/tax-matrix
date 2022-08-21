@@ -4,7 +4,7 @@
 
 
 from . import general_classes
-from . import special_classes
+from . import county_classes
 
 def main():
     """
@@ -35,7 +35,6 @@ def main():
         8: town_of_pineville(),
         9: stallings(),
     }
-    special_stuff = True
     waste_options = {
         1: {"Mecklenburg Single- & Multi- Family Solid Waste Fee": 39.50},
         2: {"Charlotte Single- & Multi- Family Solid Waste Fee": 86.06},
@@ -57,7 +56,9 @@ def main():
         11: {"Police District Unincorporated Area (ETJ) For Pineville": 0.001637},
     }
 
-    meck = special_classes.mecklenburg_classes.Mecklenburg(
+    special_stuff = [waste_options,meck_services]
+
+    meck = general_classes.County(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
@@ -69,14 +70,11 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
-        waste_options,
-        meck_services,
     )
 
     return meck
 
 # consider moving below classes to antoher file or folder would need to loaded prior to to localities folder
-
 
 def charlotte():
     """
@@ -124,7 +122,7 @@ def city_of_charlotte():
         6: {"District 6": {0.0004: "City of Charlotte District 6 (SouthPark)"}},
     }
 
-    city = special_classes.mecklenburg_classes.CityOfCharlotte(
+    city = county_classes.mecklenburg_classes.CityOfCharlotte(
         city_name,
         city_rate,
         city_rate_title,

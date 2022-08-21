@@ -5,8 +5,9 @@
 from . import LogicalWork
 from . import Printer
 from . import InputHelper
-from . import debugpy
 from . import cls
+from . import debugpy
+from . import SpecialItems
 
 class County:
     """
@@ -53,8 +54,23 @@ class County:
         Printer.inside_liner(f"Initalized {county_name} and all cities and towns")
 
         #inital error fixes to define initally
+        self.special_stuff_class=self.initalize_special_stuff_class()
         self.county_statistics = {}
-        self.county_services_modify_options_with_quit = None
+        self.county_services_modify_options_with_no_quit = None
+
+    def initalize_special_stuff_class(self):
+        """
+        initalize_special_stuff_class
+
+        Returns:
+            class or None: returns class for specialItems
+        """
+        if self.special_stuff is not None:
+            item=SpecialItems(self.special_stuff[0],self.special_stuff[1])
+        else:
+            item=None
+
+        return item
 
     #add items
     def add_city(self, city):
@@ -119,14 +135,14 @@ class County:
 
         while mod_loop:
             self.update_county_services()
-            self.county_services_modify_options_with_quit = (
+            self.county_services_modify_options_with_no_quit = (
                 LogicalWork.create_options_dict_from_county_services_list_with_quit(
                     self.county_services
                 )
             )
 
             which_modify = InputHelper.input_from_dict_with_statement(
-                self.county_services_modify_options_with_quit,
+                self.county_services_modify_options_with_no_quit,
                 "Available County Services to Modify: ",
             )
 
@@ -139,11 +155,11 @@ class County:
 
                 else:
                     # statement = list(which_modify.keys())[0]
-                    self.modify_county_service(which_modify)
+                    self.modify_countywide_services(which_modify)
             else:
                 mod_loop = False
 
-    def modify_county_service(self, dictionary):
+    def modify_countywide_services(self, dictionary):
         """
         modify_county_service will modify county services
 
@@ -247,21 +263,18 @@ class County:
         city = InputHelper.input_from_dict(self.all_cities,"")
         return city
 
-    def select_special_options(self):
+    def modify_special_options(self):
         """
         select_special_options placeholder for ensuring functionality with countys not containing special options
         """
-        if self.special_stuff is None:
+        if self.special_stuff is not None:
+            self.special_stuff_class.general_modify_decisions()
+        else:
             Printer.short_liner()
             Printer.print_red(f"NO SPECIAL OPTIONS FOR {self.get_county_name()}")
             Printer.short_liner()
-        else:
-            debugpy.breakpoint()
-            Printer.print_red(
-                "If you see this line there is an issue with special options"
-            )
 
-    def select_county_services(self):
+    def select_countywide_services(self):
         """
         select_county_services placeholder for ensuring functionality with countys not containing services
         """
@@ -275,7 +288,7 @@ class County:
             while input_loop:
                 self.print_county_selected_info()
 
-                if self.county_services_modify_options_with_quit is not None:
+                if self.county_services_modify_options_with_no_quit is not None:
                     modify = InputHelper.choice_bool(
                         "Would you like to modfy use of any of the above rates?"
                     )
@@ -302,19 +315,34 @@ class County:
         Printer.print_yellow(f"County Name: {self.county_name}")
         Printer.print_yellow(f"Countywide Tax Rate: {self.county_wide_rate}")
 
-        self.county_services_modify_options_with_quit = (
+        self.update_county_services()
+
+        self.county_services_modify_options_with_no_quit = (
             LogicalWork.create_options_dict_from_county_services_list_no_quit(
                 self.county_services
             )
         )
 
-        Printer.short_liner()
-        if self.county_services_modify_options_with_quit is None:
-            Printer.print_red(f"NO COUNTY SERVICE OPTIONS FOR {self.get_county_name()}")
+        Printer.print_cyan("...")
+
+        #countywide services fire/police/ems stuff
+        if self.county_services_modify_options_with_no_quit is None:
+            Printer.print_red(f"NO COUNTYWIDE SERVICE OPTIONS FOR {self.get_county_name()}")
         else:
-            for i in self.county_services_modify_options_with_quit:
-                Printer.print_yellow(i)
-        Printer.short_liner()
+            for item in self.county_services_modify_options_with_no_quit:
+                Printer.print_yellow(item)
+
+        #special rates and fees
+        if self.special_stuff is not None:
+            special_rates_and_fees_statement_list=self.special_stuff_class.generate_statistics_statement()
+
+            for item in special_rates_and_fees_statement_list:
+                if item is not None:
+                    for subitem in item:
+                        Printer.print_yellow(subitem)
+
+        else:
+            Printer.print_red("No Special County Fees/Rates")
 
     #generate items
     def generate_county_only_statement_no_fee(self):
@@ -372,6 +400,11 @@ class County:
             ] = self.county_wide_ems_rate
         else:
             pass
+
+        if self.special_stuff is not None:
+            special_stuff_dict=self.special_stuff_class.generate_output_statement_statement()
+            if special_stuff_dict is not None:
+                self.county_statistics.update(special_stuff_dict)
 
         return self.county_statistics
 
