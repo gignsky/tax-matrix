@@ -17,7 +17,7 @@ from .union import main as union
 from .stanly import main as stanly
 from .cabarrus import main as cabarrus
 from .iredell import main as iredell
-# from .rowan import main as rowan
+from .rowan import main as rowan
 from .gaston import main as gaston
 # from .lancaster import main as lancaster
 # from .york import main as york
@@ -40,7 +40,7 @@ def load_all_counties(which_run):
     general_classes.Counties.add_county(stanly())
     general_classes.Counties.add_county(cabarrus())
     general_classes.Counties.add_county(iredell())
-    # general_classes.Counties.add_county(rowan())
+    general_classes.Counties.add_county(rowan())
     general_classes.Counties.add_county(gaston())
     # general_classes.Counties.add_county(lancaster())
     # general_classes.Counties.add_county(york())
