@@ -68,7 +68,6 @@ class InputTesters:
 
             value = None
 
-
         return value
 
     @staticmethod

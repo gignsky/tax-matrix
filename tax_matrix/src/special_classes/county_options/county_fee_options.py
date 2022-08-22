@@ -11,19 +11,19 @@ from . import InputTesters
 
 class FeeOptions:
     """
-        handles waste options
+    handles waste options
     """
 
-    #inital runs
-    def __init__(self,fee_options_dictionary):
-        self.input_dictionary=fee_options_dictionary
-        self.dictionary_of_classes=self.initalize_classes()
-        self.stats=None
+    # inital runs
+    def __init__(self, fee_options_dictionary):
+        self.input_dictionary = fee_options_dictionary
+        self.dictionary_of_classes = self.initalize_classes()
+        self.stats = None
 
-        self.list_of_fee_floats=[]
-        self.list_of_fee_strings=[]
+        self.list_of_fee_floats = []
+        self.list_of_fee_strings = []
 
-        self.list_of_fee_titles=self.get_item_titles()
+        self.list_of_fee_titles = self.get_item_titles()
 
         self.update_current_fees()
         self.update_stats()
@@ -37,7 +37,9 @@ class FeeOptions:
         """
         list_of_all_fee_classes = []
         for index in self.input_dictionary:
-            list_of_all_fee_classes.append(IndividualFeeItem(self.input_dictionary, index))
+            list_of_all_fee_classes.append(
+                IndividualFeeItem(self.input_dictionary, index)
+            )
 
         return list_of_all_fee_classes
 
@@ -46,7 +48,7 @@ class FeeOptions:
         """
         retreive_item_titles add titles to list of titles
         """
-        list_to_return=[]
+        list_to_return = []
 
         self.update_current_fees()
 
@@ -65,7 +67,7 @@ class FeeOptions:
         self.update_stats()
         return self.stats
 
-    #update
+    # update
     def update_current_fees(self):
         """
         update_current_fees updates current fees
@@ -85,11 +87,11 @@ class FeeOptions:
             dict: county stats
         """
         self.update_current_fees()
-        self.stats={}
-        for title, fee_float in zip(self.list_of_fee_titles,self.list_of_fee_floats):
-            self.stats[title]=fee_float
+        self.stats = {}
+        for title, fee_float in zip(self.list_of_fee_titles, self.list_of_fee_floats):
+            self.stats[title] = fee_float
 
-    #logic
+    # logic
     def fee_info_dict_with_quit_option(self):
         """
         fee_info_dict_with_quit_option generates dict with quit options from available options of fee areas
@@ -98,17 +100,17 @@ class FeeOptions:
             dict: dictionary of modifable fee options
         """
         self.update_current_fees()
-        return_dict={0:"Quit"}
-        index_value=1
-        list_of_classes=["Quit"]
+        return_dict = {0: "Quit"}
+        index_value = 1
+        list_of_classes = ["Quit"]
         for i in self.dictionary_of_classes:
             list_of_classes.append(i)
-            return_dict[index_value]=i.get_status_str()
-            index_value+=1
+            return_dict[index_value] = i.get_status_str()
+            index_value += 1
 
-        return list_of_classes,return_dict
+        return list_of_classes, return_dict
 
-    #print current stats
+    # print current stats
     def print_current_conditions(self):
         """
         prints current conditions of fees
@@ -116,20 +118,26 @@ class FeeOptions:
         for i in self.dictionary_of_classes:
             i.print_status_str()
 
-    #modify
+    # modify
     def modify(self):
         """
         modify helps to modify individual item within all options
         """
-        looping=True
+        looping = True
 
         while looping:
-            list_of_classes,print_dict=self.fee_info_dict_with_quit_option()
+            list_of_classes, print_dict = self.fee_info_dict_with_quit_option()
 
-            index_of_selection_in_list_of_classes=InputHelper.input_from_dict_get_index(print_dict,"Which Fee District would you like to modify?",list_of_classes)
+            index_of_selection_in_list_of_classes = (
+                InputHelper.input_from_dict_get_index(
+                    print_dict,
+                    "Which Fee District would you like to modify?",
+                    list_of_classes,
+                )
+            )
 
             if index_of_selection_in_list_of_classes == "Quit":
-                looping=False
+                looping = False
                 cls()
                 self.print_current_conditions()
                 LogicalWork.wait()
@@ -140,7 +148,7 @@ class FeeOptions:
         self.update_stats()
         return self.stats
 
-    #outputs
+    # outputs
     def get_statistic_outputs(self):
         """
         get_statistic_outputs for special county fees
@@ -152,21 +160,24 @@ class FeeOptions:
 
         output_list = []
 
-        for title,fee_float,fee_string in zip(self.list_of_fee_titles,self.list_of_fee_floats,self.list_of_fee_strings):
+        for title, fee_float, fee_string in zip(
+            self.list_of_fee_titles, self.list_of_fee_floats, self.list_of_fee_strings
+        ):
             if fee_float is not None:
                 output_list.append(f"{title} Fee: {fee_string}")
 
-        if len(output_list)!=0:
+        if len(output_list) != 0:
             return output_list
         else:
             return ["No Special County Fees"]
 
+
 class IndividualFeeItem:
     """
-        handles individual fee items
+    handles individual fee items
     """
 
-    def __init__(self,fee_options_dictionary,positional_key):
+    def __init__(self, fee_options_dictionary, positional_key):
         self.fee_options_dict = fee_options_dictionary
         self.option_inner_dict = fee_options_dictionary[positional_key]
         self.title = list(self.option_inner_dict.keys())[0]
@@ -175,7 +186,7 @@ class IndividualFeeItem:
 
         self.current_fee = None
 
-    #modify item
+    # modify item
     def modify(self):
         """
         modify choose what to modify
@@ -199,7 +210,7 @@ class IndividualFeeItem:
             current_fee_to_print = "None"
         Printer.print_green(f"{self.title} updated to: {current_fee_to_print}")
 
-    #validation
+    # validation
     def validate_and_set_default_fee(self):
         """
         validate_and_set_default_fee validates fees and sets default fees
@@ -218,7 +229,7 @@ class IndividualFeeItem:
         else:
             self.default_option_fee = 0
 
-    #get items
+    # get items
     def get_title(self):
         """
         get_title returns title
@@ -269,7 +280,7 @@ class IndividualFeeItem:
 
         return f"{self.title} - Current Fee: {checked_current_fee} | DEFAULT FEE: {checked_default_fee}"
 
-    #print status string
+    # print status string
     def print_status_str(self):
         """
         print_status_str
@@ -283,7 +294,7 @@ class IndividualFeeItem:
         else:
             Printer.print_red(statement)
 
-    #check fees
+    # check fees
     def check_fees_for_none(self):
         """
         check_fees_for_none checks to see if fees are none

@@ -10,12 +10,13 @@ from . import cls
 
 class InputHelper:
     """
-        generic input functions
+    generic input functions
 
-        ***NOTE: all items in this class are "Static Methods"
+    ***NOTE: all items in this class are "Static Methods"
     """
+
     @staticmethod
-    def input_from_dict_get_index(dictionary, prompt,list_for_index):
+    def input_from_dict_get_index(dictionary, prompt, list_for_index):
         """
         input_from_dict grabs input from dictionary of options and returns value associated with dictionary item after testing it
 
@@ -42,8 +43,8 @@ class InputHelper:
 
             value = InputTesters.verify_dict_selection(inputted_value, dictionary)
             if value is not None:
-                index_value=int(inputted_value)
-                return_item=list_for_index[index_value]
+                index_value = int(inputted_value)
+                return_item = list_for_index[index_value]
                 input_loop = False
 
         return return_item

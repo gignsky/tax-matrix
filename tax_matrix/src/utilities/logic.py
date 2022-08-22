@@ -2,7 +2,7 @@
     General logic for entire program
 """
 
-from .import debugpy
+from . import debugpy
 from . import cls
 
 # from . import counties
@@ -10,8 +10,9 @@ from . import cls
 
 class LogicalWork:
     """
-     General logical functions for all of the program, note all items in class are "Static Methods"
+    General logical functions for all of the program, note all items in class are "Static Methods"
     """
+
     @staticmethod
     def substatement_maker(rate, location):
         """
@@ -278,8 +279,7 @@ class LogicalWork:
             return return_dict
 
     @staticmethod
-    def create_options_dict_from_county_services_list_no_quit(
-            county_services_list):
+    def create_options_dict_from_county_services_list_no_quit(county_services_list):
         """
         create_options_dict_from_county_services_list_NO_quit creates dict with NO quit option from a list of county services, intended to be used with police/fire rates for each county I think
 

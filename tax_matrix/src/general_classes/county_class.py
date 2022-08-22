@@ -9,10 +9,12 @@ from . import cls
 from . import debugpy
 from . import SpecialItems
 
+
 class County:
     """
-        generic county class
+    generic county class
     """
+
     def __init__(
         self,
         county_name,
@@ -53,8 +55,8 @@ class County:
 
         # Printer.inside_liner(f"Initalized {county_name} and all cities and towns")
 
-        #inital error fixes to define initally
-        self.special_stuff_class=self.initalize_special_stuff_class()
+        # inital error fixes to define initally
+        self.special_stuff_class = self.initalize_special_stuff_class()
         self.county_statistics = {}
         self.county_services_modify_options_with_no_quit = None
 
@@ -66,13 +68,13 @@ class County:
             class or None: returns class for specialItems
         """
         if self.special_stuff is not None:
-            item=SpecialItems(self.special_stuff[0],self.special_stuff[1])
+            item = SpecialItems(self.special_stuff[0], self.special_stuff[1])
         else:
-            item=None
+            item = None
 
         return item
 
-    #add items
+    # add items
     def add_city(self, city):
         """
         add_city allows adding city to county class
@@ -124,7 +126,7 @@ class County:
             # debugpy.breakpoint()
             return f"ERROR | SPECIAL OPTIONS NOT CONFIGURED IN {self.get_county_name()}'s Class"
 
-    #modify items
+    # modify items
     def which_modify_county_services(self):
         """
         which_modify_county_services
@@ -173,40 +175,34 @@ class County:
 
         # police
         if "Police" in title:
-            return_bool = InputHelper.on_or_off_rate(
-                title, inital_rate, current_rate
-            )
+            return_bool = InputHelper.on_or_off_rate(title, inital_rate, current_rate)
             if return_bool:
-                self.county_wide_police_rate=inital_rate
+                self.county_wide_police_rate = inital_rate
             else:
-                self.county_wide_police_rate=None
+                self.county_wide_police_rate = None
 
         # fire
         elif "Fire" in title:
-            return_bool = InputHelper.on_or_off_rate(
-                title, inital_rate, current_rate
-            )
+            return_bool = InputHelper.on_or_off_rate(title, inital_rate, current_rate)
             if return_bool:
-                self.county_wide_fire_rate=inital_rate
+                self.county_wide_fire_rate = inital_rate
             else:
-                self.county_wide_fire_rate=None
+                self.county_wide_fire_rate = None
 
         # ems
         elif "EMS" in title:
-            return_bool = InputHelper.on_or_off_rate(
-                title, inital_rate, current_rate
-            )
+            return_bool = InputHelper.on_or_off_rate(title, inital_rate, current_rate)
             if return_bool:
-                self.county_wide_ems_rate=inital_rate
+                self.county_wide_ems_rate = inital_rate
             else:
-                self.county_wide_ems_rate=None
+                self.county_wide_ems_rate = None
 
         # error
         else:
             debugpy.breakpoint()
             Printer.print_red("There is an ERROR in county service modification")
 
-    #update items
+    # update items
     def update_county_services(self):
         """
         update_county_services
@@ -233,7 +229,7 @@ class County:
             },
         ]
 
-    #logic
+    # logic
     def check_contains_fees(self, county_keys, county_values):
         """
         check_contains_fees checks if items contain fees
@@ -252,7 +248,7 @@ class County:
 
         return False
 
-    #select items
+    # select items
     def select_city(self):
         """
         select_city helps select all cities
@@ -260,7 +256,7 @@ class County:
         Returns:
             obj: city object
         """
-        city = InputHelper.input_from_dict(self.all_cities,"")
+        city = InputHelper.input_from_dict(self.all_cities, "")
         return city
 
     def modify_special_options(self):
@@ -306,7 +302,7 @@ class County:
                 else:
                     input_loop = False
 
-    #outputs
+    # outputs
     def print_county_selected_info(self):
         """
         print_county_selected_info
@@ -325,16 +321,20 @@ class County:
 
         Printer.print_cyan("...")
 
-        #countywide services fire/police/ems stuff
+        # countywide services fire/police/ems stuff
         if self.county_services_modify_options_with_no_quit is None:
-            Printer.print_red(f"NO COUNTYWIDE SERVICE OPTIONS FOR {self.get_county_name()}")
+            Printer.print_red(
+                f"NO COUNTYWIDE SERVICE OPTIONS FOR {self.get_county_name()}"
+            )
         else:
             for item in self.county_services_modify_options_with_no_quit:
                 Printer.print_yellow(item)
 
-        #special rates and fees
+        # special rates and fees
         if self.special_stuff is not None:
-            special_rates_and_fees_statement_list=self.special_stuff_class.generate_statistics_statement()
+            special_rates_and_fees_statement_list = (
+                self.special_stuff_class.generate_statistics_statement()
+            )
 
             for item in special_rates_and_fees_statement_list:
                 if item is not None:
@@ -344,7 +344,7 @@ class County:
         else:
             Printer.print_red("No Special County Fees/Rates")
 
-    #generate items
+    # generate items
     def generate_county_only_statement_no_fee(self):
         """
         generate_county_only_statement_no_fee
@@ -402,7 +402,9 @@ class County:
             pass
 
         if self.special_stuff is not None:
-            special_stuff_dict=self.special_stuff_class.generate_output_statement_statement()
+            special_stuff_dict = (
+                self.special_stuff_class.generate_output_statement_statement()
+            )
             if special_stuff_dict is not None:
                 self.county_statistics.update(special_stuff_dict)
 

@@ -24,5 +24,9 @@ def long_description():
 
 
 def dependencies():
-    var = ["art", "colorama", "debugpy",]
+    var = [
+        "art",
+        "colorama",
+        "debugpy",
+    ]
     return var

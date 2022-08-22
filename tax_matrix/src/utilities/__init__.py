@@ -13,6 +13,6 @@ from .logic import LogicalWork
 from .inputs import InputHelper
 from .testers import InputTesters
 
-#TODO Might be depreciated
+# TODO Might be depreciated
 # from .. import classes
 # from .. import localities

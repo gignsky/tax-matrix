@@ -50,7 +50,6 @@ def main():
         99: "Reload Counties to Default Values",
     }
 
-
     # main program loop
     while main_loop_running:
 
@@ -66,7 +65,9 @@ def main():
             cls()
 
         else:
-            inital_run_status, menu_option = inital_run_stack(inital_run_status, options_dict)
+            inital_run_status, menu_option = inital_run_stack(
+                inital_run_status, options_dict
+            )
 
         # "Quit Program & Output Statement"
         if menu_option == options_dict[0]:
@@ -78,7 +79,7 @@ def main():
             subject.print_current_stats()
 
             src.utilities.Printer.print_cyan("...\n Statement to output:")
-            statement=generate_statement(subject)
+            statement = generate_statement(subject)
             src.utilities.Printer.print_green(statement)
 
             src.utilities.LogicalWork.wait()
@@ -128,7 +129,6 @@ def main():
         elif menu_option == options_dict[5]:
             # check for special options
             subject.county.modify_special_options()
-
 
         # "Modify City and/or City Options"
         elif menu_option == options_dict[6]:
@@ -203,6 +203,7 @@ def main():
     src.utilities.printers.Printer.print_green(statement)
     src.utilities.printers.Printer.liner()
 
+
 def generate_statement(subject):
     """
     generate_statement generates final statemnet for output
@@ -220,6 +221,7 @@ def generate_statement(subject):
     statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} / 100 = {subject.get_price_str_divided_by_100()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
 
     return statement
+
 
 def inital_run_stack(inital_run_status, options_dict):
     """
@@ -251,7 +253,7 @@ def inital_run_stack(inital_run_status, options_dict):
     else:
         menu_option = options_dict[1]  # print stats before continuing
         inital_run_status = False
-    return inital_run_status,menu_option
+    return inital_run_status, menu_option
 
 
 ###

@@ -16,6 +16,7 @@ class CityWithWasteFee(general_classes.City):
     Args:
         classes (class): generic city class
     """
+
     def __init__(
         self,
         city_name,
@@ -38,10 +39,10 @@ class CityWithWasteFee(general_classes.City):
             fire_title,
         )
 
-        self.current_waste_title=None
+        self.current_waste_title = None
         self.waste_title = None
         self.waste_fee = None
-        self.special_district_current_default_str=None
+        self.special_district_current_default_str = None
 
         self.set_inital_values(waste_title, waste_fee)
 
@@ -140,7 +141,7 @@ class CityWithWasteFee(general_classes.City):
         super().generate_city_current_default_strs()
         current_waste_fee = self.waste_fee if self.waste_fee is not None else None
 
-        #TODO might be depreciated
+        # TODO might be depreciated
         # current_waste_title = self.waste_title if self.waste_title is not None else None
 
         # format if not none
