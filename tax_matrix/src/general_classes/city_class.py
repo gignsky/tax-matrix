@@ -11,8 +11,9 @@ from . import LogicalWork
 
 class City:
     """
-        generic city class
+    generic city class
     """
+
     def __init__(
         self,
         city_name,
@@ -38,12 +39,12 @@ class City:
         self.inital_police_rate = self.police_rate
         self.inital_fire_rate = self.fire_rate
 
-        #set inital values
-        self.police_current_default_str=None
-        self.fire_current_default_str=None
-        self.city_statistics=None
+        # set inital values
+        self.police_current_default_str = None
+        self.fire_current_default_str = None
+        self.city_statistics = None
 
-    #get items
+    # get items
     def get_city_name(self):
         """
         get_city_name
@@ -62,7 +63,7 @@ class City:
         """
         return self.police_current_default_str, self.fire_current_default_str
 
-    #modify items
+    # modify items
     def modify_or_keep(self):
         """
         modify_or_keep police and fire items
@@ -143,7 +144,7 @@ class City:
         cls()
         Printer.print_green(f"Fire Rate updated to: {self.fire_rate}")
 
-    #update items
+    # update items
     def update_police_and_fire_rates_for_string(self, police_rate, fire_rate):
         """
         update_police_and_fire_rates_for_string
@@ -155,7 +156,7 @@ class City:
         self.police_rate = police_rate
         self.fire_rate = fire_rate
 
-    #printing
+    # printing
     def print_modifiable_info(self):
         """
         print_modifiable_info print all info capable of being modified
@@ -164,7 +165,7 @@ class City:
 
         Printer.print_green(self.city_name)
         if self.city_wide_rate is not None:
-            Printer.print_green(f"City Rate: {self.city_wide_rate:.6g}")
+            Printer.print_green(f"City Rate: {self.city_wide_rate:.4g}")
         else:
             Printer.print_green("City has no citywide rate")
         Printer.print_yellow(f"Police Rate Title: {self.police_title}")
@@ -177,13 +178,13 @@ class City:
     #     Printer.print_yellow(f"City Name: {self.city_name}")
     #     Printer.print_yellow(f"Citywide Tax Rate: {self.city_wide_rate}")
     #     Printer.print_yellow(
-    #         f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.6g}"
+    #         f"City Police Rate: {self.police_rate} | Default: {self.inital_police_rate:.4g}"
     #     )
     #     Printer.print_yellow(
-    #         f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.6g}"
+    #         f"City Fire Rate: {self.fire_rate} | Default: {self.inital_fire_rate:.4g}"
     #     )
 
-    #generate items
+    # generate items
     def generate_city_current_default_strs(self):
         """
         generate_CITY_current_default_strs
@@ -199,22 +200,22 @@ class City:
 
         # format if not none
         if current_police is not None:
-            current_police = f"{current_police:.6g}"
+            current_police = f"{current_police:.4g}"
         else:
             current_police = None
 
         if current_fire is not None:
-            current_fire = f"{current_fire:.6g}"
+            current_fire = f"{current_fire:.4g}"
         else:
             current_fire = None
 
         if inital_police is not None:
-            inital_police = f"{inital_police:.6g}"
+            inital_police = f"{inital_police:.4g}"
         else:
             inital_police = None
 
         if inital_fire is not None:
-            inital_fire = f"{inital_fire:.6g}"
+            inital_fire = f"{inital_fire:.4g}"
         else:
             inital_fire = None
 
@@ -346,7 +347,7 @@ class City:
 
         return total_of_fees
 
-    #logical
+    # logical
     def check_contains_fees(self, city_keys, city_values):
         """
         check_contains_fees city

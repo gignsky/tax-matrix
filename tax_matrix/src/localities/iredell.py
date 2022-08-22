@@ -5,6 +5,7 @@
 from . import general_classes
 from . import special_classes
 
+
 def main():
     """
     main general function for iredell county
@@ -15,11 +16,11 @@ def main():
     # INFORMATION:
     county_name = "Iredell Co., NC"
     county_wide_rate_title = "Iredell County Unincorporated Tax Rate"
-    county_wide_rate = 0.005375
+    county_wide_rate = 0.5375
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
     county_wide_fire_title = f"{county_name} Fire"
-    county_wide_fire_rate = 0.0009
+    county_wide_fire_rate = 0.09
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
     cities = {
@@ -35,12 +36,8 @@ def main():
         10: davidson_town(),
     }
 
-
-
     # countywide solid waste fee
-    county_waste_fee={
-        1: {"Iredell Co., Solid Waste Fee":60.00}
-        }
+    county_waste_fee = {1: {"Iredell Co., Solid Waste Fee": 60.00}}
 
     # special fire rates - unused with no rates
     special_fire = {
@@ -50,7 +47,7 @@ def main():
         5: {"B&F Fire": 0},
     }
 
-    special_stuff = [county_waste_fee,special_fire]
+    special_stuff = [county_waste_fee, special_fire]
 
     iredell = general_classes.County(
         county_name,
@@ -69,14 +66,13 @@ def main():
     return iredell
 
 
-
 def statesville_city():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Statesville City"
-    city_rate = 0.005478
+    city_rate = 0.5478
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -104,11 +100,11 @@ def statesville_city():
 
 def statesville_downtown():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Statesville Downtown"
-    city_rate = 0.001
+    city_rate = 0.1
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -130,11 +126,11 @@ def statesville_downtown():
 
 def woods_municipal_ser():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Woods Municipal Ser."
-    city_rate = 0.0021
+    city_rate = 0.21
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -156,11 +152,11 @@ def woods_municipal_ser():
 
 def troutman():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Troutman"
-    city_rate = 0.0052
+    city_rate = 0.52
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -182,11 +178,11 @@ def troutman():
 
 def harmony():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Harmony"
-    city_rate = 0.0014
+    city_rate = 0.14
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -208,11 +204,11 @@ def harmony():
 
 def mooresville_town():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Mooresville Town"
-    city_rate = 0.0058
+    city_rate = 0.58
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -240,11 +236,11 @@ def mooresville_town():
 
 def mooresville_downtown():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Mooresville Downtown"
-    city_rate = 0.0016
+    city_rate = 0.16
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -272,11 +268,11 @@ def mooresville_downtown():
 
 def mooresville_school():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Mooresville School"
-    city_rate = 0.00185
+    city_rate = 0.185
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -304,11 +300,11 @@ def mooresville_school():
 
 def love_valley():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Love Valley"
-    city_rate = 0.0025
+    city_rate = 0.25
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -330,11 +326,11 @@ def love_valley():
 
 def davidson_town():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Davidson Town"
-    city_rate = 0.00325
+    city_rate = 0.325
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"

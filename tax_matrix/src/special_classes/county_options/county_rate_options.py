@@ -8,22 +8,23 @@ from . import InputTesters
 from . import Printer
 from . import LogicalWork
 
+
 class RateOptions:
     """
-        handles rate based services/districts
+    handles rate based services/districts
     """
 
-    #initalize
-    def __init__(self,rate_options_dictionary):
-        self.stats=None
+    # initalize
+    def __init__(self, rate_options_dictionary):
+        self.stats = None
 
-        self.input_dictionary=rate_options_dictionary
-        self.dictionary_of_classes=self.initalize_classes()
+        self.input_dictionary = rate_options_dictionary
+        self.dictionary_of_classes = self.initalize_classes()
 
-        self.list_of_rate_floats=[]
-        self.list_of_rate_strings=[]
+        self.list_of_rate_floats = []
+        self.list_of_rate_strings = []
 
-        self.list_of_titles=self.get_item_titles()
+        self.list_of_titles = self.get_item_titles()
 
         self.update_current_rates()
         self.update_stats()
@@ -38,11 +39,13 @@ class RateOptions:
         list_of_all_rate_classes = []
 
         for index in self.input_dictionary:
-            list_of_all_rate_classes.append(IndividualRateOptions(self.input_dictionary, index))
+            list_of_all_rate_classes.append(
+                IndividualRateOptions(self.input_dictionary, index)
+            )
 
         return list_of_all_rate_classes
 
-    #get items
+    # get items
     def get_item_titles(self):
         """
         initalize_classes initalize titles for inididual rates
@@ -50,7 +53,7 @@ class RateOptions:
         Returns:
             list: list of individual item titles
         """
-        list_of_titles=[]
+        list_of_titles = []
 
         # self.update_current_rates()
 
@@ -69,14 +72,14 @@ class RateOptions:
         self.update_stats()
         return self.stats
 
-    #update
+    # update
     def update_current_rates(self):
         """
         update_current_rates update current default rates
         """
 
-        self.list_of_rate_floats=[]
-        self.list_of_rate_strings=[]
+        self.list_of_rate_floats = []
+        self.list_of_rate_strings = []
 
         for i in self.dictionary_of_classes:
             self.list_of_rate_strings.append(i.get_current_rate_string())
@@ -91,11 +94,11 @@ class RateOptions:
         """
 
         self.update_current_rates()
-        self.stats={}
-        for title, rate_float in zip(self.list_of_titles,self.list_of_rate_floats):
-            self.stats[title]=rate_float
+        self.stats = {}
+        for title, rate_float in zip(self.list_of_titles, self.list_of_rate_floats):
+            self.stats[title] = rate_float
 
-    #logic
+    # logic
     def rate_info_dict_with_quit_option(self):
         """
         fire_info_dict_with_quit_option generates dict with quit options from available options of fire areas
@@ -105,17 +108,17 @@ class RateOptions:
         """
 
         self.update_current_rates()
-        return_dict={0:"Quit"}
-        index_value=1
-        list_of_classes=["Quit"]
+        return_dict = {0: "Quit"}
+        index_value = 1
+        list_of_classes = ["Quit"]
         for i in self.dictionary_of_classes:
             list_of_classes.append(i)
-            return_dict[index_value]=i.get_status_str()
-            index_value+=1
+            return_dict[index_value] = i.get_status_str()
+            index_value += 1
 
-        return list_of_classes,return_dict
+        return list_of_classes, return_dict
 
-    #print current stats
+    # print current stats
     def print_current_conditions(self):
         """
         prints current conditions of rates
@@ -123,20 +126,26 @@ class RateOptions:
         for i in self.dictionary_of_classes:
             i.print_status_str()
 
-    #modify
+    # modify
     def modify(self):
         """
         modify helps to modify individual item within all options
         """
-        looping=True
+        looping = True
 
         while looping:
-            list_of_classes,print_dict=self.rate_info_dict_with_quit_option()
+            list_of_classes, print_dict = self.rate_info_dict_with_quit_option()
 
-            index_of_selection_in_list_of_classes=InputHelper.input_from_dict_get_index(print_dict,"Which rate based district would you like to modify?",list_of_classes)
+            index_of_selection_in_list_of_classes = (
+                InputHelper.input_from_dict_get_index(
+                    print_dict,
+                    "Which rate based district would you like to modify?",
+                    list_of_classes,
+                )
+            )
 
             if index_of_selection_in_list_of_classes == "Quit":
-                looping=False
+                looping = False
                 cls()
                 self.print_current_conditions()
                 LogicalWork.wait()
@@ -147,7 +156,7 @@ class RateOptions:
         self.update_stats()
         return self.stats
 
-    #outputs
+    # outputs
     def get_statistic_outputs(self):
         """
         get_statistic_outputs for special county rates
@@ -159,33 +168,36 @@ class RateOptions:
 
         output_list = []
 
-        for title,rate_float,rate_string in zip(self.list_of_titles,self.list_of_rate_floats,self.list_of_rate_strings):
+        for title, rate_float, rate_string in zip(
+            self.list_of_titles, self.list_of_rate_floats, self.list_of_rate_strings
+        ):
             if rate_float is not None:
                 output_list.append(f"{title} Rate: {rate_string}")
 
-        if len(output_list)!=0:
+        if len(output_list) != 0:
             return output_list
         else:
             return ["No Special County Rates"]
 
+
 class IndividualRateOptions:
     """
-        handles individual rate based services/districts
+    handles individual rate based services/districts
     """
 
-    #initalize
-    def __init__(self,rate_options_dictionary,positional_key):
+    # initalize
+    def __init__(self, rate_options_dictionary, positional_key):
         self.rate_options_dictionary = rate_options_dictionary
         self.option_inner_dict = rate_options_dictionary[positional_key]
         self.title = list(self.option_inner_dict.keys())[0]
 
-        self.default_option_rate=None
+        self.default_option_rate = None
 
         self.validate_and_set_default_rate()
 
         self.current_rate = None
 
-    #modify
+    # modify
     def modify(self):
         """
         modify choose what to modify
@@ -204,12 +216,12 @@ class IndividualRateOptions:
             self.current_rate = None
         Printer.liner()
         if self.current_rate is not None:
-            current_rate_to_print = f"{self.current_rate:.6g}"
+            current_rate_to_print = f"{self.current_rate:.4g}"
         else:
             current_rate_to_print = "None"
         Printer.print_green(f"{self.title} updated to: {current_rate_to_print}")
 
-    #validation
+    # validation
     def validate_and_set_default_rate(self):
         """
         validate_and_set_default_rate validates rates and sets default rates
@@ -228,7 +240,7 @@ class IndividualRateOptions:
         else:
             self.default_option_rate = 0
 
-    #get items
+    # get items
     def get_title(self):
         """
         get_title returns title
@@ -261,10 +273,10 @@ class IndividualRateOptions:
         get_current_rate_string
 
         Returns:
-            str: str with current rate to .6g
+            str: str with current rate to .4g
         """
         if self.current_rate is not None:
-            return f"{self.current_rate:.6g}"
+            return f"{self.current_rate:.4g}"
         else:
             return None
 
@@ -279,7 +291,7 @@ class IndividualRateOptions:
 
         return f"{self.title} - Current Rate: {checked_current_rate} | DEFAULT RATE: {checked_default_rate}"
 
-    #print status string
+    # print status string
     def print_status_str(self):
         """
         print_status_str
@@ -293,8 +305,7 @@ class IndividualRateOptions:
         else:
             Printer.print_red(statement)
 
-
-    #check rates
+    # check rates
     def check_rates_for_none(self):
         """
         check_rates_for_none checks to see if rates are none
@@ -303,12 +314,12 @@ class IndividualRateOptions:
             current,default: str with rate or none
         """
         if self.default_option_rate is not None:
-            default = f"{self.default_option_rate:.6g}"
+            default = f"{self.default_option_rate:.4g}"
         else:
             default = "None"
 
         if self.current_rate is not None:
-            current = f"{self.current_rate:.6g}"
+            current = f"{self.current_rate:.4g}"
         else:
             current = "None"
 

@@ -8,6 +8,7 @@ from . import Printer
 from . import InputHelper
 from . import general_classes
 
+
 class CityOfMonroe(general_classes.City):
     """
     CityOfMonroe class specific for city of monroe
@@ -75,7 +76,8 @@ class CityOfMonroe(general_classes.City):
                 inital_run = False
             else:
                 super().update_police_and_fire_rates_for_string(
-                    self.police_rate, self.fire_rate)
+                    self.police_rate, self.fire_rate
+                )
 
             self.generate_city_current_default_strs()
 
@@ -91,8 +93,8 @@ class CityOfMonroe(general_classes.City):
                 3: self.special_district_current_default_str,
             }
             which_modify = InputHelper.input_from_dict(
-                mod_dict,
-                "Please Select Number from below options to modify or Quit: ")
+                mod_dict, "Please Select Number from below options to modify or Quit: "
+            )
 
             if which_modify == mod_dict[0]:
                 mod_loop = False
@@ -144,18 +146,20 @@ class CityOfMonroe(general_classes.City):
         generate_city_current_default_strs
         """
         super().generate_city_current_default_strs()
-        current_special_district_rate = (self.special_district_rate
-                                         if self.special_district_rate
-                                         is not None else None)
+        current_special_district_rate = (
+            self.special_district_rate
+            if self.special_district_rate is not None
+            else None
+        )
 
-        #TODO Might be depreciated
+        # TODO Might be depreciated
         # current_special_district_name = (self.special_district_name
         #                                  if self.special_district_name
         #                                  is not None else None)
 
         # format if not none
         if current_special_district_rate is not None:
-            current_special_district_rate = f"{current_special_district_rate:.6g}"
+            current_special_district_rate = f"{current_special_district_rate:.4g}"
         else:
             current_special_district_rate = None
 
@@ -169,10 +173,12 @@ class CityOfMonroe(general_classes.City):
         super().print_modifiable_info()
 
         Printer.print_yellow(
-            f"Special District Title: {self.inital_special_district_name}")
+            f"Special District Title: {self.inital_special_district_name}"
+        )
         if self.special_district_rate is not None:
             Printer.print_yellow(
-                f"Special District Rate: {self.special_district_rate:.6g}")
+                f"Special District Rate: {self.special_district_rate:.4g}"
+            )
         else:
             Printer.print_yellow("Special District Rate: None")
 

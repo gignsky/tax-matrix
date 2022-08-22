@@ -6,6 +6,7 @@ from . import general_classes
 from . import special_classes
 from . import county_classes
 
+
 def main():
     """
     main main info for union County
@@ -17,7 +18,7 @@ def main():
     # INFORMATION:
     county_name = "Union Co., NC"
     county_wide_rate_title = "Union County General Government Fund Tax Rate"
-    county_wide_rate = 0.004819
+    county_wide_rate = 0.4819
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
     county_wide_fire_title = f"{county_name} Fire"
@@ -42,73 +43,35 @@ def main():
         15: town_of_mint_hill(),
     }
 
-
     # special fire rates
     special_fire = {
-        1: {
-            "Griffith Road": 0.0002
-        },
-        2: {
-            "Stack Road": 0.000348
-        },
-        3: {
-            "Springs": 0.000464
-        },
-        4: {
-            "Fairview": 0.000503
-        },
-        5: {
-            "New Salem": 0.000384
-        },
-        6: {
-            "Beaver Lane": 0.000671
-        },
-        7: {
-            "Bakers": 0.000343
-        },
-        8: {
-            "Stallings": 0.000478
-        },
-        9: {
-            "Unionville": 0.000614
-        },
-        10: {
-            "Wingate": 0.00067
-        },
-        11: {
-            "Hemby Bridge": 0.000441
-        },
-        12: {
-            "Allens Crossroads": 0.000689
-        },
-        13: {
-            "Jackson": 0.000399
-        },
-        14: {
-            "Wesley Chapel": 0.000375
-        },
-        15: {
-            "Lanes Creek": 0.000546
-        },
-        16: {
-            "Waxhaw": 0.000419
-        },
-        17: {
-            "Sandy Ridge": 0.000329
-        },
-        18: {
-            "Providence": 0.000375
-        },
+        1: {"Griffith Road": 0.02},
+        2: {"Stack Road": 0.0348},
+        3: {"Springs": 0.0464},
+        4: {"Fairview": 0.0503},
+        5: {"New Salem": 0.0384},
+        6: {"Beaver Lane": 0.0671},
+        7: {"Bakers": 0.0343},
+        8: {"Stallings": 0.0478},
+        9: {"Unionville": 0.0614},
+        10: {"Wingate": 0.067},
+        11: {"Hemby Bridge": 0.0441},
+        12: {"Allens Crossroads": 0.0689},
+        13: {"Jackson": 0.0399},
+        14: {"Wesley Chapel": 0.0375},
+        15: {"Lanes Creek": 0.0546},
+        16: {"Waxhaw": 0.0419},
+        17: {"Sandy Ridge": 0.0329},
+        18: {"Providence": 0.0375},
     }
 
     # Special Stuff Ttiles & Rates
-    special_debt_fund={
-        19: {"Debt Budgetary Fund":0.001061}}
+    special_debt_fund = {19: {"Debt Budgetary Fund": 0.1061}}
 
-    all_rate_options=special_fire
+    all_rate_options = special_fire
     all_rate_options.update(special_debt_fund)
 
-    special_stuff = [None,all_rate_options]
+    special_stuff = [None, all_rate_options]
 
     union = general_classes.County(
         county_name,
@@ -126,13 +89,14 @@ def main():
 
     return union
 
+
 def village_of_marvin():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Village of Marvin"
-    city_rate = 0.0006
+    city_rate = 0.06
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -157,13 +121,14 @@ def village_of_marvin():
 
     return city
 
+
 def city_of_monroe():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "City of Monroe"
-    city_rate = 0.005025
+    city_rate = 0.5025
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -172,7 +137,7 @@ def city_of_monroe():
 
     # specific
     special_district_title = "Downtown Special District"
-    special_district_rate = 0.001950
+    special_district_rate = 0.1950
 
     city = county_classes.union_classes.CityOfMonroe(
         city_name,
@@ -188,13 +153,14 @@ def city_of_monroe():
 
     return city
 
+
 def town_of_wingate():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Wingate"
-    city_rate = 0.0034
+    city_rate = 0.34
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -212,14 +178,15 @@ def town_of_wingate():
     )
 
     return city
+
 
 def town_of_marshville():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Marshville"
-    city_rate = 0.0049
+    city_rate = 0.49
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -237,14 +204,15 @@ def town_of_marshville():
     )
 
     return city
+
 
 def town_of_waxhaw():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Tax of Waxhaw"
-    city_rate = 0.00385
+    city_rate = 0.385
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -262,14 +230,15 @@ def town_of_waxhaw():
     )
 
     return city
+
 
 def town_of_indian_trail():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Indian Trail"
-    city_rate = 0.00185
+    city_rate = 0.185
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -287,14 +256,15 @@ def town_of_indian_trail():
     )
 
     return city
+
 
 def town_of_stallings():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Stallings"
-    city_rate = 0.00186
+    city_rate = 0.186
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -312,14 +282,15 @@ def town_of_stallings():
     )
 
     return city
+
 
 def town_of_weddington():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Weddington"
-    city_rate = 0.00048
+    city_rate = 0.048
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -337,14 +308,15 @@ def town_of_weddington():
     )
 
     return city
+
 
 def village_of_lake_park():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Village of Lake Park"
-    city_rate = 0.002025
+    city_rate = 0.2025
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -362,14 +334,15 @@ def village_of_lake_park():
     )
 
     return city
+
 
 def town_of_fairview():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Fairview"
-    city_rate = 0.0002
+    city_rate = 0.02
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -388,9 +361,10 @@ def town_of_fairview():
 
     return city
 
+
 def town_of_hemby_bridge():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Hemby Bridge"
@@ -413,13 +387,14 @@ def town_of_hemby_bridge():
 
     return city
 
+
 def village_of_wesley_chapel():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Village of Wesley Chapel"
-    city_rate = 0.000129
+    city_rate = 0.0129
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -437,14 +412,15 @@ def village_of_wesley_chapel():
     )
 
     return city
+
 
 def town_of_unionville():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Unionville"
-    city_rate = 0.0002
+    city_rate = 0.02
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -462,14 +438,15 @@ def town_of_unionville():
     )
 
     return city
+
 
 def town_of_mineral_springs():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Mineral Springs"
-    city_rate = 0.00021
+    city_rate = 0.021
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -488,9 +465,10 @@ def town_of_mineral_springs():
 
     return city
 
+
 def town_of_mint_hill():
     """
-        City Class
+    City Class
     """
     # INFORMATION
     city_name = "Town of Mint Hill"

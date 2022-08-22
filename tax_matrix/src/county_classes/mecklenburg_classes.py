@@ -10,6 +10,7 @@ from . import Printer
 
 from . import general_classes
 
+
 class CityOfCharlotte(general_classes.City):
     """
     CityOfCharlotte city of charlotte specific classes
@@ -17,6 +18,7 @@ class CityOfCharlotte(general_classes.City):
     Args:
         classes (obj): generic county class
     """
+
     def __init__(
         self,
         city,
@@ -41,8 +43,8 @@ class CityOfCharlotte(general_classes.City):
         self.special_district_title = None
         self.special_district_rate = None
 
-        #initalize to fix errors
-        self.special_district_current_default_str=None
+        # initalize to fix errors
+        self.special_district_current_default_str = None
 
     def select_special_district(self):
         """
@@ -159,7 +161,7 @@ class CityOfCharlotte(general_classes.City):
             if self.special_district_rate is not None
             else None
         )
-        #TODO Maybe depreciated
+        # TODO Maybe depreciated
         # current_special_district_title = (
         #     self.special_district_title
         #     if self.special_district_title is not None
@@ -171,7 +173,7 @@ class CityOfCharlotte(general_classes.City):
 
         # format if not none
         if current_special_district is not None:
-            current_special_district = f"{current_special_district:.6g}"
+            current_special_district = f"{current_special_district:.4g}"
         else:
             current_special_district = None
 
@@ -181,7 +183,9 @@ class CityOfCharlotte(general_classes.City):
             else "Special District"
         )
 
-        self.special_district_current_default_str = f"{title}: {current_special_district}"
+        self.special_district_current_default_str = (
+            f"{title}: {current_special_district}"
+        )
 
     def print_all_info(self):
         """

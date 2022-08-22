@@ -14,6 +14,8 @@ class Property:
     def __init__(self):
         self.price_int = None
         self.price_str = None
+        self.price_div_100_float = None
+        self.price_div_100_string = None
         self.county = None
         self.final_tax_cost = 0.0
 
@@ -77,6 +79,17 @@ class Property:
         # Printer.print_green(f"Price String: {self.price_str}")
         return self.price_str
 
+    def get_price_str_divided_by_100(self):
+        """
+        get_price_str_divided_by_100
+
+        Returns:
+            str: string of price div by 100
+        """
+        self.generate_price_divied_by_100()
+
+        return self.price_div_100_string
+
     def get_price_int(self):
         """
         get_price_int
@@ -86,6 +99,17 @@ class Property:
         """
         # Printer.print_green(f"Price Integer: {self.price_int}")
         return self.price_int
+
+    def get_price_float_divided_by_100(self):
+        """
+        get_price_float_divided_by_100
+
+        Returns:
+            float: purchase price / 100 in float form
+        """
+        self.generate_price_divied_by_100()
+
+        return self.price_div_100_float
 
     def get_county(self):
         """
@@ -243,7 +267,7 @@ class Property:
                     f"{county_only_statement} = {self.generate_total_tax_burden_str()}"
                 )
             else:
-                middle_statement = f"{self.multiply_rate:.6g} ({county_only_statement}) = {self.generate_total_tax_burden_str()}"
+                middle_statement = f"{self.multiply_rate:.4g} ({county_only_statement}) = {self.generate_total_tax_burden_str()}"
 
         else:  # has city rates
             # city_ONLY_statement = self.county.city.city_ONLY_statement()
@@ -252,7 +276,7 @@ class Property:
                 self.statistics["CITY"], self.with_county_no_city, self.city_exists
             )
 
-            middle_statement = f"{self.multiply_rate:.6g} ({county_only_statement}{city_substatement}) = {self.generate_total_tax_burden_str()}"
+            middle_statement = f"{self.multiply_rate:.4g} ({county_only_statement}{city_substatement}) = {self.generate_total_tax_burden_str()}"
 
         return middle_statement
 
@@ -300,7 +324,7 @@ class Property:
         """
         generate_total_tax_burden_after_rate
         """
-        self.final_tax_cost = self.price_int * self.multiply_rate
+        self.final_tax_cost = self.price_div_100_float * self.multiply_rate
 
     def generate_total_tax_burden_after_fee(self, fee):
         """
@@ -360,3 +384,11 @@ class Property:
             city_fees = 0
 
         return county_fees + city_fees
+
+    def generate_price_divied_by_100(self):
+        """
+        generate_price_divied_by_100 for both float and string
+        """
+        price = self.price_int
+        self.price_div_100_float = price / 100
+        self.price_div_100_string = f"${self.price_div_100_float:6,.2f}"

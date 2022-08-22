@@ -217,7 +217,7 @@ def generate_statement(subject):
     # generate statistics
     subject.generate_statistics()
 
-    statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
+    statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} / 100 = {subject.get_price_str_divided_by_100()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
 
     return statement
 
