@@ -37,7 +37,7 @@ def main():
         1: {"Kannapolis Rural Fire": 0.1},
         2: {"Jackson Park Fire": 0.14},
         3: {"Cold Water Fire": 0.0},
-        4: {"Allen Fire": 0.075,
+        4: {"Allen Fire": 0.075},
         5: {"Midland Fire": 0.1},
         6: {"Harrisburg Rural Fire": 0.15},
         7: {"Rimer Fire": 0.088},
