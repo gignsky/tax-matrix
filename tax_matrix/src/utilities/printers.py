@@ -1,7 +1,6 @@
 """
     contains classes designed to assist in general printing outputs
 """
-from . import debugpy
 from . import Fore, tprint
 
 
