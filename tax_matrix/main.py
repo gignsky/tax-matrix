@@ -203,6 +203,8 @@ def main():
     src.utilities.printers.Printer.print_green(statement)
     src.utilities.printers.Printer.liner()
 
+    src.utilities.LogicalWork.wait()
+
 
 def generate_statement(subject):
     """
