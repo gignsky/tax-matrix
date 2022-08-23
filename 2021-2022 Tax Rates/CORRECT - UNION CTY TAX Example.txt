@@ -1,8 +1,0 @@
-CORRECT
-
-Taxes are an estimate based on Union Co., NC tax calculator with estimated Tax rates as follows: Purchase Price $289,888 x 0.01168 (((0.2163 - Union County Unincorporated Tax Rate) +  (0.0156 - Union County Fire) + (0.021 - Union County EMS) + (0.4450 - Special School) + (0.0526 - Waxhaw Fire)) + (0.033 - Union County Debt Tax) + (0.385 - Town of Waxhaw)) x 0.01 = $3388 rounded to nearest dollar
-
-
-CALCULATOR WORKSHEET
-
-Taxes are an estimate based on Union Co., NC tax calculator with estimated Tax rates as follows: Purchase Price $289,888 x 0.03385 ((0.02163 - Union County Unincorporated Tax Rate) +  (0.00156 - Union County Fire) + (0.0021 - Union County EMS) + (0.00526 - Waxhaw Fire)) + (0.0033 - Union County Debt Tax) = $9813 rounded to nearest dollar.
