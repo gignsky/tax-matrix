@@ -149,8 +149,8 @@ def main():
                 cls()
 
                 if city is None:
-                    pass  # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
-                    main_loop_running = False
+                    # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
+                    subject.reset_city()
 
                 else:
                     # add city to subject
