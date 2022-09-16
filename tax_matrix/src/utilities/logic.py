@@ -312,3 +312,30 @@ class LogicalWork:
         """
         input("press ANY key to Continue\n...\n")
         cls()
+
+    @staticmethod
+    def sc_county_wide_rate_musher(
+        overall_title, overall_rate, list_of_inner_titles, list_of_inner_rates
+    ):
+
+        list_of_statements_to_mush = ()
+
+        for title, rate in zip(list_of_inner_titles, list_of_inner_rates):
+            list_of_statements_to_mush.append(f"({rate} - {title})")
+
+        num_of_statements = len(list_of_statements_to_mush)
+        statement_to_mush = ""
+
+        for statement in list_of_statements_to_mush:
+            if num_of_statements == 1:
+                statement_to_mush = f"{statement})"
+            else:
+                statement_to_mush = f"{statement_to_mush} + {statement}"
+
+            num_of_statements += 1
+
+        overall_statement_for_county = (
+            f"[{overall_rate} - {overall_title} ({statement_to_mush})]"
+        )
+
+        return overall_statement_for_county
