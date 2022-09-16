@@ -149,7 +149,6 @@ def main():
                 cls()
 
                 if city is None:
-                    # TODO add optional stuff for if city selection is quitted maybe something that allows for option to change counties or continue with only the current county
                     subject.reset_city()
 
                 else:
