@@ -12,13 +12,9 @@ from ..utilities import InputTesters
 from ..utilities import LogicalWork
 from ..utilities import Printer
 
-from .mecklenburg import main as mecklenburg
-from .union import main as union
-from .stanly import main as stanly
-from .cabarrus import main as cabarrus
-from .iredell import main as iredell
-from .rowan import main as rowan
-from .gaston import main as gaston
+from . import north_carolina
+
+# from . import south_carolina
 
 # from .lancaster import main as lancaster
 # from .york import main as york
@@ -37,12 +33,12 @@ def load_all_counties(which_run):
     elif which_run == "reload":
         general_classes.Counties.reset_counties()
 
-    general_classes.Counties.add_county(mecklenburg())
-    general_classes.Counties.add_county(union())
-    general_classes.Counties.add_county(stanly())
-    general_classes.Counties.add_county(cabarrus())
-    general_classes.Counties.add_county(iredell())
-    general_classes.Counties.add_county(rowan())
-    general_classes.Counties.add_county(gaston())
-    # general_classes.Counties.add_county(lancaster())
-    # general_classes.Counties.add_county(york())
+    general_classes.Counties.add_county(north_carolina.mecklenburg())
+    general_classes.Counties.add_county(north_carolina.union())
+    general_classes.Counties.add_county(north_carolina.stanly())
+    general_classes.Counties.add_county(north_carolina.cabarrus())
+    general_classes.Counties.add_county(north_carolina.iredell())
+    general_classes.Counties.add_county(north_carolina.rowan())
+    general_classes.Counties.add_county(north_carolina.gaston())
+    # general_classes.Counties.add_county(south_carolina.lancaster())
+    # general_classes.Counties.add_county(south_carolina.york())
