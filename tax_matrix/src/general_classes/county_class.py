@@ -84,6 +84,13 @@ class County:
         """
         self.city = city
 
+    # remove items
+    def remove_city(self):
+        """
+        remove_city removes city and resets the city value to None; no conditions
+        """
+        self.city = None
+
     # get items
     def get_county_name(self):
         """
