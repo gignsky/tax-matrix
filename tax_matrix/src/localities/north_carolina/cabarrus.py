@@ -77,7 +77,7 @@ def town_of_harrisburg():
     """
     # INFORMATION
     city_name = "Town of Harrisburg"
-    city_rate = 0.355
+    city_rate = 0.435
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
