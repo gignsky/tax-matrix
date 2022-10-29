@@ -1,6 +1,6 @@
 #.venv files
-/home/gig/base_tax-matrix/tax_matrix/.venv
-/home/gig/base_tax-matrix/.venv
+.venv
+tax_matrix/.venv
 
 #VENVs
 .coding_venv/lib64
