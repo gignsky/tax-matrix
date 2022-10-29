@@ -1,0 +1,36 @@
+"filename", "language", "pip requirements", "Python", "Excel", "comment", "blank", "total"
+"/home/gig/base_tax-matrix/2021-2022 Tax Rates/USE THIS FOR - Union County Tax and Fire Rates.xlsx", "Excel", 0, 0, 1626, 0, 7, 1633
+"/home/gig/base_tax-matrix/2021-2022 Tax Rates/Union County Tax and Fire Rates.xlsx", "Excel", 0, 0, 1642, 0, 9, 1651
+"/home/gig/base_tax-matrix/requirements.txt", "pip requirements", 2, 0, 0, 0, 1, 3
+"/home/gig/base_tax-matrix/tax_matrix/main.py", "Python", 0, 207, 0, 0, 55, 262
+"/home/gig/base_tax-matrix/tax_matrix/src/__init__.py", "Python", 0, 11, 0, 0, 4, 15
+"/home/gig/base_tax-matrix/tax_matrix/src/clear.py", "Python", 0, 10, 0, 0, 4, 14
+"/home/gig/base_tax-matrix/tax_matrix/src/config.py", "Python", 0, 22, 0, 0, 11, 33
+"/home/gig/base_tax-matrix/tax_matrix/src/county_classes/__init__.py", "Python", 0, 12, 0, 0, 6, 18
+"/home/gig/base_tax-matrix/tax_matrix/src/county_classes/mecklenburg_classes.py", "Python", 0, 190, 0, 0, 41, 231
+"/home/gig/base_tax-matrix/tax_matrix/src/county_classes/union_classes.py", "Python", 0, 164, 0, 0, 37, 201
+"/home/gig/base_tax-matrix/tax_matrix/src/general_classes/__init__.py", "Python", 0, 14, 0, 0, 8, 22
+"/home/gig/base_tax-matrix/tax_matrix/src/general_classes/all_counties_and_cities_classes.py", "Python", 0, 52, 0, 0, 17, 69
+"/home/gig/base_tax-matrix/tax_matrix/src/general_classes/city_class.py", "Python", 0, 313, 0, 0, 59, 372
+"/home/gig/base_tax-matrix/tax_matrix/src/general_classes/county_class.py", "Python", 0, 401, 0, 0, 79, 480
+"/home/gig/base_tax-matrix/tax_matrix/src/general_classes/property_class.py", "Python", 0, 322, 0, 0, 73, 395
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/__init__.py", "Python", 0, 39, 0, 0, 10, 49
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/cabarrus.py", "Python", 0, 216, 0, 0, 38, 254
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/gaston.py", "Python", 0, 378, 0, 0, 65, 443
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/iredell.py", "Python", 0, 297, 0, 0, 54, 351
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/mecklenburg.py", "Python", 0, 275, 0, 0, 48, 323
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/rowan.py", "Python", 0, 293, 0, 0, 50, 343
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/stanly.py", "Python", 0, 294, 0, 0, 51, 345
+"/home/gig/base_tax-matrix/tax_matrix/src/localities/union.py", "Python", 0, 419, 0, 0, 74, 493
+"/home/gig/base_tax-matrix/tax_matrix/src/special_classes/__init__.py", "Python", 0, 14, 0, 0, 8, 22
+"/home/gig/base_tax-matrix/tax_matrix/src/special_classes/city_with_waste_fee.py", "Python", 0, 141, 0, 0, 34, 175
+"/home/gig/base_tax-matrix/tax_matrix/src/special_classes/county_options/__init__.py", "Python", 0, 12, 0, 0, 5, 17
+"/home/gig/base_tax-matrix/tax_matrix/src/special_classes/county_options/county_fee_options.py", "Python", 0, 250, 0, 0, 66, 316
+"/home/gig/base_tax-matrix/tax_matrix/src/special_classes/county_options/county_rate_options.py", "Python", 0, 254, 0, 0, 73, 327
+"/home/gig/base_tax-matrix/tax_matrix/src/special_classes/county_special_stuff_handler.py", "Python", 0, 150, 0, 0, 36, 186
+"/home/gig/base_tax-matrix/tax_matrix/src/utilities/__init__.py", "Python", 0, 15, 0, 0, 4, 19
+"/home/gig/base_tax-matrix/tax_matrix/src/utilities/inputs.py", "Python", 0, 319, 0, 0, 109, 428
+"/home/gig/base_tax-matrix/tax_matrix/src/utilities/logic.py", "Python", 0, 253, 0, 0, 62, 315
+"/home/gig/base_tax-matrix/tax_matrix/src/utilities/printers.py", "Python", 0, 174, 0, 0, 61, 235
+"/home/gig/base_tax-matrix/tax_matrix/src/utilities/testers.py", "Python", 0, 137, 0, 0, 49, 186
+"Total", "-", 2, 5648, 3268, 0, 1308, 10226
