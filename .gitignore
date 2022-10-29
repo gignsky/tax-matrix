@@ -1,3 +1,8 @@
+#.venv files
+/home/gig/base_tax-matrix/tax_matrix/.venv
+/home/gig/base_tax-matrix/.venv
+
+#VENVs
 .coding_venv/lib64
 .coding_venv/pyvenv.cfg
 .coding_venv/bin/activate
