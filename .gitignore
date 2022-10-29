@@ -2,6 +2,9 @@
 .venv
 tax_matrix/.venv
 
+#Pycache files - ALL
+*.pyc
+
 #VENVs
 .coding_venv/lib64
 .coding_venv/pyvenv.cfg
