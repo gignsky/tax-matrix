@@ -63,6 +63,7 @@ class LancasterCo(general_classes.County):
         # set self.mod_dictionary
         self.mod_dictionary = {}
 
+    # TODO CONVERT TO CLASS
     # configuration of special dict methods
     def seperate_per_items(self, dictionary):
         titles = []
