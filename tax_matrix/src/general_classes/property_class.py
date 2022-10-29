@@ -120,6 +120,14 @@ class Property:
         """
         return self.county
 
+    # reset items
+    def reset_city(self):
+        """
+        reset_city resets variables dealing with cities
+        """
+        self.city_exists = None
+        self.county.remove_city()
+
     # printing
     def print_current_stats(self):
         """
