@@ -2,11 +2,9 @@
     generic lancaster county class
 """
 
-# TODO FIX UP IMPORTS
-import debugpy
-
-from ..utilities.printers import Printer
-from ..utilities.inputs import InputHelper
+from . import debugpy
+from . import Printer
+from . import InputHelper
 from . import general_classes
 
 
