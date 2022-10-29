@@ -111,6 +111,7 @@ class InputHelper:
 
         return value
 
+    #TODO Check this with statement one against regular input_from_dict if not unused rename and modify all references
     @staticmethod
     def input_from_dict_with_statement(dictionary, prompt):
         """

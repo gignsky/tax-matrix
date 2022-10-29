@@ -313,6 +313,7 @@ class LogicalWork:
         input("press ANY key to Continue\n...\n")
         cls()
 
+    #TODO POssible unused method
     @staticmethod
     def sc_county_wide_rate_musher(
         overall_title, overall_rate, list_of_inner_titles, list_of_inner_rates
