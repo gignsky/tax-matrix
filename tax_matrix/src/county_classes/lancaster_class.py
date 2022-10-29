@@ -75,33 +75,34 @@ class LancasterCo(general_classes.County):
         multiple_value_strs = []
         for i in dictionary:
             # grab title
-            title = i.get_title()
+            inner_dictionary = dictionary[i]
+            title = list(inner_dictionary.keys())[0]
             titles.append(title)
 
             # grab key
-            key_tuple = i[title]
+            key_dict = inner_dictionary[title]
 
             # tuple item zero
-            tuple_0 = key_tuple[0]
+            dict_0 = key_dict[0]
 
             # tuple item one
-            tuple_1 = key_tuple[1]
+            dict_1 = key_dict[1]
 
             # get fee amnt
-            fee_amnt = tuple_0[1]
+            fee_amnt = dict_0["fee"]
 
             # set fee amnt
             fees.append(None)
             default_fees.append(fee_amnt)
 
             # get item type
-            item_type = tuple_1[0]
+            item_type = list(dict_1.keys())[0]
 
             # set item type
             item_types.append(item_type)
 
             # get multiple rate value
-            multiple_rate = tuple_1[1]
+            multiple_rate = dict_1[item_type]
 
             # set multiple rate type
             multiple_values.append(None)
