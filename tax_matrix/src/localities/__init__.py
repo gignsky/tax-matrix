@@ -14,7 +14,7 @@ from ..utilities import Printer
 
 from . import north_carolina
 
-# from . import south_carolina
+from . import south_carolina
 
 # from .lancaster import main as lancaster
 # from .york import main as york
@@ -40,5 +40,5 @@ def load_all_counties(which_run):
     general_classes.Counties.add_county(north_carolina.iredell())
     general_classes.Counties.add_county(north_carolina.rowan())
     general_classes.Counties.add_county(north_carolina.gaston())
-    # general_classes.Counties.add_county(south_carolina.lancaster())
+    general_classes.Counties.add_county(south_carolina.lancaster())
     # general_classes.Counties.add_county(south_carolina.york())

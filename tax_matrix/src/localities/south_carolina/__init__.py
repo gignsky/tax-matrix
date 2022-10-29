@@ -8,5 +8,6 @@ from .. import InputTesters
 from .. import LogicalWork
 from .. import Printer
 
-# from .lancaster import main as lancaster
+from .lancaster import main as lancaster
+
 # from .york import main as york
