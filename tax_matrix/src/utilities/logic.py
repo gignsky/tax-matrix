@@ -219,29 +219,29 @@ class LogicalWork:
 
     # TODO see if ever referenced
     # old might be unused
-    #     @staticmethod
-    #     def create_options_dict_from_county_services_list_WITH_quit(county_services_list):
-    #         index = 0
-    #         return_dict = {}
-    #         if index != 0:
-    #             for i in county_services_list:
-    #                 title = i.keys()
-    #                 inital_rate = title["INITAL"]
-    #                 current_rate = title["CURRENT"]
-    #
-    #                 if inital_rate is not None:
-    #                     statement = f"{title} Current Rate: {current_rate} | Default Rate: {inital_rate}"
-    #                     return_dict[index] = {
-    #                         statement: {title: {current_rate: inital_rate}}
-    #                     }
-    #                     index += 1
-    #         else:
-    #             return_dict[index] = "Quit"
-    #
-    #         if len(return_dict) == 1:
-    #             return None
-    #         else:
-    #             return return_dict
+    @staticmethod
+    def create_options_dict_from_county_services_list_WITH_quit(county_services_list):
+        index = 0
+        return_dict = {}
+        if index != 0:
+            for i in county_services_list:
+                title = i.keys()
+                inital_rate = title["INITAL"]
+                current_rate = title["CURRENT"]
+
+                if inital_rate is not None:
+                    statement = f"{title} Current Rate: {current_rate} | Default Rate: {inital_rate}"
+                    return_dict[index] = {
+                        statement: {title: {current_rate: inital_rate}}
+                    }
+                    index += 1
+        else:
+            return_dict[index] = "Quit"
+
+        if len(return_dict) == 1:
+            return None
+        else:
+            return return_dict
 
     @staticmethod
     def create_options_dict_from_county_services_list_with_quit(county_services_list):
