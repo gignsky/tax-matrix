@@ -10,3 +10,6 @@ ref above for unused packages in venv
 
 https://stackoverflow.com/questions/17239522/how-to-find-undocumented-methods-in-my-code
 ref above for undocumented strings
+
+# Build exe info:
+https://www.py2exe.org/index.cgi/Tutorial#Step3
