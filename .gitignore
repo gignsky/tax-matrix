@@ -29,3 +29,6 @@ tax_matrix/src/utilities/__pycache__/inputs.cpython-38.pyc
 tax_matrix/src/utilities/__pycache__/logic.cpython-38.pyc
 tax_matrix/src/utilities/__pycache__/printers.cpython-38.pyc
 tax_matrix/src/utilities/__pycache__/testers.cpython-38.pyc
+tax_matrix/__pycache__/__init__.cpython-38.pyc
+tax_matrix/__pycache__/setup.cpython-38.pyc
+tax_matrix/tests/__pycache__/test_logic.cpython-38-pytest-7.1.3.pyc
