@@ -13,11 +13,7 @@ def main():
 
     # INFORMATION:
     county_name = "Lancaster Co., NC"
-    overall_county_wide_rate_title = "Lancaster County Base Millage"
-    overall_county_wide_rate = 0.1012
-    components_of_county_wide_rate_titles=("County Operations","County Debt Service","Capital Improvement","Courthouse Fire Security")
-    components_of_county_wide_rate_rates=(0.0843,0.0085,0.0048,0.0036)
-
+    county_wide_rate_title = "Lancaster County Base Millage"
 
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
@@ -25,50 +21,48 @@ def main():
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
+
     cities = {
-        1: albemarle(),
-        2: oakboro(),
-        3: badin(),
-        4: norwood(),
-        5: locust(),
-        6: stanfield(),
-        7: new_london(),
-        8: richfield(),
-        9: red_cross(),
-        10: misenheimer(),
+        1: kershaw(),
+        2: lancaster(),
+        3: reid_point(),
     }
 
-    # special fire rates
-    special_fire = {
-        1: {"West Lancaster Fire": 0.11},
-        2: {"Center Fire": 0.1},
-        3: {"Endy Fire": 0.1},
-        4: {"Ridgecrest Fire": 0.11},
-        5: {"Aquadale Fire": 0.1},
-        6: {"Eastside Fire": 0.1},
-        7: {"Oakboro Fire": 0.06},
-        8: {"New London Fire": 0.075},
-        9: {"Southside Fire": 0.15},
-        10: {"Bethany Fire": 0.0775},
-        11: {"Richfield-Misenheimer Fire": 0.07},
-        12: {"Millingport Fire": 0.1},
-        13: {"Badin/Yadkin Valley Fire": 0.0803},
-        14: {"Norwood Special Fire": 0.1},
-        15: {"Municipal Service Dist. Fire": 0.1},
+    # special rates
+    special_rates = {
+        1: {"County Base Millage Rate - County Operations": 0.0843},
+        2: {"County Base Millage Rate - County Debt Service": 0.0085},
+        3: {"County Base Millage Rate - Capital Improvement": 0.0048},
+        4: {"County Base Millage Rate - Courthouse Fire Security": 0.0036},
+        5: {"School District Millage Rate - School Operating": 0.1685},
+        6: {"School District Millage Rate - Debt Service": 0.065},
+        7: {"School District Millage Rate - USC-Lancaster": 0.0046},
     }
 
-    # solid waste fees
-    special_waste = {
-        1: {"Solid Waste Fee - County": 97.00},
-        2: {"Solid Waste Fee - Locust": 120.00},
+    # special fees
+    special_fees = {
+        1: {"#10 Indian Land Fire Fee": 90.00},
+        2: {"Brookchase Road Bond (District 87) Fee": 225.00},
     }
 
-    special_stuff = [special_waste, special_fire]
+    # special fees per a unit item
+    special_fees_per_items = {
+        1: {"#14 (Pleasant Valley) Fire District Fee (per 2,500 sqft)": 90.00},
+        2: {"Storm Water (Countywide, per unit) Fee": 60.00},
+    }
 
-    stanly = general_classes.County(
+    special_stuff = [special_fees, special_rates]
+
+    sales_tax_credit_factors = {
+        1: {"Local Option Sales Tax Credit Factors (Kershaw - City)": 0.00352},
+        2: {"Local Option Sales Tax Credit Factors (Kershaw - County)": 0.000869},
+        3: {"Local Option Sales Tax Credit Factors (Lancaster - City)": 0.003608},
+        4: {"Local Option Sales Tax Credit Factors (Lancaster - County)": 0.000869},
+    }
+
+    lancaster = general_classes.County(
         county_name,
         county_wide_rate_title,
-        county_wide_rate,
         county_wide_police_title,
         county_wide_police_rate,
         county_wide_fire_title,
@@ -77,18 +71,20 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
+        special_fees_per_items,
+        sales_tax_credit_factors,
     )
 
-    return stanly
+    return lancaster
 
 
-def albemarle():
+def kershaw():
     """
     City Class
     """
     # INFORMATION
-    city_name = "Albemarle"
-    city_rate = 0.61
+    city_name = "Kershaw"
+    city_rate = 0.0959
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -108,13 +104,13 @@ def albemarle():
     return city
 
 
-def oakboro():
+def lancaster():
     """
     City Class
     """
     # INFORMATION
-    city_name = "Oakboro"
-    city_rate = 0.41
+    city_name = "Lancaster"
+    city_rate = 0.1759
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -134,201 +130,13 @@ def oakboro():
     return city
 
 
-def badin():
+def reid_point():
     """
     City Class
     """
     # INFORMATION
-    city_name = "Badin"
-    city_rate = 0.4475
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = 0.0803
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
-def norwood():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Norwood"
-    city_rate = 0.39
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = None
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
-def locust():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Locust"
-    city_rate = 0.36
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = 0.11
-    fire_rate_title = f"{city_name} Fire"
-
-    # waste options
-    waste_title = "Solid Waste Fee - Locust"
-    waste_fee = 120.00
-
-    city = special_classes.CityWithWasteFee(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-        waste_title,
-        waste_fee,
-    )
-
-    return city
-
-
-def stanfield():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Stanfield"
-    city_rate = 0.32
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = 0.11
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
-def new_london():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "New London"
-    city_rate = 0.16
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = 0.075
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
-def richfield():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Richfield"
-    city_rate = 0.22
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = 0.07
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
-def red_cross():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Red Cross"
-    city_rate = 0.16
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = None
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
-def misenheimer():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Misenheimer"
-    city_rate = 0.22
+    city_name = "Reid Point (Special Purpose District)"
+    city_rate = 0.035
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
