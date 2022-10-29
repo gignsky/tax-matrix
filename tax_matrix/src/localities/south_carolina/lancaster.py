@@ -2,9 +2,8 @@
     lancaster county taxes
 """
 
-#TODO FIX UP IMPORTS
 from . import general_classes
-from . import county_classes.lancaster_class as lancaster_class
+from . import county_classes
 
 
 def main():
@@ -66,7 +65,7 @@ def main():
         4: {"Local Option Sales Tax Credit Factors (Lancaster - County)": 0.000869},
     }
 
-    lancaster = lancaster_class.LancasterCo(
+    lancaster = county_classes.lancaster_class.LancasterCo(
         county_name,
         county_wide_rate_title,
         county_wide_rate,
