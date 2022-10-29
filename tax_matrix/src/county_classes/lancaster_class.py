@@ -60,7 +60,8 @@ class LancasterCo(general_classes.County):
         ) = self.seperate_per_items(self.special_fees_per_items_dict)
         self.sales_tax_credit_factors_master_dict = sales_tax_credit_factors
 
-        # set
+        # set self.mod_dictionary
+        self.mod_dictionary = {}
 
     # configuration of special dict methods
     def seperate_per_items(self, dictionary):
@@ -118,6 +119,7 @@ class LancasterCo(general_classes.County):
             items,
             multiple_values,
             default_multiple_values,
+            default_fees,
             multiple_value_strs,
         )
 
@@ -126,10 +128,11 @@ class LancasterCo(general_classes.County):
         super().modify_special_options()
 
         # per item fees
-        self.per_item_stats = self.modify_per_item_options()
+        self.modify_per_item_options()
 
-        # tax credit options
-        self.tax_credit_stats = self.modify_tax_credit_options()
+        # TODO UNCOMMENT WHEN THING IS WORKED ON
+        # # tax credit options
+        # self.modify_tax_credit_options()
 
     # modify
     def modify_per_item_options(self):
@@ -137,15 +140,13 @@ class LancasterCo(general_classes.County):
             "Would you like to apply special options that require per item multiplications?"
         )
 
-        if not do_modify:
-            return None
-        else:
+        if do_modify:
             looping = True
 
             while looping:
                 self.mod_dictionary = self.create_per_item_options_dictionary()
                 input_return = InputHelper.input_from_dict(
-                    mod_dictionary, "Which Option would you like to modify?"
+                    self.mod_dictionary, "Which Option would you like to modify?"
                 )
 
                 if input_return == self.mod_dictionary[0]:
