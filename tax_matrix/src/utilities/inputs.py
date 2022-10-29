@@ -2,6 +2,8 @@
     Class to help with inputs
 """
 
+#TODO FIX UP IMPORTS
+import debugpy
 from .testers import InputTesters
 from .printers import Printer
 from .logic import LogicalWork
@@ -425,3 +427,28 @@ class InputHelper:
         )
 
         return inputted_value
+
+    @staticmethod
+    def per_item_item_input(item_type,default_multiple,current_multiple):
+        cls()
+        if item_type == "sqft":
+            question="Please enter subject's Square Footage:"
+        elif: item_type == "unit":
+            question="Please enter quanity of units on subject property:"
+        else:
+            debugpy.breakpoint()
+
+        while True:
+            input_return=input(question)
+
+            test_return=InputTesters.verify_int(input_return)
+
+            if test_return is not None:
+                if item_type == "sqft":
+                    str_return=f"{test_return:,.0f} sqft"
+                elif: item_type == "unit":
+                    if test_return==1:
+                        str_return=f"{test_return:.0f} unit"
+                    else:
+                        str_return=f"{test_return:.0f} units"
+                return test_return,str_return
