@@ -7,7 +7,10 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": false,
         "**/.trunk/*out": true,
-        ".gitignore": false
+        ".gitignore": false,
+        "**/.venv": true,
+        ".venv": true,
+        "tax_matrix/.venv": true
     },
     "explorerExclude.backup": {}
 }
