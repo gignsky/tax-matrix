@@ -2,9 +2,9 @@
     generic lancaster county class
 """
 
-from . import debugpy
-from . import Printer
-from . import InputHelper
+# from . import debugpy
+# from . import Printer
+# from . import InputHelper
 from . import general_classes
 
 
@@ -46,95 +46,97 @@ class LancasterCo(general_classes.County):
             special_stuff,
         )
 
-#         # set & configure special dicts
-#         self.special_fees_per_items_dict = special_fees_per_items
-#         (
-#             self.special_fees_per_items_dict_titles,
-#             self.special_fees_per_items_dict_fees,
-#             self.special_fees_per_items_dict_item_types,
-#             self.special_fees_per_items_dict_items,
-#             self.special_fees_per_items_dict_items_multiple_rates,
-#             self.special_fees_per_items_dict_items_default_multiple_rate,
-#             self.special_fees_per_items_dict_items_default_fee,
-#             self.special_fees_per_items_dict_items_multiple_str,
-#         ) = self.seperate_per_items(self.special_fees_per_items_dict)
-#         self.sales_tax_credit_factors_master_dict = sales_tax_credit_factors
-#
-#         # set self.mod_dictionary
-#         self.mod_dictionary = {}
-#
-#     # TODO CONVERT TO CLASS
-#     # configuration of special dict methods
-#     def seperate_per_items(self, dictionary):
-#         titles = []
-#         fees = []
-#         item_types = []
-#         items = []
-#         multiple_values = []
-#         default_multiple_values = []
-#         default_fees = []
-#         multiple_value_strs = []
-#         for i in dictionary:
-#             # grab title
-#             inner_dictionary = dictionary[i]
-#             title = list(inner_dictionary.keys())[0]
-#             titles.append(title)
-#
-#             # grab key
-#             key_dict = inner_dictionary[title]
-#
-#             # tuple item zero
-#             dict_0 = key_dict[0]
-#
-#             # tuple item one
-#             dict_1 = key_dict[1]
-#
-#             # get fee amnt
-#             fee_amnt = dict_0["fee"]
-#
-#             # set fee amnt
-#             fees.append(None)
-#             default_fees.append(fee_amnt)
-#
-#             # get item type
-#             item_type = list(dict_1.keys())[0]
-#
-#             # set item type
-#             item_types.append(item_type)
-#
-#             # get multiple rate value
-#             multiple_rate = dict_1[item_type]
-#
-#             # set multiple rate type
-#             multiple_values.append(None)
-#             default_multiple_values.append(multiple_rate)
-#
-#             # set item default value of 99999 for error throwing
-#             items.append(999999)
-#
-#             # set string to none
-#             multiple_value_strs.append(None)
-#         return (
-#             titles,
-#             fees,
-#             item_types,
-#             items,
-#             multiple_values,
-#             default_multiple_values,
-#             default_fees,
-#             multiple_value_strs,
-#         )
+    #         # set & configure special dicts
+    #         self.special_fees_per_items_dict = special_fees_per_items
+    #         (
+    #             self.special_fees_per_items_dict_titles,
+    #             self.special_fees_per_items_dict_fees,
+    #             self.special_fees_per_items_dict_item_types,
+    #             self.special_fees_per_items_dict_items,
+    #             self.special_fees_per_items_dict_items_multiple_rates,
+    #             self.special_fees_per_items_dict_items_default_multiple_rate,
+    #             self.special_fees_per_items_dict_items_default_fee,
+    #             self.special_fees_per_items_dict_items_multiple_str,
+    #         ) = self.seperate_per_items(self.special_fees_per_items_dict)
+    #         self.sales_tax_credit_factors_master_dict = sales_tax_credit_factors
+    #
+    #         # set self.mod_dictionary
+    #         self.mod_dictionary = {}
+    #
+    #     # TODO CONVERT TO CLASS
+    #     # configuration of special dict methods
+    #     def seperate_per_items(self, dictionary):
+    #         titles = []
+    #         fees = []
+    #         item_types = []
+    #         items = []
+    #         multiple_values = []
+    #         default_multiple_values = []
+    #         default_fees = []
+    #         multiple_value_strs = []
+    #         for i in dictionary:
+    #             # grab title
+    #             inner_dictionary = dictionary[i]
+    #             title = list(inner_dictionary.keys())[0]
+    #             titles.append(title)
+    #
+    #             # grab key
+    #             key_dict = inner_dictionary[title]
+    #
+    #             # tuple item zero
+    #             dict_0 = key_dict[0]
+    #
+    #             # tuple item one
+    #             dict_1 = key_dict[1]
+    #
+    #             # get fee amnt
+    #             fee_amnt = dict_0["fee"]
+    #
+    #             # set fee amnt
+    #             fees.append(None)
+    #             default_fees.append(fee_amnt)
+    #
+    #             # get item type
+    #             item_type = list(dict_1.keys())[0]
+    #
+    #             # set item type
+    #             item_types.append(item_type)
+    #
+    #             # get multiple rate value
+    #             multiple_rate = dict_1[item_type]
+    #
+    #             # set multiple rate type
+    #             multiple_values.append(None)
+    #             default_multiple_values.append(multiple_rate)
+    #
+    #             # set item default value of 99999 for error throwing
+    #             items.append(999999)
+    #
+    #             # set string to none
+    #             multiple_value_strs.append(None)
+    #         return (
+    #             titles,
+    #             fees,
+    #             item_types,
+    #             items,
+    #             multiple_values,
+    #             default_multiple_values,
+    #             default_fees,
+    #             multiple_value_strs,
+    #         )
 
     # deal with special options
     def modify_special_options(self):
         super().modify_special_options()
 
-        # per item fees
-        self.modify_per_item_options()
 
-        # TODO UNCOMMENT WHEN THING IS WORKED ON
-        # # tax credit options
-        # self.modify_tax_credit_options()
+#
+#         # per item fees
+#         self.modify_per_item_options()
+#
+#         # TODO UNCOMMENT WHEN THING IS WORKED ON
+#         # # tax credit options
+#         # self.modify_tax_credit_options()
 #
 #     # modify
 #     def modify_per_item_options(self):
