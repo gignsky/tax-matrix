@@ -254,3 +254,5 @@ class LancasterCo(general_classes.County):
 #                 looping = False
 #
 #         return dict_to_return
+
+# TODO Add questionaire to help with questioning primary residence of buyer for 0.4 or 0.6 multiplication
