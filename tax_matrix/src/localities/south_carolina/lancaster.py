@@ -47,23 +47,23 @@ def main():
 
     special_stuff = [special_fees, special_rates]
 
-#     # special fees per a unit item
-#     special_fees_per_items = {
-#         1: {
-#             "#14 (Pleasant Valley) Fire District Fee (per 2,500 sqft)": [
-#                 {"fee": 90.00},
-#                 {"sqft": 2500},
-#             ]
-#         },
-#         2: {"Storm Water (Countywide, per unit) Fee": [{"fee": 60.00}, {"unit": 1}]},
-#     }
-#
-#     sales_tax_credit_factors = {
-#         1: {"Local Option Sales Tax Credit Factors (Kershaw - City)": 0.00352},
-#         2: {"Local Option Sales Tax Credit Factors (Kershaw - County)": 0.000869},
-#         3: {"Local Option Sales Tax Credit Factors (Lancaster - City)": 0.003608},
-#         4: {"Local Option Sales Tax Credit Factors (Lancaster - County)": 0.000869},
-#     }
+    #     # special fees per a unit item
+    #     special_fees_per_items = {
+    #         1: {
+    #             "#14 (Pleasant Valley) Fire District Fee (per 2,500 sqft)": [
+    #                 {"fee": 90.00},
+    #                 {"sqft": 2500},
+    #             ]
+    #         },
+    #         2: {"Storm Water (Countywide, per unit) Fee": [{"fee": 60.00}, {"unit": 1}]},
+    #     }
+    #
+    #     sales_tax_credit_factors = {
+    #         1: {"Local Option Sales Tax Credit Factors (Kershaw - City)": 0.00352},
+    #         2: {"Local Option Sales Tax Credit Factors (Kershaw - County)": 0.000869},
+    #         3: {"Local Option Sales Tax Credit Factors (Lancaster - City)": 0.003608},
+    #         4: {"Local Option Sales Tax Credit Factors (Lancaster - County)": 0.000869},
+    #     }
 
     lancaster = county_classes.lancaster_class.LancasterCo(
         county_name,
