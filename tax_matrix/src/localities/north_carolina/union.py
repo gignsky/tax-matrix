@@ -25,6 +25,7 @@ def main():
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
+    tax_rates_year = 2023
     cities = {
         1: village_of_marvin(),
         2: city_of_monroe(),
