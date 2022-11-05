@@ -28,6 +28,7 @@ class County:
         county_wide_ems_rate,
         all_cities,
         special_stuff,
+        tax_rate_year,
     ):
         self.county_name = county_name
         self.county_wide_rate_title = county_wide_rate_title
@@ -41,6 +42,8 @@ class County:
         self.all_cities = all_cities
         self.city = None
         self.special_stuff = special_stuff
+
+        self.tax_rate_year = str(tax_rate_year)
 
         # set county service inital options
         self.county_wide_fire_rate_inital = self.county_wide_fire_rate
@@ -100,6 +103,15 @@ class County:
             str: county name
         """
         return self.county_name
+
+    def get_tax_update_year(self):
+        """
+        get_county_name
+
+        Returns:
+            str: county name
+        """
+        return self.tax_rate_year
 
     def get_county_wide_rate(self):
         """
