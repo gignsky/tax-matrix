@@ -6,7 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  - name: Run Black Check
-    uses: piotrpawlaczek/python-blacken@release/stable
-    with:
-      sanity-check: 'safe'
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Black Check
+        uses: piotrpawlaczek/python-blacken@release/stable
+        with:
+          sanity-check: 'safe'
