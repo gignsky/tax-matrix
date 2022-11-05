@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout current branch
+        uses: actions/checkout@v2
+        
       - name: Run Black Check
         uses: piotrpawlaczek/python-blacken@release/stable
         with:
