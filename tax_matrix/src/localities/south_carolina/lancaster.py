@@ -1,4 +1,0 @@
-"""
-    lancaster county taxes
-"""
-
