@@ -1,2 +1,4 @@
-- name: Python Blacken
-  uses: piotrpawlaczek/python-blacken@v22.3.0
+- name: Check with Python-Black
+  uses: piotrpawlaczek/python-blacken@release/stable
+  with:
+    sanity-check: 'safe'
