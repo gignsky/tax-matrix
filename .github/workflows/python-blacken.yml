@@ -1,4 +1,12 @@
 name: Check with Python-Black
-  uses: piotrpawlaczek/python-blacken@release/stable
-  with:
-    sanity-check: 'safe'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  - name: Run Black Check
+    uses: piotrpawlaczek/python-blacken@release/stable
+    with:
+      sanity-check: 'safe'
