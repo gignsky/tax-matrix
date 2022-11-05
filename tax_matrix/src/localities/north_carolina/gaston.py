@@ -53,11 +53,12 @@ def main():
         10: {"Lowell Fire Department": 0.11},
         11: {"Lucia-RvBend Fire Department": 0.11},
         12: {"New Hope Fire Department": 0.11},
-        13: {"S. Gastonia Fire Department": 0.11},
-        14: {"South Point Fire Department": 0.11},
-        15: {"Tryonota Fire Department": 0.11},
-        16: {"Union Road Fire Department": 0.11},
-        17: {"Waco Fire Department": 0.11},
+        13: {"Ranlo Fire Department": 0.11},
+        14: {"S. Gastonia Fire Department": 0.11},
+        15: {"South Point Fire Department": 0.11},
+        16: {"Tryonota Fire Department": 0.11},
+        17: {"Union Road Fire Department": 0.11},
+        18: {"Waco Fire Department": 0.11},
     }
 
     special_stuff = [None, county_fire_services]
