@@ -77,7 +77,8 @@ class LogicalWork:
             dict_with_names[0] = "Quit Program"
             for i in class_dict:
                 name = i.get_county_name()
-                dict_with_names[index_value] = name
+                year = i.get_tax_update_year()
+                dict_with_names[index_value] = f"{name} | Current Tax Rate Year: {year}"
                 index_value += 1
         elif city_or_county == "CITY":
             dict_with_names[0] = "None of the below"
@@ -312,3 +313,30 @@ class LogicalWork:
         """
         input("press ANY key to Continue\n...\n")
         cls()
+
+    @staticmethod
+    def sc_county_wide_rate_musher(
+        overall_title, overall_rate, list_of_inner_titles, list_of_inner_rates
+    ):
+
+        list_of_statements_to_mush = ()
+
+        for title, rate in zip(list_of_inner_titles, list_of_inner_rates):
+            list_of_statements_to_mush.append(f"({rate} - {title})")
+
+        num_of_statements = len(list_of_statements_to_mush)
+        statement_to_mush = ""
+
+        for statement in list_of_statements_to_mush:
+            if num_of_statements == 1:
+                statement_to_mush = f"{statement})"
+            else:
+                statement_to_mush = f"{statement_to_mush} + {statement}"
+
+            num_of_statements += 1
+
+        overall_statement_for_county = (
+            f"[{overall_rate} - {overall_title} ({statement_to_mush})]"
+        )
+
+        return overall_statement_for_county
