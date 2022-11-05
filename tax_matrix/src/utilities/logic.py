@@ -77,7 +77,8 @@ class LogicalWork:
             dict_with_names[0] = "Quit Program"
             for i in class_dict:
                 name = i.get_county_name()
-                dict_with_names[index_value] = name
+                year = i.get_tax_update_year()
+                dict_with_names[index_value] = f"{name} | Current Tax Rate Year: {year}"
                 index_value += 1
         elif city_or_county == "CITY":
             dict_with_names[0] = "None of the below"

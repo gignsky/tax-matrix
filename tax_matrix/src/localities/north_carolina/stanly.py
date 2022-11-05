@@ -21,6 +21,7 @@ def main():
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
+    tax_rates_year = 2023
     cities = {
         1: albemarle(),
         2: oakboro(),
@@ -73,6 +74,7 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
+        tax_rates_year,
     )
 
     return stanly
