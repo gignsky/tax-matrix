@@ -252,3 +252,29 @@ def town_of_midland():
     )
 
     return city
+
+
+def town_of_huntersville():
+    """
+    City Class
+    """
+    # INFORMATION
+    city_name = "Town of Huntersville"
+    city_rate = 0.24
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
+
+    city = general_classes.City(
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
+    )
+
+    return city
