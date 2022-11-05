@@ -14,4 +14,4 @@ jobs:
         uses: piotrpawlaczek/python-blacken@release/stable
         with:
           sanity-check: 'safe'
-          path: 'tax_matrix/src/*'
+          path: '.'
