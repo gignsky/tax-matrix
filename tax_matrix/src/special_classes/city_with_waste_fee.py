@@ -2,7 +2,7 @@
     class for cities with waste fee
 """
 
-import debugpy
+from . import debugpy
 from . import general_classes
 from . import Printer
 from . import cls
