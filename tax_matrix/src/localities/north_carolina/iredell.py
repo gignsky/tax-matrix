@@ -23,6 +23,7 @@ def main():
     county_wide_fire_rate = 0.09
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
+    tax_rates_year = 2022
     cities = {
         1: statesville_city(),
         2: statesville_downtown(),
