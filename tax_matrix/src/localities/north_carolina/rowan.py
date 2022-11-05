@@ -23,6 +23,7 @@ def main():
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
+    tax_rates_year = 2021
     cities = {
         1: city_of_salisbury(),
         2: town_of_spencer(),

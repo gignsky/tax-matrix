@@ -16,13 +16,14 @@ def main():
     # INFORMATION:
     county_name = "Gaston Co., NC"
     county_wide_rate_title = "Gaston County Unincorporated Tax Rate"
-    county_wide_rate = 0.83
+    county_wide_rate = 0.81
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
     county_wide_fire_title = f"{county_name} Fire"
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
+    tax_rates_year = 2022
     cities = {
         1: belmont(),
         2: bessemer(),
@@ -30,33 +31,35 @@ def main():
         4: cramerton(),
         5: dallas(),
         6: gastonia(),
-        7: high_shls(),
-        8: kings_mtn(),
-        9: lowell(),
-        10: mcadenville(),
-        11: mt_holly(),
-        12: ranlo(),
-        13: spencer_mtn(),
-        14: stanly(),
+        7: gastonia_downtown(),
+        8: high_shls(),
+        9: kings_mtn(),
+        10: lowell(),
+        11: mcadenville(),
+        12: mt_holly(),
+        13: ranlo(),
+        14: spencer_mtn(),
+        15: stanly(),
     }
     county_fire_services = {
-        1: {"AG Center Fire": 0.092},
-        2: {"Alexis VFD": 0.079},
-        3: {"Chapel Gr Fire": 0.093},
-        4: {"Chestnut Ridge FD": 0.081},
-        5: {"Commun. Fire": 0.099},
-        6: {"Crouse Fire": 0.069},
-        7: {"East Gast. Fire": 0.072},
-        8: {"Hughs Pond FD": 0.1050},
-        9: {"Long Shoals FD": 0.1040},
-        10: {"Lowell FD": 0.068},
-        11: {"Lucia Rb Fire": 0.093},
-        12: {"New Hp Fire": 0.084},
-        13: {"S. Gast. Fire": 0.093},
-        14: {"S. Point Fire": 0.036},
-        15: {"Tryonota Fire": 0.081},
-        16: {"Union Rd Fire": 0.065},
-        17: {"Waco Fire": 0.081},
+        1: {"AG Center Fire": 0.11},
+        2: {"Alexis Fire Department": 0.11},
+        3: {"Chapel Grove Fire": 0.11},
+        4: {"Chestnut Ridge Fire Department": 0.11},
+        5: {"Community Fire Department": 0.11},
+        6: {"Crouse Fire Department": 0.11},
+        7: {"East Gaston Fire Department": 0.11},
+        8: {"Hughs Pond Fire Department": 0.11},
+        9: {"Long Shoals Fire Department": 0.11},
+        10: {"Lowell Fire Department": 0.11},
+        11: {"Lucia-RvBend Fire Department": 0.11},
+        12: {"New Hope Fire Department": 0.11},
+        13: {"Ranlo Fire Department": 0.11},
+        14: {"S. Gastonia Fire Department": 0.11},
+        15: {"South Point Fire Department": 0.11},
+        16: {"Tryonota Fire Department": 0.11},
+        17: {"Union Road Fire Department": 0.11},
+        18: {"Waco Fire Department": 0.11},
     }
 
     special_stuff = [None, county_fire_services]
@@ -83,8 +86,8 @@ def belmont():
     City Class
     """
     # INFORMATION
-    city_name = "Belmont"
-    city_rate = 0.515
+    city_name = "Belmont City"
+    city_rate = 0.495
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -109,7 +112,7 @@ def bessemer():
     City Class
     """
     # INFORMATION
-    city_name = "Bessemer"
+    city_name = "Bessemer City"
     city_rate = 0.45
     city_rate_title = city_name
     police_rate = None
@@ -135,7 +138,7 @@ def cherryville():
     City Class
     """
     # INFORMATION
-    city_name = "Cherryville"
+    city_name = "Cherryville City"
     city_rate = 0.52
     city_rate_title = city_name
     police_rate = None
@@ -161,7 +164,7 @@ def cramerton():
     City Class
     """
     # INFORMATION
-    city_name = "Cramerton"
+    city_name = "Cramerton City"
     city_rate = 0.475
     city_rate_title = city_name
     police_rate = None
@@ -187,8 +190,8 @@ def dallas():
     City Class
     """
     # INFORMATION
-    city_name = "Dallas"
-    city_rate = 0.4
+    city_name = "Town of Dallas"
+    city_rate = 0.42
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -213,8 +216,34 @@ def gastonia():
     City Class
     """
     # INFORMATION
-    city_name = "Gastonia"
+    city_name = "Gastonia City"
     city_rate = 0.52
+    city_rate_title = city_name
+    police_rate = None
+    police_rate_title = f"{city_name} Police"
+    fire_rate = None
+    fire_rate_title = f"{city_name} Fire"
+
+    city = general_classes.City(
+        city_name,
+        city_rate,
+        city_rate_title,
+        police_rate,
+        police_rate_title,
+        fire_rate,
+        fire_rate_title,
+    )
+
+    return city
+
+
+def gastonia_downtown():
+    """
+    City Class
+    """
+    # INFORMATION
+    city_name = "Gastonia Downtown Special District"
+    city_rate = 0.2
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -239,12 +268,12 @@ def high_shls():
     City Class
     """
     # INFORMATION
-    city_name = "High Shoals"
+    city_name = "High Shoals City"
     city_rate = 0.38
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
-    fire_rate = 0.104
+    fire_rate = 0.11
     fire_rate_title = f"{city_name} Fire"
 
     city = general_classes.City(
@@ -265,7 +294,7 @@ def kings_mtn():
     City Class
     """
     # INFORMATION
-    city_name = "Kings Mtn"
+    city_name = "Kings Mtn City"
     city_rate = 0.43
     city_rate_title = city_name
     police_rate = None
@@ -291,13 +320,13 @@ def lowell():
     City Class
     """
     # INFORMATION
-    city_name = "Lowell"
-    city_rate = 0.43
+    city_name = "Lowell City"
+    city_rate = 0.49
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
-    fire_rate = 0.068
-    fire_rate_title = f"{city_name} FD"
+    fire_rate = 0.11
+    fire_rate_title = f"{city_name} Fire Department"
 
     city = general_classes.City(
         city_name,
@@ -317,8 +346,8 @@ def mcadenville():
     City Class
     """
     # INFORMATION
-    city_name = "McAdenville"
-    city_rate = 0.33
+    city_name = "McAdenville City"
+    city_rate = 0.39
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -343,7 +372,7 @@ def mt_holly():
     City Class
     """
     # INFORMATION
-    city_name = "Mt. Holly"
+    city_name = "Mount Holly City"
     city_rate = 0.485
     city_rate_title = city_name
     police_rate = None
@@ -369,12 +398,12 @@ def ranlo():
     City Class
     """
     # INFORMATION
-    city_name = "Ranlo"
-    city_rate = 0.4
+    city_name = "Ranlo City"
+    city_rate = 0.5
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
-    fire_rate = 0.088
+    fire_rate = 0.11
     fire_rate_title = f"{city_name} Fire"
 
     city = general_classes.City(
@@ -400,7 +429,7 @@ def spencer_mtn():
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
-    fire_rate = 0.093
+    fire_rate = 0.11
     fire_rate_title = f"{city_name} Fire"
 
     city = general_classes.City(
@@ -421,7 +450,7 @@ def stanly():
     City Class
     """
     # INFORMATION
-    city_name = "Stanley"
+    city_name = "Stanley City"
     city_rate = 0.54
     city_rate_title = city_name
     police_rate = None
