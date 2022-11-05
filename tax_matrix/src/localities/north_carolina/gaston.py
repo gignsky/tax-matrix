@@ -76,6 +76,7 @@ def main():
         county_wide_ems_rate,
         cities,
         special_stuff,
+        tax_rates_year,
     )
 
     return gaston
