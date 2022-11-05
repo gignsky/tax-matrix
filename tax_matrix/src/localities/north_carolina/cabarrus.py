@@ -32,6 +32,7 @@ def main():
         5: city_of_kannapolis(),
         6: city_of_locust(),
         7: town_of_midland(),
+        8: town_of_huntersville(),
     }
 
     county_fire_services = {
