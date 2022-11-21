@@ -33,7 +33,9 @@ def main():
         1: {"County Base Millage Rate - County Operations": 84.3},
         2: {"County Base Millage Rate - County Debt Service": 9.6},
         3: {"County Base Millage Rate - Capital Improvement": 4.8},
-        4: {"School District Millage Rate - School Operating": 171.8}, #NOTE CREDIT ALWAYS APPLIED ON RESIDENTIAL (0.04) PROPERTIES
+        4: {
+            "School District Millage Rate - School Operating": 171.8
+        },  # NOTE CREDIT ALWAYS APPLIED ON RESIDENTIAL (0.04) PROPERTIES
         5: {"School District Millage Rate - Debt Service": 65},
         6: {"USC-Lancaster": 4.6},
         7: {"Courthouse Security": 3.6},
@@ -47,6 +49,7 @@ def main():
 
     special_stuff = [special_fees, special_rates]
 
+    # TODO THINK THIS PER UNIT DOESN'T EXIST IN 2022 but sales tax credit does exist
     #     # special fees per a unit item
     #     special_fees_per_items = {
     #         1: {
@@ -57,13 +60,14 @@ def main():
     #         },
     #         2: {"Storm Water (Countywide, per unit) Fee": [{"fee": 60.00}, {"unit": 1}]},
     #     }
-    #
+    #       #NOTE multiplied by base purchase price rate not any multiple rate
     #     sales_tax_credit_factors = {
     #         1: {"Local Option Sales Tax Credit Factors (Kershaw - City)": 0.003520},
     #         2: {"Local Option Sales Tax Credit Factors (Lancaster - City)": 0.003728},
-    ####TODO THINK THESE LAST TWO OPTIONS ARE DEPRECIATED
-    #         3: {"Local Option Sales Tax Credit Factors (Kershaw - County)": 0.000869},
-    #         4: {"Local Option Sales Tax Credit Factors (Lancaster - County)": 0.000869},
+    #         3: {"Local Option Sales Tax Credit Factors (Lancaster - County)": 0.000784},
+    #
+    ####TODO THINK THIS LAST ONE OPTIONS ARE DEPRECIATED
+    #         4: {"Local Option Sales Tax Credit Factors (Kershaw - County)": 0.000869},
     #     }
 
     lancaster = county_classes.lancaster_class.LancasterCo(
