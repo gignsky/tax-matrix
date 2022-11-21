@@ -1,0 +1,16 @@
+vars:
+purchase_price
+    residential_multiplier (0.04 or 0.06)
+
+real_assement_value = purchase_price * residential_multiplier
+
+milled_value = real_assement_value /1,000
+
+
+county_GRAND_overall_rate = base_overall_rate + school_overall_rate + other_overall_rate
+    base_overall_rate = county_operating + county_debt + capital_improvement
+    school_overall_rate = school_operating + school_debt
+    other_overall_rate = USC_lancaster + courthouse_security
+
+####
+final_tax_value = (milled_value * county_GRAND_overall_rate) - ( {***ONLY IF residential_multiplier EQUALS 0.04**} milled_value * school_operating) - (purchase_price * ANY "Local Option Sales Tax Credit Factors that apply)
