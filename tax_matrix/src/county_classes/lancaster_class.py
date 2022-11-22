@@ -19,6 +19,7 @@ class LancasterCo(general_classes.County):
     def __init__(
         self,
         county_name,
+        county_state,
         county_wide_rate_title,
         county_wide_rate,
         county_wide_police_title,
@@ -34,6 +35,7 @@ class LancasterCo(general_classes.County):
     ):
         super().__init__(
             county_name,
+            county_state,
             county_wide_rate_title,
             county_wide_rate,
             county_wide_police_title,
