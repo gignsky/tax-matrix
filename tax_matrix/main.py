@@ -46,7 +46,7 @@ def main():
         3: "Modify County\n...",
         4: "Modify Residential Status (Primary Residence / Investment)\n...",
         5: "Modify Countywide Police, Fire, and/or EMS rates",
-        6: "Modify County Special Options - Fees & Rates\n...",
+        6: "Modify County Special Options - Fees & Rates (or Sales Tax Credit Factors LANCASTER ONLY)\n...",
         7: "Modify City and/or City Options\n...",
         99: "Reload Counties to Default Values",
     }
