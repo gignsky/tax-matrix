@@ -18,6 +18,7 @@ class Property:
         self.price_div_100_string = None
         self.county = None
         self.final_tax_cost = 0.0
+        self.residency_status = None
 
         # inital declarations
         self.statistics = None
@@ -67,6 +68,14 @@ class Property:
             city (obj): city object
         """
         self.county.add_city(city)
+
+    def add_residency(self, residency_bool):
+        if residency_bool == "RESET":
+            self.residency_status == None
+        elif residency_bool:
+            self.residency_status = "Primary"
+        else:
+            self.residency_status = "Investment"
 
     # get items
     def get_price_str(self):

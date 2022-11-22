@@ -120,12 +120,17 @@ def main():
                 # add county
                 subject.add_county(county)
 
+                if subject.county.get_state() != "SC":
+                    subject.add_residency("RESET")
+
                 cls()
 
         # Modify Residency for SC ONLY
         elif menu_option == options_dict[4]:
             if subject.county.get_state() == "SC":
-                residency_bool = src.utilities.inputs.InputHelper.grab_residency()
+                residency_bool = src.utilities.inputs.InputHelper.grab_residency(
+                    subject
+                )
                 subject.set_residency(residency_bool)
             else:
                 src.utilities.printers.Printer.print_red(
@@ -185,6 +190,7 @@ def main():
                 subject = src.general_classes.Property()
                 inital_run_status = True
                 subject_has_price = False
+                subject.add_residency("RESET")
                 cls()
                 src.utilities.printers.Printer.short_liner()
                 src.utilities.printers.Printer.print_green("Counties & Cities RELOADED")
