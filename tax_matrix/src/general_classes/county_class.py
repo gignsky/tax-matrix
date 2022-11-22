@@ -135,6 +135,15 @@ class County:
             # debugpy.breakpoint()
             return f"ERROR | SPECIAL OPTIONS NOT CONFIGURED IN {self.get_county_name()}'s Class"
 
+    def get_state(self):
+        """
+        get_state
+
+        Returns:
+            str: two letter state string
+        """
+        return self.county_state
+
     # modify items
     def which_modify_county_services(self):
         """
