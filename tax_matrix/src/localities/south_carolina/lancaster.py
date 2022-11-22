@@ -13,6 +13,7 @@ def main():
 
     # INFORMATION:
     county_name = "Lancaster Co., SC"
+    county_state = "SC"
     county_wide_rate_title = "Lancaster County Base Millage"
     county_wide_rate = 0
     county_wide_police_title = f"{county_name} Police"
@@ -67,6 +68,7 @@ def main():
 
     lancaster = county_classes.lancaster_class.LancasterCo(
         county_name,
+        county_state,
         county_wide_rate_title,
         county_wide_rate,
         county_wide_police_title,

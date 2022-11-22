@@ -1,5 +1,5 @@
 """
-general utilites for entire program
+general utilities for entire program
 """
 from pprint import pprint
 from art import tprint
