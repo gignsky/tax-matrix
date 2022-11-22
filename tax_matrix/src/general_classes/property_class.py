@@ -70,6 +70,12 @@ class Property:
         self.county.add_city(city)
 
     def add_residency(self, residency_bool):
+        """
+        add_residency or update/reset
+
+        Args:
+            residency_bool (bool / "RESET"): command to update the self.residency status state
+        """
         if residency_bool == "RESET":
             self.residency_status = None
         elif residency_bool:
