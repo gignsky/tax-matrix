@@ -30,13 +30,13 @@ def main():
 
     # special rates
     special_rates = {
-        1: {"County Base Millage Rate - County Operations": 84.3},
-        2: {"County Base Millage Rate - County Debt Service": 9.6},
-        3: {"County Base Millage Rate - Capital Improvement": 4.8},
+        1: {"County Operations": 84.3},
+        2: {"County Debt": 9.6},
+        3: {"Capital Improvement": 4.8},
         4: {
-            "School District Millage Rate - School Operating": 171.8
+            "School Operating": 171.8
         },  # NOTE CREDIT ALWAYS APPLIED ON RESIDENTIAL (0.04) PROPERTIES
-        5: {"School District Millage Rate - Debt Service": 65},
+        5: {"School Debt": 65},
         6: {"USC-Lancaster": 4.6},
         7: {"Courthouse Security": 3.6},
     }
