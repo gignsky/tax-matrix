@@ -47,7 +47,7 @@ def main():
         4: "Modify Countywide Police, Fire, and/or EMS rates",
         5: "Modify County Special Options - Fees & Rates\n...",
         6: "Modify City and/or City Options\n...",
-        99: "Reload Counties to Default Values",
+        99: "Reload Counties to Default Values",  # TODO MAKE all counties load like we used to in the early days
     }
 
     # main program loop
