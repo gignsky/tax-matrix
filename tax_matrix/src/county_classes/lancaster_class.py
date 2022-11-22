@@ -19,6 +19,7 @@ class LancasterCo(general_classes.County):
     def __init__(
         self,
         county_name,
+        county_state,
         county_wide_rate_title,
         county_wide_rate,
         county_wide_police_title,
@@ -34,6 +35,7 @@ class LancasterCo(general_classes.County):
     ):
         super().__init__(
             county_name,
+            county_state,
             county_wide_rate_title,
             county_wide_rate,
             county_wide_police_title,
@@ -57,7 +59,7 @@ class LancasterCo(general_classes.County):
     #             self.special_fees_per_items_dict_items_default_multiple_rate,
     #             self.special_fees_per_items_dict_items_default_fee,
     #             self.special_fees_per_items_dict_items_multiple_str,
-    #         ) = self.seperate_per_items(self.special_fees_per_items_dict)
+    #         ) = self.separate_per_items(self.special_fees_per_items_dict)
     #         self.sales_tax_credit_factors_master_dict = sales_tax_credit_factors
     #
     #         # set self.mod_dictionary
@@ -65,7 +67,7 @@ class LancasterCo(general_classes.County):
     #
     #     # TODO CONVERT TO CLASS
     #     # configuration of special dict methods
-    #     def seperate_per_items(self, dictionary):
+    #     def separate_per_items(self, dictionary):
     #         titles = []
     #         fees = []
     #         item_types = []
@@ -126,8 +128,8 @@ class LancasterCo(general_classes.County):
     #         )
 
     # deal with special options
-    def modify_special_options(self):
-        super().modify_special_options()
+    # def modify_special_options(self):
+    #     super().modify_special_options()
 
 
 #
@@ -254,3 +256,5 @@ class LancasterCo(general_classes.County):
 #                 looping = False
 #
 #         return dict_to_return
+
+# TODO Integrate residency with statement

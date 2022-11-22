@@ -18,6 +18,7 @@ class Property:
         self.price_div_100_string = None
         self.county = None
         self.final_tax_cost = 0.0
+        self.residency_status = None
 
         # inital declarations
         self.statistics = None
@@ -67,6 +68,20 @@ class Property:
             city (obj): city object
         """
         self.county.add_city(city)
+
+    def add_residency(self, residency_bool):
+        """
+        add_residency or update/reset
+
+        Args:
+            residency_bool (bool / "RESET"): command to update the self.residency status state
+        """
+        if residency_bool == "RESET":
+            self.residency_status = None
+        elif residency_bool:
+            self.residency_status = "Primary"
+        else:
+            self.residency_status = "Investment"
 
     # get items
     def get_price_str(self):
@@ -120,6 +135,16 @@ class Property:
         """
         return self.county
 
+    def get_residency(self):
+        """
+        get_residency
+
+        Returns:
+            str or none: "Primary", "Investment", or None (if not a state where residency matters)
+        """
+
+        return self.residency_status
+
     # reset items
     def reset_city(self):
         """
@@ -136,6 +161,10 @@ class Property:
 
         Printer.print_green("Current statistics to be added to final statement:")
         Printer.print_yellow(f"Current Subject Price: {self.price_str}")
+        if self.county.get_state() == "SC":
+            Printer.print_yellow(
+                f"Current residency status set to: {self.residency_status}"
+            )
 
         self.county.print_county_selected_info()
 

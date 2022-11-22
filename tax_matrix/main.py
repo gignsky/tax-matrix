@@ -27,26 +27,27 @@ def main():
 
     # set inital values
     main_loop_running = (
-        True  # var to keep program running until stop is requested or neccecary
+        True  # var to keep program running until stop is requested or necessary
     )
 
     inital_run_status = (
-        True  # var to set the inital run to run through all avaliable options
+        True  # var to set the inital run to run through all available options
     )
 
     subject_has_price = (
         False  # var sets has price var to false to indicate a price has not been loaded
     )
 
-    # dict of avalable options
+    # dict of available options
     options_dict = {
         0: "Quit Program & Output Statement",
-        1: "Print Statisticts & Statement\n...",
+        1: "Print Statistics & Statement\n...",
         2: "Modify Price\n...",
-        3: "Modify County",
-        4: "Modify Countywide Police, Fire, and/or EMS rates",
-        5: "Modify County Special Options - Fees & Rates\n...",
-        6: "Modify City and/or City Options\n...",
+        3: "Modify County\n...",
+        4: "Modify Residential Status (Primary Residence / Investment)\n...",
+        5: "Modify Countywide Police, Fire, and/or EMS rates",
+        6: "Modify County Special Options - Fees & Rates\n...",
+        7: "Modify City and/or City Options\n...",
         99: "Reload Counties to Default Values",
     }
 
@@ -66,14 +67,14 @@ def main():
 
         else:
             inital_run_status, menu_option = inital_run_stack(
-                inital_run_status, options_dict
+                inital_run_status, options_dict, subject
             )
 
         # "Quit Program & Output Statement"
         if menu_option == options_dict[0]:
             main_loop_running = False
 
-        # "Print Statisticts & statement"
+        # "Print Statistics & statement"
         elif menu_option == options_dict[1]:
             cls()
             subject.print_current_stats()
@@ -119,19 +120,26 @@ def main():
                 # add county
                 subject.add_county(county)
 
+                if subject.county.get_state() != "SC":
+                    subject.add_residency("RESET")
+
                 cls()
 
-        # "Modify Countywide Police, Fire, and/or EMS rates"
+        # Modify Residency for SC ONLY
         elif menu_option == options_dict[4]:
+            src.utilities.inputs.InputHelper.grab_residency(subject)
+            cls()
+        # "Modify Countywide Police, Fire, and/or EMS rates"
+        elif menu_option == options_dict[5]:
             subject.county.select_countywide_services()
 
         # "Modify County Special Options"
-        elif menu_option == options_dict[5]:
+        elif menu_option == options_dict[6]:
             # check for special options
             subject.county.modify_special_options()
 
         # "Modify City and/or City Options"
-        elif menu_option == options_dict[6]:
+        elif menu_option == options_dict[7]:
             if inital_run_status == "continue onwards":
                 pick_city_bool = src.utilities.inputs.InputHelper.choice_bool(
                     "Do you want to select a city at this time?"
@@ -171,6 +179,7 @@ def main():
                 subject = src.general_classes.Property()
                 inital_run_status = True
                 subject_has_price = False
+                subject.add_residency("RESET")
                 cls()
                 src.utilities.printers.Printer.short_liner()
                 src.utilities.printers.Printer.print_green("Counties & Cities RELOADED")
@@ -207,13 +216,13 @@ def main():
 
 def generate_statement(subject):
     """
-    generate_statement generates final statemnet for output
+    generate_statement generates final statement for output
 
     Args:
         subject (class): class containing all subject information
 
     Returns:
-        str: final output statemnet
+        str: final output statement
     """
 
     # generate statistics
@@ -224,7 +233,7 @@ def generate_statement(subject):
     return statement
 
 
-def inital_run_stack(inital_run_status, options_dict):
+def inital_run_stack(inital_run_status, options_dict, subject_class):
     """
     inital_run_stack runs menu selection for inital run of script
 
@@ -241,15 +250,22 @@ def inital_run_stack(inital_run_status, options_dict):
         inital_run_status = "Get Price then County"
     elif inital_run_status == "Get Price then County":
         menu_option = options_dict[3]
-        inital_run_status = "check special district options"
+        inital_run_status = "sc_residency_check"
+    elif inital_run_status == "sc_residency_check":
+        if subject_class.county.get_state() == "SC":
+            menu_option = options_dict[4]
+            inital_run_status = "check special district options"
+        else:
+            menu_option = options_dict[5]
+            inital_run_status = "Modify Countywide Fire, Police, & EMS"
     elif inital_run_status == "check special district options":
-        menu_option = options_dict[4]
+        menu_option = options_dict[5]
         inital_run_status = "Modify Countywide Fire, Police, & EMS"
     elif inital_run_status == "Modify Countywide Fire, Police, & EMS":
-        menu_option = options_dict[5]
+        menu_option = options_dict[6]
         inital_run_status = "Do you want a city?"
     elif inital_run_status == "Do you want a city?":
-        menu_option = options_dict[6]
+        menu_option = options_dict[7]
         inital_run_status = "continue onwards"
     else:
         menu_option = options_dict[1]  # print stats before continuing

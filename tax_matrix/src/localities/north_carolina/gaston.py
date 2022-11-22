@@ -15,6 +15,7 @@ def main():
     """
     # INFORMATION:
     county_name = "Gaston Co., NC"
+    county_state = "NC"
     county_wide_rate_title = "Gaston County Unincorporated Tax Rate"
     county_wide_rate = 0.83
     county_wide_police_title = f"{county_name} Police"
@@ -63,6 +64,7 @@ def main():
 
     gaston = general_classes.County(
         county_name,
+        county_state,
         county_wide_rate_title,
         county_wide_rate,
         county_wide_police_title,

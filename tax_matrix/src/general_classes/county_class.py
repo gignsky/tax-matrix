@@ -18,6 +18,7 @@ class County:
     def __init__(
         self,
         county_name,
+        county_state,
         county_wide_rate_title,
         county_wide_rate,
         county_wide_police_title,
@@ -30,6 +31,7 @@ class County:
         special_stuff,
     ):
         self.county_name = county_name
+        self.county_state = county_state
         self.county_wide_rate_title = county_wide_rate_title
         self.county_wide_rate = county_wide_rate
         self.county_wide_fire_title = county_wide_fire_title
@@ -132,6 +134,15 @@ class County:
         else:
             # debugpy.breakpoint()
             return f"ERROR | SPECIAL OPTIONS NOT CONFIGURED IN {self.get_county_name()}'s Class"
+
+    def get_state(self):
+        """
+        get_state
+
+        Returns:
+            str: two letter state string
+        """
+        return self.county_state
 
     # modify items
     def which_modify_county_services(self):

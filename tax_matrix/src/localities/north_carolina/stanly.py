@@ -13,6 +13,7 @@ def main():
 
     # INFORMATION:
     county_name = "Stanly Co., NC"
+    county_state = "NC"
     county_wide_rate_title = "Stanly Co., Unincorporated Tax Rate"
     county_wide_rate = 0.61
     county_wide_police_title = f"{county_name} Police"
@@ -63,6 +64,7 @@ def main():
 
     stanly = general_classes.County(
         county_name,
+        county_state,
         county_wide_rate_title,
         county_wide_rate,
         county_wide_police_title,
