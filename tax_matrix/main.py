@@ -44,7 +44,7 @@ def main():
         1: "Print Statistics & Statement\n...",
         2: "Modify Price\n...",
         3: "Modify County\n...",
-        4: "Modify Residential Status (Primary Residence / Investment)",
+        4: "Modify Residential Status (Primary Residence / Investment)\n...",
         5: "Modify Countywide Police, Fire, and/or EMS rates",
         6: "Modify County Special Options - Fees & Rates\n...",
         7: "Modify City and/or City Options\n...",
@@ -127,19 +127,8 @@ def main():
 
         # Modify Residency for SC ONLY
         elif menu_option == options_dict[4]:
-            if subject.county.get_state() == "SC":
-                residency_bool = src.utilities.inputs.InputHelper.grab_residency(
-                    subject
-                )
-                subject.set_residency(residency_bool)
-            else:
-                src.utilities.printers.Printer.print_red(
-                    "Subject is not subject to this question due to not being located in SC"
-                )
-
-                src.utilities.logic.LogicalWork.wait()
-
-                cls()
+            src.utilities.inputs.InputHelper.grab_residency(subject)
+            cls()
         # "Modify Countywide Police, Fire, and/or EMS rates"
         elif menu_option == options_dict[5]:
             subject.county.select_countywide_services()

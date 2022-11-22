@@ -135,6 +135,16 @@ class Property:
         """
         return self.county
 
+    def get_residency(self):
+        """
+        get_residency
+
+        Returns:
+            str or none: "Primary", "Investment", or None (if not a state where residency matters)
+        """
+
+        return self.residency_status
+
     # reset items
     def reset_city(self):
         """
@@ -151,6 +161,10 @@ class Property:
 
         Printer.print_green("Current statistics to be added to final statement:")
         Printer.print_yellow(f"Current Subject Price: {self.price_str}")
+        if self.county.get_state() == "SC":
+            Printer.print_yellow(
+                f"Current residency status set to: {self.residency_status}"
+            )
 
         self.county.print_county_selected_info()
 
