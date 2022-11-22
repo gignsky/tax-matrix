@@ -71,7 +71,7 @@ class Property:
 
     def add_residency(self, residency_bool):
         if residency_bool == "RESET":
-            self.residency_status == None
+            self.residency_status = None
         elif residency_bool:
             self.residency_status = "Primary"
         else:
