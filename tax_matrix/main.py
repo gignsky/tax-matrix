@@ -27,21 +27,21 @@ def main():
 
     # set inital values
     main_loop_running = (
-        True  # var to keep program running until stop is requested or neccecary
+        True  # var to keep program running until stop is requested or necessary
     )
 
     inital_run_status = (
-        True  # var to set the inital run to run through all avaliable options
+        True  # var to set the inital run to run through all available options
     )
 
     subject_has_price = (
         False  # var sets has price var to false to indicate a price has not been loaded
     )
 
-    # dict of avalable options
+    # dict of available options
     options_dict = {
         0: "Quit Program & Output Statement",
-        1: "Print Statisticts & Statement\n...",
+        1: "Print Statistics & Statement\n...",
         2: "Modify Price\n...",
         3: "Modify County\n...",
         4: "Modify Residential Status (Primary Residence / Investment)",
@@ -74,7 +74,7 @@ def main():
         if menu_option == options_dict[0]:
             main_loop_running = False
 
-        # "Print Statisticts & statement"
+        # "Print Statistics & statement"
         elif menu_option == options_dict[1]:
             cls()
             subject.print_current_stats()
@@ -227,13 +227,13 @@ def main():
 
 def generate_statement(subject):
     """
-    generate_statement generates final statemnet for output
+    generate_statement generates final statement for output
 
     Args:
         subject (class): class containing all subject information
 
     Returns:
-        str: final output statemnet
+        str: final output statement
     """
 
     # generate statistics

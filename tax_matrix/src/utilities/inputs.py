@@ -334,7 +334,7 @@ class InputHelper:
         county_grabber gathers all county titles and then requests input from user to select county then returns county object
 
         Args:
-            county_list (list): list of avaliable county objects
+            county_list (list): list of available county objects
 
         Returns:
             object: selected county object
