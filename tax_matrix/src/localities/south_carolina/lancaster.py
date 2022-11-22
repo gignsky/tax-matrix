@@ -24,9 +24,8 @@ def main():
     county_wide_ems_rate = None
 
     cities = {
-        1: kershaw(),
-        2: municipal_lancaster(),
-        3: reid_point(),
+        1: municipal_lancaster(),
+        2: kershaw(),
     }
 
     # special rates
@@ -91,32 +90,6 @@ def main():
     return lancaster
 
 
-def kershaw():
-    """
-    City Class
-    """
-    # INFORMATION
-    city_name = "Kershaw"
-    city_rate = 95.6
-    city_rate_title = city_name
-    police_rate = None
-    police_rate_title = f"{city_name} Police"
-    fire_rate = None
-    fire_rate_title = f"{city_name} Fire"
-
-    city = general_classes.City(
-        city_name,
-        city_rate,
-        city_rate_title,
-        police_rate,
-        police_rate_title,
-        fire_rate,
-        fire_rate_title,
-    )
-
-    return city
-
-
 def municipal_lancaster():
     """
     City Class
@@ -143,13 +116,13 @@ def municipal_lancaster():
     return city
 
 
-def reid_point():
+def kershaw():
     """
     City Class
     """
     # INFORMATION
-    city_name = "Reid Point (Special Purpose District)"
-    city_rate = 0.035
+    city_name = "Kershaw"
+    city_rate = 95.6
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
