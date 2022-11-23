@@ -12,5 +12,8 @@
         ".venv": true,
         "tax_matrix/.venv": true
     },
-    "explorerExclude.backup": {}
+    "explorerExclude.backup": {},
+    "cSpell.words": [
+        "kershaw"
+    ]
 }
