@@ -224,6 +224,7 @@ class CityOfCharlotte(general_classes.City):
 
         return self.city_statistics
 
+    # TODO Check for neccecity of this method remianing, or is this supposed to be unused and removed?
     # def generate_CITY_substatements(self, city_stats, countywide_only, city_exists):
     #     return super().generate_CITY_substatements(
     #         city_stats, countywide_only, city_exists
