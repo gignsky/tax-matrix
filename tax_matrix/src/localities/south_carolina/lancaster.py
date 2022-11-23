@@ -15,7 +15,7 @@ def main():
     county_name = "Lancaster Co., SC"
     county_state = "SC"
     county_wide_rate_title = "Lancaster County Base Millage"
-    county_wide_rate = 0
+    county_wide_rate = None
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
     county_wide_fire_title = f"{county_name} Fire"
