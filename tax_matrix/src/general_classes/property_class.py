@@ -94,16 +94,17 @@ class Property:
         # Printer.print_green(f"Price String: {self.price_str}")
         return self.price_str
 
-    def get_price_str_divided_by_100(self):
-        """
-        get_price_str_divided_by_100
-
-        Returns:
-            str: string of price div by 100
-        """
-        self.generate_price_divied_by_100()
-
-        return self.price_div_100_string
+    # TODO Believe that this is now unused
+    #     def get_price_str_divided_by_100(self):
+    #         """
+    #         get_price_str_divided_by_100
+    #
+    #         Returns:
+    #             str: string of price div by 100
+    #         """
+    #         self.generate_price_divied_by_100()
+    #
+    #         return self.price_div_100_string
 
     def get_price_int(self):
         """
@@ -115,16 +116,17 @@ class Property:
         # Printer.print_green(f"Price Integer: {self.price_int}")
         return self.price_int
 
-    def get_price_float_divided_by_100(self):
-        """
-        get_price_float_divided_by_100
-
-        Returns:
-            float: purchase price / 100 in float form
-        """
-        self.generate_price_divied_by_100()
-
-        return self.price_div_100_float
+    # TODO Believe that this is now unused
+    #     def get_price_float_divided_by_100(self):
+    #         """
+    #         get_price_float_divided_by_100
+    #
+    #         Returns:
+    #             float: purchase price / 100 in float form
+    #         """
+    #         self.generate_price_divied_by_100()
+    #
+    #         return self.price_div_100_float
 
     def get_county(self):
         """
