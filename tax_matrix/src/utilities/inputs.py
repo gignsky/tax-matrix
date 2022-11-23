@@ -427,7 +427,7 @@ class InputHelper:
 
         return inputted_value
 
-    #     @staticmethod # TODO ENSURE IS NECCECARY
+    #     @staticmethod # TODO ENSURE IS NECESSARY
     #     def per_item_item_input(item_type, default_multiple, current_multiple):
     #         cls()
     #         if item_type == "sqft":
