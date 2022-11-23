@@ -28,6 +28,11 @@ class Property:
         self.city_exists = None
         self.with_county_no_city = None
 
+        # inital millage defs
+        self.post_millage_cost = None
+        self.taxable_value_float = None
+        self.total_millage = None
+
     # add items
     def add_price(self, price_int, price_str):
         """
@@ -94,17 +99,16 @@ class Property:
         # Printer.print_green(f"Price String: {self.price_str}")
         return self.price_str
 
-    # TODO Believe that this is now unused
-    #     def get_price_str_divided_by_100(self):
-    #         """
-    #         get_price_str_divided_by_100
-    #
-    #         Returns:
-    #             str: string of price div by 100
-    #         """
-    #         self.generate_price_divied_by_100()
-    #
-    #         return self.price_div_100_string
+    def get_price_str_divided_by_100(self):
+        """
+        get_price_str_divided_by_100
+
+        Returns:
+            str: string of price div by 100
+        """
+        self.generate_price_divided_by_100()
+
+        return self.price_div_100_string
 
     def get_price_int(self):
         """
@@ -116,17 +120,16 @@ class Property:
         # Printer.print_green(f"Price Integer: {self.price_int}")
         return self.price_int
 
-    # TODO Believe that this is now unused
-    #     def get_price_float_divided_by_100(self):
-    #         """
-    #         get_price_float_divided_by_100
-    #
-    #         Returns:
-    #             float: purchase price / 100 in float form
-    #         """
-    #         self.generate_price_divied_by_100()
-    #
-    #         return self.price_div_100_float
+    def get_price_float_divided_by_100(self):
+        """
+        get_price_float_divided_by_100
+
+        Returns:
+            float: purchase price / 100 in float form
+        """
+        self.generate_price_divided_by_100()
+
+        return self.price_div_100_float
 
     def get_county(self):
         """
@@ -229,8 +232,14 @@ class Property:
             self.statistics["COUNTY"]
         )
 
+        # Multiply Rate
         self.generate_total_multiply_rate()
         self.generate_total_tax_burden_after_rate()
+
+        # Millage
+        self.generate_total_millage_rate()
+        self.generate_total_millage_burden_str()
+
         self.countywide_only = LogicalWork.check_countywide_only(
             self.statistics["COUNTY"]
         )
@@ -301,12 +310,26 @@ class Property:
             str: string containing first half of post price statement
         """
         if self.with_county_no_city:
+            # total burden string
+            if self.county.county_state == "NC":
+                total_tax_burden_str = self.generate_total_tax_burden_str()
+            elif self.county.county_state == "SC":
+                total_tax_burden_str = self.generate_total_millage_burden_str()
+
+            # make middle statement
             if items_added == 1:
-                middle_statement = (
-                    f"{county_only_statement} = {self.generate_total_tax_burden_str()}"
-                )
+                middle_statement = f"{county_only_statement} = {total_tax_burden_str}"
             else:
-                middle_statement = f"{self.multiply_rate:.4g} ({county_only_statement}) = {self.generate_total_tax_burden_str()}"
+                if self.county.county_state == "NC":
+                    big_rate = self.multiply_rate
+                    equals_str = f"self.generate_total_tax_burden_str():.0f"
+                elif self.county.county_state == "SC":
+                    big_rate = self.total_millage
+                    equals_str = f"self.post_millage_cost:.2f"
+
+                middle_statement = (
+                    f"{big_rate:.4g} ({county_only_statement}) = {equals_str}"
+                )
 
         else:  # has city rates
             # city_ONLY_statement = self.county.city.city_ONLY_statement()
@@ -323,47 +346,95 @@ class Property:
         """
         generate_total_multiply_rate
         """
-        # set inital values
-        self.multiply_rate = 0.0
+        if self.county.county_state == "NC":
+            # set inital values
+            self.multiply_rate = 0.0
 
-        # add county rate
-        county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
-            self.statistics["COUNTY"]
-        )
-        self.multiply_rate = self.county.generate_county_multiply_rate(
-            county_keys, county_values
-        )
-
-        # check city exists
-        self.city_exists = LogicalWork.check_city_exists(self.statistics["CITY"])
-
-        # add city rates if they exist and set self.with_county_no_city
-        if self.city_exists:
-            _, city_values = LogicalWork.no_index_dict_to_two_lists(
-                self.statistics["CITY"]
+            # add county rate
+            county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
+                self.statistics["COUNTY"]
             )
-            for i in list(filter(None, city_values)):
-                i_key = list(i)[0]
-                if "Fee" not in i_key:
-                    self.multiply_rate += i[i_key]
-            self.with_county_no_city = False
+            self.multiply_rate = self.county.generate_county_multiply_rate(
+                county_keys, county_values
+            )
+
+            # check city exists
+            self.city_exists = LogicalWork.check_city_exists(self.statistics["CITY"])
+
+            # add city rates if they exist and set self.with_county_no_city
+            if self.city_exists:
+                _, city_values = LogicalWork.no_index_dict_to_two_lists(
+                    self.statistics["CITY"]
+                )
+                for i in list(filter(None, city_values)):
+                    i_key = list(i)[0]
+                    if "Fee" not in i_key:
+                        self.multiply_rate += i[i_key]
+                self.with_county_no_city = False
+            else:
+                self.with_county_no_city = True
         else:
-            self.with_county_no_city = True
+            self.multiply_rate = None
+
+    def generate_total_millage_rate(self):
+        """
+        generate_total_millage_rate
+        """
+        if self.county.county_state == "SC":
+            # add county rate
+            county_keys, county_values = LogicalWork.no_index_dict_to_two_lists(
+                self.statistics["COUNTY"]
+            )
+            self.total_millage = self.county.generate_county_multiply_rate(
+                county_keys, county_values
+            )
+
+            # check city exists
+            self.city_exists = LogicalWork.check_city_exists(self.statistics["CITY"])
+
+            # add city rates if they exist and set self.with_county_no_city
+            if self.city_exists:
+                _, city_values = LogicalWork.no_index_dict_to_two_lists(
+                    self.statistics["CITY"]
+                )
+                for i in list(filter(None, city_values)):
+                    i_key = list(i)[0]
+                    if "Fee" not in i_key:
+                        self.total_millage += i[i_key]
+                self.with_county_no_city = False
+            else:
+                self.with_county_no_city = True
+        else:
+            self.total_millage = None
 
     def generate_total_tax_burden_str(self):
         """
         generate_total_tax_burden_str
 
         Returns:
-            str: str containg final cost
+            str: str containing final cost
         """
         return f"${self.final_tax_cost:,.0f}"
+
+    def generate_total_millage_burden_str(self):
+        """
+        generate_total_millage_burden_str
+
+        Returns:
+            str: str containing post cost after millage
+        """
+        self.generate_post_millage_statement()
+        return f"${self.post_millage_cost:,.0f}"
 
     def generate_total_tax_burden_after_rate(self):
         """
         generate_total_tax_burden_after_rate
         """
-        self.final_tax_cost = self.price_div_100_float * self.multiply_rate
+        if self.county.county_state == "NC":
+            self.final_tax_cost = self.price_div_100_float * self.multiply_rate
+        elif self.county.county_state == "SC":
+            self.generate_total_millage_rate()
+            self.final_tax_cost = self.taxable_value_float * self.total_millage
 
     def generate_total_tax_burden_after_fee(self, fee):
         """
@@ -387,7 +458,7 @@ class Property:
             city_values (list): city values list
 
         Returns:
-            str: str containg all fees added
+            str: str containing all fees added
         """
         county_fee_string = self.county.generate_county_fees_string(
             county_keys, county_values
@@ -424,10 +495,18 @@ class Property:
 
         return county_fees + city_fees
 
-    def generate_price_divied_by_100(self):
+    def generate_price_divided_by_100(self):
         """
-        generate_price_divied_by_100 for both float and string
+        generate_price_divided_by_100 for both float and string
         """
         price = self.price_int
         self.price_div_100_float = price / 100
         self.price_div_100_string = f"${self.price_div_100_float:6,.2f}"
+
+    def generate_post_millage_statement(self):
+        """
+        generate_post_millage_statement for both float and string
+        """
+        taxable_value = self.taxable_value_float
+        self.post_millage_cost = taxable_value * self.total_millage
+        self.post_millage_cost_string = f"${self.price_div_100_float:6,.2f}"

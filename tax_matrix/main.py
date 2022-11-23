@@ -227,8 +227,101 @@ def generate_statement(subject):
 
     # generate statistics
     subject.generate_statistics()
+    subject.generate_price_divided_by_100()
 
-    statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} / 100 = {subject.get_price_str_divided_by_100()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
+    # Seperate Statements by state
+    if subject.county.county_state == "NC":
+        statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} / 100 = {subject.get_price_str_divided_by_100()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
+    elif subject.county.county_state == "SC":
+
+        # grab residency status
+        residency_status = subject.residency_status
+
+        # configure residency multiplier
+        if residency_status is None:
+            src.debugpy.breakpoint()
+        elif residency_status == "Primary":
+            subject.residency_multiplier = 0.04
+        elif residency_status == "Investment":
+            subject.residency_multiplier = 0.06
+
+        # maths
+        subject.taxable_value_float = subject.price_int * subject.residency_multiplier
+        subject.taxable_value_str = f"${subject.taxable_value_float:6,.2f}"
+
+        # initalize less vars
+        end_less_string = ""
+        less_floats_list = []
+        less_titles_list = []
+        # check if subtraction is required
+        if "School Operating" in list(
+            subject.county.special_stuff_class.rate_stats.keys()
+        ):
+            if residency_status == "Primary":
+                needs_less_primary_school = True
+            else:
+                needs_less_primary_school = False
+        else:
+            needs_less_primary_school = False
+
+        if needs_less_primary_school:
+            less_school_float = (
+                subject.taxable_value_float
+                * subject.county.special_stuff_class.rate_stats["School Operating"]
+            )
+            less_school_title = "School Tax Credit"
+            less_floats_list.append(less_school_float)
+            less_titles_list.append(less_school_title)
+
+        # generate county stats again
+        subject.county.generate_county_statistics()
+
+        # pull stcf stats
+        stcf_stats_dict = subject.county.stcf_stats_dict
+
+        if len(stcf_stats_dict) != 0:
+            for item in stcf_stats_dict:
+                if stcf_stats_dict[item] is not None:
+                    less_titles_list.append(item)
+                    less_floats_list.append(subject.price_int * stcf_stats_dict[item])
+
+        # Maths
+        sum_of_less_floats = sum(less_floats_list)
+        sum_of_less_floats_string = f"${sum_of_less_floats:,.2f}"
+        taxable_value_minus_less_float = (
+            subject.taxable_value_float - sum_of_less_floats
+        )
+        taxable_value_minus_less_string = f"${taxable_value_minus_less_float:6,.0f}"
+
+        # check if less list only has one item or no items
+        if len(less_floats_list) == 0:
+            pass
+        elif len(less_floats_list) == 1:
+            end_less_string = f" - ({less_floats_list[0]} - {less_titles_list[0]}) = {taxable_value_minus_less_string}"
+        else:
+            # format begining of end string
+            end_less_string = f" - {sum_of_less_floats_string} ("
+
+            # set index to 1
+            index = 1
+            # zip through less lists
+            for title, float in zip(less_titles_list, less_floats_list):
+                if index == 1:
+                    end_less_string = f"{end_less_string}(${float:6,.2f} - {title})"
+                else:
+                    end_less_string = f"{end_less_string} + (${float:6,.2f} - {title})"
+
+                # increment index
+                index += 1
+
+            # format after zip
+            end_less_string = f"{end_less_string}) = {taxable_value_minus_less_string}"
+
+        # generate statement
+        statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} x {subject.residency_multiplier:0%} = {subject.taxable_value_str} Taxable Value {subject.generate_post_price_statement()} {end_less_string} as rounded to the nearest dollar."
+
+        # TODO REMOVE THIS AFTER COMPLETELY WORKING
+        teststatement = "Taxes are an estimate based on Lancaster Co., SC tax calculator with estimated tax rates as follows: 275,500 x 4% = $ 11,020 Real Assessment Value / 1,000 = 11.02 x 342.9 [ 98.7 - County Base Millage {(County Base Millage Rate - County Operations - 84.3) + (County Base Millage Rate - County Debt Service - 9.6) + (County Base Millage Rate - Capital Improvement - 4.8)} + 236 - School Millage {(School District Millage Rate - School Operating - 171) + (School District Millage Rate - Debt Service - 65)} + 8.2 - Other Millage {(USC-Lancaster - 4.6) + (Courthouse Security - 3.6)}] = $3,778.76 Total Tax - $2,100.41 [($215.99 = {Local Sales Tax Credit Factor - Lancaster County - 0.00784} x $275,500) + ($1,884.42 = {School Tax Credit - 171 Millage} * 11.02)] = $1,678 as rounded to the nearest dollar."
 
     return statement
 

@@ -106,11 +106,15 @@ class LogicalWork:
         list1 = []
         list2 = []
 
-        for i in working_dict:
-            list1.append(i)
-            list2.append(working_dict[i])
+        if working_dict is not None:
+            for i in working_dict:
+                list1.append(i)
+                list2.append(working_dict[i])
 
-        return list1, list2
+        if list1 is not None and list2 is not None:
+            return list1, list2
+        else:
+            return None
 
     @staticmethod
     def with_index_dict_to_two_lists(working_dict):
