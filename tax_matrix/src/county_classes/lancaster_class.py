@@ -7,6 +7,8 @@
 # from . import InputHelper
 from . import general_classes
 
+# TODO Integrate residency with statement
+
 
 class LancasterCo(general_classes.County):
     """
