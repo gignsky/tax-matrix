@@ -13,6 +13,6 @@ from .. import general_classes
 
 from ..special_classes import CityWithWasteFee
 
-from . import mecklenburg_classes
-from . import union_classes
-from . import lancaster_class
+from .north import mecklenburg_classes
+from .north import union_classes
+from .south import lancaster_class
