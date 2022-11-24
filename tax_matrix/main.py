@@ -229,7 +229,7 @@ def generate_statement(subject):
     subject.generate_statistics()
     subject.generate_price_divided_by_100()
 
-    # Seperate Statements by state
+    # Separate Statements by state
     if subject.county.county_state == "NC":
         statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} / 100 = {subject.get_price_str_divided_by_100()} {subject.generate_post_price_statement()} as rounded to the nearest dollar."
     elif subject.county.county_state == "SC":
@@ -249,7 +249,7 @@ def generate_statement(subject):
         subject.taxable_value_float = subject.price_int * subject.residency_multiplier
         subject.taxable_value_str = f"${subject.taxable_value_float:6,.2f}"
 
-        # initalize less vars
+        # initialize less vars
         end_less_string = ""
         less_floats_list = []
         less_titles_list = []
@@ -299,7 +299,7 @@ def generate_statement(subject):
         elif len(less_floats_list) == 1:
             end_less_string = f" - ({less_floats_list[0]} - {less_titles_list[0]}) = {taxable_value_minus_less_string}"
         else:
-            # format begining of end string
+            # format beginning of end string
             end_less_string = f" - {sum_of_less_floats_string} ("
 
             # set index to 1
