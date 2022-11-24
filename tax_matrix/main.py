@@ -305,17 +305,23 @@ def generate_statement(subject):
             # set index to 1
             index = 1
             # zip through less lists
-            for title, float in zip(less_titles_list, less_floats_list):
+            for title, float_value in zip(less_titles_list, less_floats_list):
                 if index == 1:
-                    end_less_string = f"{end_less_string}(${float:6,.2f} - {title})"
+                    end_less_string = (
+                        f"{end_less_string}(${float_value:6,.2f} - {title})"
+                    )
                 else:
-                    end_less_string = f"{end_less_string} + (${float:6,.2f} - {title})"
+                    end_less_string = (
+                        f"{end_less_string} + (${float_value:6,.2f} - {title})"
+                    )
 
                 # increment index
                 index += 1
 
             # format after zip
-            end_less_string = f"{end_less_string}) = {taxable_value_minus_less_string}"
+            end_less_string = (
+                f"{end_less_string}) = ${taxable_value_minus_less_string:.0f}"
+            )
 
         # generate statement
         statement = f"Taxes are an estimate based on {subject.county.get_county_name()} tax calculator with estimated tax rates as follows: Purchase Price {subject.get_price_str()} x {subject.residency_multiplier:0%} = {subject.taxable_value_str} Taxable Value {subject.generate_post_price_statement()} {end_less_string} as rounded to the nearest dollar."

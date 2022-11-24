@@ -508,5 +508,7 @@ class Property:
         generate_post_millage_statement for both float and string
         """
         taxable_value = self.taxable_value_float
-        self.post_millage_cost = taxable_value * self.total_millage
+        if taxable_value is not None:
+            self.post_millage_cost = taxable_value * self.total_millage
+
         self.post_millage_cost_string = f"${self.price_div_100_float:6,.2f}"
