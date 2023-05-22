@@ -6,11 +6,11 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": false,
-        "**/.trunk/*out": true,
         ".gitignore": false,
-        "**/.venv": true,
-        ".venv": true,
-        "tax_matrix/.venv": true
+        "**/.trunk/*out": true,
+        "**/.venv": false,
+        ".venv": false,
+        "tax_matrix/.venv": false
     },
     "explorerExclude.backup": {},
     "cSpell.words": [

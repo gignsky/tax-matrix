@@ -6,5 +6,5 @@ tax_matrix/.venv
 *.pyc
 
 #VENVs
-.coding_venv/*
+.venv/*
 tax_matrix/.end_user_venv/*
