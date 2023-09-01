@@ -1,5 +1,6 @@
 altgraph==0.17.3
 art==6.0
 colorama==0.4.6
+debugpy==1.6.7.post1
 pyinstaller==5.13.2
 pyinstaller-hooks-contrib==2023.8
