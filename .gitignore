@@ -8,3 +8,4 @@ tax_matrix/.venv
 #VENVs
 .coding_venv/*
 tax_matrix/.end_user_venv/*
+Releases/.venv_builder/*
