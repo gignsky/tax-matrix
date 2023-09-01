@@ -25,15 +25,6 @@
         "documentation": {}
     },
     {
-        "label": "py2exe",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "py2exe",
-        "description": "py2exe",
-        "detail": "py2exe",
-        "documentation": {}
-    },
-    {
         "label": "CityOfCharlotte",
         "kind": 6,
         "importPath": "tax_matrix.src.county_classes.mecklenburg_classes",
@@ -182,7 +173,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def main():\n    \"\"\"\n    main contents of gaston county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Gaston Co., NC\"\n    county_wide_rate_title = \"Gaston County Unincorporated Tax Rate\"\n    county_wide_rate = 0.81",
+        "peekOfCode": "def main():\n    \"\"\"\n    main contents of gaston county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Gaston Co., NC\"\n    county_wide_rate_title = \"Gaston County Unincorporated Tax Rate\"\n    county_wide_rate = 0.61",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -191,7 +182,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def belmont():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Belmont City\"\n    city_rate = 0.495\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def belmont():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Belmont City\"\n    city_rate = 0.455\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -209,7 +200,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def cherryville():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Cherryville City\"\n    city_rate = 0.52\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def cherryville():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Cherryville City\"\n    city_rate = 0.48\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -218,7 +209,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def cramerton():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Cramerton City\"\n    city_rate = 0.475\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def cramerton():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Cramerton City\"\n    city_rate = 0.445\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -236,7 +227,16 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def gastonia():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Gastonia City\"\n    city_rate = 0.52\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def gastonia():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Gastonia City\"\n    city_rate = 0.47\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.gaston",
+        "documentation": {}
+    },
+    {
+        "label": "york_chest_historic_city",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.gaston",
+        "description": "tax_matrix.src.localities.north_carolina.gaston",
+        "peekOfCode": "def york_chest_historic_city():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"York-Chest. Hist + City\"\n    city_rate = 0\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -254,7 +254,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def high_shls():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"High Shoals City\"\n    city_rate = 0.38\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def high_shls():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"High Shoals City\"\n    city_rate = 0.32\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -263,7 +263,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def kings_mtn():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Kings Mtn City\"\n    city_rate = 0.43\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def kings_mtn():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Kings Mtn City\"\n    city_rate = 0.48\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -290,7 +290,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def mt_holly():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Mount Holly City\"\n    city_rate = 0.485\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def mt_holly():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Mount Holly City\"\n    city_rate = 0.405\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -299,7 +299,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def ranlo():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Ranlo City\"\n    city_rate = 0.5\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def ranlo():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Ranlo City\"\n    city_rate = 0.45\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -317,7 +317,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.gaston",
         "description": "tax_matrix.src.localities.north_carolina.gaston",
-        "peekOfCode": "def stanly():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Stanley City\"\n    city_rate = 0.54\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def stanly():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Stanley City\"\n    city_rate = 0.49\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.gaston",
         "documentation": {}
     },
@@ -956,7 +956,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def current_version():\n    var = \"2.1.0\"\n    return var\ndef date_revised():\n    var = \"11.04.2022\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():",
+        "peekOfCode": "def current_version():\n    var = \"2.1.1\"\n    return var\ndef date_revised():\n    var = \"09.01.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
@@ -965,7 +965,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def date_revised():\n    var = \"11.04.2022\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():\n    var = f\"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates\"\n    return var\ndef dependencies():",
+        "peekOfCode": "def date_revised():\n    var = \"09.01.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():\n    var = f\"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates\"\n    return var\ndef dependencies():",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
