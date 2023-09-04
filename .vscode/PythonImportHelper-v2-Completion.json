@@ -956,7 +956,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def current_version():\n    var = \"2.1.1\"\n    return var\ndef date_revised():\n    var = \"09.01.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():",
+        "peekOfCode": "def current_version():\n    var = \"2.1.2\"\n    return var\ndef date_revised():\n    var = \"09.04.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
@@ -965,7 +965,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def date_revised():\n    var = \"09.01.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():\n    var = f\"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates\"\n    return var\ndef dependencies():",
+        "peekOfCode": "def date_revised():\n    var = \"09.04.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():\n    var = f\"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates\"\n    return var\ndef dependencies():",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
