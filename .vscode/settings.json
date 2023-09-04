@@ -9,5 +9,6 @@
         "**/.trunk/*out": true,
         ".gitignore": false
     },
-    "explorerExclude.backup": {}
+    "explorerExclude.backup": {},
+    "git-blame.gitWebUrl": ""
 }

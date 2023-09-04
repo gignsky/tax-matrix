@@ -515,7 +515,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def main():\n    \"\"\"\n    main contents of rowan county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Rowan Co., NC\"\n    county_wide_rate_title = \"Rowan County Unincorporated Tax Rate\"\n    county_wide_rate = 0.6575",
+        "peekOfCode": "def main():\n    \"\"\"\n    main contents of rowan county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Rowan Co., NC\"\n    county_wide_rate_title = \"Rowan County Unincorporated Tax Rate\"\n    county_wide_rate = 0.58",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
@@ -524,7 +524,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def city_of_salisbury():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"City of Salisbury\"\n    city_rate = 0.7196\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def city_of_salisbury():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"City of Salisbury\"\n    city_rate = 0.616\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
@@ -533,7 +533,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def town_of_spencer():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Spencer\"\n    city_rate = 0.655\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def town_of_spencer():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Spencer\"\n    city_rate = 0.55\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
@@ -551,7 +551,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def town_of_cleveland():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Cleveland\"\n    city_rate = 0.28\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def town_of_cleveland():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Cleveland\"\n    city_rate = 0.3\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
@@ -560,7 +560,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def town_of_china_grove():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of China Grove\"\n    city_rate = 0.54\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def town_of_china_grove():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of China Grove\"\n    city_rate = 0.5\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
@@ -569,7 +569,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def town_of_landis():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Landis\"\n    city_rate = 0.53\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def town_of_landis():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Landis\"\n    city_rate = 0.49\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
@@ -596,7 +596,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.rowan",
         "description": "tax_matrix.src.localities.north_carolina.rowan",
-        "peekOfCode": "def town_of_granite_quarry():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Granite Quarry\"\n    city_rate = 0.4175\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "peekOfCode": "def town_of_granite_quarry():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Town of Granite Quarry\"\n    city_rate = 0.44\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
         "detail": "tax_matrix.src.localities.north_carolina.rowan",
         "documentation": {}
     },
