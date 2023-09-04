@@ -4,12 +4,12 @@ General CONFIGURATION information
 
 
 def current_version():
-    var = "2.1.1"
+    var = "2.1.3"
     return var
 
 
 def date_revised():
-    var = "09.01.2023"
+    var = "09.04.2023"
     return var
 
 

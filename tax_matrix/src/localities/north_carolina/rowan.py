@@ -16,14 +16,14 @@ def main():
     # INFORMATION:
     county_name = "Rowan Co., NC"
     county_wide_rate_title = "Rowan County Unincorporated Tax Rate"
-    county_wide_rate = 0.6575
+    county_wide_rate = 0.58
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
     county_wide_fire_title = f"{county_name} Fire"
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
-    tax_rates_year = 2021
+    tax_rates_year = 2023
     cities = {
         1: city_of_salisbury(),
         2: town_of_spencer(),
@@ -43,7 +43,7 @@ def main():
         3: {"Rockwell Rural Fire District": 0.09},
         4: {"Pooletown Fire District": 0.09},
         5: {"Miller Ferry Fire District": 0.0875},
-        6: {"Union Fire District": 0.035},
+        6: {"Union Fire District": 0.055},
         7: {"Mt. Mitchell Fire District": 0.0726},
         8: {"Ellis Fire District": 0.085},
         9: {"Franklin Fire District": 0.09},
@@ -51,12 +51,12 @@ def main():
         11: {"Atwell Fire District": 0.0975},
         12: {"Bostian Heights Fire District": 0.09},
         13: {"Locke Fire District": 0.0975},
-        14: {"Liberty Fire District": 0.0537},
-        15: {"East Gold Hill FSD": 0.08},
-        16: {"Woodleaf Fire District": 0.065},
+        14: {"Liberty Fire District": 0.08},
+        15: {"East Gold Hill FSD": 0.09},
+        16: {"Woodleaf Fire District": 0.075},
         17: {"Scotch-Irish FSD": 0.09},
-        18: {"Salisbury Downtown Fire": 0.176},
-        19: {"Rowan Iredell Fire": 0.0648},
+        18: {"Salisbury Downtown Fire": 0.156},
+        19: {"Rowan Iredell Fire": 0.06},
         20: {"Richfield Misenheimer Fire District": 0.07},
         21: {"South Rowan Fire District": 0.09},
         22: {"East Rowan Fire District": 0.07},
@@ -90,7 +90,7 @@ def city_of_salisbury():
     """
     # INFORMATION
     city_name = "City of Salisbury"
-    city_rate = 0.7196
+    city_rate = 0.616
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -116,7 +116,7 @@ def town_of_spencer():
     """
     # INFORMATION
     city_name = "Town of Spencer"
-    city_rate = 0.655
+    city_rate = 0.55
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -168,7 +168,7 @@ def town_of_cleveland():
     """
     # INFORMATION
     city_name = "Town of Cleveland"
-    city_rate = 0.28
+    city_rate = 0.3
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -194,7 +194,7 @@ def town_of_china_grove():
     """
     # INFORMATION
     city_name = "Town of China Grove"
-    city_rate = 0.54
+    city_rate = 0.5
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -220,7 +220,7 @@ def town_of_landis():
     """
     # INFORMATION
     city_name = "Town of Landis"
-    city_rate = 0.53
+    city_rate = 0.49
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -298,7 +298,7 @@ def town_of_granite_quarry():
     """
     # INFORMATION
     city_name = "Town of Granite Quarry"
-    city_rate = 0.4175
+    city_rate = 0.44
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
