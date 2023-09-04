@@ -4,7 +4,7 @@ General CONFIGURATION information
 
 
 def current_version():
-    var = "2.1.2"
+    var = "2.1.3"
     return var
 
 
