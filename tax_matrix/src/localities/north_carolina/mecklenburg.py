@@ -18,14 +18,14 @@ def main():
     # INFORMATION:
     county_name = "Mecklenburg Co., NC"
     county_wide_rate_title = "Mecklenburg County Unincorporated Tax Rate"
-    county_wide_rate = 0.6169
+    county_wide_rate = 0.4731
     county_wide_police_title = f"{county_name} Police"
     county_wide_police_rate = None
     county_wide_fire_title = f"{county_name} Fire"
     county_wide_fire_rate = None
     county_wide_ems_title = f"{county_name} EMS"
     county_wide_ems_rate = None
-    tax_rates_year = 2023
+    tax_rates_year = 2024
     cities = {
         1: charlotte(),
         2: city_of_charlotte(),
@@ -38,24 +38,24 @@ def main():
         9: stallings(),
     }
     waste_options = {
-        1: {"Mecklenburg Single- & Multi- Family Solid Waste Fee": 39.50},
-        2: {"Charlotte Single- & Multi- Family Solid Waste Fee": 86.06},
-        3: {"Huntersville Single- & Multi- Family Solid Waste Fee": 126.00},
+        1: {"Mecklenburg Single- & Multi- Family Solid Waste Fee": 44.50},
+        2: {"Charlotte Single- & Multi- Family Solid Waste Fee": 94.64},
+        3: {"Huntersville Single- & Multi- Family Solid Waste Fee": 154.00},
     }
     meck_services = {
-        1: {"Police District Unincorporated Area (ETJ) For Charlotte": 0.1781},
+        1: {"Police District Unincorporated Area (ETJ) For Charlotte": 0.1170},
         2: {
-            "Fire District Unincorporated Area (ETJ) For Charlotte (Includes Pineville Sphere)": 0.1015
+            "Fire District Unincorporated Area (ETJ) For Charlotte (Includes Pineville Sphere)": 0.0876
         },
-        3: {"Police District Unincorporated Area (ETJ) For Cornelius": 0.229},
-        4: {"Fire District Unincorporated Area (ETJ) For Cornelius": 0.0612},
-        5: {"Police District Unincorporated Area (ETJ) For Davidson": 0.1432},
-        6: {"Fire District Unincorporated Area (ETJ) For Davidson": 0.089},
-        7: {"Police District Unincorporated Area (ETJ) For Huntersville": 0.1584},
-        8: {"Fire District Unincorporated Area (ETJ) For Huntersville": 0.0663},
-        9: {"Police District Unincorporated Area (ETJ) For Mint Hill": 0.1558},
-        10: {"Fire District Unincorporated Area (ETJ) For Mint Hill": 0.075},
-        11: {"Police District Unincorporated Area (ETJ) For Pineville": 0.1637},
+        3: {"Police District Unincorporated Area (ETJ) For Cornelius": 0.2723},
+        4: {"Fire District Unincorporated Area (ETJ) For Cornelius": 0.0453},
+        5: {"Police District Unincorporated Area (ETJ) For Davidson": 0.1170},
+        6: {"Fire District Unincorporated Area (ETJ) For Davidson": 0.0708},
+        7: {"Police District Unincorporated Area (ETJ) For Huntersville": 0.1170},
+        8: {"Fire District Unincorporated Area (ETJ) For Huntersville": 0.0653},
+        9: {"Police District Unincorporated Area (ETJ) For Mint Hill": 0.1170},
+        10: {"Fire District Unincorporated Area (ETJ) For Mint Hill": 0.06},
+        11: {"Police District Unincorporated Area (ETJ) For Pineville": 0.1185},
     }
 
     special_stuff = [waste_options, meck_services]
@@ -87,7 +87,7 @@ def charlotte():
     """
     # INFORMATION
     city_name = "Charlotte"
-    city_rate = 0.3481
+    city_rate = 0.2604
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -120,12 +120,12 @@ def city_of_charlotte():
     fire_rate = None
     fire_rate_title = f"{city_name} Fire"
     special_districts = {
-        1: {"District 1": {0.0136: "City of Charlotte District 1"}},
-        2: {"District 2": {0.0363: "City of Charlotte District 2"}},
-        3: {"District 3": {0.0474: "City of Charlotte District 3"}},
-        4: {"District 4": {0.039: "City of Charlotte District 4"}},
-        5: {"District 5": {0.0279: "City of Charlotte District 5"}},
-        6: {"District 6": {0.04: "City of Charlotte District 6 (SouthPark)"}},
+        1: {"District 1": {0.0128: "City of Charlotte District 1"}},
+        2: {"District 2": {0.0346: "City of Charlotte District 2"}},
+        3: {"District 3": {0.046: "City of Charlotte District 3"}},
+        4: {"District 4": {0.028: "City of Charlotte District 4"}},
+        5: {"District 5": {0.0262: "City of Charlotte District 5"}},
+        6: {"District 6": {0.0381: "City of Charlotte District 6 (SouthPark)"}},
     }
 
     city = county_classes.mecklenburg_classes.CityOfCharlotte(
@@ -148,7 +148,7 @@ def town_of_cornelius():
     """
     # INFORMATION
     city_name = "Town of Cornelius"
-    city_rate = 0.232
+    city_rate = 0.1731
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -174,7 +174,7 @@ def town_of_davidson():
     """
     # INFORMATION
     city_name = "Town of Davidson"
-    city_rate = 0.325
+    city_rate = 0.266
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -200,7 +200,7 @@ def town_of_huntersville():
     """
     # INFORMATION
     city_name = "Town of Huntersville"
-    city_rate = 0.24
+    city_rate = 0.176
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -226,7 +226,7 @@ def town_of_matthews():
     """
     # INFORMATION
     city_name = "Town of Matthews"
-    city_rate = 0.295
+    city_rate = 0.2665
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -252,7 +252,7 @@ def town_of_mint_hill():
     """
     # INFORMATION
     city_name = "Town of Mint Hill"
-    city_rate = 0.255
+    city_rate = 0.225
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
@@ -278,7 +278,7 @@ def town_of_pineville():
     """
     # INFORMATION
     city_name = "Town of Pineville"
-    city_rate = 0.33
+    city_rate = 0.285
     city_rate_title = city_name
     police_rate = None
     police_rate_title = f"{city_name} Police"
