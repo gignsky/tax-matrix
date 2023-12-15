@@ -173,7 +173,7 @@ def peachland():
     City Class
     """
     # INFORMATION
-    city_name = "Peachland"
+    city_name = "Peachland City"
     city_rate = 0.3
     city_rate_title = city_name
     police_rate = None
