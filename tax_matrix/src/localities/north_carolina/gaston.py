@@ -238,6 +238,7 @@ def gastonia():
 
     return city
 
+
 def york_chest_historic_city():
     """
     City Class
@@ -262,6 +263,7 @@ def york_chest_historic_city():
     )
 
     return city
+
 
 def gastonia_downtown():
     """

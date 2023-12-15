@@ -1,5 +1,89 @@
 [
     {
+        "label": "print_function",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "optparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "optparse",
+        "description": "optparse",
+        "detail": "optparse",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "pip",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pip",
+        "description": "pip",
+        "detail": "pip",
+        "documentation": {}
+    },
+    {
+        "label": "DistributionNotFound",
+        "importPath": "pkg_resources",
+        "description": "pkg_resources",
+        "isExtraImport": true,
+        "detail": "pkg_resources",
+        "documentation": {}
+    },
+    {
+        "label": "VersionConflict",
+        "importPath": "pkg_resources",
+        "description": "pkg_resources",
+        "isExtraImport": true,
+        "detail": "pkg_resources",
+        "documentation": {}
+    },
+    {
+        "label": "get_distribution",
+        "importPath": "pkg_resources",
+        "description": "pkg_resources",
+        "isExtraImport": true,
+        "detail": "pkg_resources",
+        "documentation": {}
+    },
+    {
+        "label": "working_set",
+        "importPath": "pkg_resources",
+        "description": "pkg_resources",
+        "isExtraImport": true,
+        "detail": "pkg_resources",
+        "documentation": {}
+    },
+    {
         "label": "src",
         "kind": 6,
         "isExtraImport": true,
@@ -22,6 +106,177 @@
         "description": "distutils.core",
         "isExtraImport": true,
         "detail": "distutils.core",
+        "documentation": {}
+    },
+    {
+        "label": "autoremove",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def autoremove(names, yes=False):\n    dead = list_dead(names)\n    if dead and (yes or confirm(\"Uninstall (y/N)? \")):\n        remove_dists(dead)\ndef list_dead(names):\n    start = set()\n    for name in names:\n        try:\n            start.add(get_distribution(name))\n        except DistributionNotFound:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "list_dead",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def list_dead(names):\n    start = set()\n    for name in names:\n        try:\n            start.add(get_distribution(name))\n        except DistributionNotFound:\n            print(\"%s is not an installed pip module, skipping\" % name, file=sys.stderr)\n        except VersionConflict:\n            print(\n                \"%s is not the currently installed version, skipping\" % name,",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "exclude_whitelist",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def exclude_whitelist(dists):\n    return {dist for dist in dists if dist.project_name not in WHITELIST}\ndef show_tree(dist, dead, indent=0, visited=None):\n    if visited is None:\n        visited = set()\n    if dist in visited:\n        return\n    visited.add(dist)\n    print(\" \" * 4 * indent, end=\"\")\n    show_dist(dist)",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "show_tree",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def show_tree(dist, dead, indent=0, visited=None):\n    if visited is None:\n        visited = set()\n    if dist in visited:\n        return\n    visited.add(dist)\n    print(\" \" * 4 * indent, end=\"\")\n    show_dist(dist)\n    for req in requires(dist):\n        if req in dead:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "find_all_dead",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def find_all_dead(graph, start):\n    return fixed_point(lambda d: find_dead(graph, d), start)\ndef find_dead(graph, dead):\n    def is_killed_by_us(node):\n        succ = graph[node]\n        return succ and not (succ - dead)\n    return dead | set(filter(is_killed_by_us, graph))\ndef fixed_point(f, x):\n    while True:\n        y = f(x)",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "find_dead",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def find_dead(graph, dead):\n    def is_killed_by_us(node):\n        succ = graph[node]\n        return succ and not (succ - dead)\n    return dead | set(filter(is_killed_by_us, graph))\ndef fixed_point(f, x):\n    while True:\n        y = f(x)\n        if y == x:\n            return x",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "fixed_point",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def fixed_point(f, x):\n    while True:\n        y = f(x)\n        if y == x:\n            return x\n        x = y\ndef confirm(prompt):\n    return raw_input(prompt) == \"y\"\ndef show_dist(dist):\n    print(\"%s %s (%s)\" % (dist.project_name, dist.version, dist.location))",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "confirm",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def confirm(prompt):\n    return raw_input(prompt) == \"y\"\ndef show_dist(dist):\n    print(\"%s %s (%s)\" % (dist.project_name, dist.version, dist.location))\ndef show_freeze(dist):\n    print(dist.as_requirement())\ndef remove_dists(dists):\n    if sys.executable:\n        pip_cmd = [sys.executable, \"-m\", \"pip\"]\n    else:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "show_dist",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def show_dist(dist):\n    print(\"%s %s (%s)\" % (dist.project_name, dist.version, dist.location))\ndef show_freeze(dist):\n    print(dist.as_requirement())\ndef remove_dists(dists):\n    if sys.executable:\n        pip_cmd = [sys.executable, \"-m\", \"pip\"]\n    else:\n        pip_cmd = [\"pip\"]\n    subprocess.check_call(pip_cmd + [\"uninstall\", \"-y\"] + [d.project_name for d in dists])",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "show_freeze",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def show_freeze(dist):\n    print(dist.as_requirement())\ndef remove_dists(dists):\n    if sys.executable:\n        pip_cmd = [sys.executable, \"-m\", \"pip\"]\n    else:\n        pip_cmd = [\"pip\"]\n    subprocess.check_call(pip_cmd + [\"uninstall\", \"-y\"] + [d.project_name for d in dists])\ndef get_graph():\n    g = defaultdict(set)",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "remove_dists",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def remove_dists(dists):\n    if sys.executable:\n        pip_cmd = [sys.executable, \"-m\", \"pip\"]\n    else:\n        pip_cmd = [\"pip\"]\n    subprocess.check_call(pip_cmd + [\"uninstall\", \"-y\"] + [d.project_name for d in dists])\ndef get_graph():\n    g = defaultdict(set)\n    for dist in working_set:\n        g[dist]",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "get_graph",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def get_graph():\n    g = defaultdict(set)\n    for dist in working_set:\n        g[dist]\n        for req in requires(dist):\n            g[req].add(dist)\n    return g\ndef requires(dist):\n    required = []\n    for pkg in dist.requires():",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "requires",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def requires(dist):\n    required = []\n    for pkg in dist.requires():\n        try:\n            required.append(get_distribution(pkg))\n        except VersionConflict as e:\n            print(e.report(), file=sys.stderr)\n            print(\"Redoing requirement with just package name...\", file=sys.stderr)\n            required.append(get_distribution(pkg.project_name))\n        except DistributionNotFound as e:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def main(argv=None):\n    parser = create_parser()\n    (opts, args) = parser.parse_args(argv)\n    if opts.leaves or opts.freeze:\n        list_leaves(opts.freeze)\n    elif opts.list:\n        list_dead(args)\n    elif len(args) == 0:\n        parser.print_help()\n    else:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "get_leaves",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def get_leaves(graph):\n    def is_leaf(node):\n        return not graph[node]\n    return filter(is_leaf, graph)\ndef list_leaves(freeze=False):\n    graph = get_graph()\n    for node in get_leaves(graph):\n        if freeze:\n            show_freeze(node)\n        else:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "list_leaves",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def list_leaves(freeze=False):\n    graph = get_graph()\n    for node in get_leaves(graph):\n        if freeze:\n            show_freeze(node)\n        else:\n            show_dist(node)\ndef create_parser():\n    parser = optparse.OptionParser(\n        usage=\"usage: %prog [OPTION]... [NAME]...\",",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "create_parser",
+        "kind": 2,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "def create_parser():\n    parser = optparse.OptionParser(\n        usage=\"usage: %prog [OPTION]... [NAME]...\",\n        version=\"%prog \" + __version__,\n    )\n    parser.add_option(\n        \"-l\",\n        \"--list\",\n        action=\"store_true\",\n        default=False,",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "__version__",
+        "kind": 5,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "__version__ = \"0.10.0\"\ntry:\n    raw_input\nexcept NameError:\n    raw_input = input\ntry:\n    ModuleNotFoundError\nexcept NameError:\n    ModuleNotFoundError = ImportError\ntry:",
+        "detail": ".coding_venv.bin.pip_autoremove",
+        "documentation": {}
+    },
+    {
+        "label": "WHITELIST",
+        "kind": 5,
+        "importPath": ".coding_venv.bin.pip_autoremove",
+        "description": ".coding_venv.bin.pip_autoremove",
+        "peekOfCode": "WHITELIST = [\"pip\", \"setuptools\", \"pip-autoremove\", \"wheel\"]\ndef autoremove(names, yes=False):\n    dead = list_dead(names)\n    if dead and (yes or confirm(\"Uninstall (y/N)? \")):\n        remove_dists(dead)\ndef list_dead(names):\n    start = set()\n    for name in names:\n        try:\n            start.add(get_distribution(name))",
+        "detail": ".coding_venv.bin.pip_autoremove",
         "documentation": {}
     },
     {
@@ -85,6 +340,78 @@
         "description": "tax_matrix.src.general_classes.property_class",
         "peekOfCode": "class Property:\n    \"\"\"\n    Class for generic Property\n    \"\"\"\n    def __init__(self):\n        self.price_int = None\n        self.price_str = None\n        self.price_div_100_float = None\n        self.price_div_100_string = None\n        self.county = None",
         "detail": "tax_matrix.src.general_classes.property_class",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def main():\n    \"\"\"\n    main contents of anson county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Anson Co., NC\"\n    county_wide_rate_title = \"Anson County Unincorporated Tax Rate\"\n    county_wide_rate = 0.777",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "ansonville",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def ansonville():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Ansonville\"\n    city_rate = 0.45\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "lilesvile",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def lilesvile():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Lilesvile\"\n    city_rate = 0.48\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "mcfarlan",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def mcfarlan():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"McFarlan\"\n    city_rate = 0.23\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "morven",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def morven():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Morven\"\n    city_rate = 0.47\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "peachland",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def peachland():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Peachland City\"\n    city_rate = 0.3\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "polkton",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def polkton():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Polkton\"\n    city_rate = 0.27\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "wadesboro",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def wadesboro():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Wadesboro\"\n    city_rate = 0.556\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
         "documentation": {}
     },
     {
@@ -956,7 +1283,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def current_version():\n    var = \"2.1.3\"\n    return var\ndef date_revised():\n    var = \"09.04.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():",
+        "peekOfCode": "def current_version():\n    var = \"2.1.4-alpha\"\n    return var\ndef date_revised():\n    var = \"12.15.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
@@ -965,7 +1292,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def date_revised():\n    var = \"09.04.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():\n    var = f\"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates\"\n    return var\ndef dependencies():",
+        "peekOfCode": "def date_revised():\n    var = \"12.15.2023\"\n    return var\ndef description():\n    var = f\"Revised as of: {date_revised()} | Statement Generator for CLT-Surrounding Tax Districts\"\n    return var\ndef long_description():\n    var = f\"Revised as of: {date_revised()} | A tax matrix calculator for form-filling purposes that will generate a statement estimating taxes for a property based on it's specified tax rates\"\n    return var\ndef dependencies():",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
