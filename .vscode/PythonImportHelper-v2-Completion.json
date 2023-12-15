@@ -345,6 +345,78 @@
     {
         "label": "main",
         "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def main():\n    \"\"\"\n    main contents of anson county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Anson Co., NC\"\n    county_wide_rate_title = \"Anson County Unincorporated Tax Rate\"\n    county_wide_rate = 0.777",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "ansonville",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def ansonville():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Ansonville\"\n    city_rate = 0.45\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "lilesvile",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def lilesvile():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Lilesvile\"\n    city_rate = 0.48\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "mcfarlan",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def mcfarlan():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"McFarlan\"\n    city_rate = 0.23\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "morven",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def morven():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Morven\"\n    city_rate = 0.47\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "peachland",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def peachland():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Peachland\"\n    city_rate = 0.3\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "polkton",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def polkton():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Polkton\"\n    city_rate = 0.27\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "wadesboro",
+        "kind": 2,
+        "importPath": "tax_matrix.src.localities.north_carolina.anson",
+        "description": "tax_matrix.src.localities.north_carolina.anson",
+        "peekOfCode": "def wadesboro():\n    \"\"\"\n    City Class\n    \"\"\"\n    # INFORMATION\n    city_name = \"Wadesboro\"\n    city_rate = 0.556\n    city_rate_title = city_name\n    police_rate = None\n    police_rate_title = f\"{city_name} Police\"",
+        "detail": "tax_matrix.src.localities.north_carolina.anson",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
         "importPath": "tax_matrix.src.localities.north_carolina.cabarrus",
         "description": "tax_matrix.src.localities.north_carolina.cabarrus",
         "peekOfCode": "def main():\n    \"\"\"\n    main contents of cabarrus county\n    Returns:\n        obj: county object\n    \"\"\"\n    # INFORMATION:\n    county_name = \"Cabarrus Co., NC\"\n    county_wide_rate_title = \"Cabarrus County Unincorporated Tax Rate\"\n    county_wide_rate = 0.74",
