@@ -37,6 +37,7 @@ def load_all_counties(which_run):
     general_classes.Counties.add_county(north_carolina.union())
     general_classes.Counties.add_county(north_carolina.stanly())
     general_classes.Counties.add_county(north_carolina.cabarrus())
+    general_classes.Counties.add_county(north_carolina.anson())
     general_classes.Counties.add_county(north_carolina.iredell())
     general_classes.Counties.add_county(north_carolina.rowan())
     general_classes.Counties.add_county(north_carolina.gaston())
