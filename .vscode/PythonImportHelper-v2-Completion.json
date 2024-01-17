@@ -109,6 +109,15 @@
         "documentation": {}
     },
     {
+        "label": "PySimpleGUI",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "PySimpleGUI",
+        "description": "PySimpleGUI",
+        "detail": "PySimpleGUI",
+        "documentation": {}
+    },
+    {
         "label": "autoremove",
         "kind": 2,
         "importPath": ".venv.bin.pip_autoremove",
@@ -1348,6 +1357,51 @@
         "description": "old_tax_matrix.main",
         "peekOfCode": "def inital_run_stack(inital_run_status, options_dict):\n    \"\"\"\n    inital_run_stack runs menu selection for inital run of script\n    Args:\n        inital_run_status (bool): true/false\n        options_dict (dict): dictionary of options\n    Returns:\n        value_from_dict: returns value from options dict and new inital_run_status\n    \"\"\"\n    if inital_run_status is True:",
         "detail": "old_tax_matrix.main",
+        "documentation": {}
+    },
+    {
+        "label": "current_version",
+        "kind": 2,
+        "importPath": "tax_matrix.src.config",
+        "description": "tax_matrix.src.config",
+        "peekOfCode": "def current_version():\n    var = \"3.0.0\"\n    return var\ndef date_revised():\n    var = \"01/16/2024\"\n    return var",
+        "detail": "tax_matrix.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "date_revised",
+        "kind": 2,
+        "importPath": "tax_matrix.src.config",
+        "description": "tax_matrix.src.config",
+        "peekOfCode": "def date_revised():\n    var = \"01/16/2024\"\n    return var",
+        "detail": "tax_matrix.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "left_pane",
+        "kind": 5,
+        "importPath": "tax_matrix.main",
+        "description": "tax_matrix.main",
+        "peekOfCode": "left_pane = [\n    [sg.Button(county, key=f'-{county.upper()}-')] for county in counties\n]\n# right_pane = [[sg.Text(\"Test\")]]\nlayout = [\n    [\n        sg.Text(\n            f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"\n        )\n    ],",
+        "detail": "tax_matrix.main",
+        "documentation": {}
+    },
+    {
+        "label": "layout",
+        "kind": 5,
+        "importPath": "tax_matrix.main",
+        "description": "tax_matrix.main",
+        "peekOfCode": "layout = [\n    [\n        sg.Text(\n            f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"\n        )\n    ],\n    [sg.HorizontalSeparator(color=\"white\")],\n    [\n        sg.Text(\"Subject Value/Purchase Price\"),\n        sg.InputText(key='-PURCHASE_PRICE-', enable_events=True),",
+        "detail": "tax_matrix.main",
+        "documentation": {}
+    },
+    {
+        "label": "window",
+        "kind": 5,
+        "importPath": "tax_matrix.main",
+        "description": "tax_matrix.main",
+        "peekOfCode": "window = sg.Window(\"Tax Matrix\", layout)\nwhile True:\n    event, values = window.read()\n    if event == \"Exit\" or event == sg.WIN_CLOSED:\n        break\n    if event == '-SUBMIT-':\n        try:\n            purchase_price = int(values['-PURCHASE_PRICE-'])\n            formatted_price = f\"${purchase_price:,}\"\n            window['-PURCHASE_PRICE-'].update(formatted_price)",
+        "detail": "tax_matrix.main",
         "documentation": {}
     }
 ]
