@@ -1387,6 +1387,24 @@
         "documentation": {}
     },
     {
+        "label": "simplify_county_data",
+        "kind": 2,
+        "importPath": "tax_matrix.src.county_data.counties",
+        "description": "tax_matrix.src.county_data.counties",
+        "peekOfCode": "def simplify_county_data(counties):\n    \"\"\"\n    Simplify the county data by removing titles and rates when the rate is null.\n    Args:\n        counties (dict): A dictionary where the keys are county names and the values are the data associated with each county.\n    Returns:\n        dict: A simplified dictionary where the keys are county names and the values are the simplified data associated with each county.\n    \"\"\"\n    simplified_counties = {}\n    for county_name, county_data in counties.items():",
+        "detail": "tax_matrix.src.county_data.counties",
+        "documentation": {}
+    },
+    {
+        "label": "null_parser",
+        "kind": 2,
+        "importPath": "tax_matrix.src.county_data.counties",
+        "description": "tax_matrix.src.county_data.counties",
+        "peekOfCode": "def null_parser(dictionary):\n    \"\"\"\n    Recursively parses a dictionary and removes any key-value pairs where the value is None.\n    If a key contains the word 'rate' and its value is None, the entire dictionary is returned as None.\n    Args:\n        dictionary (dict): The dictionary to be parsed.\n    Returns:\n        dict or None: The parsed dictionary with None values removed, or None if a 'rate' key has a value of None.\n    \"\"\"\n    simplified_data = {}",
+        "detail": "tax_matrix.src.county_data.counties",
+        "documentation": {}
+    },
+    {
         "label": "current_version",
         "kind": 2,
         "importPath": "tax_matrix.src.config",
