@@ -1,97 +1,124 @@
 county_name: "Iredell Co., NC"
 county_wide:
-    title: "Iredell County Unincorporated Tax Rate"
+    title: "Iredell County UnincorPorated Tax Rate"
     rate: 0.5375
-    police_title: "Iredell Co., NC Police"
-    police_rate: null
-    fire_title: "Iredell Co., NC Fire"
-    fire_rate: 0.09
-    ems_title: "Iredell Co., NC EMS"
-    ems_rate: null
-tax_rates_year: 2022
+    Police:
+        title: "Iredell Co., NC Police"
+        rate: null
+    Fire:
+        title: "Iredell Co., NC Fire"
+        rate: 0.09
+    EMS:
+        title: "Iredell Co., NC EMS"
+        rate: null
+    Waste:
+        Iredell Co., Solid Waste Fee: 60.00
+    tax_rates_year: 2022
 cities:
     Statesville City:
-        city_rate: 0.5478
-        city_rate_title: "Statesville City"
-        police_rate: null
-        police_rate_title: "Statesville City Police"
-        fire_rate: null
-        fire_rate_title: "Statesville City Fire"
-        waste_title: "Statesville City Solid Waste Fee"
-        waste_fee: 60.00
+        title: "Statesville City"
+        rate: 0.5478
+        Police:
+            title: "Statesville City Police"
+            rate: null
+        Fire:
+            title: "Statesville City Fire"
+            rate: null
+        waste_fee:
+            title: "Statesville City Solid Waste Fee"
+            fee: 60.00
     Statesville Downtown:
-        city_rate: 0.1
-        city_rate_title: "Statesville Downtown"
-        police_rate: null
-        police_rate_title: "Statesville Downtown Police"
-        fire_rate: null
-        fire_rate_title: "Statesville Downtown Fire"
-    Woods Municipal Ser.:
-        city_rate: 0.21
-        city_rate_title: "Woods Municipal Ser."
-        police_rate: null
-        police_rate_title: "Woods Municipal Ser. Police"
-        fire_rate: null
-        fire_rate_title: "Woods Municipal Ser. Fire"
+        title: "Statesville Downtown"
+        rate: 0.1
+        Police:
+            title: "Statesville Downtown Police"
+            rate: null
+        Fire:
+            title: "Statesville Downtown Fire"
+            rate: null
+    Woods MuniciPal Ser.:
+        title: "Woods MuniciPal Ser."
+        rate: 0.21
+        Police:
+            title: "Woods MuniciPal Ser. Police"
+            rate: null
+        Fire:
+            title: "Woods MuniciPal Ser. Fire"
+            rate: null
     Troutman:
-        city_rate: 0.52
-        city_rate_title: "Troutman"
-        police_rate: null
-        police_rate_title: "Troutman Police"
-        fire_rate: null
-        fire_rate_title: "Troutman Fire"
+        title: "Troutman"
+        rate: 0.52
+        Police:
+            title: "Troutman Police"
+            rate: null
+        Fire:
+            title: "Troutman Fire"
+            rate: null
     Harmony:
-        city_rate: 0.14
-        city_rate_title: "Harmony"
-        police_rate: null
-        police_rate_title: "Harmony Police"
-        fire_rate: null
-        fire_rate_title: "Harmony Fire"
+        title: "Harmony"
+        rate: 0.14
+        Police:
+            title: "Harmony Police"
+            rate: null
+        Fire:
+            title: "Harmony Fire"
+            rate: null
     Mooresville Town:
-        city_rate: 0.58
-        city_rate_title: "Mooresville Town"
-        police_rate: null
-        police_rate_title: "Mooresville Town Police"
-        fire_rate: null
-        fire_rate_title: "Mooresville Town Fire"
-        waste_title: "Mooresville Town Solid Waste Fee"
-        waste_fee: 120.00
+        title: "Mooresville Town"
+        rate: 0.58
+        Police:
+            title: "Mooresville Town Police"
+            rate: null
+        Fire:
+            title: "Mooresville Town Fire"
+            rate: null
+        waste_fee:
+            title: "Mooresville Town Solid Waste Fee"
+            fee: 120.00
     Mooresville Downtown:
-        city_rate: 0.16
-        city_rate_title: "Mooresville Downtown"
-        police_rate: null
-        police_rate_title: "Mooresville Downtown Police"
-        fire_rate: null
-        fire_rate_title: "Mooresville Downtown Fire"
-        waste_title: "Mooresville Downtown Solid Waste Fee"
-        waste_fee: 120.00
+        title: "Mooresville Downtown"
+        rate: 0.16
+        Police:
+            title: "Mooresville Downtown Police"
+            rate: null
+        Fire:
+            title: "Mooresville Downtown Fire"
+            rate: null
+        waste_fee:
+            title: "Mooresville Downtown Solid Waste Fee"
+            fee: 120.00
     Mooresville School:
-        city_rate: 0.185
-        city_rate_title: "Mooresville School"
-        police_rate: null
-        police_rate_title: "Mooresville School Police"
-        fire_rate: null
-        fire_rate_title: "Mooresville School Fire"
-        waste_title: "Mooresville School Solid Waste Fee"
-        waste_fee: 120.00
+        title: "Mooresville School"
+        rate: 0.185
+        Police:
+            title: "Mooresville School Police"
+            rate: null
+        Fire:
+            title: "Mooresville School Fire"
+            rate: null
+        waste_fee:
+            title: "Mooresville School Solid Waste Fee"
+            fee: 120.00
     Love Valley:
-        city_rate: 0.25
-        city_rate_title: "Love Valley"
-        police_rate: null
-        police_rate_title: "Love Valley Police"
-        fire_rate: null
-        fire_rate_title: "Love Valley Fire"
+        title: "Love Valley"
+        rate: 0.25
+        Police:
+            title: "Love Valley Police"
+            rate: null
+        Fire:
+            title: "Love Valley Fire"
+            rate: null
     Davidson Town:
-        city_rate: 0.325
-        city_rate_title: "Davidson Town"
-        police_rate: null
-        police_rate_title: "Davidson Town Police"
-        fire_rate: null
-        fire_rate_title: "Davidson Town Fire"
-    county_waste_fee:
-        - "Iredell Co., Solid Waste Fee": 60.00
-    special_fire:
-        - "East Alexander Fire": 0
-        - "Shepherds Fire": 0
-        - "Mount Mourne Fire": 0
-        - "B&F Fire": 0
+        title: "Davidson Town"
+        rate: 0.325
+        Police:
+            title: "Davidson Town Police"
+            rate: null
+        Fire:
+            title: "Davidson Town Fire"
+            rate: null
+sPecial_Fire:
+    East Alexander Fire: 0
+    ShePherds Fire: 0
+    Mount Mourne Fire: 0
+    B&F Fire: 0
