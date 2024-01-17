@@ -1,64 +1,82 @@
 county_name: "Anson Co., NC"
 state: "NC"
-county_wide_rate_title: "Anson County Unincorporated Tax Rate"
-county_wide_rate: 0.777
-county_wide_police_title: "Anson Co., NC Police"
-county_wide_police_rate: null
-county_wide_fire_title: "Anson Co., NC Fire"
-county_wide_fire_rate: null
-county_wide_ems_title: "Anson Co., NC EMS"
-county_wide_ems_rate: null
+county_wide:
+    title: "Anson County Unincorporated Tax Rate"
+    rate: 0.777
+    police:
+        title: "Anson Co., NC Police"
+        rate: null
+    fire:
+        title: "Anson Co., NC Fire"
+        rate: null
+    ems:
+        title: "Anson Co., NC EMS"
+        rate: null
 tax_rates_year: 2019
 cities:
     Ansonville:
-        city_rate_title: "Ansonville"
-        city_rate: 0.45
-        police_rate_title: "Ansonville Police"
-        police_rate: null
-        fire_rate_title: "Ansonville Fire"
-        fire_rate: null
+        title: "Ansonville"
+        rate: 0.45
+        police:
+            title: "Ansonville Police"
+            rate: null
+        fire:
+            title: "Ansonville Fire"
+            rate: null
     Lilesvile:
-        city_rate_title: "Lilesvile"
-        city_rate: 0.48
-        police_rate_title: "Lilesvile Police"
-        police_rate: null
-        fire_rate_title: "Lilesvile Fire"
-        fire_rate: null
+        title: "Lilesvile"
+        rate: 0.48
+        police:
+            title: "Lilesvile Police"
+            rate: null
+        fire:
+            title: "Lilesvile Fire"
+            rate: null
     McFarlan:
-        city_rate_title: "McFarlan"
-        city_rate: null
-        police_rate_title: "McFarlan Police"
-        police_rate: null
-        fire_rate_title: "McFarlan Fire"
-        fire_rate: null
+        title: "McFarlan"
+        rate: 0.23
+        police:
+            title: "McFarlan Police"
+            rate: null
+        fire:
+            title: "McFarlan Fire"
+            rate: null
     Morven:
-        city_rate_title: "Morven"
-        city_rate: null
-        police_rate_title: "Morven Police"
-        police_rate: null
-        fire_rate_title: "Morven Fire"
-        fire_rate: null
+        title: "Morven"
+        rate: 0.47
+        police:
+            title: "Morven Police"
+            rate: null
+        fire:
+            title: "Morven Fire"
+            rate: null
     Peachland:
-        city_rate_title: "Peachland"
-        city_rate: null
-        police_rate_title: "Peachland Police"
-        police_rate: null
-        fire_rate_title: "Peachland Fire"
-        fire_rate: null
+        title: "Peachland"
+        rate: 0.3
+        police:
+            title: "Peachland Police"
+            rate: null
+        fire:
+            title: "Peachland Fire"
+            rate: null
     Polkton:
-        city_rate_title: "Polkton"
-        city_rate: null
-        police_rate_title: "Polkton Police"
-        police_rate: null
-        fire_rate_title: "Polkton Fire"
-        fire_rate: null
+        title: "Polkton"
+        rate: 0.27
+        police:
+            title: "Polkton Police"
+            rate: null
+        fire:
+            title: "Polkton Fire"
+            rate: null
     Wadesboro:
-        city_rate_title: "Wadesboro"
-        city_rate: null
-        police_rate_title: "Wadesboro Police"
-        police_rate: null
-        fire_rate_title: "Wadesboro Fire"
-        fire_rate: null
+        title: "Wadesboro"
+        rate: 0.556
+        police:
+            title: "Wadesboro Police"
+            rate: null
+        fire:
+            title: "Wadesboro Fire"
+            rate: null
 county_fire_services:
     Ansonville Fire District: 0.096
     Burnsville Fire District: 0.096
