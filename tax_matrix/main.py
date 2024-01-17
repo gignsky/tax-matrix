@@ -3,11 +3,9 @@ import src
 
 sg.theme("DarkAmber")
 
-counties=["mecklenburg","union","cabarrus","gaston","iredell"]
+counties = src.county_data.counties.get_counties()
 
-left_pane = [
-    [sg.Button(county, key=f'-{county.upper()}-')] for county in counties
-]
+left_pane = [[sg.Button(county, key=f"-{county.upper()}-")] for county in counties]
 
 # right_pane = [[sg.Text("Test")]]
 
@@ -20,8 +18,8 @@ layout = [
     [sg.HorizontalSeparator(color="white")],
     [
         sg.Text("Subject Value/Purchase Price"),
-        sg.InputText(key='-PURCHASE_PRICE-', enable_events=True),
-        sg.Button("Submit", key='-SUBMIT-')
+        sg.InputText(key="-PURCHASE_PRICE-", enable_events=True),
+        sg.Button("Submit", key="-SUBMIT-"),
     ],
     [sg.HorizontalSeparator(color="white")],
     [
@@ -39,11 +37,11 @@ while True:
     event, values = window.read()
     if event == "Exit" or event == sg.WIN_CLOSED:
         break
-    if event == '-SUBMIT-':
+    if event == "-SUBMIT-":
         try:
-            purchase_price = int(values['-PURCHASE_PRICE-'])
+            purchase_price = int(values["-PURCHASE_PRICE-"])
             formatted_price = f"${purchase_price:,}"
-            window['-PURCHASE_PRICE-'].update(formatted_price)
+            window["-PURCHASE_PRICE-"].update(formatted_price)
         except ValueError:
             pass
 
