@@ -127,11 +127,10 @@
         "documentation": {}
     },
     {
-        "label": "nicegui",
-        "kind": 6,
-        "isExtraImport": true,
+        "label": "ui",
         "importPath": "nicegui",
         "description": "nicegui",
+        "isExtraImport": true,
         "detail": "nicegui",
         "documentation": {}
     },
@@ -1427,34 +1426,7 @@
         "kind": 5,
         "importPath": "tax_matrix.main",
         "description": "tax_matrix.main",
-        "peekOfCode": "counties = src.county_data.counties.get_counties()\nleft_pane = [[sg.Button(county, key=f\"-{county.upper()}-\")] for county in counties]\n# right_pane = [[sg.Text(\"Test\")]]\nlayout = [\n    [\n        sg.Text(\n            f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"\n        )\n    ],\n    [sg.HorizontalSeparator(color=\"white\")],",
-        "detail": "tax_matrix.main",
-        "documentation": {}
-    },
-    {
-        "label": "left_pane",
-        "kind": 5,
-        "importPath": "tax_matrix.main",
-        "description": "tax_matrix.main",
-        "peekOfCode": "left_pane = [[sg.Button(county, key=f\"-{county.upper()}-\")] for county in counties]\n# right_pane = [[sg.Text(\"Test\")]]\nlayout = [\n    [\n        sg.Text(\n            f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"\n        )\n    ],\n    [sg.HorizontalSeparator(color=\"white\")],\n    [",
-        "detail": "tax_matrix.main",
-        "documentation": {}
-    },
-    {
-        "label": "layout",
-        "kind": 5,
-        "importPath": "tax_matrix.main",
-        "description": "tax_matrix.main",
-        "peekOfCode": "layout = [\n    [\n        sg.Text(\n            f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"\n        )\n    ],\n    [sg.HorizontalSeparator(color=\"white\")],\n    [\n        sg.Text(\"Subject Value/Purchase Price\"),\n        sg.InputText(key=\"-PURCHASE_PRICE-\", enable_events=True),",
-        "detail": "tax_matrix.main",
-        "documentation": {}
-    },
-    {
-        "label": "window",
-        "kind": 5,
-        "importPath": "tax_matrix.main",
-        "description": "tax_matrix.main",
-        "peekOfCode": "window = sg.Window(\"Tax Matrix\", layout)\nwhile True:\n    event, values = window.read()\n    if event == \"Exit\" or event == sg.WIN_CLOSED:\n        break\n    if event == \"-SUBMIT PURCHASE PRICE-\":\n        try:\n            purchase_price = int(values[\"-PURCHASE_PRICE-\"])\n            formatted_price = f\"${purchase_price:,}\"\n            window[\"-PURCHASE_PRICE-\"].update(formatted_price)",
+        "peekOfCode": "counties = src.county_data.counties.get_counties()\nui.label(\"Hello World\")\nui.button(\"BUTTON\", on_click=lambda: ui.notify(\"Button clicked\"))\nui.run()\n# left_pane = [[sg.Button(county, key=f\"-{county.upper()}-\")] for county in counties]\n#\n# layout = [\n#     [\n#         sg.Text(\n#             f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"",
         "detail": "tax_matrix.main",
         "documentation": {}
     }
