@@ -127,12 +127,12 @@
         "documentation": {}
     },
     {
-        "label": "PySimpleGUI",
+        "label": "nicegui",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "PySimpleGUI",
-        "description": "PySimpleGUI",
-        "detail": "PySimpleGUI",
+        "importPath": "nicegui",
+        "description": "nicegui",
+        "detail": "nicegui",
         "documentation": {}
     },
     {
@@ -1454,7 +1454,7 @@
         "kind": 5,
         "importPath": "tax_matrix.main",
         "description": "tax_matrix.main",
-        "peekOfCode": "window = sg.Window(\"Tax Matrix\", layout)\nwhile True:\n    event, values = window.read()\n    if event == \"Exit\" or event == sg.WIN_CLOSED:\n        break\n    if event == \"-SUBMIT-\":\n        try:\n            purchase_price = int(values[\"-PURCHASE_PRICE-\"])\n            formatted_price = f\"${purchase_price:,}\"\n            window[\"-PURCHASE_PRICE-\"].update(formatted_price)",
+        "peekOfCode": "window = sg.Window(\"Tax Matrix\", layout)\nwhile True:\n    event, values = window.read()\n    if event == \"Exit\" or event == sg.WIN_CLOSED:\n        break\n    if event == \"-SUBMIT PURCHASE PRICE-\":\n        try:\n            purchase_price = int(values[\"-PURCHASE_PRICE-\"])\n            formatted_price = f\"${purchase_price:,}\"\n            window[\"-PURCHASE_PRICE-\"].update(formatted_price)",
         "detail": "tax_matrix.main",
         "documentation": {}
     }
