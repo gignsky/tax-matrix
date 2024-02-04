@@ -3,10 +3,29 @@ import src
 
 counties = src.county_data.counties.get_counties()
 
-ui.label("Hello World")
-ui.button("BUTTON", on_click=lambda: ui.notify("Button clicked"))
+ui.label("Tax Matrix")
+ui.label(f"Version: {src.config.current_version()}")
+ui.label(f"Updated as of: {src.config.date_revised()}")
 
+ui.separator()
+
+with ui.row():
+    ui.number("Subject Value:", value=150000, precision=0, prefix="$").props(
+        "clearable"
+    )
+
+ui.separator()
+
+selected_county = None
+
+src.toggle_class.toggle_class().county_selector(counties)
+
+ui.label(f"Selected County: {src.toggle_class.toggle_class().selected_county}")
+
+
+# ui.toggle([None, list(counties[selected_county].cities)], value=None)
 ui.run()
+
 
 # left_pane = [[sg.Button(county, key=f"-{county.upper()}-")] for county in counties]
 #
