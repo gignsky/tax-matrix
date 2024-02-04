@@ -127,11 +127,21 @@
         "documentation": {}
     },
     {
-        "label": "ui",
-        "importPath": "nicegui",
-        "description": "nicegui",
+        "label": "flet",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "nicegui",
+        "importPath": "flet",
+        "description": "flet",
+        "detail": "flet",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
         "documentation": {}
     },
     {
@@ -1408,7 +1418,7 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def current_version():\n    var = \"3.0.0\"\n    return var\ndef date_revised():\n    var = \"01/16/2024\"\n    return var",
+        "peekOfCode": "def current_version():\n    var = \"3.0.0\"\n    return var\ndef date_revised():\n    var = \"02/03/2024\"\n    return var",
         "detail": "tax_matrix.src.config",
         "documentation": {}
     },
@@ -1417,8 +1427,17 @@
         "kind": 2,
         "importPath": "tax_matrix.src.config",
         "description": "tax_matrix.src.config",
-        "peekOfCode": "def date_revised():\n    var = \"01/16/2024\"\n    return var",
+        "peekOfCode": "def date_revised():\n    var = \"02/03/2024\"\n    return var",
         "detail": "tax_matrix.src.config",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "tax_matrix.main",
+        "description": "tax_matrix.main",
+        "peekOfCode": "def main(page: ft.Page):\n    title = ft.Text(value=\"Tax Matrix\")\n    version = ft.Text(value=f\"Version: {src.config.current_version()}\")\n    update_date = ft.Text(value=f\"Last Updated: {src.config.date_revised()}\")\n    page.controls.append(title)\n    page.controls.append(version)\n    page.controls.append(update_date)\n    page.update()\n    def submit_value(e):\n        page.add(ft.Text(value=f\"Entered Value: ${value.value}\"))",
+        "detail": "tax_matrix.main",
         "documentation": {}
     },
     {
@@ -1426,7 +1445,7 @@
         "kind": 5,
         "importPath": "tax_matrix.main",
         "description": "tax_matrix.main",
-        "peekOfCode": "counties = src.county_data.counties.get_counties()\nui.label(\"Hello World\")\nui.button(\"BUTTON\", on_click=lambda: ui.notify(\"Button clicked\"))\nui.run()\n# left_pane = [[sg.Button(county, key=f\"-{county.upper()}-\")] for county in counties]\n#\n# layout = [\n#     [\n#         sg.Text(\n#             f\"Tax Matrix, {src.config.current_version()}, updated as of {src.config.date_revised()}\"",
+        "peekOfCode": "counties = src.county_data.counties.get_counties()\ndef main(page: ft.Page):\n    title = ft.Text(value=\"Tax Matrix\")\n    version = ft.Text(value=f\"Version: {src.config.current_version()}\")\n    update_date = ft.Text(value=f\"Last Updated: {src.config.date_revised()}\")\n    page.controls.append(title)\n    page.controls.append(version)\n    page.controls.append(update_date)\n    page.update()\n    def submit_value(e):",
         "detail": "tax_matrix.main",
         "documentation": {}
     }
