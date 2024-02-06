@@ -1,3 +1,5 @@
+import flet as ft
+
 class Subject:
     def __init__(self):
         self.value=0
@@ -20,3 +22,9 @@ class Subject:
     def update_city(self,new_city, new_city_dict):
         self.city=new_city
         self.city_dict=new_city_dict
+
+    def get_cities_dropdown(self):
+        list_of_city_dropdown_options = []
+        for city in list(self.county_dict["cities"]):
+            list_of_city_dropdown_options.append(ft.dropdown.Option(city))
+        return list_of_city_dropdown_options

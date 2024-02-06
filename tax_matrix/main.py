@@ -17,13 +17,22 @@ def main(page: ft.Page):
 
     def submit_value(e):
         Subject.update_value(value_text_box.value)
+        page.update()
 
     def choose_county(e):
-        Subject.update_county(county_dropdown.value,counties[county_dropdown.value],counties[county_dropdown.value]["county_wide"])
+        Subject.update_county(
+            county_dropdown.value,
+            counties[county_dropdown.value],
+            counties[county_dropdown.value]["county_wide"],
+        )
+        city_dropdown.options = Subject.get_cities_dropdown()
+        page.update()
 
     def choose_city(e):
-        Subject.update_city(city_dropdown.value,Subject.county_dict["cities"][city_dropdown.value])
-
+        Subject.update_city(
+            city_dropdown.value, Subject.county_dict["cities"][city_dropdown.value]
+        )
+        page.update()
 
     # declare value field for entering
     value_text_box = ft.TextField(
@@ -42,22 +51,31 @@ def main(page: ft.Page):
         width=400,
     )
 
-    # declare selected county field
-    selected_county = ft.Text(value=f"Selected County: {county_dropdown.value}")
-    page.add(selected_county)
+    page.add(ft.Divider())
+
+    city_dropdown = ft.Dropdown(options=None, on_change=choose_city, width=200)
 
     page.add(
-        ft.Row(
-            [value_text_box, ft.ElevatedButton("Submit Value", on_click=submit_value)]
-        )
+        ft.Column(
+            [
+                ft.Row(
+                    [
+                        value_text_box,
+                        ft.ElevatedButton("Submit Value", on_click=submit_value),
+                    ]
+                ),
+                ft.Row([county_dropdown]),
+                ft.Row([city_dropdown]),
+            ]
+        ),
+        ft.Column(
+            [
+                ft.Text(value=f"Subject Value: ${Subject.value}"),
+                ft.Text(value=f"County: {Subject.county}"),
+                ft.Text(value=f"City: {Subject.city}"),
+            ]
+        ),
     )
-    page.add(
-        ft.Text(value="Please select a county: "),
-    )
-    page.add(county_dropdown)
 
-    city_dropdown=ft.Dropdown(options=None,on_change=choose_city,width=200)
-
-    page.add(city_dropdown)
 
 ft.app(target=main)
