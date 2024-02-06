@@ -1436,7 +1436,7 @@
         "kind": 2,
         "importPath": "tax_matrix.main",
         "description": "tax_matrix.main",
-        "peekOfCode": "def main(page: ft.Page):\n    title = ft.Text(value=\"Tax Matrix\")\n    version = ft.Text(value=f\"Version: {src.config.current_version()}\")\n    update_date = ft.Text(value=f\"Last Updated: {src.config.date_revised()}\")\n    page.controls.append(title)\n    page.controls.append(version)\n    page.controls.append(update_date)\n    page.update()\n    def submit_value(e):\n        page.add(ft.Text(value=f\"Entered Value: ${value.value}\"))",
+        "peekOfCode": "def main(page: ft.Page):\n    title = ft.Text(value=\"Tax Matrix\")\n    version = ft.Text(value=f\"Version: {src.config.current_version()}\")\n    update_date = ft.Text(value=f\"Last Updated: {src.config.date_revised()}\")\n    page.controls.append(title)\n    page.controls.append(version)\n    page.controls.append(update_date)\n    page.update()\n    def submit_value(e):\n        # page.add(ft.Text(value=f\"Entered Value: ${value.value}\"))",
         "detail": "tax_matrix.main",
         "documentation": {}
     },
