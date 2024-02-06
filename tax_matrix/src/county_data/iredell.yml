@@ -1,6 +1,6 @@
 county_name: "Iredell Co., NC"
 county_wide:
-    title: "Iredell County UnincorPorated Tax Rate"
+    title: "Iredell County Unincorporated Tax Rate"
     rate: 0.5375
     Police:
         title: "Iredell Co., NC Police"
@@ -117,7 +117,7 @@ cities:
         Fire:
             title: "Davidson Town Fire"
             rate: null
-sPecial_Fire:
+Special_Fire:
     East Alexander Fire: 0
     ShePherds Fire: 0
     Mount Mourne Fire: 0
