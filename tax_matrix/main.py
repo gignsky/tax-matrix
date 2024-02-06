@@ -22,10 +22,10 @@ def main(page: ft.Page):
 
     def display_rates_and_fees():
         for title,rate in rates_to_be_applied.items():
-            page.add(ft.Row(ft.Text(title),ft.Text(": "),ft.Text(rate)))
+            page.add(ft.Text(value=f"{title}: {rate}"))
 
         for title,fee in fees_to_be_applied.items():
-            page.add(ft.Row(ft.Text(title),ft.Text(": "),ft.Text(fee)))
+            page.add(ft.Text(value=f"{title}: {fee}"))
 
     def submit_value(e):
         # page.add(ft.Text(value=f"Entered Value: ${value.value}"))
