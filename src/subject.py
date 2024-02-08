@@ -29,12 +29,3 @@ class Subject:
         for city in list(self.county_dict["cities"]):
             list_of_city_dropdown_options.append(ft.dropdown.Option(city))
         return list_of_city_dropdown_options
-
-    def get_display_value(self):
-        return ft.Text(value=f"Subject Value: ${self.value}")
-
-    def get_display_county(self):
-        return ft.Text(value=f"County: {self.county}")
-
-    def get_display_city(self):
-        return ft.Text(value=f"City: {self.city}")

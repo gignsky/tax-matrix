@@ -152,14 +152,6 @@
         "documentation": {}
     },
     {
-        "label": "src",
-        "importPath": "tax_matrix",
-        "description": "tax_matrix",
-        "isExtraImport": true,
-        "detail": "tax_matrix",
-        "documentation": {}
-    },
-    {
         "label": "autoremove",
         "kind": 2,
         "importPath": ".venv.bin.pip_autoremove",
@@ -1404,55 +1396,55 @@
     {
         "label": "get_counties",
         "kind": 2,
-        "importPath": "tax_matrix.src.county_data.counties",
-        "description": "tax_matrix.src.county_data.counties",
+        "importPath": "src.county_data.counties",
+        "description": "src.county_data.counties",
         "peekOfCode": "def get_counties():\n    \"\"\"\n    Retrieve a dictionary of counties and their corresponding data from YAML files in the current directory.\n    Returns:\n        dict: A dictionary where the keys are county names and the values are the data associated with each county.\n    \"\"\"\n    county_files_dir = os.path.dirname(__file__)\n    counties = {}\n    for filename in os.listdir(county_files_dir):\n        if filename.endswith(\".yml\"):",
-        "detail": "tax_matrix.src.county_data.counties",
+        "detail": "src.county_data.counties",
         "documentation": {}
     },
     {
         "label": "simplify_county_data",
         "kind": 2,
-        "importPath": "tax_matrix.src.county_data.counties",
-        "description": "tax_matrix.src.county_data.counties",
+        "importPath": "src.county_data.counties",
+        "description": "src.county_data.counties",
         "peekOfCode": "def simplify_county_data(counties):\n    \"\"\"\n    Simplify the county data by removing titles and rates when the rate is null.\n    Args:\n        counties (dict): A dictionary where the keys are county names and the values are the data associated with each county.\n    Returns:\n        dict: A simplified dictionary where the keys are county names and the values are the simplified data associated with each county.\n    \"\"\"\n    simplified_counties = {}\n    for county_name, county_data in counties.items():",
-        "detail": "tax_matrix.src.county_data.counties",
+        "detail": "src.county_data.counties",
         "documentation": {}
     },
     {
         "label": "null_parser",
         "kind": 2,
-        "importPath": "tax_matrix.src.county_data.counties",
-        "description": "tax_matrix.src.county_data.counties",
+        "importPath": "src.county_data.counties",
+        "description": "src.county_data.counties",
         "peekOfCode": "def null_parser(dictionary):\n    \"\"\"\n    Recursively parses a dictionary and removes any key-value pairs where the value is None.\n    If a key contains the word 'rate' and its value is None, the entire dictionary is returned as None.\n    Args:\n        dictionary (dict): The dictionary to be parsed.\n    Returns:\n        dict or None: The parsed dictionary with None values removed, or None if a 'rate' key has a value of None.\n    \"\"\"\n    simplified_data = {}",
-        "detail": "tax_matrix.src.county_data.counties",
+        "detail": "src.county_data.counties",
         "documentation": {}
     },
     {
         "label": "current_version",
         "kind": 2,
-        "importPath": "tax_matrix.src.config",
-        "description": "tax_matrix.src.config",
-        "peekOfCode": "def current_version():\n    var = \"3.0.0\"\n    return var\ndef date_revised():\n    var = \"02/03/2024\"\n    return var",
-        "detail": "tax_matrix.src.config",
+        "importPath": "src.config",
+        "description": "src.config",
+        "peekOfCode": "def current_version():\n    var = \"3.0.0\"\n    return var\ndef date_revised():\n    var = \"02/08/2024\"\n    return var",
+        "detail": "src.config",
         "documentation": {}
     },
     {
         "label": "date_revised",
         "kind": 2,
-        "importPath": "tax_matrix.src.config",
-        "description": "tax_matrix.src.config",
-        "peekOfCode": "def date_revised():\n    var = \"02/03/2024\"\n    return var",
-        "detail": "tax_matrix.src.config",
+        "importPath": "src.config",
+        "description": "src.config",
+        "peekOfCode": "def date_revised():\n    var = \"02/08/2024\"\n    return var",
+        "detail": "src.config",
         "documentation": {}
     },
     {
         "label": "Subject",
         "kind": 6,
-        "importPath": "tax_matrix.src.subject",
-        "description": "tax_matrix.src.subject",
+        "importPath": "src.subject",
+        "description": "src.subject",
         "peekOfCode": "class Subject:\n    def __init__(self):\n        self.value = 0\n        self.rates_to_be_applied = {}\n        self.fees_to_be_applied = {}\n        self.county = None\n        self.county_dict = None\n        self.county_wide_dict = None\n        self.city = None\n        self.city_dict = None",
-        "detail": "tax_matrix.src.subject",
+        "detail": "src.subject",
         "documentation": {}
     },
     {
@@ -1460,7 +1452,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )\n#\n# def main(page: ft.Page):\n#     title = ft.Text(value=\"Tax Matrix\")\n#     version = ft.Text(value=f\"Version: {src.config.current_version()}\")",
+        "peekOfCode": "def introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )",
         "detail": "app",
         "documentation": {}
     },
@@ -1478,7 +1470,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "Subject = src.subject.Subject()\napp = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )\n#",
+        "peekOfCode": "Subject = src.subject.Subject()\napp = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )",
         "detail": "app",
         "documentation": {}
     },
@@ -1487,7 +1479,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )\n#\n# def main(page: ft.Page):",
+        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )",
         "detail": "app",
         "documentation": {}
     }
