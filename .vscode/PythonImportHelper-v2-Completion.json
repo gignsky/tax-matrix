@@ -1436,7 +1436,7 @@
         "kind": 6,
         "importPath": "tax_matrix.src.subject",
         "description": "tax_matrix.src.subject",
-        "peekOfCode": "class Subject:\n    def __init__(self):\n        self.value=0\n        self.rates_to_be_applied={}\n        self.fees_to_be_applied={}\n        self.county=None\n        self.county_dict=None\n        self.county_wide_dict=None\n        self.city=None\n        self.city_dict=None",
+        "peekOfCode": "class Subject:\n    def __init__(self):\n        self.value = 0\n        self.rates_to_be_applied = {}\n        self.fees_to_be_applied = {}\n        self.county = None\n        self.county_dict = None\n        self.county_wide_dict = None\n        self.city = None\n        self.city_dict = None",
         "detail": "tax_matrix.src.subject",
         "documentation": {}
     },

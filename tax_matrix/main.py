@@ -70,9 +70,9 @@ def main(page: ft.Page):
         ),
         ft.Column(
             [
-                ft.Text(value=f"Subject Value: ${Subject.value}"),
-                ft.Text(value=f"County: {Subject.county}"),
-                ft.Text(value=f"City: {Subject.city}"),
+                Subject.get_display_value(),
+                Subject.get_display_county(),
+                Subject.get_display_city(),
             ]
         ),
     )
