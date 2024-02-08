@@ -136,12 +136,27 @@
         "documentation": {}
     },
     {
-        "label": "time",
-        "kind": 6,
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
         "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "src",
+        "importPath": "tax_matrix",
+        "description": "tax_matrix",
+        "isExtraImport": true,
+        "detail": "tax_matrix",
         "documentation": {}
     },
     {
@@ -1441,21 +1456,39 @@
         "documentation": {}
     },
     {
-        "label": "main",
+        "label": "introduction",
         "kind": 2,
-        "importPath": "tax_matrix.main",
-        "description": "tax_matrix.main",
-        "peekOfCode": "def main(page: ft.Page):\n    title = ft.Text(value=\"Tax Matrix\")\n    version = ft.Text(value=f\"Version: {src.config.current_version()}\")\n    update_date = ft.Text(value=f\"Last Updated: {src.config.date_revised()}\")\n    page.controls.append(title)\n    page.controls.append(version)\n    page.controls.append(update_date)\n    def submit_value(e):\n        Subject.update_value(value_text_box.value)\n        page.update()",
-        "detail": "tax_matrix.main",
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )\n#\n# def main(page: ft.Page):\n#     title = ft.Text(value=\"Tax Matrix\")\n#     version = ft.Text(value=f\"Version: {src.config.current_version()}\")",
+        "detail": "app",
         "documentation": {}
     },
     {
         "label": "counties",
         "kind": 5,
-        "importPath": "tax_matrix.main",
-        "description": "tax_matrix.main",
-        "peekOfCode": "counties = src.county_data.counties.get_counties()\nSubject=src.subject.Subject()\ndef main(page: ft.Page):\n    title = ft.Text(value=\"Tax Matrix\")\n    version = ft.Text(value=f\"Version: {src.config.current_version()}\")\n    update_date = ft.Text(value=f\"Last Updated: {src.config.date_revised()}\")\n    page.controls.append(title)\n    page.controls.append(version)\n    page.controls.append(update_date)\n    def submit_value(e):",
-        "detail": "tax_matrix.main",
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "counties = src.county_data.counties.get_counties()\nSubject = src.subject.Subject()\napp = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Subject",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "Subject = src.subject.Subject()\napp = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )\n#",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route(\"/\")\ndef introduction():\n    return render_template(\n        \"introduction.html\",\n        version=src.config.current_version(),\n        update_date=src.config.date_revised(),\n    )\n#\n# def main(page: ft.Page):",
+        "detail": "app",
         "documentation": {}
     }
 ]
