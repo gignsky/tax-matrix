@@ -32,7 +32,7 @@ cities:
         fire:
             title: "City of Concord Fire"
             rate: null
-    Concord_downtown:
+    Concord Downtown:
         title: "Concord Downtown"
         rate: 0.23
         police:
