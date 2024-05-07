@@ -1,0 +1,124 @@
+county_name: "Iredell Co., NC"
+county_wide:
+    title: "Iredell County UnincorPorated Tax Rate"
+    rate: 0.5375
+    Police:
+        title: "Iredell Co., NC Police"
+        rate: null
+    Fire:
+        title: "Iredell Co., NC Fire"
+        rate: 0.09
+    EMS:
+        title: "Iredell Co., NC EMS"
+        rate: null
+    Waste:
+        Iredell Co., Solid Waste Fee: 60.00
+    tax_rates_year: 2022
+cities:
+    Statesville City:
+        title: "Statesville City"
+        rate: 0.5478
+        Police:
+            title: "Statesville City Police"
+            rate: null
+        Fire:
+            title: "Statesville City Fire"
+            rate: null
+        waste_fee:
+            title: "Statesville City Solid Waste Fee"
+            fee: 60.00
+    Statesville Downtown:
+        title: "Statesville Downtown"
+        rate: 0.1
+        Police:
+            title: "Statesville Downtown Police"
+            rate: null
+        Fire:
+            title: "Statesville Downtown Fire"
+            rate: null
+    Woods MuniciPal Ser.:
+        title: "Woods MuniciPal Ser."
+        rate: 0.21
+        Police:
+            title: "Woods MuniciPal Ser. Police"
+            rate: null
+        Fire:
+            title: "Woods MuniciPal Ser. Fire"
+            rate: null
+    Troutman:
+        title: "Troutman"
+        rate: 0.52
+        Police:
+            title: "Troutman Police"
+            rate: null
+        Fire:
+            title: "Troutman Fire"
+            rate: null
+    Harmony:
+        title: "Harmony"
+        rate: 0.14
+        Police:
+            title: "Harmony Police"
+            rate: null
+        Fire:
+            title: "Harmony Fire"
+            rate: null
+    Mooresville Town:
+        title: "Mooresville Town"
+        rate: 0.58
+        Police:
+            title: "Mooresville Town Police"
+            rate: null
+        Fire:
+            title: "Mooresville Town Fire"
+            rate: null
+        waste_fee:
+            title: "Mooresville Town Solid Waste Fee"
+            fee: 120.00
+    Mooresville Downtown:
+        title: "Mooresville Downtown"
+        rate: 0.16
+        Police:
+            title: "Mooresville Downtown Police"
+            rate: null
+        Fire:
+            title: "Mooresville Downtown Fire"
+            rate: null
+        waste_fee:
+            title: "Mooresville Downtown Solid Waste Fee"
+            fee: 120.00
+    Mooresville School:
+        title: "Mooresville School"
+        rate: 0.185
+        Police:
+            title: "Mooresville School Police"
+            rate: null
+        Fire:
+            title: "Mooresville School Fire"
+            rate: null
+        waste_fee:
+            title: "Mooresville School Solid Waste Fee"
+            fee: 120.00
+    Love Valley:
+        title: "Love Valley"
+        rate: 0.25
+        Police:
+            title: "Love Valley Police"
+            rate: null
+        Fire:
+            title: "Love Valley Fire"
+            rate: null
+    Davidson Town:
+        title: "Davidson Town"
+        rate: 0.325
+        Police:
+            title: "Davidson Town Police"
+            rate: null
+        Fire:
+            title: "Davidson Town Fire"
+            rate: null
+sPecial_Fire:
+    East Alexander Fire: 0
+    ShePherds Fire: 0
+    Mount Mourne Fire: 0
+    B&F Fire: 0

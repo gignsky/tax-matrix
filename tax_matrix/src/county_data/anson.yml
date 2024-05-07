@@ -1,0 +1,87 @@
+county_name: "Anson Co., NC"
+state: "NC"
+county_wide:
+    title: "Anson County Unincorporated Tax Rate"
+    rate: 0.777
+    police:
+        title: "Anson Co., NC Police"
+        rate: null
+    fire:
+        title: "Anson Co., NC Fire"
+        rate: null
+    ems:
+        title: "Anson Co., NC EMS"
+        rate: null
+tax_rates_year: 2019
+cities:
+    Ansonville:
+        title: "Ansonville"
+        rate: 0.45
+        police:
+            title: "Ansonville Police"
+            rate: null
+        fire:
+            title: "Ansonville Fire"
+            rate: null
+    Lilesvile:
+        title: "Lilesvile"
+        rate: 0.48
+        police:
+            title: "Lilesvile Police"
+            rate: null
+        fire:
+            title: "Lilesvile Fire"
+            rate: null
+    McFarlan:
+        title: "McFarlan"
+        rate: 0.23
+        police:
+            title: "McFarlan Police"
+            rate: null
+        fire:
+            title: "McFarlan Fire"
+            rate: null
+    Morven:
+        title: "Morven"
+        rate: 0.47
+        police:
+            title: "Morven Police"
+            rate: null
+        fire:
+            title: "Morven Fire"
+            rate: null
+    Peachland:
+        title: "Peachland"
+        rate: 0.3
+        police:
+            title: "Peachland Police"
+            rate: null
+        fire:
+            title: "Peachland Fire"
+            rate: null
+    Polkton:
+        title: "Polkton"
+        rate: 0.27
+        police:
+            title: "Polkton Police"
+            rate: null
+        fire:
+            title: "Polkton Fire"
+            rate: null
+    Wadesboro:
+        title: "Wadesboro"
+        rate: 0.556
+        police:
+            title: "Wadesboro Police"
+            rate: null
+        fire:
+            title: "Wadesboro Fire"
+            rate: null
+county_fire_services:
+    Ansonville Fire District: 0.096
+    Burnsville Fire District: 0.096
+    Gulledge Fire District: 0.096
+    Lanesboro Fire District: 0.096
+    Lilesville Fire District: 0.096
+    Morven Fire District: 0.096
+    Wadesboro Fire District: 0.096

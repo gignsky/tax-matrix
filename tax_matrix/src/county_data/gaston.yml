@@ -1,0 +1,179 @@
+county_name: "Gaston Co., NC"
+state: "NC"
+county_wide:
+    title: "Gaston County Unincorporated Tax Rate"
+    rate: 0.61
+    police:
+        title: "Gaston Co., NC Police"
+        rate: null
+    fire:
+        title: "Gaston Co., NC Fire"
+        rate: null
+    ems:
+        title: "Gaston Co., NC EMS"
+        rate: null
+tax_rates_year: 2023
+cities:
+    Belmont City:
+        city_rate: 0.455
+        city_rate_title: "Belmont City"
+        police:
+            title: "Belmont City Police"
+            rate: null
+        fire:
+            title: "Belmont City Fire"
+            rate: null
+    Bessemer City:
+        city_rate: 0.45
+        city_rate_title: "Bessemer City"
+        police:
+            title: "Bessemer City Police"
+            rate: null
+        fire:
+            title: "Bessemer City Fire"
+            rate: null
+    Cherryville City:
+        city_rate: 0.48
+        city_rate_title: "Cherryville City"
+        police:
+            title: "Cherryville City Police"
+            rate: null
+        fire:
+            title: "Cherryville City Fire"
+            rate: null
+    Cramerton City:
+        city_rate: 0.445
+        city_rate_title: "Cramerton City"
+        police:
+            title: "Cramerton City Police"
+            rate: null
+        fire:
+            title: "Cramerton City Fire"
+            rate: null
+    Town of Dallas:
+        city_rate: 0.42
+        city_rate_title: "Town of Dallas"
+        police:
+            title: "Town of Dallas Police"
+            rate: null
+        fire:
+            title: "Town of Dallas Fire"
+            rate: null
+    Gastonia City:
+        city_rate: 0.47
+        city_rate_title: "Gastonia City"
+        police:
+            title: "Gastonia City Police"
+            rate: null
+        fire:
+            title: "Gastonia City Fire"
+            rate: null
+    York-Chest. Hist + City:
+        city_rate: 0
+        city_rate_title: "York-Chest. Hist + City"
+        police:
+            title: "York-Chest. Hist + City Police"
+            rate: null
+        fire:
+            title: "York-Chest. Hist + City Fire"
+            rate: null
+    Gastonia Downtown Special District:
+        city_rate: 0.2
+        city_rate_title: "Gastonia Downtown Special District"
+        police:
+            title: "Gastonia Downtown Special District Police"
+            rate: null
+        fire:
+            title: "Gastonia Downtown Special District Fire"
+            rate: null
+    High Shoals City:
+        city_rate: 0.32
+        city_rate_title: "High Shoals City"
+        police:
+            title: "High Shoals City Police"
+            rate: null
+        fire:
+            title: "High Shoals City Fire"
+            rate: 0.085
+    Kings Mtn City:
+        city_rate: 0.48
+        city_rate_title: "Kings Mtn City"
+        police:
+            title: "Kings Mtn City Police"
+            rate: null
+        fire:
+            title: "Kings Mtn City Fire"
+            rate: null
+    Lowell City:
+        city_rate: 0.49
+        city_rate_title: "Lowell City"
+        police:
+            title: "Lowell City Police"
+            rate: null
+        fire:
+            title: "Lowell City Fire Department"
+            rate: 0.085
+    McAdenville City:
+        city_rate: 0.39
+        city_rate_title: "McAdenville City"
+        police:
+            title: "McAdenville City Police"
+            rate: null
+        fire:
+            title: "McAdenville City Fire"
+            rate: null
+    Mount Holly City:
+        city_rate: 0.405
+        city_rate_title: "Mount Holly City"
+        police:
+            title: "Mount Holly City Police"
+            rate: null
+        fire:
+            title: "Mount Holly City Fire"
+            rate: null
+    Ranlo City:
+        city_rate: 0.45
+        city_rate_title: "Ranlo City"
+        police:
+            title: "Ranlo City Police"
+            rate: null
+        fire:
+            title: "Ranlo City Fire"
+            rate: 0.085
+    Spencer Mtn:
+        city_rate: 0
+        city_rate_title: "Spencer Mtn"
+        police:
+            title: "Spencer Mtn Police"
+            rate: null
+        fire:
+            title: "Spencer Mtn Fire"
+            rate: 0.085
+    Stanley City:
+        city_rate: 0.49
+        city_rate_title: "Stanley City"
+        police:
+            title: "Stanley City Police"
+            rate: null
+        fire:
+            title: "Stanley City Fire"
+            rate: null
+county_fire_services:
+    AG Center Fire: 0.085
+    Alexis Fire Department: 0.085
+    Chapel Grove Fire: 0.085
+    Chestnut Ridge Fire Department: 0.085
+    Community Fire Department: 0.085
+    Crouse Fire Department: 0.085
+    East Gaston Fire Department: 0.085
+    Hughs Pond Fire Department: 0.085
+    Long Shoals Fire Department: 0.085
+    Lowell Fire Department: 0.085
+    Lucia-RvBend Fire Department: 0.085
+    New Hope Fire Department: 0.085
+    Ranlo Fire Department: 0.085
+    S. Gastonia Fire Department: 0.085
+    South Point Fire Department: 0.085
+    Tryonota Fire Department: 0.085
+    Union Road Fire Department: 0.085
+    Waco Fire Department: 0.085

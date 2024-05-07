@@ -1,0 +1,105 @@
+county_name: "Cabarrus Co., NC"
+state: "NC"
+county_wide:
+    title: "Cabarrus County Unincorporated Tax Rate"
+    rate: 0.74
+    police:
+        title: "Cabarrus Co., NC Police"
+        rate: null
+    fire:
+        title: "Cabarrus Co., NC Fire"
+        rate: null
+    ems:
+        title: "Cabarrus Co., NC EMS"
+        rate: null
+tax_rates_year: 2023
+cities:
+    Harrisburg:
+        title: "Town of Harrisburg"
+        rate: 0.435
+        police:
+            title: "Town of Harrisburg Police"
+            rate: null
+        fire:
+            title: "Town of Harrisburg Fire"
+            rate: null
+    Concord:
+        title: "City of Concord"
+        rate: 0.48
+        police:
+            title: "City of Concord Police"
+            rate: null
+        fire:
+            title: "City of Concord Fire"
+            rate: null
+    Concord Downtown:
+        title: "Concord Downtown"
+        rate: 0.23
+        police:
+            title: "Concord Downtown Police"
+            rate: null
+        fire:
+            title: "Concord Downtown Fire"
+            rate: null
+    Mt_pleasant:
+        title: "Town of Mt. Pleasant"
+        rate: 0.505
+        police:
+            title: "Town of Mt. Pleasant Police"
+            rate: null
+        fire:
+            title: "Town of Mt. Pleasant Fire"
+            rate: 0.118
+    Kannapolis:
+        title: "Town of Kannapolis"
+        rate: 0.63
+        police:
+            title: "Town of Kannapolis Police"
+            rate: null
+        fire:
+            title: "Town of Kannapolis Fire"
+            rate: null
+    Locust:
+        title: "City of Locust"
+        rate: 0.36
+        police:
+            title: "City of Locust Police"
+            rate: null
+        fire:
+            title: "City of Locust Fire"
+            rate: null
+    Midland:
+        title: "Town of Midland"
+        rate: 0.22
+        police:
+            title: "Town of Midland Police"
+            rate: null
+        fire:
+            title: "Town of Midland Fire"
+            rate: 0.104
+    Huntersville:
+        title: "Town of Huntersville"
+        rate: 0.24
+        police:
+            title: "Town of Huntersville Police"
+            rate: null
+        fire:
+            title: "Town of Huntersville Fire"
+            rate: null
+county_fire_services:
+    Kannapolis Rural Fire District: 0.1
+    Jackson Park Fire District: 0.14
+    Cold Water Fire District: 0.08
+    Allen Fire District: 0.09
+    Midland Fire District: 0.1
+    Harrisburg Rural Fire District: 0.15
+    Rimer Fire District: 0.088
+    Mt. Mitchel Fire District: 0.0826
+    Odell Fire District: 0.068
+    Georgeville Fire District: 0.092
+    Flowes Store Fire District: 0.1
+    Northeast Fire District: 0.127
+    Mt. Pleasant Fire District: 0.118
+    Gold Hill Fire District: 0.09
+    Richfield Fire District: 0.07
+    Concord Rural Fire District: 0.14
