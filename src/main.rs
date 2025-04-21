@@ -28,6 +28,9 @@ fn main() {
     let rates = import_rates(rates_path);
 }
 
+fn import_rates(path: str) {
+    let mut rates = Vec::new();
+}
 struct State {
     name: String,
     abbrevation: String,
