@@ -10,3 +10,5 @@ version = "0.0.1"
 
 [dependencies]
 clap = { version = "4.3.14", features = ["derive"] }
+# easy_paths = "0.1.1"
+toml = "0.8.20"
