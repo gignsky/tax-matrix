@@ -1,0 +1,62 @@
+[basic]
+name = "Mecklenburg"
+description = "Mecklenburg County, NC"
+url = "NONE"
+year = 2024
+
+[county_wide]
+rate = 0.4731
+
+[county_wide.districts]
+# Overrides the county-wide rate if used
+ETJ_Charlotte = {name = "Unincorporated Area (ETJ) for Charlotte (incl. Police and Fire)", rate = 0.6777}
+ETJ_Cornelius = {name = "Unincorporated Area (ETJ) for Cornelius (incl. Police and Fire)", rate = 0.7907}
+ETJ_Davidson = {name = "Unincorporated Area (ETJ) for Davidson (incl. Police and Fire)", rate = 0.6609}
+ETJ_Huntersville = {name = "Unincorporated Area (ETJ) for Huntersville (incl. Police and Fire)", rate = 0.6554}
+ETJ_MintHill = {name = "Unincorporated Area (ETJ) for Mint Hill (incl. Police and Fire)", rate = 0.6501}
+ETJ_Pineville = {name = "Unincorporated Area (ETJ) for Pineville (incl. Police and Fire)", rate = 0.6792}
+
+[cities_towns]
+# Adds onto county-wide rate
+
+[cities_towns.Charlotte]
+name = "City of Charlotte"
+rate = 0.7335
+
+[cities_towns.Cornelius]
+name = "Town of Cornelius"
+rate = 0.6462
+
+[cities_towns.Davidson]
+name = "Town of Davidson"
+rate = 0.7391
+
+[cities_towns.Huntersville]
+name = "Town of Huntersville"
+rate = 0.6491
+
+[cities_towns.Matthews]
+name = "Town of Matthews"
+rate = 0.7396
+
+[cities_towns.MintHill]
+name = "Town of Mint Hill"
+rate = 0.6981
+
+[cities_towns.Pineville]
+name = "Town of Pineville"
+rate = 0.7581
+
+[cities_towns.Charlotte.districts]
+# adds to the city rate
+district1 = {name = "Charlotte District 1", rate = 0.0128}
+district2 = {name = "Charlotte District 2", rate = 0.0346}
+district3 = {name = "Charlotte District 3", rate = 0.0460}
+district4 = {name = "Charlotte District 4", rate = 0.0280}
+district5 = {name = "Charlotte District 5", rate = 0.0262}
+district6 = {name = "Charlotte District 6 (SouthPark)", rate = 0.0381}
+
+[fees]
+mecklenburg_waste = {name = "Mecklenburg Waste Fee", fee = 44.50}
+charlotte_waste = {name = "City of Charlotte Waste Fee", fee = 94.64}
+huntersville_waste = {name = "Town of Huntersville Waste Fee", fee = 154.00}
