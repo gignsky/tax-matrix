@@ -1,6 +1,7 @@
 [basic]
 name = "Mecklenburg"
 description = "Mecklenburg County, NC"
+state = "NC"
 url = "NONE"
 year = 2024
 
