@@ -32,16 +32,16 @@ pub fn import_rates_and_fees(path: &str) {
 
             println!("File contents: {}", contents.clone());
 
-            let county: Table = toml::from_str(&contents).unwrap();
+            // let county: Table = toml::from_str(&contents).unwrap();
 
-            dbg!("Parsed county: {:?}", county);
+            // dbg!("Parsed county: {:?}", county);
 
             // Initialize the County structs
         }
     }
 }
 
-fn county_importer(county: Table) -> County {}
+// fn county_importer(county: Table) -> County {}
 
 enum State {
     NC,
