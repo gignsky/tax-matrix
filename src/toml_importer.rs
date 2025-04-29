@@ -1,7 +1,6 @@
 use std::fs;
 
-use serde::Deserialize;
-use toml::Table;
+use static_toml::static_toml;
 
 pub fn import_rates_and_fees(path: &str) {
     // let mut states = Vec::new();
@@ -25,12 +24,17 @@ pub fn import_rates_and_fees(path: &str) {
 
         // Iterate over each file
         for file in files {
-            println!("Found file: {}", file.clone());
+            // println!("Found file: {}", file.clone());
+
+            let path = "src/rates/NC/mecklenburg.toml";
 
             // Read the file contents
-            let contents = fs::read_to_string(&file).unwrap_or("".to_string());
+            static_toml! {
+                static CONTENTS = include_toml!("src/rates/NC/mecklenburg.toml");
+            }
+            // let contents = fs::read_to_string(&file).unwrap_or("".to_string());
 
-            println!("File contents: {}", contents.clone());
+            println!("File contents: {}", CONTENTS.basic.name);
 
             // let county: Table = toml::from_str(&contents).unwrap();
 

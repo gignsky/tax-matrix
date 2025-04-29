@@ -4,8 +4,6 @@
 use std::fs;
 
 use clap::Parser;
-use serde::Deserialize;
-use toml::Table;
 
 mod toml_importer;
 
@@ -32,7 +30,7 @@ fn main() {
         args.name.unwrap_or("world".to_string())
     );
 
-    let rates_path = "src/rates";
+    const RATES_PATH: &str = "src/rates";
     // let rates =
-    toml_importer::import_rates_and_fees(rates_path);
+    toml_importer::import_rates_and_fees(RATES_PATH);
 }
