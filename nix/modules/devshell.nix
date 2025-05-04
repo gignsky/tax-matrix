@@ -12,14 +12,19 @@
         just
         nixd # Nix language server
         bacon
-        # config.process-compose.cargo-doc-live.outputs.package
+        config.process-compose.cargo-doc-live.outputs.package
         nil
         lolcat
         wslu
-        #add quickresults one day
+        cargo-generate
+
+        # dotfiles programs
+        inputs.dotfiles.packages.${system}.quick-results
+        inputs.dotfiles.packages.${system}.upjust
+        inputs.dotfiles.packages.${system}.cargo-update
       ];
       shellHook = ''
-        echo "welcome to the rust development environment" | lolcat
+        echo "welcome to the rust development environment" | ${pkgs.cowsay}/bin/cowsay
       '';
     };
   };

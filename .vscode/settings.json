@@ -7,20 +7,18 @@
     // "editor.inlayHints.enabled": "offUnlessPressed",
     "files.exclude": {
         "**/.git": true,
-        "**/.svn": true,
+        "**/.svn": false,
         "**/.hg": true,
-        "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": false,
-        "**/.trunk/*out": true,
-        "**/.gitignore": true,
+        "**/Thumbs.db": true,
         ".direnv": true,
         ".gitignore": true,
-        ".envrc": true
+        ".envrc": false
     },
     "explorerExclude.backup": {},
-    "git-blame.gitWebUrl": "",
-    "cSpell.words": [
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "nix.enableLanguageServer": true,
+    "nix.formatterPath": "nixfmt""cSpell.words": [
         "anson",
         "ansonville",
         "Burnsville",
