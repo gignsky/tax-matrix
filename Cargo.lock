@@ -406,7 +406,7 @@ dependencies = [
 
 [[package]]
 name = "tax-matrix"
-version = "0.0.1"
+version = "4.0.0-dev"
 dependencies = [
  "clap",
  "easy_paths",
